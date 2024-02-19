@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\Admin\Test\{
     ManageTestController,
     ManageTestSectionController,
@@ -35,6 +36,12 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    //Visitor Info 
+
+    Route::post('/store-visitorInfo', [VisitorController::class, 'storeVisitorInfo'])->name('store.VisitorInfo');
+
+    
 });
   
 /*------------------------------------------
@@ -92,4 +99,17 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+});
+/*------------------------------------------
+--------------------------------------------
+All Advisor Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:advisor'])->group(function () {
+  
+    Route::get('/advisor/home', [HomeController::class, 'advisorHome'])->name('advisor.home');
+    
+    Route::get('/student-Info/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
+
+    
 });

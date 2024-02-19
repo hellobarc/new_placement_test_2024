@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
+use App\Models\{
+    User,
+    VisitorLog
+};
+use DB;
+use Auth;
   
 class HomeController extends Controller
 {
@@ -22,8 +28,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('student.student-info');
+    {   
+        $data = User::where('type', 3)->get();
+        return view('student.student-info', compact('data'));
     } 
   
     /**
@@ -45,4 +52,14 @@ class HomeController extends Controller
     {
         return view('managerHome');
     }
+
+    public function advisorHome()
+    {
+        $advisorID = Auth::user()->id;
+
+        $getData = VisitorLog::where('assign_advisor', $advisorID)
+        ->get();
+        return view('advisorHome', compact('getData'));
+    }
+
 }
