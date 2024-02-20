@@ -36,10 +36,12 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    
 
     //Visitor Info 
 
     Route::post('/store-visitorInfo', [VisitorController::class, 'storeVisitorInfo'])->name('store.VisitorInfo');
+    Route::post('/change-status/{id}', [VisitorController::class, 'statusChanged'])->name('change.status');
 
     
 });
@@ -111,5 +113,10 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     
     Route::get('/student-Info/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
 
-    
+    Route::get('/student-data', [HomeController::class, 'getStudentData'])->name('student.data');
+
+    Route::post('/status-update', [VisitorController::class, 'statusUpdate'])->name('status.update');
 });
+
+
+Route::get('/notify', [VisitorController::class, 'notify'])->name('notify');

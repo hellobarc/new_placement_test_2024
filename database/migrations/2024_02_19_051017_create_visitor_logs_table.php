@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('mobile');
             $table->string('purpose_of_visit');
-            $table->string('status');
+            $table->enum('status',['approved','unapproved','declined']);
             $table->integer('assign_advisor');
             $table->timestamps();
         });

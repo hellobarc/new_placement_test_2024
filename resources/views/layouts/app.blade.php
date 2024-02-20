@@ -13,23 +13,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <!-- Scripts -->
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script>
-        $( function() {
-          $( "#date_of_birth" ).datepicker({
-            dateFormat: "dd-mm-yy"
-});
-        } );
-        </script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body style="position: relative;">
@@ -95,12 +86,56 @@
             @yield('content')
         </main>
     </div>
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> --}}
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js "></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+    <script>
+        $( function() {
+          $( "#date_of_birth" ).datepicker({
+            dateFormat: "dd-mm-yy"
+            });
+        } );
+        </script>
   <script src="{{asset('admin/ckeditor/ckeditor.js')}}"></script>
     <script>
         CKEDITOR.replace('ck');
     </script>
     <script src="{{asset('frontend/js/question_js.js')}}"></script>
+
+{{-- push notification --}}
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+<script>
+    // Send the Ajax request
+    $(document).ready(function (){
+            $('#onclickTableShow').click(function(){
+                $('#exampleModal').modal('show');
+           
+            })
+            
+    })
+    
+</script>
+
+{{-- <script src="{{asset('js/app.js')}}"></script> --}}
+<script>
+    window.onload=function(){
+    Echo.channel('student_notification')
+    .listen('.Student_PushNotification', (e) => {
+        // console.log(e.message.length)
+        // e.forEach(element => {
+        //     console.log(element.length)
+        // })
+
+        let notification_count = e.message.length;
+        document.getElementById("notification_count").innerHTML = notification_count;
+        
+    
+    });
+}
+</script>
 </body>
 </html>

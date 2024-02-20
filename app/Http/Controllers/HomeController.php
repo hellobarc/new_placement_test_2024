@@ -57,9 +57,8 @@ class HomeController extends Controller
     {
         $advisorID = Auth::user()->id;
 
-        $getData = VisitorLog::where('assign_advisor', $advisorID)
-        ->get();
-        return view('advisorHome', compact('getData'));
+        $getData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'approved')->orderBy('id', 'desc')->get();
+        $unApprovedData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'unapproved')->orderBy('id', 'desc')->get();
+        return view('advisorHome', compact('getData', 'unApprovedData'));
     }
-
 }

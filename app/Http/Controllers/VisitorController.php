@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\{
+    PushNotification
+};
 use App\Models\{
     VisitorInfo,
     VisitorLog
 };
-
+use Auth;
 use DB;
 
 
@@ -16,6 +19,7 @@ class VisitorController extends Controller
 
     public function storeVisitorInfo(Request $request){
 
+        // dd($request);
         $request->validate([
             'full_name' => 'required|string|max:50',
             'contact_number' => 'required|string|max:50',
@@ -56,7 +60,7 @@ class VisitorController extends Controller
             'email' => $email,
             'mobile' => $contact_number,
             'purpose_of_visit' => $purpose_of_visit,
-            'status' => 'accquied',
+            'status' => 'unapproved',
             'assign_advisor' => $assign_advisor
         ]);
 
@@ -77,6 +81,12 @@ class VisitorController extends Controller
 
         ]);
 
+        $advisorID = $request->assign_advisor;
+        $getData = VisitorLog::where('assign_advisor', $advisorID)
+        ->get();
+
+        $notification = event(new PushNotification($getData));
+
         return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
     } 
 
@@ -88,4 +98,43 @@ class VisitorController extends Controller
 
         return view('studentDetails', compact('getDetails'));
     }
+
+
+    public function statusChanged(Request $request, $id){
+        $changedStatus = $request->input('status');
+        
+        VisitorLog::where('id', $id)
+        ->update([
+            'status' => $changedStatus
+        ]);
+
+    }
+
+    // Notification test
+    public function notify(){
+        $advisorID = Auth::user()->id;
+        $getData = VisitorLog::where('assign_advisor', $advisorID)
+        ->get();
+
+        $notification = event(new PushNotification($getData));
+
+        
+    }
+
+    public function statusUpdate(Request $request){
+        // dd($request->all());
+
+        $id = $request->input('id');
+        $status = strtolower($request->input('status'));
+        // dd($status);
+
+        VisitorLog::where('id', $id)
+        ->update([
+            'status' => $status
+        ]);
+        
+        return redirect('/advisor/home');
+    }
+
+
 }
