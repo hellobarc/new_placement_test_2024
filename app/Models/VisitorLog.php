@@ -17,4 +17,7 @@ class VisitorLog extends Model
         'status',
         'assign_advisor'
     ];
+    public function totalUser(){
+        return $this->hasMany(User::class, 'id', 'assign_advisor');
+    }
 }

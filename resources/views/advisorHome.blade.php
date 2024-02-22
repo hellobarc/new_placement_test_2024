@@ -9,16 +9,16 @@
                         <p class="fs-3 fw-bold mx-4">Barc Home</p>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-danger my-3" id="onclickTableShow">
+                        <button class="btn btn-danger my-3" id="onclickTableShow" onClick="refreshPage()">
                             <i class="bi bi-bell"></i>
-                            <span id="notification_count"></span>
+                            <span id="notification_count">{{ $notificationCount }}</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -38,28 +38,27 @@
                 </tr>
                
                     <tbody >
-                @foreach ($unApprovedData as $item)
+                @foreach ($getData as $item)
                     <tr id="cf-data-container">
                         <td>{{ $loop->index+1}}</td>
                         <td>{{ $item->full_name }}</td>
                        
                         <td>{{ $item->mobile }}</td>
                         
-                        <td>{{ $item->status}}</td>
                         <td>
-                            <form action="{{ route('status.update') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $item->id }}">
-                                <input type="submit" class="btn btn-success btn-sm" name='status' value="Approved">
-                            </form>
-                            <form action="{{ route('status.update') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $item->id }}">
-                                <input type="submit" class="btn btn-warning btn-sm" name='status' value="Declined">
-                            </form>
+                            @if($item->status == 'approved')
+                                <p class="badge badge-success bg-success">Approved</p>
+                            @elseif($item->status == 'unapproved')
+                            <p class="badge badge-warning bg-warning">UnApproved</p>
+                            @elseif($item->status == 'decline')
+                             <p class="badge badge-danger bg-danger">Decline</p>
+                            @else
+                            @endif
+                        </td>
+                        <td>
                             
-                            {{-- <a href="" ><button class="btn btn-success">Approved</button></a> --}}
-                            {{-- <a href="" ><button class="btn btn-warning btn-sm">Decline</button></a> --}}
+                            
+                           
                         </td>
                     </tr>
                     
@@ -73,7 +72,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div> --}}
         <div class="  my-2">
             <form action="" method="POST" class="form-control">
                 @csrf
@@ -108,10 +107,33 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->mobile }}</td>
                             <td>{{ $item->purpose_of_visit }}</td>
-                            <td>{{ $item->status}}</td>
                             <td>
+                                @if($item->status == 'approved')
+                                <p class="badge badge-success bg-success">Approved</p>
+                            @elseif($item->status == 'unapproved')
+                            <p class="badge badge-warning bg-warning">UnApproved</p>
+                            @elseif($item->status == 'decline')
+                             <p class="badge badge-danger bg-danger">Decline</p>
+                            @else
+                            @endif
+                            </td>
+                            <td>
+                                @if($item->status == 'approved')
                                 <a href="" ><button class="btn btn-primary">Start Assessment</button></a>
                                 <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
+                                @elseif($item->status == 'unapproved')
+                                <form action="{{ route('status.update') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                    <input type="submit" class="btn btn-success btn-sm" name='status' value="Approved">
+                                </form>
+                                <form action="{{ route('student.decline', $item->id ) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                    <input type="submit" class="btn btn-warning btn-sm" name='status' value="Declined">
+                                </form>
+                                @else
+                                @endif
                             </td>
                         </tr>
                         
@@ -130,5 +152,9 @@
 <!-- Your HTML -->
 {{-- <div id="cf-data-container"></div> --}}
 
-
+<script>
+    function refreshPage(){
+    window.location.reload();
+} 
+</script>
 

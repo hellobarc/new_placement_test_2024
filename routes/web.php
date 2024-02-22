@@ -112,11 +112,14 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::get('/advisor/home', [HomeController::class, 'advisorHome'])->name('advisor.home');
     
     Route::get('/student-Info/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
+    Route::post('/student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
 
     Route::get('/student-data', [HomeController::class, 'getStudentData'])->name('student.data');
 
     Route::post('/status-update', [VisitorController::class, 'statusUpdate'])->name('status.update');
+    Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
 });
 
-
+//TESTNG
 Route::get('/notify', [VisitorController::class, 'notify'])->name('notify');
+Route::get('/getAdvisor', [VisitorController::class, 'DeclineStudentAssign']);

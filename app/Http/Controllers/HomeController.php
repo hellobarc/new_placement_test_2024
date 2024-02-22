@@ -2,6 +2,7 @@
   
 namespace App\Http\Controllers;
  
+Use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Models\{
     User,
@@ -9,6 +10,7 @@ use App\Models\{
 };
 use DB;
 use Auth;
+
   
 class HomeController extends Controller
 {
@@ -57,8 +59,10 @@ class HomeController extends Controller
     {
         $advisorID = Auth::user()->id;
 
-        $getData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'approved')->orderBy('id', 'desc')->get();
-        $unApprovedData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'unapproved')->orderBy('id', 'desc')->get();
-        return view('advisorHome', compact('getData', 'unApprovedData'));
+        $getData = VisitorLog::where('assign_advisor', $advisorID)->orderBy('id', 'desc')->get();
+        // $unApprovedData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'unapproved')->orderBy('id', 'desc')->get();
+
+        $notificationCount = Helpers::AdvisorNotification($advisorID);
+        return view('advisorHome', compact('getData','notificationCount'));
     }
 }

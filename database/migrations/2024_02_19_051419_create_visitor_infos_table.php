@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('expected_country');
             $table->integer('expected_score');
             $table->string('how_you_know');
+            $table->string('comments_from_student')->nullable();
+            $table->string('feedback_from_advisor')->nullable();
             $table->string('branch_recomendation')->nullable();
             $table->timestamps();
         });

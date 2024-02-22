@@ -21,6 +21,8 @@ class VisitorInfo extends Model
         'expected_country',
         'expected_score',
         'how_you_know',
+        'comments_from_student',
+        'feedback_from_advisor',
         'branch_recomendation'    
     ];
 }

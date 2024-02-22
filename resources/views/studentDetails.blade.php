@@ -15,8 +15,8 @@
             <div class="card mt-3">
                 <div class="card-body p-4">
                     @include('flash-message')
-                    <form action="{{ route('store.VisitorInfo')}} " method="POST">
-                       @csrf
+                    {{-- <form action="{{ route('student.Details.update', $getDetails->id )}} " method="POST"> --}}
+                       
                         <div class="row mt-3">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -132,17 +132,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="address">Comments</label>
-                                    <input class="form-control" id="comments" name="branch_recomendation" required value="{{ $getDetails->branch_recomendation }}">
+                        <form action="{{ route('student.Details.update', $getDetails->id )}}" method="POST">
+                            @csrf
+                            <div class="row mt-3">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="address">Comments From Student</label>
+                                        {{-- <input class="form-control" id="comments" name="branch_recomendation" required value="{{ $getDetails->branch_recomendation }}"> --}}
+                                        <textarea class="form-control" name="comments_from_student" id="comments" cols="30" rows="5" >{{ $getDetails->comments_from_student }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="address">Feedback From Advisor</label>
+                                        {{-- <input class="form-control" id="comments" name="branch_recomendation" required value="{{ $getDetails->branch_recomendation }}"> --}}
+                                        <textarea class="form-control" name="feedback_from_advisor" id="feedback" cols="30" rows="5" >{{ $getDetails->feedback_from_advisor }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+    
+                            <div class="row mt-3">
+                                <div class="mx-auto mt-10 text-center col">
+                                    <button type="submit" class="btn btn-primary col-2">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                 </div>
-                
             </div>
         </div>
     </div>
