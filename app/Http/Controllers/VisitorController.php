@@ -9,7 +9,8 @@ use App\Events\{
 use App\Models\{
     VisitorInfo,
     User,
-    VisitorLog
+    VisitorLog,
+    FollowUp
 };
 use Auth;
 use DB;
@@ -222,43 +223,21 @@ class VisitorController extends Controller
     }
 
 
-    // public function DeclineStudentAssign(){
+    public function storFollowUp(Request $request){
+        $request->validate([
+            'remarks' => 'required|string',
+            'admission_status' => 'required|string',
+            'current_follow_up_date' => 'required'
+        ]);
 
-    //     $nextAdvisorId ;
+        FollowUp::create([
+            'remarks' => $request->remarks,
+            'admission_status' => $request->admission_status,
+            'current_follow_up_date' => $request->current_follow_up_date
+        ]);
 
-    //     $getAllAdvisors = User::where('type', 3)->get();
-    //     $assignedAdvisors = VisitorLog::select('assign_advisor')->groupBy('assign_advisor')->get();
+        return redirect()->back()->with('success', 'Data Saved Successfully');
 
-    
-    //     if(count($getAllAdvisors) == count($assignedAdvisors)){
-    //         $perAdvisorAssign = DB::table('users')
-    //             ->select('users.id', DB::raw('COUNT(visitor_logs.assign_advisor) AS jobs_count'))
-    //             ->join('visitor_logs', 'users.id', '=', 'visitor_logs.assign_advisor')
-    //             ->groupBy('users.id')->get();
-    
-    //         $hello = [];
-    //         foreach($perAdvisorAssign as $rows){
-    //             array_push($hello, $rows->jobs_count);
-    //         }
-    
-    //         $minValue = min($hello);
-    //         $minUserId = array_filter($perAdvisorAssign, function ($row) use ($minValue) {
-    //             return $row->jobs_count == $minValue;
-    //         });
-    
-    //         $minUserId = array_column($minUserId, 'id');
-    //         $nextAdvisorId = $advisorId;
-    //     } else {
-    //         $unassignedAdvisors = array_diff(array_column($getAllAdvisors->toArray(), 'id'), array_column($assignedAdvisors->toArray(), 'assign_advisor'));
-    
-    //         foreach($unassignedAdvisors as $advisorId){
-    //             // $advisorId."\n";
-    //             $nextAdvisorId = $advisorId;
-    //         }
-    //     }
-    //     dd($nextAdvisorId);
-
-
-    // }
+    }
 
 }

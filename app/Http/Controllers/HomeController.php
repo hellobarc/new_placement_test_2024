@@ -65,4 +65,8 @@ class HomeController extends Controller
         $notificationCount = Helpers::AdvisorNotification($advisorID);
         return view('advisorHome', compact('getData','notificationCount'));
     }
+
+    public function AssessmentHome(){
+        return view('price.priceTable');
+    }
 }

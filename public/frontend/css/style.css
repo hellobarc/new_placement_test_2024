@@ -2,3 +2,109 @@ label{
     color: #7e4d42;
     font-weight: 700 !important;
 }
+
+/* Price card */
+.background{
+    background-color: #F2B9C8;
+}
+
+.background-heading{
+    background-color: #FFFFFF;
+    margin-bottom: 15%;
+    border-radius: 5px;
+}
+
+.color1{
+    background-color: #FDB200;
+}
+
+.headingCircle1{
+    position: absolute;
+    /* width: 50%; */
+    padding: 40px 30px;
+    /* font-size: 4rem; */
+    border-radius: 500%;
+    bottom:71%;
+    /* left: 2%; */
+    transform: translate(22%, 5%);
+}
+.headingCircle2{
+    position: absolute;
+    /* width: 50%; */
+    padding: 36px 16px;
+    /* font-size: 4rem; */
+    border-radius: 500%;
+    bottom: 71%;
+    /* left: 2%; */
+    transform: translate(26%, 5%);
+}
+.headingCircle3{
+    position: absolute;
+    /* width: 50%; */
+    padding: 40px 16px;
+    /* font-size: 4rem; */
+    border-radius: 500%;
+    bottom: 71%;
+    /* left: 2%; */
+    transform: translate(22%, 5%);
+}
+
+.color1-footer{
+    background-color: #FDB200;
+}
+.color2{
+    background-color: #679E39;
+}
+.color3{
+    background-color: #31409F;
+}
+
+.price1TextColor{
+    color: #FDB200;
+}
+
+.price2TextColor{
+    color: #679E39;
+}
+
+.price3TextColor{
+    color: #31409F;
+}
+
+.theading{
+    background-color: #4B4D4B;    
+}
+
+.priceBorderRadius{
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+
+.headingColor1{
+    background: #fdc006;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0px 12px;
+}
+.headingColor2{
+    background-color: #8AC14A;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0px 12px;
+}
+.headingColor3{
+    background-color: #3F51B5;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0px 12px;
+}
+
+.t-head-design{
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.ttddesign{
+    background:#D9D9D9 !important;
+    border-right: 2px solid #fff !important;
+    border-bottom: 2px solid #fff !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    color:#000 !important;
+}

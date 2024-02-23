@@ -118,8 +118,12 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
 
     Route::post('/status-update', [VisitorController::class, 'statusUpdate'])->name('status.update');
     Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
+
+    Route::get('/exam-result', [HomeController::class, 'AssessmentHome'])->name('exam.Result');
+
 });
 
 //TESTNG
 Route::get('/notify', [VisitorController::class, 'notify'])->name('notify');
 Route::get('/getAdvisor', [VisitorController::class, 'DeclineStudentAssign']);
+Route::post('/student-follow-up', [VisitorController::class, 'storFollowUp'])->name('store.followUP'); //did not finish the method
