@@ -119,11 +119,15 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::post('/status-update', [VisitorController::class, 'statusUpdate'])->name('status.update');
     Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
 
-    Route::get('/exam-result', [HomeController::class, 'AssessmentHome'])->name('exam.Result');
+    Route::get('/price-list/{id}', [HomeController::class, 'priceList'])->name('price.List');
+    Route::post('/student-follow-up/{id}', [VisitorController::class, 'storeFollowUp'])->name('store.followUP');
+    Route::get('/student-followup-edit-view/{id}', [HomeController::class, 'followUpEditView'])->name('followUPEdit.View');
+    Route::post('/student-follow-up-edit', [VisitorController::class, 'followUpEdit'])->name('followUP.Edit');
+    Route::get('/student-followUp-delete/{id}', [VisitorController::class, 'followUpDelete'])->name('followUp.Delete');
 
 });
 
 //TESTNG
 Route::get('/notify', [VisitorController::class, 'notify'])->name('notify');
 Route::get('/getAdvisor', [VisitorController::class, 'DeclineStudentAssign']);
-Route::post('/student-follow-up', [VisitorController::class, 'storFollowUp'])->name('store.followUP'); //did not finish the method
+// Route::post('/student-follow-up', [VisitorController::class, 'storeFollowUp'])->name('store.followUP'); //did not finish the method

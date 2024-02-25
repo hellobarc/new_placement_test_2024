@@ -223,21 +223,58 @@ class VisitorController extends Controller
     }
 
 
-    public function storFollowUp(Request $request){
+    public function storeFollowUp(Request $request,$student_id){
+        // dd($request);
         $request->validate([
             'remarks' => 'required|string',
             'admission_status' => 'required|string',
-            'current_follow_up_date' => 'required'
+            'next_follow_up_date' => 'required'
         ]);
 
+        $studentId = $student_id;
+        $adviserID = Auth::user()->id;
+        // dd($adviserID);
+        $remarks = $request->input('remarks');
+        $admission_status = $request->input('admission_status');
+        $currentFollowUpDate = date('Y-m-d');
+        $nextFollowUpDate = $request->input('next_follow_up_date');
+
         FollowUp::create([
-            'remarks' => $request->remarks,
-            'admission_status' => $request->admission_status,
-            'current_follow_up_date' => $request->current_follow_up_date
+            'student_id' => $studentId,
+            'adviser_id' => $adviserID,
+            'remarks' => $remarks,
+            'admission_status' => $admission_status,
+            'current_follow_up_date' => $currentFollowUpDate,
+            'next_follow_up_date' => $nextFollowUpDate
         ]);
+
 
         return redirect()->back()->with('success', 'Data Saved Successfully');
 
+    }
+
+
+    public function followUpEdit(Request $request){
+        // dd($request);
+
+        $id = $request->input('id');
+        $admission_status = $request->input('admission_status');
+        $remarks = $request->input('remarks');
+        $nextFollowUpDate = $request->input('next_follow_up_date');
+
+        FollowUp::where('id',$id)
+        ->update([
+            'admission_status' => $admission_status,
+            'remarks' => $remarks,
+            'next_follow_up_date' => $nextFollowUpDate
+        ]);
+            
+        return redirect()->back()->with('success', 'Follow Up Edited Successfully');
+    }
+
+    public function followUpDelete(Request $request, $id){
+        FollowUp::where('id',$id)->delete();
+        return redirect()->back()->with('success', 'Follow Up Deleted');
     }
 
 }

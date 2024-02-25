@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('follow_ups', function (Blueprint $table) {
             $table->id();
+            $table->integer('student_id');
+            $table->integer('adviser_id');
             $table->longText('remarks');
             $table->string('admission_status');
             $table->string('current_follow_up_date');
+            $table->string('next_follow_up_date');
             $table->timestamps();
         });
     }

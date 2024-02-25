@@ -119,7 +119,7 @@
                             </td>
                             <td>
                                 @if($item->status == 'approved')
-                                <a href="{{ route('exam.Result') }}" ><button class="btn btn-primary">Start Assessment</button></a>
+                                <a href="{{ route('price.List' , $item->id ) }}" ><button class="btn btn-primary">Start Assessment</button></a>
                                 <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
                                 @elseif($item->status == 'unapproved')
                                 <form action="{{ route('status.update') }}" method="POST">

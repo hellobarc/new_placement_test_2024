@@ -137,5 +137,11 @@
     });
 }
 </script>
+<script>
+    
+</script>
+
+<script src="{{asset('frontend/js/main.js')}}"></script>
+<script  src="{{asset('frontend/js/manager_sidebar.js')}}"></script>
 </body>
 </html>

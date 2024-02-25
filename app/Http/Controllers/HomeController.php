@@ -6,7 +6,8 @@ Use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Models\{
     User,
-    VisitorLog
+    VisitorLog,
+    FollowUp
 };
 use DB;
 use Auth;
@@ -66,7 +67,26 @@ class HomeController extends Controller
         return view('advisorHome', compact('getData','notificationCount'));
     }
 
-    public function AssessmentHome(){
-        return view('price.priceTable');
+    public function priceList($id){
+        $adviserId = Auth::user()->id;
+        $studentId = $id;
+        $getData = FollowUp::where('student_id', $studentId)
+                    ->where('adviser_id', $adviserId)
+                    ->get();
+
+        return view('price.priceTable', compact('getData','studentId'));
+    }
+
+
+    public function followUpEditView($id){
+        $data = DB::table('follow_ups')
+        ->leftjoin('visitor_logs', 'follow_ups.student_id', 'visitor_logs.id')
+        ->where('follow_ups.id',$id)
+        ->select('visitor_logs.full_name','follow_ups.*')
+        ->first();
+        // $data = FollowUp::where('id', $id)->first();
+        // dd($data);
+
+        return view('price.editFollowUp', compact('data'));
     }
 }

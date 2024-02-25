@@ -10,8 +10,11 @@ class FollowUp extends Model
     use HasFactory;
 
     protected $fillable = [
+        'student_id',
+        'adviser_id',
         'remarks',
         'admission_status',
-        'current_follow_up_date'
+        'current_follow_up_date',
+        'next_follow_up_date'
     ];
 }

@@ -4,6 +4,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
+                <ul>
+                    <li class="d-inline px-3"><a href="#" id="A1-A2-btn" class="text-decoration-none coures-btn-li">A1-A2</a></li>
+                    <li class="d-inline px-3"><a href="#" id="B1-B2-btn" class="text-decoration-none coures-btn-li">B1-B2</a></li>
+                    <li class="d-inline px-3"><a href="#" id="B2-C1-btn" class="text-decoration-none coures-btn-li">B2-C1</a></li>
+                    <li class="d-inline px-3"><a href="#" id="A2-B2-btn" class="text-decoration-none coures-btn-li">A2-B2</a></li>
+                    <li class="d-inline px-3"><a href="#" id="B1-C1-btn" class="text-decoration-none coures-btn-li">B1-C1</a></li>
+                    <li class="d-inline px-3"><a href="#" id="A1-B2-btn" class="text-decoration-none coures-btn-li">A1-B2</a></li>
+                    <li class="d-inline px-3"><a href="#" id="A2-C1-btn" class="text-decoration-none coures-btn-li">A2-C1</a></li>
+                </ul>
+            </div>
+        </div>
+        {{-- <div class="row">
+            <div class="col-md-10 mx-auto">
                 <div class="background p-5">
                     <div class="row">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -154,36 +167,39 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
         
+        @include('price.priceChart')
+
         <div class="row mt-3">
             
             <div class="col-md-10 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <a href="#" class="float-end btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Follow Up</a>
+                        <a href="#" class="float-end btn btn-primary" data-bs-toggle="modal" data-bs-target="#followUpModal">Add New Follow Up</a>
                     </div>
                     {{-- modal --}}
                     <!-- Button trigger modal -->
-                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#followUpModal">
                             Launch demo modal
                         </button> --}}
                         
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- FollowUp Modal -->
+                        <div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Follow Up</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('store.followUP') }}" method="POST" class="form-control">
+                                    <form action="{{ route('store.followUP', $studentId ) }}" method="POST" class="form-control">
+                                        @csrf
                                         <label for="addmission">Admission Status</label>
                                         <select name="admission_status" id="admission" class="form-control">
                                             <option selected>Select Options</option>
                                             <option value="admitted">Admitted</option>
-                                            <option value="later_admit">later Admitted</option>
+                                            <option value="later_admit">Later Admitted</option>
                                             <option value="not_admitted">Not Admitted</option>
                                         </select>
 
@@ -191,7 +207,7 @@
                                         <textarea name="remarks" id="comment" cols="30" rows="5" class="form-control"></textarea>
 
                                         <label for="">Next Follow Up Date</label>
-                                        <input type="date" name="current_follow_up_date" class="form-control">
+                                        <input type="date" name="next_follow_up_date" class="form-control">
                                         <button type="submit" class="btn btn-primary float-end mt-4">Save Follow Up</button>
                                     </form>
                                 </div>
@@ -201,7 +217,7 @@
                             </div>
                             </div>
                         </div>
-                    {{-- modal end --}}
+                    {{-- FollowUp modal end --}}
                     @include('flash-message')
                     <div class="card-body">
                         <table class="table table-striped">
@@ -209,18 +225,42 @@
                                 <tr>
                                     <th>Follow Up Date</th>
                                     <th>Follow Up Remarks</th>
-                                    <th>Next Follow Up</th>
+                                    <th>Admission_Status</th>
+                                    <th>Next Follow Up Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
+                                @foreach($getData as $data)
+                                <tr>
+                                    <td>{{ date('d-m-Y', strtotime($data->current_follow_up_date)) }}</td>
+                                    <td>{{ $data->remarks }}</td>
+                                    <td>{{ $data->admission_status}}</td>
+                                    <td>{{ date('d-m-Y', strtotime($data->next_follow_up_date)) }}</td>
+                                    <td>
+                                        <a href="{{ route('followUPEdit.View', $data->id )}}" class="btn btn-primary">Edit</a>
+                                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFollowUp-{{$data->id}}">Delete</a>
+                                    </td>
+                                </tr>
+                                    {{-- Delete Modal --}}
+                                    <div class="modal fade" id="deleteFollowUp-{{$data->id}}" tabindex="-1" aria-labelledby="deleteFollowUpLabel-{{$data->id}}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title text-danger fw-bolder" id="deleteFollowUpLabel-{{$data->id}}">Are you sure delete!!</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <a href="{{route('followUp.Delete', $data->id)}}" class="btn btn-danger btn-lg">Permanent Delete</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>
-                    
                 </div>
             </div>
             
@@ -228,3 +268,4 @@
         
     </div>
 @endsection
+

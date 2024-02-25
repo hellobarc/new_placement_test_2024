@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2024 at 01:34 PM
+-- Generation Time: Feb 25, 2024 at 07:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,31 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `follow_ups`
+--
+
+CREATE TABLE `follow_ups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `adviser_id` int(11) NOT NULL,
+  `remarks` longtext NOT NULL,
+  `admission_status` varchar(255) NOT NULL,
+  `current_follow_up_date` varchar(255) NOT NULL,
+  `next_follow_up_date` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `follow_ups`
+--
+
+INSERT INTO `follow_ups` (`id`, `student_id`, `adviser_id`, `remarks`, `admission_status`, `current_follow_up_date`, `next_follow_up_date`, `created_at`, `updated_at`) VALUES
+(3, 1, 5, 'test', 'later_admit', '2024-02-25', '2024-02-29', '2024-02-24 23:14:15', '2024-02-25 00:22:06');
 
 -- --------------------------------------------------------
 
@@ -140,8 +165,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2024_02_16_104530_create_test_drop_downs_table', 8),
 (13, '2024_02_16_105919_create_test_multi_selectors_table', 9),
 (14, '2024_02_16_113928_create_test_fill_blanks_table', 10),
-(22, '2024_02_19_051419_create_visitor_infos_table', 13),
-(23, '2024_02_19_051017_create_visitor_logs_table', 14);
+(25, '2024_02_19_051419_create_visitor_infos_table', 15),
+(26, '2024_02_19_051017_create_visitor_logs_table', 16),
+(30, '2024_02_23_115348_create_follow_ups_table', 17);
 
 -- --------------------------------------------------------
 
@@ -379,6 +405,8 @@ CREATE TABLE `visitor_infos` (
   `expected_country` varchar(255) NOT NULL,
   `expected_score` int(11) NOT NULL,
   `how_you_know` varchar(255) NOT NULL,
+  `comments_from_student` varchar(255) DEFAULT NULL,
+  `feedback_from_advisor` varchar(255) DEFAULT NULL,
   `branch_recomendation` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -388,10 +416,8 @@ CREATE TABLE `visitor_infos` (
 -- Dumping data for table `visitor_infos`
 --
 
-INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `purpose_of_ielts`, `occupation`, `address`, `location`, `education`, `organization`, `date_of_birth`, `expected_country`, `expected_score`, `how_you_know`, `branch_recomendation`, `created_at`, `updated_at`) VALUES
-(2, 4, 'Academic', 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Savar', 'GED', 'na', '20-02-2024', 'Europe', 7, 'Google Map', 'Outside Dhaka', '2024-02-19 03:25:03', '2024-02-19 03:25:03'),
-(3, 5, 'General', 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Tangail', 'GED', 'na', '15-01-1999', 'Europe', 7, 'Google Map', 'Outside Dhaka', '2024-02-19 05:47:24', '2024-02-19 05:47:24'),
-(4, 6, 'Academic', 'Private Service', 'Matikata,Dhaka Cantt.', 'Savar', 'SSC', 'na', '28-02-2024', 'USA', 7, 'Student Reference', 'Dhanmondi', '2024-02-19 05:58:11', '2024-02-19 05:58:11');
+INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `purpose_of_ielts`, `occupation`, `address`, `location`, `education`, `organization`, `date_of_birth`, `expected_country`, `expected_score`, `how_you_know`, `comments_from_student`, `feedback_from_advisor`, `branch_recomendation`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Academic', 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Joydevpur', 'GED', 'na', '15-01-1999', 'UK', 7, 'Website', 'nanannaeeeeeeeee', 'nanananasss', 'House Building', '2024-02-22 05:20:10', '2024-02-22 05:27:56');
 
 -- --------------------------------------------------------
 
@@ -405,7 +431,7 @@ CREATE TABLE `visitor_logs` (
   `email` varchar(255) NOT NULL,
   `mobile` varchar(255) NOT NULL,
   `purpose_of_visit` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `status` enum('approved','unapproved','declined') NOT NULL,
   `assign_advisor` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -416,9 +442,7 @@ CREATE TABLE `visitor_logs` (
 --
 
 INSERT INTO `visitor_logs` (`id`, `full_name`, `email`, `mobile`, `purpose_of_visit`, `status`, `assign_advisor`, `created_at`, `updated_at`) VALUES
-(4, 'samiullll', 'saim.barc@gmail.com', '01746808384', 'IELTS Courses', 'accquied', 6, '2024-02-19 03:25:03', '2024-02-19 03:25:03'),
-(5, 'muktadir', 'muktadir@barc.com', '01746808384', 'IELTS Courses', 'accquied', 5, '2024-02-19 05:47:24', '2024-02-19 05:47:24'),
-(6, 'muktadir', 'student@barc', '01746808384', 'Spoken', 'accquied', 5, '2024-02-19 05:58:11', '2024-02-19 05:58:11');
+(1, 'samiu', 'student@barc', '01746808384', 'Spoken', 'approved', 5, '2024-02-22 05:20:10', '2024-02-22 05:20:31');
 
 --
 -- Indexes for dumped tables
@@ -430,6 +454,12 @@ INSERT INTO `visitor_logs` (`id`, `full_name`, `email`, `mobile`, `purpose_of_vi
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `follow_ups`
+--
+ALTER TABLE `follow_ups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `manage_tests`
@@ -541,6 +571,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `follow_ups`
+--
+ALTER TABLE `follow_ups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `manage_tests`
 --
 ALTER TABLE `manage_tests`
@@ -562,7 +598,7 @@ ALTER TABLE `manage_test_sections`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -616,13 +652,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitor_infos`
 --
 ALTER TABLE `visitor_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `visitor_logs`
 --
 ALTER TABLE `visitor_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
