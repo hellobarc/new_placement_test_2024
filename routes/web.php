@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\Test\{
     ManageTestQuestionController,
     ManageTestAddQuestionController,
 };
+use App\Http\Controllers\Manager\{
+    CourseBundleController,
+    CoursePriceController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +105,22 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+
+    Route::controller(CoursePriceController::class)->group(function(){
+        Route::get('/course-price-list', 'CoursePriceList')->name('course.prices.list');
+        Route::get('/course-price-form', 'CoursePriceForm')->name('course.prices.form');
+        Route::get('/course-price-edit/{id}', 'CoursePriceEdit')->name('course.prices.edit');
+        Route::post('/store-price-list', 'storeCouresPrices')->name('store.course.price');
+        Route::post('/update-price-list', 'updateCoursePrices')->name('update.course.price');
+        Route::get('/course-price-delete/{id}', 'coursePriceDelete')->name('course.price.delete');
+    });
+    
+    Route::controller(CourseBundleController::class)->group(function(){
+        // Route::get('/course-price-form', 'CoursePriceForm')->name('course.prices.form');
+        Route::get('/course-bundle-form', 'CourseBundleForm')->name('course.bundle.form');
+        // Route::post('/store-price-list', 'storeCouresPrices')->name('store.course.price');
+        Route::post('/store-bundle-list', 'storeBundlesPrices')->name('store.bundle.price');
+    });
 });
 /*------------------------------------------
 --------------------------------------------

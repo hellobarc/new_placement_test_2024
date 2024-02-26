@@ -129,4 +129,46 @@ $(document).ready(function(){
     $('#a1_b2_price_table').hide();
     $('#a2_c1_price_table').show();
   });  
+
+
+  // $('#duration').hide();
+  // $('#discount').hide();
+  // $('#individual_price').hide();
+  // $('#offered_price').hide();
+
+  document.getElementById("discount").style.display = "none";
+  document.getElementById("offered_price").style.display = "none";
+  document.getElementById("duration").style.display = "none";
+  document.getElementById("individual_price").style.display = "none";
 });
+
+// 
+function package_value(event){
+  let x = event.target.value;
+  console.log(x);
+
+  if( x == 'regular'){
+    document.getElementById("discount").style.display = "none";
+    document.getElementById("offered_price").style.display = "none";
+    document.getElementById("duration").style.display = "block";
+    document.getElementById("individual_price").style.display = "block";
+  }
+  else if( x == 'standard' ){
+    document.getElementById("duration").style.display = "none";
+    document.getElementById("individual_price").style.display = "none";
+    document.getElementById("discount").style.display = "block";
+    document.getElementById("offered_price").style.display = "block";
+  }
+  else if( x == 'privileged' ){
+    document.getElementById("duration").style.display = "none";
+    document.getElementById("individual_price").style.display = "none";
+    document.getElementById("discount").style.display = "block";
+    document.getElementById("offered_price").style.display = "block";
+  }
+  else{
+    document.getElementById("duration").style.display = "none";
+    document.getElementById("individual_price").style.display = "none";
+    document.getElementById("discount").style.display = "none";
+    document.getElementById("offered_price").style.display = "none";
+  }
+}
