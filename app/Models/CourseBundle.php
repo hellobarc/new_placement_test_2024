@@ -13,4 +13,9 @@ class CourseBundle extends Model
         'course_bundle',
         'status'
     ];
+
+    public function CoursePrice()
+    {
+        return $this->hasMany(CoursePrice::class, 'bundle_id');
+    }
 }

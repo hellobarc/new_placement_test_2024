@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        @include('manager.sidebar')
+        @include('admin.partials.left-sidebar')
         <div class="col py-3">
-            @yield('manager-content')
+            @yield('admin-content')
         </div>
     </div>
 </div>

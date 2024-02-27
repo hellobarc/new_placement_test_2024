@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\{
     User,
     VisitorLog,
-    FollowUp
+    FollowUp,
+    CourseBundle,
 };
 use DB;
 use Auth;
@@ -74,7 +75,9 @@ class HomeController extends Controller
                     ->where('adviser_id', $adviserId)
                     ->get();
 
-        return view('price.priceTable', compact('getData','studentId'));
+        $courseBundle = CourseBundle::where('status', 'active')->with('CoursePrice')->get();
+        //dd($courseBundle);
+        return view('price.priceTable', compact('getData','studentId','courseBundle'));
     }
 
 
@@ -84,8 +87,6 @@ class HomeController extends Controller
         ->where('follow_ups.id',$id)
         ->select('visitor_logs.full_name','follow_ups.*')
         ->first();
-        // $data = FollowUp::where('id', $id)->first();
-        // dd($data);
 
         return view('price.editFollowUp', compact('data'));
     }

@@ -1,10 +1,9 @@
-@extends('layouts.app')
-@section('content')
-@include('manager.sidebar')
+@extends('manager.managerHome')
+@section('manager-content')
 <div class="container">
     
     <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @include('flash-message')
             <form action=" {{ route('update.course.price')}}" method="POST" class="form-control">
                 @csrf 
@@ -65,7 +64,7 @@
 
                 <div class="row mt-2 mx-1" id="">
                     <div class="col-md-10">
-                        <a href="route{{ route('course.prices.list')}}" class="btn btn-primary float-end">Go Back</a>
+                        <a href="{{ route('course.prices.list')}}" class="btn btn-primary float-end">Go Back</a>
                         <input type="submit" class="btn btn-primary float-end mx-2" value="Submit">
                     </div>
                 </div>

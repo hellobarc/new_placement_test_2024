@@ -23,6 +23,9 @@
                     <li class="w-100">
                         <a href="{{route('admin.manage-question.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Manage Test Question</span></a>
                     </li>
+                    <li class="w-100">
+                        <a href="{{route('analytics.students')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Student Analytics </span></a>
+                    </li>
                 </ul>
             </li>
             <li>

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->enum('course_level',['a1','a2','b1','b2','c1','c2']);
             $table->enum('package',['standard','regular','privileged']);
             $table->string('duration')->nullable();
-            $table->integer('individual_price')->nullable();
+            $table->string('individual_price')->nullable();
             $table->string('discount')->nullable();
-            $table->integer('offered_price')->nullable();
-            $table->integer('total_price');
+            $table->string('offered_price')->nullable();
+            $table->string('total_price');
             $table->timestamps();
         });
     }

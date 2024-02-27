@@ -5,13 +5,15 @@
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <ul>
-                    <li class="d-inline px-3"><a href="#" id="A1-A2-btn" class="text-decoration-none coures-btn-li">A1-A2</a></li>
-                    <li class="d-inline px-3"><a href="#" id="B1-B2-btn" class="text-decoration-none coures-btn-li">B1-B2</a></li>
+                    @foreach($courseBundle as $rows)
+                        <li class="d-inline px-3"><a href="#" id="course_bundle_btn_{{$rows->id}}" class="text-decoration-none coures-btn-li">{{$rows->course_bundle}}</a></li>
+                    @endforeach
+                    {{-- <li class="d-inline px-3"><a href="#" id="B1-B2-btn" class="text-decoration-none coures-btn-li">B1-B2</a></li>
                     <li class="d-inline px-3"><a href="#" id="B2-C1-btn" class="text-decoration-none coures-btn-li">B2-C1</a></li>
                     <li class="d-inline px-3"><a href="#" id="A2-B2-btn" class="text-decoration-none coures-btn-li">A2-B2</a></li>
                     <li class="d-inline px-3"><a href="#" id="B1-C1-btn" class="text-decoration-none coures-btn-li">B1-C1</a></li>
                     <li class="d-inline px-3"><a href="#" id="A1-B2-btn" class="text-decoration-none coures-btn-li">A1-B2</a></li>
-                    <li class="d-inline px-3"><a href="#" id="A2-C1-btn" class="text-decoration-none coures-btn-li">A2-C1</a></li>
+                    <li class="d-inline px-3"><a href="#" id="A2-C1-btn" class="text-decoration-none coures-btn-li">A2-C1</a></li> --}}
                 </ul>
             </div>
         </div>

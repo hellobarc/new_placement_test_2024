@@ -22,7 +22,7 @@ class CoursePriceController extends Controller
         $getCourseData = DB::table('course_prices')
                         ->join('course_bundles','course_prices.bundle_id','=','course_bundles.id')
                         ->select('course_bundles.course_bundle','course_prices.*')
-                        ->get();
+                        ->paginate(10);
 
         // dd($getCourseData);
         
@@ -40,8 +40,26 @@ class CoursePriceController extends Controller
             'total_price' => 'required'
         ]);
         
-        // dd($request->input());
-        CoursePrice::create($request->input());
+        $id = $request->id;
+        $bundle_id = $request->bundle_id;
+        $course_level = $request->course_level;
+        $package = $request->package;
+        $duration = $request->duration;
+        $individual_price = $request->individual_price;
+        $discount = $request->discount;
+        $total_price = $request->total_price;
+        $offered_price = $request->offered_price;
+
+        CoursePrice::create([
+            'bundle_id' => $bundle_id,
+            'course_level' => $course_level,
+            'package' => $package,
+            'duration' => $duration,
+            'individual_price' => $individual_price,
+            'discount' => $discount,
+            'offered_price' => $offered_price,
+            'total_price' => $total_price
+        ]);
         return redirect()->back()->with('success', 'Data Saved Successfully');
     }
 
@@ -52,13 +70,11 @@ class CoursePriceController extends Controller
                         ->select('course_bundles.course_bundle','course_prices.*')
                         ->first();
         $getBundleData = CourseBundle::get();
-        // dd($getCourseEditData);
 
         return view('manager.courseEditForm',compact('getCourseEditData','getBundleData'));
     }
 
     public function updateCoursePrices(Request $request){
-        // dd($request);
         $id = $request->id;
         $bundle_id = $request->bundle_id;
         $course_level = $request->course_level;

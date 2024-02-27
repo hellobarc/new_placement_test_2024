@@ -12,17 +12,19 @@
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Price List<i class="fa-solid fa-angle-down"></i></span> </a>
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Course Manage<i class="fa-solid fa-angle-down"></i></span> </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{route('admin.manage.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Update </span></a>
+                        <a href="{{route('course.prices.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price List </span></a>
                     </li>
                     <li class="w-100">
-                        <a href="{{route('admin.manage.section.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Set </span></a>
+                        <a href="{{route('course.prices.form')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Set </span></a>
                     </li>
                     {{-- <li class="w-100">
-                        <a href="{{route('admin.manage-question.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span>  </span></a>
+                        <a href="{{route('admin.manage.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Update </span></a>
                     </li> --}}
+                    
+                    
                 </ul>
             </li>
             <li>

@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\Test\{
     ManageTestQuestionController,
     ManageTestAddQuestionController,
 };
+use App\Http\Controllers\Admin\{
+    AnalyticsController,
+};
 use App\Http\Controllers\Manager\{
     CourseBundleController,
     CoursePriceController
@@ -94,6 +97,10 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::get('/delete-question/fill-blanks/{id}', 'deleteFillBlankQuestion')->name('admin.delete-question.fill-blank.test');
         Route::get('/delete-question/heading-match/{id}', 'deleteHeadingMatchingQuestion')->name('admin.delete-question.heading-matching.test');
         Route::get('/delete-question/heading-match/sub-queston/{id}', 'deleteHeadingMatchSubQuestion')->name('admin.heading-match.delete.sub-question.test');
+    });
+
+    Route::controller(AnalyticsController::class)->group(function(){
+        Route::get('/student-analytics', 'home')->name('analytics.students');
     });
 });
   

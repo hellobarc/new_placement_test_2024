@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <!-- Scripts -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body style="position: relative;">

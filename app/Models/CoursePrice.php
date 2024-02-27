@@ -19,4 +19,9 @@ class CoursePrice extends Model
         'offered_price',
         'total_price'
     ];
+
+    public function CourseBundle()
+    {
+        return $this->belongsTo(CourseBundle::class);
+    }
 }

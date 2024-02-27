@@ -1,10 +1,10 @@
-@extends('layouts.app')
-@section('content')
+@extends('manager.managerHome')
+@section('manager-content')
 {{-- @include('manager.sidebar') --}}
 <div class="container">
     
     <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @include('flash-message')
             <form action=" {{ route('store.bundle.price')}}" method="POST" class="form-control">
                 @csrf 
