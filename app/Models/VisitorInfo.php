@@ -11,18 +11,19 @@ class VisitorInfo extends Model
 
     protected $fillable = [
         'visitor_log_id',
-        'purpose_of_ielts',
         'occupation',
         'address',
         'location',
-        'education',
         'organization',
         'date_of_birth',
-        'expected_country',
-        'expected_score',
+        'education',
         'how_you_know',
+        'expected_country',
+        'purpose_of_ielts',
+        'purpose_of_visit',
+        'expected_score',
+        'branch_recomendation',    
         'comments_from_student',
-        'feedback_from_advisor',
-        'branch_recomendation'    
+        'feedback_from_advisor'
     ];
 }

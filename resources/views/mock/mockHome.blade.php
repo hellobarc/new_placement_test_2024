@@ -119,18 +119,12 @@
                             </td>
                             <td>
                                 @if($item->status == 'approved')
-                                <a href="{{ route('price.List' , $item->id ) }}" ><button class="btn btn-primary">Start Assessment</button></a>
                                 <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
                                 @elseif($item->status == 'unapproved')
                                 <form action="{{ route('status.update') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $item->id }}">
                                     <input type="submit" class="btn btn-success btn-sm" name='status' value="Approved">
-                                </form>
-                                <form action="{{ route('student.decline', $item->id ) }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $item->id }}">
-                                    <input type="submit" class="btn btn-warning btn-sm" name='status' value="Declined">
                                 </form>
                                 @else
                                 @endif

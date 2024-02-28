@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2024 at 07:47 AM
+-- Generation Time: Feb 28, 2024 at 07:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,119 @@ SET time_zone = "+00:00";
 --
 -- Database: `placement_test_2024`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_bundles`
+--
+
+CREATE TABLE `course_bundles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `course_bundle` varchar(255) NOT NULL,
+  `status` enum('active','inactive') NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `course_bundles`
+--
+
+INSERT INTO `course_bundles` (`id`, `course_bundle`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'A1-A2', 'active', NULL, NULL),
+(2, 'B1-B2', 'active', NULL, NULL),
+(3, 'B2-C1', 'active', NULL, NULL),
+(4, 'A2-B2', 'active', NULL, NULL),
+(5, 'B1-C1', 'active', NULL, NULL),
+(6, 'A1-B2', 'active', NULL, NULL),
+(7, 'A2-C1', 'active', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_prices`
+--
+
+CREATE TABLE `course_prices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bundle_id` int(11) NOT NULL,
+  `course_level` enum('a1','a2','b1','b2','c1','c2') NOT NULL,
+  `package` enum('standard','regular','privileged') NOT NULL,
+  `duration` varchar(255) DEFAULT NULL,
+  `individual_price` varchar(255) DEFAULT NULL,
+  `discount` varchar(255) DEFAULT NULL,
+  `offered_price` varchar(255) DEFAULT NULL,
+  `total_price` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `course_prices`
+--
+
+INSERT INTO `course_prices` (`id`, `bundle_id`, `course_level`, `package`, `duration`, `individual_price`, `discount`, `offered_price`, `total_price`, `created_at`, `updated_at`) VALUES
+(2, 2, 'b1', 'regular', '1month+', '11999', NULL, NULL, '23998', '2024-02-26 22:58:37', '2024-02-26 22:58:37'),
+(3, 2, 'b2', 'regular', '1month+', '11999', NULL, NULL, '23998', '2024-02-26 22:59:31', '2024-02-26 22:59:31'),
+(4, 2, 'b1', 'standard', NULL, NULL, '60%', '4799', '11999', '2024-02-26 23:03:30', '2024-02-26 23:03:30'),
+(5, 2, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '16798', '2024-02-26 23:04:08', '2024-02-26 23:04:08'),
+(6, 2, 'b1', 'privileged', NULL, NULL, '60%', '5199', '13999', '2024-02-26 23:07:41', '2024-02-26 23:07:41'),
+(7, 2, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '13999', '2024-02-26 23:08:22', '2024-02-26 23:08:22'),
+(8, 1, 'a1', 'regular', '1month+', '9999', NULL, NULL, '19998', '2024-02-26 23:18:44', '2024-02-26 23:18:44'),
+(9, 1, 'a2', 'regular', '1month+', '9999', NULL, NULL, '19998', '2024-02-26 23:21:06', '2024-02-26 23:21:06'),
+(10, 1, 'a1', 'standard', NULL, NULL, '48%', '5199', '13198', '2024-02-26 23:22:13', '2024-02-26 23:22:13'),
+(11, 1, 'a2', 'standard', NULL, '7999', '20%', '7999', '7999', '2024-02-26 23:22:49', '2024-02-27 02:21:12'),
+(12, 1, 'a1', 'privileged', NULL, NULL, '48%', '5199', '11999', '2024-02-26 23:23:28', '2024-02-26 23:23:28'),
+(13, 1, 'a2', 'privileged', NULL, NULL, '20%', '7999', '11999', '2024-02-26 23:24:02', '2024-02-26 23:24:02'),
+(14, 6, 'a1', 'regular', '1month+', '9999', NULL, NULL, '43996', '2024-02-26 23:25:27', '2024-02-26 23:25:27'),
+(15, 6, 'a2', 'regular', '1month+', '9999', NULL, NULL, '43996', '2024-02-26 23:25:52', '2024-02-26 23:25:52'),
+(16, 6, 'b1', 'regular', '1month+', '11999', NULL, NULL, '43996', '2024-02-26 23:26:28', '2024-02-26 23:26:28'),
+(17, 6, 'b2', 'regular', '1month+', '11999', NULL, NULL, '43996', '2024-02-26 23:27:34', '2024-02-26 23:27:34'),
+(18, 6, 'a1', 'standard', NULL, NULL, '48%', '5199', '29996', '2024-02-26 23:28:34', '2024-02-26 23:28:34'),
+(19, 6, 'a2', 'standard', NULL, NULL, '20%', '7999', '29996', '2024-02-26 23:29:17', '2024-02-26 23:29:17'),
+(20, 6, 'b1', 'standard', NULL, NULL, '60%', '4799', '29996', '2024-02-26 23:29:50', '2024-02-26 23:29:50'),
+(21, 6, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '29996', '2024-02-26 23:30:48', '2024-02-26 23:30:48'),
+(22, 6, 'a1', 'privileged', NULL, NULL, '48%', '5199', '23996', '2024-02-26 23:31:45', '2024-02-26 23:31:45'),
+(23, 6, 'a2', 'privileged', NULL, NULL, '20%', '7999', '23996', '2024-02-26 23:32:09', '2024-02-26 23:32:09'),
+(24, 6, 'b1', 'privileged', NULL, NULL, '60%', '4799', '23996', '2024-02-26 23:32:34', '2024-02-26 23:32:34'),
+(25, 6, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '23996', '2024-02-26 23:33:57', '2024-02-26 23:33:57'),
+(26, 4, 'a2', 'regular', '1month+', '9999', NULL, NULL, '33997', '2024-02-26 23:37:54', '2024-02-26 23:37:54'),
+(27, 4, 'b1', 'regular', '1month+', '11999', NULL, NULL, '33997', '2024-02-26 23:38:10', '2024-02-26 23:38:10'),
+(28, 4, 'b2', 'regular', '1month+', '11999', NULL, NULL, '33997', '2024-02-26 23:38:32', '2024-02-26 23:38:32'),
+(29, 4, 'a2', 'standard', NULL, NULL, '20%', '7999', '24797', '2024-02-26 23:39:05', '2024-02-26 23:39:05'),
+(30, 4, 'b1', 'standard', NULL, NULL, '60%', '4799', '11999', '2024-02-26 23:39:26', '2024-02-26 23:39:26'),
+(31, 4, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '24797', '2024-02-26 23:39:46', '2024-02-26 23:39:46'),
+(32, 4, 'a2', 'privileged', NULL, NULL, '20%', '7999', '19999', '2024-02-26 23:40:49', '2024-02-26 23:40:49'),
+(33, 4, 'b1', 'privileged', NULL, NULL, '60%', '4799', '19999', '2024-02-26 23:41:16', '2024-02-26 23:41:16'),
+(34, 4, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '19999', '2024-02-26 23:41:37', '2024-02-26 23:41:37'),
+(35, 7, 'a2', 'regular', '1month+', '9999', NULL, NULL, '49997', '2024-02-26 23:42:17', '2024-02-26 23:42:17'),
+(36, 7, 'b1', 'regular', '1month+', '11999', NULL, NULL, '49997', '2024-02-26 23:42:39', '2024-02-26 23:42:39'),
+(37, 7, 'b2', 'regular', '1month+', '11999', NULL, NULL, '49997', '2024-02-26 23:43:26', '2024-02-26 23:43:26'),
+(38, 7, 'c1', 'regular', '1month+', '15999', NULL, NULL, '49997', '2024-02-26 23:43:45', '2024-02-26 23:43:45'),
+(39, 7, 'a2', 'standard', NULL, NULL, '20%', '7999', '31197', '2024-02-26 23:44:18', '2024-02-26 23:44:18'),
+(40, 7, 'b1', 'standard', NULL, NULL, '60%', '4799', '31197', '2024-02-26 23:44:51', '2024-02-26 23:44:51'),
+(41, 7, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '31197', '2024-02-26 23:45:33', '2024-02-26 23:45:33'),
+(42, 7, 'c1', 'standard', NULL, NULL, '60%', '6400', '31197', '2024-02-26 23:45:58', '2024-02-26 23:45:58'),
+(43, 7, 'a2', 'privileged', NULL, NULL, '20%', '7999', '24999', '2024-02-26 23:46:35', '2024-02-26 23:46:35'),
+(44, 7, 'b1', 'privileged', NULL, NULL, '60%', '4799', '24999', '2024-02-26 23:46:57', '2024-02-26 23:46:57'),
+(45, 7, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '24999', '2024-02-26 23:47:23', '2024-02-26 23:47:23'),
+(46, 7, 'c1', 'privileged', NULL, NULL, '60%', '6400', '24999', '2024-02-26 23:47:51', '2024-02-26 23:47:51'),
+(47, 5, 'b1', 'regular', '1month+', '11999', NULL, NULL, '33997', '2024-02-26 23:49:16', '2024-02-26 23:49:16'),
+(48, 5, 'b2', 'regular', '1month+', '11999', NULL, NULL, '33997', '2024-02-26 23:49:35', '2024-02-26 23:49:35'),
+(49, 5, 'c1', 'regular', '1month+', '15999', NULL, NULL, '33997', '2024-02-26 23:49:53', '2024-02-26 23:49:53'),
+(50, 5, 'b1', 'standard', NULL, NULL, '60%', '4799', '26237', '2024-02-26 23:50:26', '2024-02-26 23:50:26'),
+(51, 5, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '26237', '2024-02-26 23:50:47', '2024-02-26 23:50:47'),
+(52, 5, 'c1', 'standard', NULL, NULL, '41%', '9439', '26237', '2024-02-26 23:51:16', '2024-02-26 23:51:16'),
+(53, 5, 'b1', 'privileged', NULL, NULL, '60%', '4799', '20999', '2024-02-26 23:51:41', '2024-02-26 23:51:41'),
+(54, 5, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '20999', '2024-02-26 23:52:01', '2024-02-26 23:52:01'),
+(55, 5, 'c1', 'privileged', NULL, NULL, '41%', '9439', '20999', '2024-02-26 23:52:23', '2024-02-26 23:52:23'),
+(56, 3, 'b2', 'regular', '1month+', '11999', NULL, NULL, '27998', '2024-02-26 23:52:48', '2024-02-26 23:52:48'),
+(57, 3, 'c1', 'regular', '1month+', '15999', NULL, NULL, '27998', '2024-02-26 23:53:08', '2024-02-26 23:53:08'),
+(58, 3, 'b2', 'standard', NULL, NULL, 'N/A', '11999', '21438', '2024-02-26 23:53:30', '2024-02-26 23:53:30'),
+(59, 3, 'c1', 'standard', NULL, NULL, '41%', '9439', '21438', '2024-02-26 23:53:52', '2024-02-26 23:53:52'),
+(60, 3, 'b2', 'privileged', NULL, NULL, 'N/A', '11999', '17999', '2024-02-26 23:54:17', '2024-02-26 23:54:17'),
+(61, 3, 'c1', 'privileged', NULL, NULL, '41%', '9439', '17999', '2024-02-26 23:54:35', '2024-02-26 23:54:35');
 
 -- --------------------------------------------------------
 
@@ -165,9 +278,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2024_02_16_104530_create_test_drop_downs_table', 8),
 (13, '2024_02_16_105919_create_test_multi_selectors_table', 9),
 (14, '2024_02_16_113928_create_test_fill_blanks_table', 10),
-(25, '2024_02_19_051419_create_visitor_infos_table', 15),
 (26, '2024_02_19_051017_create_visitor_logs_table', 16),
-(30, '2024_02_23_115348_create_follow_ups_table', 17);
+(30, '2024_02_23_115348_create_follow_ups_table', 17),
+(33, '2024_02_26_060124_create_course_bundles_table', 19),
+(34, '2024_02_26_060015_create_course_prices_table', 20),
+(36, '2024_02_19_051419_create_visitor_infos_table', 21);
 
 -- --------------------------------------------------------
 
@@ -384,7 +499,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ty
 (3, 'User', 'student@barc', NULL, '$2y$12$AXZzTmdNQCzMLCEdcTPT2eteDcaD22CrLI97lDVGtp1qXX/6oIWtG', 0, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
 (4, 'Advisor', 'advisor@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
 (5, 'Advisor2', 'advisor2@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(6, 'Advisor3', 'advisor3@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19');
+(6, 'Advisor3', 'advisor3@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
+(7, 'MockAdvisor', 'mock@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -395,19 +511,19 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ty
 CREATE TABLE `visitor_infos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `visitor_log_id` int(11) NOT NULL,
-  `purpose_of_ielts` varchar(255) NOT NULL,
   `occupation` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
-  `education` varchar(255) NOT NULL,
   `organization` varchar(255) NOT NULL,
   `date_of_birth` varchar(255) NOT NULL,
+  `education` varchar(255) NOT NULL,
+  `how_you_know` varchar(255) NOT NULL,
   `expected_country` varchar(255) NOT NULL,
   `expected_score` int(11) NOT NULL,
-  `how_you_know` varchar(255) NOT NULL,
+  `purpose_of_ielts` varchar(255) NOT NULL,
+  `branch_recomendation` varchar(255) DEFAULT NULL,
   `comments_from_student` varchar(255) DEFAULT NULL,
   `feedback_from_advisor` varchar(255) DEFAULT NULL,
-  `branch_recomendation` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -416,8 +532,12 @@ CREATE TABLE `visitor_infos` (
 -- Dumping data for table `visitor_infos`
 --
 
-INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `purpose_of_ielts`, `occupation`, `address`, `location`, `education`, `organization`, `date_of_birth`, `expected_country`, `expected_score`, `how_you_know`, `comments_from_student`, `feedback_from_advisor`, `branch_recomendation`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Academic', 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Joydevpur', 'GED', 'na', '15-01-1999', 'UK', 7, 'Website', 'nanannaeeeeeeeee', 'nanananasss', 'House Building', '2024-02-22 05:20:10', '2024-02-22 05:27:56');
+INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `location`, `organization`, `date_of_birth`, `education`, `how_you_know`, `expected_country`, `expected_score`, `purpose_of_ielts`, `branch_recomendation`, `comments_from_student`, `feedback_from_advisor`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Private Service', 'Matikata,Dhaka Cantt.', 'Gazipur', 'na', '15-01-1999', 'SSC', 'Student Reference', 'UK', 7, 'Academic', 'Dhanmondi', NULL, NULL, '2024-02-27 22:06:00', '2024-02-27 22:06:00'),
+(2, 3, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'HSC', 'Website', 'Canada', 7, 'General', 'House Building', NULL, NULL, '2024-02-27 22:10:22', '2024-02-27 22:10:22'),
+(3, 4, 'Private Service', 'Matikata,Dhaka Cantt.', 'Gazipur', 'na', '15-01-1999', 'GED', 'Website', 'UK', 7, 'General', 'Gazipur', NULL, NULL, '2024-02-27 23:01:34', '2024-02-27 23:01:34'),
+(4, 5, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'HSC', 'Website', 'Canada', 7, 'General', 'Gazipur', NULL, NULL, '2024-02-27 23:02:31', '2024-02-27 23:02:31'),
+(5, 6, 'Private Service', 'Matikata,Dhaka Cantt.', 'Joydevpur', 'na', '15-01-1999', 'HSC', 'Student Reference', 'Canada', 7, 'General', 'Malibag', NULL, NULL, '2024-02-27 23:06:05', '2024-02-27 23:06:05');
 
 -- --------------------------------------------------------
 
@@ -442,11 +562,27 @@ CREATE TABLE `visitor_logs` (
 --
 
 INSERT INTO `visitor_logs` (`id`, `full_name`, `email`, `mobile`, `purpose_of_visit`, `status`, `assign_advisor`, `created_at`, `updated_at`) VALUES
-(1, 'samiu', 'student@barc', '01746808384', 'Spoken', 'approved', 5, '2024-02-22 05:20:10', '2024-02-22 05:20:31');
+(2, 'samiu', 'advisor@barc.com', '01746808384', 'mock', 'unapproved', 5, '2024-02-27 22:06:00', '2024-02-27 22:06:00'),
+(3, 'samiu', 'advisor2@barc.com', '01746808384', 'basic_english', 'unapproved', 5, '2024-02-27 22:10:22', '2024-02-27 22:10:22'),
+(4, 'muktadir', 'advisor@barc.com', '01746808384', 'spoken', 'unapproved', 4, '2024-02-27 23:01:34', '2024-02-27 23:01:34'),
+(5, 'samiullll', 'advisor2@barc.com', '01746808384', 'mock', 'approved', 7, '2024-02-27 23:02:31', '2024-02-27 23:15:02'),
+(6, 'samiullll', 'advisor@barc.com', '01746808384', 'ielts_registration', 'unapproved', 7, '2024-02-27 23:06:05', '2024-02-27 23:06:05');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `course_bundles`
+--
+ALTER TABLE `course_bundles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_prices`
+--
+ALTER TABLE `course_prices`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -565,6 +701,18 @@ ALTER TABLE `visitor_logs`
 --
 
 --
+-- AUTO_INCREMENT for table `course_bundles`
+--
+ALTER TABLE `course_bundles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `course_prices`
+--
+ALTER TABLE `course_prices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -598,7 +746,7 @@ ALTER TABLE `manage_test_sections`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -646,19 +794,19 @@ ALTER TABLE `test_radios`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `visitor_infos`
 --
 ALTER TABLE `visitor_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `visitor_logs`
 --
 ALTER TABLE `visitor_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -25,6 +25,8 @@ class Helpers {
 
     public static function AdvisorNotification($advisor_id){
         $data = VisitorLog::where('assign_advisor', $advisor_id)
+                ->whereNot('purpose_of_visit','mock')
+                ->whereNot('purpose_of_visit','ielts_registration')
                 ->where('status', 'unapproved')
                 ->count();
 
@@ -32,10 +34,11 @@ class Helpers {
     }
 
     public static function AdvisorEventPushNotification($advisorID){
-        // $advisorID = $request->assign_advisor;
         $getData = VisitorLog::where('assign_advisor', $advisorID)
-        ->where('status', 'unapproved')
-        ->get();
+                        ->whereNot('purpose_of_visit','mock')
+                        ->whereNot('purpose_of_visit','ielts_registration')
+                        ->where('status', 'unapproved')
+                        ->get();
 
         $notification = event(new PushNotification($getData));
     }

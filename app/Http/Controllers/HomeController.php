@@ -61,11 +61,28 @@ class HomeController extends Controller
     {
         $advisorID = Auth::user()->id;
 
-        $getData = VisitorLog::where('assign_advisor', $advisorID)->orderBy('id', 'desc')->get();
-        // $unApprovedData = VisitorLog::where('assign_advisor', $advisorID)->where('status', 'unapproved')->orderBy('id', 'desc')->get();
+        $getData = VisitorLog::where('assign_advisor', $advisorID)
+        ->whereNot('purpose_of_visit','mock')
+        ->whereNot('purpose_of_visit','ielts_registration')
+        ->orderBy('id', 'desc')
+        ->paginate(10);
 
         $notificationCount = Helpers::AdvisorNotification($advisorID);
         return view('advisorHome', compact('getData','notificationCount'));
+    }
+
+    public function mockAdvisorHome()
+    {
+        $advisorID = Auth::user()->id;
+
+        $getData = VisitorLog::where('assign_advisor', $advisorID)
+        ->where('purpose_of_visit','mock')
+        ->orWhere('purpose_of_visit','ielts_registration')
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+
+        $notificationCount = Helpers::AdvisorNotification($advisorID);
+        return view('mock.mockHome', compact('getData','notificationCount'));
     }
 
     public function priceList($id){
@@ -76,7 +93,7 @@ class HomeController extends Controller
                     ->get();
 
         $courseBundle = CourseBundle::where('status', 'active')->with('CoursePrice')->get();
-        //dd($courseBundle);
+
         return view('price.priceTable', compact('getData','studentId','courseBundle'));
     }
 

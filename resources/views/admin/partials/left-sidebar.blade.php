@@ -29,6 +29,18 @@
                 </ul>
             </li>
             <li>
+                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Manage Managers<i class="fa-solid fa-angle-down"></i></span> </a>
+                <ul class="collapse nav flex-column ms-2" id="submenu2" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{{route('manager.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> manager List </span></a>
+                    </li>
+                    <li class="w-100">
+                        <a href="{{route('manager.Add')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> manager Add </span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="#" class="nav-link px-0 align-middle text-white fs-5">
                     <i class="fa-solid fa-cart-shopping"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
                 </a>

@@ -57,14 +57,27 @@ class VisitorController extends Controller
         $branch_recomendation = $request->input('branch_recomendation');
         $assign_advisor = $request->input('assign_advisor');
 
-        $visitorLog = VisitorLog::create([
-            'full_name' => $fullName,
-            'email' => $email,
-            'mobile' => $contact_number,
-            'purpose_of_visit' => $purpose_of_visit,
-            'status' => 'unapproved',
-            'assign_advisor' => $assign_advisor
-        ]);
+        if($purpose_of_visit == 'ielts_registration' || $purpose_of_visit =='mock'){
+            $visitorLog = VisitorLog::create([
+                'full_name' => $fullName,
+                'email' => $email,
+                'mobile' => $contact_number,
+                'purpose_of_visit' => $purpose_of_visit,
+                'status' => 'unapproved',
+                'assign_advisor' => 7
+            ]);
+        }
+        else{
+            $visitorLog = VisitorLog::create([
+                'full_name' => $fullName,
+                'email' => $email,
+                'mobile' => $contact_number,
+                'purpose_of_visit' => $purpose_of_visit,
+                'status' => 'unapproved',
+                'assign_advisor' => $assign_advisor
+            ]);
+        }
+        
 
         VisitorInfo::create([
             'visitor_log_id' => $visitorLog->id,
@@ -84,11 +97,6 @@ class VisitorController extends Controller
         ]);
 
         $advisorID = $request->assign_advisor;
-        // $getData = VisitorLog::where('assign_advisor', $advisorID)
-        // ->where('status', 'unapproved')
-        // ->get();
-
-        // $notification = event(new PushNotification($getData));
         Helpers::AdvisorEventPushNotification($advisorID);
 
         return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
@@ -137,12 +145,10 @@ class VisitorController extends Controller
         
     }
 
-    public function statusUpdate(Request $request){
-        // dd($request->all());
+    public function adivserStatusUpdate(Request $request){
 
         $id = $request->input('id');
         $status = strtolower($request->input('status'));
-        // dd($status);
 
         VisitorLog::where('id', $id)
         ->update([
@@ -150,6 +156,19 @@ class VisitorController extends Controller
         ]);
         
         return redirect('/advisor/home');
+    }
+
+    public function mockStatusUpdate(Request $request){
+
+        $id = $request->input('id');
+        $status = strtolower($request->input('status'));
+
+        VisitorLog::where('id', $id)
+        ->update([
+            'status' => $status
+        ]);
+        
+        return redirect('/mock-student-list');
     }
 
 
@@ -186,7 +205,6 @@ class VisitorController extends Controller
                 }
             }
             $nextAdvisorId = $minUserId[0];
-            // dd($nextAdvisorId);
             VisitorLog::updateOrCreate(
                 [
                     'id'=>$studentId,
@@ -194,7 +212,6 @@ class VisitorController extends Controller
                 [
                     'assign_advisor' => $nextAdvisorId,
                 ]);
-                //    echo $adviser->id.'nai'." ";
                 Helpers::AdvisorEventPushNotification($nextAdvisorId);
             return redirect('/advisor/home');
             
@@ -202,7 +219,6 @@ class VisitorController extends Controller
             foreach($getAllAdvisors as $adviser){
               
                 if(in_array($adviser->id, $allAssignedUserarrId)){
-                //    echo $adviser->id.'ache'." ";
                 }
                 else{
                   
@@ -213,7 +229,6 @@ class VisitorController extends Controller
                     [
                         'assign_advisor' => $adviser->id,
                     ]);
-                    //    echo $adviser->id.'nai'." ";
                     Helpers::AdvisorEventPushNotification($adviser->id);
                     return redirect('/advisor/home');
                    break;

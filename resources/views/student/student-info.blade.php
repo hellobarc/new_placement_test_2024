@@ -185,12 +185,12 @@
                                     <label for="email"> Purpose of Visiting BARC</label>
                                     <select class="form-control dropdown" id="purpose_of_visit" name="purpose_of_visit" required>
                                         <option value="" selected="selected" disabled="disabled">-- select one --</option>
-                                            <option value="English Foundation">  English Foundation </option>
-                                            <option value="Spoken">  Spoken Course </option>
-                                            <option value="Mock Test">  Mock Test </option>
-                                            <option value="IELTS Registration">  IELTS Registration </option>
-                                            <option value="IELTS Courses">  IELTS Courses </option>
-                                            <option value="Other Info">  Other Info </option>
+                                            <option value="basic_english">  English Foundation </option>
+                                            <option value="spoken">  Spoken Course </option>
+                                            <option value="mock">  Mock Test </option>
+                                            <option value="ielts_registration">  IELTS Registration </option>
+                                            <option value="ielts_courses">  IELTS Courses </option>
+                                            <option value="others">  Other Info </option>
                                         </select>
                                 </div>
                             </div>

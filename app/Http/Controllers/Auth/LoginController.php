@@ -56,6 +56,8 @@ class LoginController extends Controller
                 return redirect()->route('manager.home');
             }else if (auth()->user()->type == 'advisor') {
                 return redirect()->route('advisor.home');
+            }else if (auth()->user()->type == 'mock') {
+                return redirect()->route('mock.home');
             }else{
                 return redirect()->route('home');
             }

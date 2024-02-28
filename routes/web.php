@@ -12,10 +12,12 @@ use App\Http\Controllers\Admin\Test\{
 };
 use App\Http\Controllers\Admin\{
     AnalyticsController,
+    ManagerManagementController
 };
 use App\Http\Controllers\Manager\{
     CourseBundleController,
-    CoursePriceController
+    CoursePriceController,
+    RoleManagementController
 };
 
 /*
@@ -102,6 +104,15 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::controller(AnalyticsController::class)->group(function(){
         Route::get('/student-analytics', 'home')->name('analytics.students');
     });
+
+    Route::controller(ManagerManagementController::class)->group(function(){
+        Route::get('/manager-list', 'managerList')->name('manager.list');
+        Route::get('/manager-add', 'managerAdd')->name('manager.Add');
+        Route::post('/manager-add/store', 'managerAddStore')->name('manager.add.store');
+        Route::get('/manager-edit/{id}', 'managerEdit')->name('manager.edit');
+        Route::post('/manager-edit/store', 'managerEditStore')->name('manager.edit.store');
+        Route::get('/manager-edit/delete/{id}', 'managerDelete')->name('manager.delete.store');
+    });
 });
   
 /*------------------------------------------
@@ -123,10 +134,17 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
     });
     
     Route::controller(CourseBundleController::class)->group(function(){
-        // Route::get('/course-price-form', 'CoursePriceForm')->name('course.prices.form');
         Route::get('/course-bundle-form', 'CourseBundleForm')->name('course.bundle.form');
-        // Route::post('/store-price-list', 'storeCouresPrices')->name('store.course.price');
         Route::post('/store-bundle-list', 'storeBundlesPrices')->name('store.bundle.price');
+    });
+
+    Route::controller(RoleManagementController::class)->group(function(){
+        Route::get('/user-list', 'index')->name('user.list');
+        Route::get('/user-add', 'userAdd')->name('user.Add');
+        Route::post('/user-add/store', 'userAddStore')->name('user.add.store');
+        Route::get('/user-edit/{id}', 'userEdit')->name('user.edit');
+        Route::post('/user-edit/store', 'userEditStore')->name('user.edit.store');
+        Route::get('/user-edit/delete/{id}', 'userDelete')->name('user.delete.store');
     });
 });
 /*------------------------------------------
@@ -143,7 +161,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
 
     Route::get('/student-data', [HomeController::class, 'getStudentData'])->name('student.data');
 
-    Route::post('/status-update', [VisitorController::class, 'statusUpdate'])->name('status.update');
+    Route::post('/status-update', [VisitorController::class, 'adivserStatusUpdate'])->name('status.update');
     Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
 
     Route::get('/price-list/{id}', [HomeController::class, 'priceList'])->name('price.List');
@@ -154,7 +172,17 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
 
 });
 
-//TESTNG
-Route::get('/notify', [VisitorController::class, 'notify'])->name('notify');
-Route::get('/getAdvisor', [VisitorController::class, 'DeclineStudentAssign']);
-// Route::post('/student-follow-up', [VisitorController::class, 'storeFollowUp'])->name('store.followUP'); //did not finish the method
+/*------------------------------------------
+--------------------------------------------
+All Mock Advisor Routes List
+--------------------------------------------
+--------------------------------------------*/
+
+Route::middleware(['auth', 'user-access:mock'])->group(function(){
+    Route::get('/mock-student-list', [HomeController::class, 'mockAdvisorHome'])->name('mock.home');
+    Route::post('/status-update', [VisitorController::class, 'mockStatusUpdate'])->name('status.update');
+    Route::get('/student-Details/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
+    Route::post('/student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
+});
+
+
