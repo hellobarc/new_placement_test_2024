@@ -19,6 +19,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,7 +29,8 @@
                                 <td>{{ $loop->index+1}}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->type }}</td>
+                                <td>{{ strtoupper($item->type) }}</td>
+                                <td>{{ strtoupper($item->status) }}</td>
                                 <td>
                                     <a href="{{ route('user.edit', $item->id )}}" class="btn btn-primary">Edit</a>
                                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFollowUp-{{$item->id}}">Delete</a>
@@ -50,6 +52,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-end">
+                    {!! $getUserData->links() !!}
+                </div>
             </div>
         </div>
     </div>

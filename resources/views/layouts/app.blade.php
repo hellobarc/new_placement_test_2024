@@ -135,6 +135,20 @@
         
     
     });
+// }
+//     window.onload=function(){
+    Echo.channel('FrontDesk_Notification')
+    .listen('.FrontDeskNotification', (e) => {
+        // console.log(e.message.length)
+        // e.forEach(element => {
+        //     console.log(element.length)
+        // })
+
+        let front_notification_count = e.data.length;
+        document.getElementById("front_notification_count").innerHTML = front_notification_count;
+        
+    
+    });
 }
 </script>
 <script>

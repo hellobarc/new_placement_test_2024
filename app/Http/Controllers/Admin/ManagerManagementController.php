@@ -12,7 +12,7 @@ use Hash;
 class ManagerManagementController extends Controller{
     public function managerList(){
         $getUserData = User::where('type' , 2)
-        ->get();
+        ->paginate(10);
         return view('Admin.managerManagement.managerList', compact('getUserData'));
     }
 
@@ -32,7 +32,8 @@ class ManagerManagementController extends Controller{
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
-        'type' => 2
+        'type' => 2,
+        'status' => $request->status,
     ]);
 
     return redirect()->route('manager.list')->with('success','Manager Created');
@@ -51,6 +52,7 @@ class ManagerManagementController extends Controller{
                 ->update([
                     'name' => $request->name,
                     'email' => $request->email,
+                    'status' => $request->status,
                     'password' => Hash::make($request->password)
                 ]);
         }
@@ -58,7 +60,8 @@ class ManagerManagementController extends Controller{
             User::where('id',$id)
                 ->update([
                     'name' => $request->name,
-                    'email' => $request->email
+                    'email' => $request->email,
+                    'status' => $request->status,
                 ]);
         }
         

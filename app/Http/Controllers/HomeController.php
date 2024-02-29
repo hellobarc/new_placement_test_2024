@@ -33,9 +33,22 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $data = User::where('type', 3)->get();
-        return view('student.student-info', compact('data'));
+        $data = User::where('type', 3)
+                ->where('status', 'active')
+                ->get();
+        return view('front-desk.student-info', compact('data'));
     } 
+
+    public function frontStudentList(){
+        $getDeclinedStudents = VisitorLog::where('status', 'declined')
+        ->paginate(10);
+
+        $getAdvisorList = User::where('type', 3)->get();
+
+        $frontID = Auth::user()->id;
+        $notificationCount = Helpers::FrontNotification();
+        return view('front-desk.studentList', compact('getDeclinedStudents','notificationCount','getAdvisorList'));
+    }
   
     /**
      * Show the application dashboard.
@@ -64,11 +77,15 @@ class HomeController extends Controller
         $getData = VisitorLog::where('assign_advisor', $advisorID)
         ->whereNot('purpose_of_visit','mock')
         ->whereNot('purpose_of_visit','ielts_registration')
+        ->whereNot('status', 'declined')
         ->orderBy('id', 'desc')
         ->paginate(10);
 
+        //time check
+        $getTime = VisitorLog::where('id', 1)->first();
+        $formSubmitTime = $getTime->time_log;
         $notificationCount = Helpers::AdvisorNotification($advisorID);
-        return view('advisorHome', compact('getData','notificationCount'));
+        return view('advisor.advisorHome', compact('getData','notificationCount','formSubmitTime'));
     }
 
     public function mockAdvisorHome()

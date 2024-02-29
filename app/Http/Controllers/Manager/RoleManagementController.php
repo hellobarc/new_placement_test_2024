@@ -14,7 +14,7 @@ Class RoleManagementController extends Controller{
     public function index(){
         $getUserData = User::whereNot('type', '1')
         ->WhereNot('type', '2')
-        ->get();
+        ->paginate(10);
         return view('manager.userManagement.userList',compact('getUserData'));
     }
 
@@ -35,7 +35,8 @@ Class RoleManagementController extends Controller{
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'type' => $request->type
+            'type' => $request->type,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('user.list')->with('success','User Created');
@@ -48,11 +49,23 @@ Class RoleManagementController extends Controller{
 
     public function userEditStore(Request $request){
         $id = $request->id;
-        User::where('id',$id)
-        ->update([
-            'name' => $request->name,
-            'email' => $request->email
-        ]);
+        if(isset($request->password)){
+            User::where('id',$id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'status' => $request->status,
+                    'password' => Hash::make($request->password)
+                ]);
+        }
+        else{
+            User::where('id',$id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'status' => $request->status,
+                ]);
+        }
 
         return redirect()->route('user.list')->with('success','User Edited');
     }

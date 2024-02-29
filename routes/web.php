@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\FrontDeskController;
 use App\Http\Controllers\Admin\Test\{
     ManageTestController,
     ManageTestSectionController,
@@ -44,8 +45,10 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('front-desk.home');
+    Route::get('/studentList', [HomeController::class, 'frontStudentList'])->name('front.student.list');
     
+    Route::post('/student-change-advisor/{id}',[FrontDeskController::class, 'changeAdvisor'])->name('front.change.advisor');
 
     //Visitor Info 
 
@@ -161,7 +164,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
 
     Route::get('/student-data', [HomeController::class, 'getStudentData'])->name('student.data');
 
-    Route::post('/status-update', [VisitorController::class, 'adivserStatusUpdate'])->name('status.update');
+    Route::post('/studen-status-update', [VisitorController::class, 'adivserUpdateStudentStatus'])->name('status.update.adviser');
     Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
 
     Route::get('/price-list/{id}', [HomeController::class, 'priceList'])->name('price.List');
@@ -170,6 +173,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::post('/student-follow-up-edit', [VisitorController::class, 'followUpEdit'])->name('followUP.Edit');
     Route::get('/student-followUp-delete/{id}', [VisitorController::class, 'followUpDelete'])->name('followUp.Delete');
 
+    Route::get('/unapproved-students-change', [VisitorController::class,'timeOutDeclined'])->name('time-out.decline');
 });
 
 /*------------------------------------------
@@ -180,9 +184,9 @@ All Mock Advisor Routes List
 
 Route::middleware(['auth', 'user-access:mock'])->group(function(){
     Route::get('/mock-student-list', [HomeController::class, 'mockAdvisorHome'])->name('mock.home');
-    Route::post('/status-update', [VisitorController::class, 'mockStatusUpdate'])->name('status.update');
-    Route::get('/student-Details/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
-    Route::post('/student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
+    Route::post('/mock-status-update', [VisitorController::class, 'mockStatusUpdate'])->name('status.update.mock');
+    Route::get('/mock-student-Details/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details.mock');
+    Route::post('/mock-student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
 });
 
 

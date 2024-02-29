@@ -15,7 +15,8 @@ class VisitorLog extends Model
         'mobile',
         'purpose_of_visit',
         'status',
-        'assign_advisor'
+        'assign_advisor',
+        'time_log'
     ];
     public function totalUser(){
         return $this->hasMany(User::class, 'id', 'assign_advisor');

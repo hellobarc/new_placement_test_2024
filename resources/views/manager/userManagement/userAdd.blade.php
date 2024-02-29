@@ -34,6 +34,14 @@
                         </select>
                     </div>
                     <div class="row my-2 mx-2">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-control">
+                            <option value="">Select an Option</option>
+                            <option value="active">Active</option>
+                            <option value="pause">Pause</option>
+                        </select>
+                    </div>
+                    <div class="row my-2 mx-2">
                         <div class="col-2">
                             <input type="submit" value="Submit" class="btn btn-primary">
                         </div>

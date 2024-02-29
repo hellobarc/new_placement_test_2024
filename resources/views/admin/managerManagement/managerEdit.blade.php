@@ -25,6 +25,14 @@
                         <input type="text" name="password" class="form-control" value="">
                     </div>
                     <div class="row my-2 mx-2">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-control">
+                            <option value="">Select an Option</option>
+                            <option value="active" {{ $getUserData->status=='active' ? 'selected' : '' }}>Active</option>
+                            <option value="pause" {{ $getUserData->status=='pause' ? 'selected' : '' }}>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="row my-2 mx-2">
                         <div class="col-2">
                             <input type="submit" value="Submit" class="btn btn-primary">
                         </div>

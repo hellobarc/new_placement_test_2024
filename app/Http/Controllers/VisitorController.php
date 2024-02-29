@@ -21,7 +21,6 @@ class VisitorController extends Controller
 
     public function storeVisitorInfo(Request $request){
 
-        // dd($request);
         $request->validate([
             'full_name' => 'required|string|max:50',
             'contact_number' => 'required|string|max:50',
@@ -56,25 +55,27 @@ class VisitorController extends Controller
         $purpose_of_visit = $request->input('purpose_of_visit');
         $branch_recomendation = $request->input('branch_recomendation');
         $assign_advisor = $request->input('assign_advisor');
+        $form_input_time = time();
 
         if($purpose_of_visit == 'ielts_registration' || $purpose_of_visit =='mock'){
             $visitorLog = VisitorLog::create([
+                'assign_advisor' => 7,
                 'full_name' => $fullName,
                 'email' => $email,
                 'mobile' => $contact_number,
                 'purpose_of_visit' => $purpose_of_visit,
                 'status' => 'unapproved',
-                'assign_advisor' => 7
             ]);
         }
         else{
             $visitorLog = VisitorLog::create([
+                'assign_advisor' => $assign_advisor,
                 'full_name' => $fullName,
                 'email' => $email,
                 'mobile' => $contact_number,
                 'purpose_of_visit' => $purpose_of_visit,
                 'status' => 'unapproved',
-                'assign_advisor' => $assign_advisor
+                'time_log' => $form_input_time
             ]);
         }
         
@@ -134,18 +135,8 @@ class VisitorController extends Controller
 
     }
 
-    // Notification Event Test
-    public function notify(){
-        $advisorID = Auth::user()->id;
-        $getData = VisitorLog::where('assign_advisor', $advisorID)
-        ->get();
 
-        $notification = event(new PushNotification($getData));
-
-        
-    }
-
-    public function adivserStatusUpdate(Request $request){
+    public function adivserUpdateStudentStatus(Request $request){
 
         $id = $request->input('id');
         $status = strtolower($request->input('status'));
@@ -155,6 +146,7 @@ class VisitorController extends Controller
             'status' => $status
         ]);
         
+        Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
 
@@ -173,68 +165,12 @@ class VisitorController extends Controller
 
 
     public function DeclineStudentAssign($studentId){
-
-        $nextAdvisorId;
-        $getAllAdvisors = User::where('type', 3)->get();
-
-        $allAssignedUserarrId = [];
-        
-       
-        $assignedAdvisors = VisitorLog::select('assign_advisor')->groupBy('assign_advisor')->get();
-        foreach($assignedAdvisors as $rows){
-            $allAssignedUserarrId [] = $rows->assign_advisor;
-        }
-        
-        if(count($getAllAdvisors) == count($assignedAdvisors)){
-            $perAdvisorAssign = DB::table('users')
-                            ->select('users.id', DB::raw('COUNT(visitor_logs.assign_advisor) AS jobs_count'))
-                            ->join('visitor_logs', 'users.id', '=', 'visitor_logs.assign_advisor')
-                            ->groupBy('users.id')->get();
-            $minUserId = [];
-            $hello = [];
-            
-            foreach($perAdvisorAssign as $rows){
-                array_push($hello, $rows->jobs_count);
-            }
-          
-            $minValue = min($hello);
-           
-            foreach($perAdvisorAssign as $rows){
-                if($minValue == $rows->jobs_count){
-                    $minUserId []= $rows->id;
-                }
-            }
-            $nextAdvisorId = $minUserId[0];
-            VisitorLog::updateOrCreate(
-                [
-                    'id'=>$studentId,
-                ],
-                [
-                    'assign_advisor' => $nextAdvisorId,
-                ]);
-                Helpers::AdvisorEventPushNotification($nextAdvisorId);
-            return redirect('/advisor/home');
-            
-        }else{
-            foreach($getAllAdvisors as $adviser){
-              
-                if(in_array($adviser->id, $allAssignedUserarrId)){
-                }
-                else{
-                  
-                   VisitorLog::updateOrCreate(
-                    [
-                        'id'=>$studentId,
-                    ],
-                    [
-                        'assign_advisor' => $adviser->id,
+        VisitorLog::where('id', $studentId)
+                    ->update([
+                        'status' => 'declined'
                     ]);
-                    Helpers::AdvisorEventPushNotification($adviser->id);
-                    return redirect('/advisor/home');
-                   break;
-                }
-            }   
-        }
+        Helpers::FrontEventPushNotification();
+        return redirect('/advisor/home');
     }
 
 
@@ -290,6 +226,17 @@ class VisitorController extends Controller
     public function followUpDelete(Request $request, $id){
         FollowUp::where('id',$id)->delete();
         return redirect()->back()->with('success', 'Follow Up Deleted');
+    }
+
+    public function timeOutDeclined(){
+        $adviserId = Auth::user()->id;
+
+        VisitorLog::where('assign_advisor', $adviserId)
+                    ->update([
+                        'status' => 'declined'
+                    ]);
+        Helpers::FrontEventPushNotification();
+        return redirect()->back()->with('success','Unapproved Students Declined');
     }
 
 }

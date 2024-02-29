@@ -12,7 +12,8 @@ use App\Models\{
 };
 
 use App\Events\{
-    PushNotification
+    PushNotification,
+    FrontDeskNotification
 };
 
 class Helpers {
@@ -42,4 +43,21 @@ class Helpers {
 
         $notification = event(new PushNotification($getData));
     }
+
+
+    public static function FrontNotification(){
+        $data = VisitorLog::where('status', 'declined')
+                ->count();
+
+                return $data;
+    }
+
+    public static function FrontEventPushNotification(){
+        $getData = VisitorLog::where('status', 'declined')
+                        ->get();
+
+        $notification = event(new FrontDeskNotification($getData));
+    }
+
+
 }
