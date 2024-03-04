@@ -1,6 +1,7 @@
 
 @foreach ($courseBundle as $card)
-<div id="a1_a2_price_table" class="background mt-3">
+
+<div id="a1_a2_price_table_{{$card->id}}" class="background mt-3 display-hidden">
     <div class="row">
         <div class="col-md-10 mx-auto">
             <div class="p-5">

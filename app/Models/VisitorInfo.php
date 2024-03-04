@@ -26,4 +26,7 @@ class VisitorInfo extends Model
         'comments_from_student',
         'feedback_from_advisor'
     ];
+    public function studentInfo(){
+        return $this->belongsTo(VisitorLog::class, 'visitor_log_id');
+    }
 }

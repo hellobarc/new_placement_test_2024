@@ -151,8 +151,9 @@
     });
 }
 </script>
+<script src="{{asset('frontend/ckeditor/ckeditor.js')}}"></script>
 <script>
-    
+    CKEDITOR.replace('ck');
 </script>
 
 <script src="{{asset('frontend/js/main.js')}}"></script>

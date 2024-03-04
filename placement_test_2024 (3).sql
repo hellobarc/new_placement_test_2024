@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2024 at 07:29 AM
+-- Generation Time: Mar 02, 2024 at 06:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -264,7 +264,6 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2014_10_12_100000_create_password_resets_table', 1),
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
@@ -278,11 +277,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2024_02_16_104530_create_test_drop_downs_table', 8),
 (13, '2024_02_16_105919_create_test_multi_selectors_table', 9),
 (14, '2024_02_16_113928_create_test_fill_blanks_table', 10),
-(26, '2024_02_19_051017_create_visitor_logs_table', 16),
 (30, '2024_02_23_115348_create_follow_ups_table', 17),
 (33, '2024_02_26_060124_create_course_bundles_table', 19),
 (34, '2024_02_26_060015_create_course_prices_table', 20),
-(36, '2024_02_19_051419_create_visitor_infos_table', 21);
+(36, '2024_02_19_051419_create_visitor_infos_table', 21),
+(38, '2014_10_12_000000_create_users_table', 22),
+(44, '2024_02_19_051017_create_visitor_logs_table', 23);
 
 -- --------------------------------------------------------
 
@@ -484,6 +484,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `type` tinyint(4) NOT NULL DEFAULT 0,
+  `status` enum('active','pause') NOT NULL DEFAULT 'pause',
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -493,14 +494,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin User', 'admin@hellobarc.com', NULL, '$2y$12$dm5TOcAhMPzCnQCGsds7HOpQGTWIHJ/8jh5541FQknwB3QBPQfbF.', 1, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(2, 'Manager User', 'manager@itsolutionstuff.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 2, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(3, 'User', 'student@barc', NULL, '$2y$12$AXZzTmdNQCzMLCEdcTPT2eteDcaD22CrLI97lDVGtp1qXX/6oIWtG', 0, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(4, 'Advisor', 'advisor@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(5, 'Advisor2', 'advisor2@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(6, 'Advisor3', 'advisor3@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 3, NULL, '2024-02-05 23:25:19', '2024-02-05 23:25:19'),
-(7, 'MockAdvisor', 'mock@barc.com', NULL, '$2y$12$aJXaGS8E6XRS8s1xwLZFlODbojXJSUm3duqb8Vb1ZV096aINAVNyS', 4, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin User', 'admin@hellobarc.com', NULL, '$2y$12$S6zoK59cZ.h348opKko/pec/qX6h1e8oStmrS1Fz8LNCCqYkMkdiq', 1, 'active', NULL, '2024-02-28 21:49:33', '2024-02-28 21:49:33'),
+(2, 'Manager User', 'manager@itsolutionstuff.com', NULL, '$2y$12$iJ7PnzhWSo.9ckCoxy.4.uFj94eYvHU9s/OJGLH0rmo5Xv8yvzQgO', 2, 'active', NULL, '2024-02-28 21:49:33', '2024-02-28 21:49:33'),
+(3, 'User', 'user@barc.com', NULL, '$2y$12$YN7Gj64.RCQG2TnfyVQKwOGGeu8HexZEJFgwZB2G7KwKLJp0hlTeK', 0, 'active', NULL, '2024-02-28 21:49:33', '2024-02-28 21:49:33'),
+(4, 'Adviser', 'advisor@barc.com', NULL, '$2y$12$MB.W4H2bVZXXZvlPMj0JBOTe7F1fb4Rxe7Zc91//ssm8RT0rOSyQe', 3, 'active', NULL, '2024-02-28 22:15:42', '2024-02-28 22:15:55'),
+(5, 'Adviser1', 'advisor1@barc.com', NULL, '$2y$12$i811p6YiRHoMLiXov9hTn.qY7Cb5stnRShQ1vSUkb2Yyulof.ItKC', 3, 'active', NULL, '2024-02-28 22:16:50', '2024-02-28 22:18:02');
 
 -- --------------------------------------------------------
 
@@ -533,11 +532,15 @@ CREATE TABLE `visitor_infos` (
 --
 
 INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `location`, `organization`, `date_of_birth`, `education`, `how_you_know`, `expected_country`, `expected_score`, `purpose_of_ielts`, `branch_recomendation`, `comments_from_student`, `feedback_from_advisor`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Private Service', 'Matikata,Dhaka Cantt.', 'Gazipur', 'na', '15-01-1999', 'SSC', 'Student Reference', 'UK', 7, 'Academic', 'Dhanmondi', NULL, NULL, '2024-02-27 22:06:00', '2024-02-27 22:06:00'),
-(2, 3, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'HSC', 'Website', 'Canada', 7, 'General', 'House Building', NULL, NULL, '2024-02-27 22:10:22', '2024-02-27 22:10:22'),
-(3, 4, 'Private Service', 'Matikata,Dhaka Cantt.', 'Gazipur', 'na', '15-01-1999', 'GED', 'Website', 'UK', 7, 'General', 'Gazipur', NULL, NULL, '2024-02-27 23:01:34', '2024-02-27 23:01:34'),
-(4, 5, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'HSC', 'Website', 'Canada', 7, 'General', 'Gazipur', NULL, NULL, '2024-02-27 23:02:31', '2024-02-27 23:02:31'),
-(5, 6, 'Private Service', 'Matikata,Dhaka Cantt.', 'Joydevpur', 'na', '15-01-1999', 'HSC', 'Student Reference', 'Canada', 7, 'General', 'Malibag', NULL, NULL, '2024-02-27 23:06:05', '2024-02-27 23:06:05');
+(32, 1, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:36:11', '2024-03-01 22:36:11'),
+(33, 2, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:44:29', '2024-03-01 22:44:29'),
+(34, 3, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Website', 'UK', 7, 'General', 'House Building', NULL, NULL, '2024-03-01 22:44:59', '2024-03-01 22:44:59'),
+(35, 4, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:45:57', '2024-03-01 22:45:57'),
+(36, 5, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Uttara', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:46:21', '2024-03-01 22:46:21'),
+(37, 6, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:46:48', '2024-03-01 22:46:48'),
+(38, 7, 'Govt. Service', 'Matikata,Dhaka Cantt.', 'Gazipur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:47:17', '2024-03-01 22:47:17'),
+(39, 8, 'Private Service', 'Matikata,Dhaka Cantt.', 'Mirpur', 'na', '15-01-1999', 'GED', 'Facebook', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 22:50:05', '2024-03-01 22:50:05'),
+(40, 9, 'House Wife', 'Matikata,Dhaka Cantt.', 'Dhanmondi', 'na', '15-01-1999', 'HSC', 'Google Map', 'USA', 7, 'Academic', 'House Building', NULL, NULL, '2024-03-01 23:22:31', '2024-03-01 23:22:31');
 
 -- --------------------------------------------------------
 
@@ -547,12 +550,15 @@ INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `l
 
 CREATE TABLE `visitor_logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `assign_advisor` int(11) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `mobile` varchar(255) NOT NULL,
   `purpose_of_visit` varchar(255) NOT NULL,
   `status` enum('approved','unapproved','declined') NOT NULL,
-  `assign_advisor` int(11) NOT NULL,
+  `adviser_notification` enum('seen','not_seen') NOT NULL,
+  `front_desk_notification` enum('seen','not_seen') NOT NULL,
+  `time_log` varchar(255) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -561,12 +567,16 @@ CREATE TABLE `visitor_logs` (
 -- Dumping data for table `visitor_logs`
 --
 
-INSERT INTO `visitor_logs` (`id`, `full_name`, `email`, `mobile`, `purpose_of_visit`, `status`, `assign_advisor`, `created_at`, `updated_at`) VALUES
-(2, 'samiu', 'advisor@barc.com', '01746808384', 'mock', 'unapproved', 5, '2024-02-27 22:06:00', '2024-02-27 22:06:00'),
-(3, 'samiu', 'advisor2@barc.com', '01746808384', 'basic_english', 'unapproved', 5, '2024-02-27 22:10:22', '2024-02-27 22:10:22'),
-(4, 'muktadir', 'advisor@barc.com', '01746808384', 'spoken', 'unapproved', 4, '2024-02-27 23:01:34', '2024-02-27 23:01:34'),
-(5, 'samiullll', 'advisor2@barc.com', '01746808384', 'mock', 'approved', 7, '2024-02-27 23:02:31', '2024-02-27 23:15:02'),
-(6, 'samiullll', 'advisor@barc.com', '01746808384', 'ielts_registration', 'unapproved', 7, '2024-02-27 23:06:05', '2024-02-27 23:06:05');
+INSERT INTO `visitor_logs` (`id`, `assign_advisor`, `full_name`, `email`, `mobile`, `purpose_of_visit`, `status`, `adviser_notification`, `front_desk_notification`, `time_log`, `created_at`, `updated_at`) VALUES
+(1, 4, 'samiullll', 'advisor2@barc.com', '01746808384', 'basic_english', 'unapproved', 'seen', 'seen', '1709354171', '2024-03-01 22:36:11', '2024-03-01 23:01:34'),
+(2, 4, 'muktadir', 'shadman.barc@gmail.com', '01746808384', 'basic_english', 'unapproved', 'seen', 'seen', '1709354669', '2024-03-01 22:44:29', '2024-03-01 23:01:34'),
+(3, 4, 'samiullll', 'student@barc', '01746808384', 'spoken', 'declined', 'seen', 'seen', '1709354699', '2024-03-01 22:44:59', '2024-03-01 23:01:34'),
+(4, 4, 'samiullll', 'manager@itsolutionstuff.com', '01746808384', 'basic_english', 'unapproved', 'seen', 'seen', '1709354757', '2024-03-01 22:45:57', '2024-03-01 23:01:34'),
+(5, 4, 'muktadir', 'saim.barc@gmail.com', '01746808384', 'basic_english', 'declined', 'not_seen', 'seen', '1709354781', '2024-03-01 22:46:21', '2024-03-01 23:02:52'),
+(6, 4, 'samiullll', 'manager@itsolutionstuff.com', '01746808384', 'basic_english', 'declined', 'seen', 'seen', '1709354808', '2024-03-01 22:46:48', '2024-03-01 23:01:37'),
+(7, 4, 'muktadir', 'student@barc', '01746808384', 'basic_english', 'declined', 'seen', 'seen', '1709354837', '2024-03-01 22:47:17', '2024-03-01 23:01:34'),
+(8, 4, 'muktadir', 'shadman.barc@gmail.com', '01746808384', 'basic_english', 'declined', 'seen', 'seen', '1709355005', '2024-03-01 22:50:05', '2024-03-01 23:01:34'),
+(9, 4, 'samiullll', 'shadman.barc@gmail.com', '01746808384', 'basic_english', 'unapproved', 'not_seen', 'not_seen', '1709356951', '2024-03-01 23:22:31', '2024-03-01 23:22:31');
 
 --
 -- Indexes for dumped tables
@@ -746,7 +756,7 @@ ALTER TABLE `manage_test_sections`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `modules`
@@ -794,19 +804,19 @@ ALTER TABLE `test_radios`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `visitor_infos`
 --
 ALTER TABLE `visitor_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `visitor_logs`
 --
 ALTER TABLE `visitor_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

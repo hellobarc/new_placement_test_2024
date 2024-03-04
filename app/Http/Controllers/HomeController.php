@@ -83,7 +83,14 @@ class HomeController extends Controller
 
         //time check
         $getTime = VisitorLog::where('id', 1)->first();
-        $formSubmitTime = $getTime->time_log;
+        if(isset($getTime)){
+            $formSubmitTime = $getTime->time_log;
+        }
+        else
+        {
+            $formSubmitTime = 0;
+        }
+
         $notificationCount = Helpers::AdvisorNotification($advisorID);
         return view('advisor.advisorHome', compact('getData','notificationCount','formSubmitTime'));
     }

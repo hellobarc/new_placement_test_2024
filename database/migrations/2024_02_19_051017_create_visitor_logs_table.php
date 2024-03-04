@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status',['approved','unapproved','declined']);
             $table->enum('adviser_notification',['seen','not_seen']);
             $table->enum('front_desk_notification',['seen','not_seen']);
-            $table->string('time_log')->nullable();
+            $table->string('time_log');
             $table->timestamps();
         });
     }

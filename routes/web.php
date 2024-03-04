@@ -18,9 +18,12 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Manager\{
     CourseBundleController,
     CoursePriceController,
-    RoleManagementController
+    RoleManagementController,
+    CourseController,
 };
-
+use App\Http\Controllers\Advisor\{
+    ExamController,
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +48,7 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
-    Route::get('/home', [HomeController::class, 'index'])->name('front-desk.home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/studentList', [HomeController::class, 'frontStudentList'])->name('front.student.list');
     
     Route::post('/student-change-advisor/{id}',[FrontDeskController::class, 'changeAdvisor'])->name('front.change.advisor');
@@ -55,6 +58,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/store-visitorInfo', [VisitorController::class, 'storeVisitorInfo'])->name('store.VisitorInfo');
     Route::post('/change-status/{id}', [VisitorController::class, 'statusChanged'])->name('change.status');
 
+    //Notification seen
+    Route::get('/notification-seen', [VisitorController::class, 'frontNotification'])->name('fnotify.status.change');
     
 });
   
@@ -149,6 +154,14 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::post('/user-edit/store', 'userEditStore')->name('user.edit.store');
         Route::get('/user-edit/delete/{id}', 'userDelete')->name('user.delete.store');
     });
+    Route::controller(CourseController::class)->group(function(){
+        Route::get('/create-course', 'createCourse')->name('manager.course.create');
+        Route::post('/store-course', 'storeCourse')->name('manager.course.store');
+        Route::get('/manage-course', 'manageCourse')->name('manager.course.manage');
+        Route::get('/edit-course/{id}', 'editCourse')->name('manager.course.edit');
+        Route::post('/update-course/{id}', 'updateCourse')->name('manager.course.update');
+        Route::get('/delete-course/{id}', 'deleteCourse')->name('manager.course.delete');
+    });
 });
 /*------------------------------------------
 --------------------------------------------
@@ -174,6 +187,14 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::get('/student-followUp-delete/{id}', [VisitorController::class, 'followUpDelete'])->name('followUp.Delete');
 
     Route::get('/unapproved-students-change', [VisitorController::class,'timeOutDeclined'])->name('time-out.decline');
+
+    Route::get('/advisor/notification-seen', [VisitorController::class, 'AdviserNotification'])->name('advnotify.status.change');
+    Route::controller(ExamController::class)->group(function () {
+        Route::get('/exam-set/{student_id}', 'examSet')->name('student.exam.set');
+        Route::get('/start-exam/{exam_id}/{segment_id}/{student_id}', 'startExam')->name('student.exam.start');
+        Route::post('/exam-submission', 'examSubmission')->name('student.exam.submission');
+        Route::get('/exam-result/{student_id}', 'examResult')->name('student.exam.result');
+    });
 });
 
 /*------------------------------------------

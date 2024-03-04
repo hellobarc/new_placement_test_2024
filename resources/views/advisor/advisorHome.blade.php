@@ -67,19 +67,25 @@
                             </td>
                             <td>
                                 @if($item->status == 'approved')
-                                <a href="{{ route('price.List' , $item->id ) }}" ><button class="btn btn-primary">Start Assessment</button></a>
-                                <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
+                                    @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
+                                        @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
+                                            <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn btn-primary">Start Assessment</button></a>
+                                        @else
+                                            <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn btn-success">View Result</button></a>
+                                        @endif
+                                    @endif
+                                    <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
                                 @elseif($item->status == 'unapproved')
-                                <form action="{{ route('status.update.adviser') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $item->id }}">
-                                    <input type="submit" class="btn btn-success btn-sm" name='status' value="Approved">
-                                </form>
-                                <form action="{{ route('student.decline', $item->id ) }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $item->id }}">
-                                    <input type="submit" class="btn btn-warning btn-sm" name='status' value="Declined">
-                                </form>
+                                    <form action="{{ route('status.update.adviser') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <input type="submit" class="btn btn-success btn-sm" name='status' value="Approved">
+                                    </form>
+                                    <form action="{{ route('student.decline', $item->id ) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <input type="submit" class="btn btn-warning btn-sm" name='status' value="Declined">
+                                    </form>
                                 @else
                                 @endif
                             </td>
@@ -100,7 +106,8 @@
 
 <script>
     function refreshPage(){
-    window.location.reload();
+    let url = "{{ route('advnotify.status.change')}}"
+    document.location.href=url;
 } 
 
 var before_time = "{{$formSubmitTime}}"

@@ -3,174 +3,663 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 mx-auto">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+                <h2 class="fw-bolder mt-3">Overall Result</h2>
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="text-center">
+                        <th>Sl No</th>
+                        <th>Modules</th>
+                        <th></th>
+                        <th>Marks</th>
+                        <th>Overall Level</th>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>1</td>
+                            <td>Reading</td>
+                            <td></td>
+                            <td>{{$sum_reading_module}} out of 15</td>
+                            <td rowspan="4" class="fs-2 fw-bold">{{Helper::overall_rubricks($all_module_marks)}}</td>
+                        </tr>
+                        <tr class="text-center">
+                            <td rowspan="2">2</td>
+                            <td rowspan="2">Writing</td>
+                            <td>Grammar</td>
+                            <td>{{$sum_grammar_module}} out of 15</td>
+                            
+                        </tr>
+                        <tr class="text-center">
+                            <td>Vocabulary</td>
+                            <td>{{$sum_vocabulary_module}} out of 15</td>
+                            
+                        </tr>
+                        <tr class="text-center">
+                            <td>4</td>
+                            <td>Listening</td>
+                            <td></td>
+                            <td>{{$sum_listening_module}} out of 15</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-center">Total Marks: {{$sum_reading_module+$sum_grammar_module+$sum_vocabulary_module+$sum_listening_module}} out of 60</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+                <h2 class="fw-bolder mt-3">Question Answered</h2>
+                <div class="row">
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <canvas id="answersQuestion"></canvas>
+                    </div>
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="mt-5">
+                            <canvas id="moduleMarkChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+                <h2 class="fw-bolder mt-3">Result Explanation</h2>
+                <table class="table table-bordered table-striped mt-4">
+                    <thead>
+                        <th>Sl No</th>
+                        <th>Module</th>
+                        <th>Remarks</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Readiing</td>
+                            <td>
+                                @if (Helper::module_rubricks($sum_reading_module) == 'A-')
+                                    <span>Cannot understand very simple sentence.</span>
+                                @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
+                                    <span>Cannot understand very simple sentence.</span>
+                                @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
+                                    <span>Face problem in reading and identifying the main points short, clear, simple texts, messages, notices and announcements.</span>
+                                @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
+                                    <span>Tough to understand newspaper articles.</span>
+                                @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
+                                    <span>Difficulties to read articles and reports with proper understanding.</span>
+                                @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
+                                    <span>Understanding well-structured text, expressing points of view at some length. </span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Writing</td>
+                            <td>
+                                @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
+                                    <span>Cannot make simple sentence with correct grammar.</span>
+                                @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
+                                    <span>Cannot make simple sentence with correct grammar.</span>
+                                @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
+                                    <span>Unable to write very simple personal letter with accurate structure.</span>
+                                @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
+                                    <span>Unable to write short structured paragraphs.</span>
+                                @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
+                                    <span>Face problem to write clear, detailed paragraph, letter, essay or report on a wide range of subject.</span>
+                                @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
+                                    <span>Facing to write my thoughts efforlessly and spontanceously without any hesitation.</span>
+                                @endif
+                                <br>
+                                @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
+                                    <span>Cannot understand basice names and words.</span>
+                                @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
+                                    <span>Cannot understand basice names and words.</span>
+                                @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
+                                    <span>Find it difficult to handle very short social exchanges.</span>
+                                @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
+                                    <span>Can not produce simple connected text on topics.</span>
+                                @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
+                                    <span>Unable to interact with fluency and spontaneity that makes regular interaction with native speaker.</span>
+                                @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
+                                    <span>Express yourself fluently.</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Listening</td>
+                            <td>
+                                @if (Helper::module_rubricks($sum_listening_module) == 'A-')
+                                    <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
+                                    <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
+                                    <span>Can not continue or interact in any conversation.</span>
+                                @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
+                                    <span>Unable to understand small talks and conversations in native language.</span>
+                                @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
+                                    <span>Face problem in understanding long speeches and lectures.</span>
+                                @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
+                                    <span>Unable to conversation with a native speaker without any mistakes.</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+                <h2 class="fw-bolder mt-3">Your Current Level: <span class="h1 text-success fw-bolder">{{Helper::overall_rubricks($all_module_marks)}}</span></h2>
+                <h2 class="fw-bolder mt-3">Desired Score: <span class="h1 text-success fw-bolder">{{$student_info->expected_score}}</span> (Equivalent CEFR Level - {{Helper::cefr_level($student_info->expected_score)}})</h2>
+                <h2 class="fw-bolder mt-3">Suggested Course:</h2>
+                <table class="table table-bordered table-striped">
+                    <thead class="text-center">
+                        
+                        <th>Courses</th>
+                        <th>Duration</th>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            
+                            <td>
+                                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    A1 + A2 + B1 + B2 + C1
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    A2 + B1 + B2 + C1
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    B1 + B2 + C1
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    B2 + C1
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                    A1 + A2 + B1 + B2
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                    A2 + B1 + B2
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                    B1 + B2
+                                @endif
+                            </td>
+                            <td>
+                                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    5 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    4 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    3 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                                    2 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                4 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                    3 month+
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                                    2 month+
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="fw-bolder mt-3">Course Level:</h2>
+                <table class="table table-bordered table-striped">
+                    <thead class="text-center">
+                        <th>Courses</th>
+                        <th>Level</th>
+                        <th>Duration</th>
+                    </thead>
+                    <tbody>
+                        @if (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                            <tr>
+                                <td>A1</td>
+                                <td>Elementory</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                <td>A2</td>
+                                <td>Basic</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                <td>C1</td>
+                                <td>Advance-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                            <tr>
+                                <td>A2</td>
+                                <td>Basic</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>C1</td>
+                                <td>Advance-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                            <tr>
+                                
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>C1</td>
+                                <td>Advance-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                            <tr>
+                                
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>C1</td>
+                                <td>Advance-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                            <tr>
+                                
+                                <td>A1</td>
+                                <td>Elementory</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>A2</td>
+                                <td>Basic</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                            <tr>
+                                
+                                <td>A2</td>
+                                <td>Basic</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                               
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                            <tr>
+                                
+                                <td>B1</td>
+                                <td>Pre-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                            <tr>
+                                
+                                <td>B2</td>
+                                <td>Main-IELTS</td>
+                                <td>1 month+</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+                <h2 class="fw-bolder mt-3">Course Content:</h2>
+                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9;">
+                                    <h4>A1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Elementory</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('A1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                    <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                        <h4>A2</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>Basic</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>{!!Helper::course_benefit('A2')!!}</h4>
+                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>C1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Advance-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('C1')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                    <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                        <h4>A2</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>Basic</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>{!!Helper::course_benefit('A2')!!}</h4>
+                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>C1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Advance-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('C1')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>C1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Advance-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('C1')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && Helper::cefr_level($student_info->expected_score) == 'C1')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>C1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Advance-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('C1')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'A1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9;">
+                                    <h4>A1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Elementory</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('A1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                    <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                        <h4>A2</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>Basic</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>{!!Helper::course_benefit('A2')!!}</h4>
+                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item active">
+                                    <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                        <h4>A2</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>Basic</h4>
+                                        <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                        <h4>{!!Helper::course_benefit('A2')!!}</h4>
+                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && Helper::cefr_level($student_info->expected_score) == 'B2')
+                    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B1</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Pre-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B1')!!}</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="d-flex justify-content-start p-4" style="background: #d9d9d9">
+                                    <h4>B2</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>Main-IELTS</h4>
+                                    <i class="fa-solid fa-arrow-right-long fs-2 mx-4"></i>
+                                    <h4>{!!Helper::course_benefit('B2')!!}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto">
+                <h2 class="fw-bolder mt-3">Price List:</h2>
                 <ul>
-                    @foreach($courseBundle as $rows)
-                        <li class="d-inline px-3"><a href="#" id="course_bundle_btn_{{$rows->id}}" class="text-decoration-none coures-btn-li">{{$rows->course_bundle}}</a></li>
+                    @foreach ($courseBundle as $rows)
+                        <li class="d-inline px-3 fs-5 fw-bold" id="course_bundle_btn_{{$rows->id}}" onclick="courseBundleBtn({{$rows->id}})" style="cursor: pointer;">{{$rows->course_bundle}}</li>
                     @endforeach
-                    {{-- <li class="d-inline px-3"><a href="#" id="B1-B2-btn" class="text-decoration-none coures-btn-li">B1-B2</a></li>
-                    <li class="d-inline px-3"><a href="#" id="B2-C1-btn" class="text-decoration-none coures-btn-li">B2-C1</a></li>
-                    <li class="d-inline px-3"><a href="#" id="A2-B2-btn" class="text-decoration-none coures-btn-li">A2-B2</a></li>
-                    <li class="d-inline px-3"><a href="#" id="B1-C1-btn" class="text-decoration-none coures-btn-li">B1-C1</a></li>
-                    <li class="d-inline px-3"><a href="#" id="A1-B2-btn" class="text-decoration-none coures-btn-li">A1-B2</a></li>
-                    <li class="d-inline px-3"><a href="#" id="A2-C1-btn" class="text-decoration-none coures-btn-li">A2-C1</a></li> --}}
                 </ul>
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="background p-5">
-                    <div class="row">
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                            <div class="text-center">
-                                <p class="fs-1 fw-bold background-heading col-md-6 mx-auto">Course Fee Details(B1-B2)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-xs-12 col-sm-12 mx-auto">
-                            <div class="card" style="position: relative;">
-                                <div class="color1 headingCircle1 text-center">
-                                    <span><i class="fa-solid fa-star text-white mb-3"></i></span>
-                                    <div class="headingColor1 text-white">
-                                        <p class="fs-1 fw-bolder mb-0">Regular</p>
-                                        <p class="fs-5 fw-bold text-dark"><span style="font-size: 12px">---- </span>Fees<span style="font-size: 12px"> ----</span></p>
-                                    </div>
-                                </div>
-                                <div class="card-body" style="margin-top: 30%;">
-                                <p class="fs-5 fw-bolder pt-3 text-center price1TextColor">IELTS Premium Course</p>
-                                <p class="card-text">
-                                    <table class="table">
-                                        <thead >
-                                            <th class="bg-secondary text-white text-center t-head-design" >Level</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Discount</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Fees</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="ttddesign">B1</td>
-                                                <td class="ttddesign">1month+</td>
-                                                <td class="ttddesign">11,999</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ttddesign">B2</td>
-                                                <td class="ttddesign">1month+</td>
-                                                <td class="ttddesign">11,999</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </p>
-                                <p class="text-center fw-bolder text-dark text-uppercase mb-0" style="margin-top: 20%">Total</p>
-                                
-                                </div>
-                            </div>
-                            <div class="col color1 priceBorderRadius">
-                                <p class="fs-1 text-center text-white pt-2 pb-1">23,998/-</p>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-xs-12 col-sm-12 mx-auto">
-                            <div class="card" style="position: relative;">
-                                <div class="color2 headingCircle2 text-center" style="overflow: hidden">
-                                    <span><i class="fa-solid fa-star text-white mb-3"></i></span>
-                                    <span><i class="fa-solid fa-star text-white mb-3"></i></span>
-                                    <div class="headingColor2 text-white">
-                                        <p class="fs-1 fw-bolder mb-0">Standard</p>
-                                        <p class="fs-5 fw-bold text-dark"><span style="font-size: 12px">---- </span>package<span style="font-size: 12px"> ----</span></p>
-                                    </div>
-                                </div>
-                                <div class="card-body" style="margin-top: 30%;">
-                                    <p class="fs-5 fw-bolder pt-3 text-center price2TextColor">IELTS Premium Course</p>
-                                <p class="card-text">
-                                    <table class="table">
-                                        <thead >
-                                            <th class="bg-secondary text-white text-center t-head-design">Level</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Duration</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Offered Fees</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="ttddesign">B1</td>
-                                                <td class="ttddesign">60%</td>
-                                                <td class="ttddesign">4,799/-</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ttddesign">B2</td>
-                                                <td class="ttddesign">N/A</td>
-                                                <td class="ttddesign">11,999/-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </p>
-                                <p class="text-center fw-bolder text-dark text-uppercase mb-0" style="margin-top: 20%">Total</p>
-                                </div>
-                            </div>
-                            <div class="col color2 priceBorderRadius">
-                                <p class="fs-1 text-center text-white pt-2 pb-1">16,798/-</p>
-                            </div>
-                        </div>
-                    
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-xs-12 col-sm-12 mx-auto">
-                            <div class="card" style="position: relative;">
-                                <div class="color3 headingCircle3 text-center" style="overflow: hidden">
-                                    <span><i class="fa-solid fa-star text-warning mb-3"></i></span>
-                                    <span><i class="fa-solid fa-star text-warning mb-3"></i></span>
-                                    <span><i class="fa-solid fa-star text-warning mb-3"></i></span>
-                                    <div class="headingColor3 text-white">
-                                        <p class="fs-1 fw-bolder mb-0">Privileged</p>
-                                        <p class="fs-5 fw-bold"><span style="font-size: 12px">---- </span>package<span style="font-size: 12px"> ----</span></p>
-                                    </div>
-                                </div>
-                                <div class="card-body" style="margin-top: 30%;">
-                                    <p class="fs-5 fw-bolder pt-3 text-center price3TextColor">Applicable only for Visit Day</p>
-                                <p class="card-text">
-                                    <table class="table">
-                                        <thead >
-                                            <th class="bg-secondary text-white text-center t-head-design">Level</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Discount</th>
-                                            <th class="bg-secondary text-white text-center t-head-design">Offerd Fees</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="ttddesign">B1</td>
-                                                <td class="ttddesign">60%</td>
-                                                <td class="ttddesign">5,199/-</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="ttddesign">B2</td>
-                                                <td class="ttddesign">N/A</td>
-                                                <td class="ttddesign">11,999/-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </p>
-                                <div class="row">
-                                    <div class="col-2 text-white" style="background-color: #FD0001">Hot</div>
-                                    <div class="col-10"><p class="fw-bolder text-dark text-uppercase mb-0" style="margin-left: 30%">Total</p></div>
-                                </div>
-                                <h2 class=" mb-0 price3TextColor fw-bolder text-center">13,999/-</h2>
-                                </div>
-                            </div>
-                            <div class="col color3 priceBorderRadius">
-                                <p class="fs-1 text-center text-white pt-2 pb-1">Save: 2799/-</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 mx-auto">
-                            <div class="text-center mt-4">
-                                <p class="fs-3 fw-bold ">British American Resource Center</p>
-                            </div>
-                        </div>
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12 mx-auto">
-                            <p class="text-end mb-0">*5% Vat is Applicable</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> --}}
-        
         @include('price.priceChart')
 
         <div class="row mt-3">
@@ -269,5 +758,118 @@
         </div>
         
     </div>
+    <script>
+        const individula_module_marks = document.getElementById('moduleMarkChart');
+        let  reading = "{{$sum_reading_module}}"
+        let  grammar = "{{$sum_grammar_module}}"
+        let  vocabulary = "{{$sum_vocabulary_module}}"
+        let  listening = "{{$sum_listening_module}}"
+        new Chart(individula_module_marks, {
+          type: 'bar',
+          data: {
+            labels: ['Reading', 'Grammar', 'Vocabulary', 'Listening'],
+            datasets: [{
+              label: 'Marks',
+              data: [reading, grammar, vocabulary, listening],
+              backgroundColor: [
+                    '#131200',
+                    '#FF57BB',
+                    '#184164',
+                    '#7B7554',
+                ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+                tooltip: {
+                    bodyColor: 'white'
+                },
+                legend: {
+                    labels: {
+                        color: 'black',
+                    },
+                    position: 'right'
+                }
+            }
+          }
+        });
+    </script>
+    <script>
+        let correct = "{{$correct_answer}}"
+        let in_correct = "{{$in_correct_answer}}"
+        let unanswered = "{{$unAnswer}}"
+        const data = {
+                labels: [
+                    'Correct',
+                    'InCorrect',
+                    'Unanswered'
+                ],
+                datasets: [{
+                    label: 'Marks',
+                    data: [correct, in_correct, unanswered],
+                    backgroundColor: [
+                    '#EC6B56',
+                    'rgb(255, 159, 64)',
+                    '#74BBFB',
+                    ],
+                    borderColor: [
+                    '#EC6B56',
+                    'rgb(255, 159, 64)',
+                    '#74BBFB',
+                    ],
+                    backgroundColor: [
+                    '#EC6B56',
+                    'rgb(255, 159, 64)',
+                    '#74BBFB',
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+        const config = {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: 20
+            },
+            plugins: {
+                tooltip: {
+                    bodyColor: 'white'
+                },
+                legend: {
+                    labels: {
+                        color: 'black',
+                    },
+                    position: 'right'
+                }
+            }
+        }
+        };
+        const myChart = new Chart(
+        document.getElementById('answersQuestion'),
+        config
+        );
+    </script>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+    $(document).on('click','.delete',function(){
+        let id = $(this).attr('data-id');
+        $('#delete-id').val(id);
+    });
+
+    $(document).ready(function(){
+      $('#A1-A2').click(function(){
+        $('.A1-A2').hide();
+      });  
+    })
+</script>

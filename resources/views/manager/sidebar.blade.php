@@ -12,7 +12,7 @@
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Course Manage<i class="fa-solid fa-angle-down"></i></span> </a>
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Manage Course Price<i class="fa-solid fa-angle-down"></i></span> </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
                         <a href="{{route('course.prices.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price List </span></a>
@@ -36,6 +36,18 @@
                     </li>
                     <li class="w-100">
                         <a href="{{route('user.Add')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> User Add </span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Course Content<i class="fa-solid fa-angle-down"></i></span> </a>
+                <ul class="collapse nav flex-column ms-2" id="submenu2" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{{route('user.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> User List </span></a>
+                    </li>
+                    <li class="w-100">
+                        <a href="{{route('manager.course.create')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Create Course</span></a>
                     </li>
                 </ul>
             </li>

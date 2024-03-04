@@ -172,3 +172,121 @@ function package_value(event){
     document.getElementById("offered_price").style.display = "none";
   }
 }
+
+
+function courseBundleBtn(value){
+  
+  if(value == 1){
+    document.getElementById('a1_a2_price_table_1').style.display = 'block';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 2){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'block';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 3){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'block';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 4){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'block';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 5){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'block';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 6){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'block';
+    document.getElementById('a1_a2_price_table_7').style.display = 'none';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.add("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.remove("price-btn-active-class");
+  }
+  else if(value == 7){
+    document.getElementById('a1_a2_price_table_1').style.display = 'none';
+    document.getElementById('a1_a2_price_table_2').style.display = 'none';
+    document.getElementById('a1_a2_price_table_3').style.display = 'none';
+    document.getElementById('a1_a2_price_table_4').style.display = 'none';
+    document.getElementById('a1_a2_price_table_5').style.display = 'none';
+    document.getElementById('a1_a2_price_table_6').style.display = 'none';
+    document.getElementById('a1_a2_price_table_7').style.display = 'block';
+    document.getElementById('course_bundle_btn_1').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_2').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_3').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_4').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_5').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_6').classList.remove("price-btn-active-class");
+    document.getElementById('course_bundle_btn_7').classList.add("price-btn-active-class");
+  }
+  
+}

@@ -195,6 +195,7 @@
                                             <option value="mock">  Mock Test </option>
                                             <option value="ielts_registration">  IELTS Registration </option>
                                             <option value="ielts_courses">  IELTS Courses </option>
+                                            <option value="online_courses">  Online Courses </option>
                                             <option value="others">  Other Info </option>
                                         </select>
                                 </div>

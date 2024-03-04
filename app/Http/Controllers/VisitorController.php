@@ -167,7 +167,9 @@ class VisitorController extends Controller
     public function DeclineStudentAssign($studentId){
         VisitorLog::where('id', $studentId)
                     ->update([
-                        'status' => 'declined'
+                        'status' => 'declined',
+                        'adviser_notification' => 'not_seen',
+                        'front_desk_notification' => 'not_seen'
                     ]);
         Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
@@ -237,6 +239,24 @@ class VisitorController extends Controller
                     ]);
         Helpers::FrontEventPushNotification();
         return redirect()->back()->with('success','Unapproved Students Declined');
+    }
+
+    //Notification status Change
+
+    public function frontNotification(){
+        VisitorLog::where('front_desk_notification', 'not_seen')
+                    ->update([
+                        'front_desk_notification' => 'seen'
+                    ]);
+        return redirect()->back();
+    }
+
+    public function adviserNotification(){
+        VisitorLog::where('adviser_notification', 'not_seen')
+                    ->update([
+                        'adviser_notification' => 'seen'
+                    ]);
+        return redirect()->back();
     }
 
 }

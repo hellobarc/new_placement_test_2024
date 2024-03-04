@@ -18,7 +18,7 @@
             </div>
             <div class="row my-2">
                 <div class="col-md-12">
-                    <a href="{{route('front-desk.home')}}" class="btn btn-primary float-end">Student Form</a>
+                    <a href="{{route('home')}}" class="btn btn-primary float-end">Student Form</a>
                 </div>
             </div>
         </div>
@@ -176,22 +176,10 @@
 
 <script>
     function refreshPage(){
-    window.location.reload();
+    let url = "{{ route('fnotify.status.change')}}"
+    document.location.href = url;
+    // window.location.reload();
 } 
 
-    // window.onload=function(){
-    // Echo.channel('FrontDesk_Notification')
-    //     .listen('.FrontDeskNotification', (e) => {
-    //         console.log(e.message.length)
-    //         e.forEach(element => {
-    //             console.log(element.length)
-    //         })
-
-    //         let front_notification_count = e.message.length;
-    //         document.getElementById("front_notification_count").innerHTML = front_notification_count;
-            
-        
-    //     });
-    // }
 </script>
 
