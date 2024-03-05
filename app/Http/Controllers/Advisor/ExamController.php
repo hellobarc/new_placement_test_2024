@@ -181,27 +181,36 @@ class ExamController extends Controller
                 $radio_ques_id          = $data['radio_ques_id'];
                 $radio_sub_ques_id      = $data['radio_sub_ques_id'];
                 $radio_sub_ques_ans     = $data['radio_sub_ques_ans'];
+                $submited_id = array_keys($radio_sub_ques_ans);
+               // dd();
+                foreach($radio_sub_ques_id as $sub_ques_id){
+                    if(in_array($sub_ques_id,$submited_id)){
+                        foreach($radio_sub_ques_ans as $question_id=>$answer){
+                            $submitted_ans_index        = $answer[0];
+                            $radio_db                   = TestRadio::find($question_id);
+                            $is_correct_arr             = json_decode($radio_db->is_correct);
+                            $question_marks             = $radio_db->marks;
 
-                foreach($radio_sub_ques_ans as $question_id=>$answer){
-                    $submitted_ans_index        = $answer[0]; // Its a seril of Radio button
-                    $radio_db                   = TestRadio::find($question_id);
-                    $is_correct_arr             = json_decode($radio_db->is_correct);
-                    $question_marks             = $radio_db->marks;
-
-                    if(in_array($submitted_ans_index, $is_correct_arr)){
-                        $is_correct = "yes";
-                        $obtainMarks = $question_marks;
+                            if(in_array($submitted_ans_index, $is_correct_arr)){
+                                $is_correct = "yes";
+                                $obtainMarks = $question_marks;
+                            }else{
+                                $is_correct = "no";
+                                $obtainMarks = 0;
+                            }
+                        }
                     }else{
+                        $submitted_ans_index = 'not_answered';
                         $is_correct = "no";
                         $obtainMarks = 0;
                     }
-
+                    
                     $array = [
                         'test_id'          =>$test_id,
                         'module_id'        =>$module_id, 
                         'exercise_id'      =>$exercise_id, 
                         'question_id'      =>$radio_ques_id, 
-                        'sub_question_id'  =>$question_id,
+                        'sub_question_id'  =>$sub_ques_id,
                         'fillblankans'     =>NULL, 
                         'submitted_ans'    =>$submitted_ans_index, 
                         'question_type'    =>$data['radio_question_type'], 
@@ -211,6 +220,35 @@ class ExamController extends Controller
                     
                     $this->testCreate($array, $segment_id, $student_id);
                 }
+                // foreach($radio_sub_ques_ans as $question_id=>$answer){
+                //     $submitted_ans_index        = $answer[0]; // Its a seril of Radio button
+                //     $radio_db                   = TestRadio::find($question_id);
+                //     $is_correct_arr             = json_decode($radio_db->is_correct);
+                //     $question_marks             = $radio_db->marks;
+
+                //     if(in_array($submitted_ans_index, $is_correct_arr)){
+                //         $is_correct = "yes";
+                //         $obtainMarks = $question_marks;
+                //     }else{
+                //         $is_correct = "no";
+                //         $obtainMarks = 0;
+                //     }
+
+                //     $array = [
+                //         'test_id'          =>$test_id,
+                //         'module_id'        =>$module_id, 
+                //         'exercise_id'      =>$exercise_id, 
+                //         'question_id'      =>$radio_ques_id, 
+                //         'sub_question_id'  =>$question_id,
+                //         'fillblankans'     =>NULL, 
+                //         'submitted_ans'    =>$submitted_ans_index, 
+                //         'question_type'    =>$data['radio_question_type'], 
+                //         'is_correct'       =>$is_correct, 
+                //         'obtained_marks'   =>$obtainMarks
+                //     ];
+                    
+                //     $this->testCreate($array, $segment_id, $student_id);
+                // }
             }
             if(isset($data['drop_down_question_type'])){
                 $drop_down_ques_id          = $data['drop_down_ques_id'];

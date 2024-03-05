@@ -200,7 +200,7 @@
                                                         @foreach($options as $option)
                                                         <div class="d-flex my-2">
                                                             <div class="side-bar-font">
-                                                                <input type="radio" class="check_box" onclick="effect({{$continute_sl}})" name="radio_sub_ques_ans[{{$question->id}}][]" value="{{$loop->index}}" required>
+                                                                <input type="radio" class="check_box" onclick="effect({{$continute_sl}})" name="radio_sub_ques_ans[{{$question->id}}]" value="{{$loop->index}}">
                                                             </div>
                                                             <div class="check_box_font">
                                                                 <span>&nbsp;&nbsp;{{$option}}</span>
