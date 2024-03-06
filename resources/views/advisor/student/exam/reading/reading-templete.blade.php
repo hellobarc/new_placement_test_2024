@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- time finishing modal alert end -->
+                <!-- Module Progress -->
                 <div class="continue-part-div">
                     @foreach ($allModule as $rows)
                         @if ($module_id == $rows->id)
@@ -54,6 +54,7 @@
                         @endif
                     @endforeach
                 </div>
+                <!--Finished Progress bar -->
                 <div class="assessment-test-progress">
                     <progress id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}"> 50% </progress>
                 </div>
@@ -77,6 +78,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Question template -->
                 <div style="border: 1px solid #000; padding: 10px; margin-bottom: 20px; border-radius:3px;">
                     <div class="row mt-2">
                         @if ($examPassage != NULL)
@@ -93,9 +95,6 @@
                         @else
                         @endif
                         @if ($testAudio != NULL)
-                            {{-- <audio autoplay id="my_play">
-                                <source src="{{asset('backend/files/uploads/assessment-test/'. $testAudio->audio)}}" type="audio/mpeg">
-                            </audio> --}}
                             <div class="col-md-6">
                                 <audio controls>
                                     <source src="{{asset('admin/files/uploads/test-audio/'. $testAudio->audio)}}" type="audio/mpeg">
@@ -105,8 +104,10 @@
                         @endif
                         <div class="col-md-6 mx-auto">
                             <div class="assessment-tes-question">
-                                <form action="{{ route('student.exam.submission') }}" method="POST">
+                                <form action="{{ route('student.exam.submission') }}" id="questionForm" method="POST">
                                     @csrf
+                                    <input type="hidden" name="minute" id="time_value_minute">
+                                    <input type="hidden" name="second" id="time_value_second">
                                     <input type="hidden" name="exercise_id" value="{{$exerciseId}}">
                                     <input type="hidden" name="test_id" value="{{$exam_id}}">
                                     <input type="hidden" name="module_id" value="{{$module_id}}">
@@ -291,18 +292,27 @@
                                     <div class="d-flex justify-content-end">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button type="submit" class="assment-test-btn fw-bold"> Next <i class="fa-solid fa-angle-right"></i></button>
+                                                {{-- <button type="submit" class="assment-test-btn fw-bold" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;"> Next <i class="fa-solid fa-angle-right"></i></button> --}}
+                                                <input id="submit_button" type="submit" class="btn btn-primary btn-sm" value="Submit"  onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <!-- sound reduce -->
+                        @if($module_id != 4)
+                            <audio id="foobar" src="{{ asset('frontend/sound_track/smooth_piano1.mp3') }}" preload="auto">
+                            <script>
+                                var sample = document.getElementById("foobar");
+                                //sample.loop=true;
+                                sample.play();
+                            </script>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
 </section>
 <!-- main section end -->
@@ -330,8 +340,12 @@
 </script>
 @endsection
 <script>
-    var get_time = "{{$exam_time}}"
-    var startingMinutes = 60;
+
+    var get_min ="{{$min}}"
+    var get_sec ="{{$sec}}"
+    var startingMinutes = 3;
+    let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
+    //console.log( document.getElementById('countdown').value())
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="{{asset('frontend/js/question_js.js')}}"></script>

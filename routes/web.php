@@ -194,6 +194,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/start-exam/{exam_id}/{segment_id}/{student_id}', 'startExam')->name('student.exam.start');
         Route::post('/exam-submission', 'examSubmission')->name('student.exam.submission');
         Route::get('/exam-result/{student_id}', 'examResult')->name('student.exam.result');
+        Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');
     });
 });
 

@@ -54,9 +54,14 @@ class ExamController extends Controller
   
        $getSession = Session::get('test_session');
        $session_time = explode('.', $getSession);
+       $curr_min = date("i", $current_time);
+       $curr_sec = date("s", $current_time);
+       $sess_min = date("i", $session_time[0]);
+       $sess_sec = date("s", $session_time[0]);
+       $min = ($curr_min - $sess_min)*60;
+       $sec = $curr_sec - $sess_sec;
+       //$exam_time = date("i",($current_time-$session_time[0]));
        
-       $exam_time = date("i",($current_time-$session_time[0]));
-  
         if($segment_id <= $countExercise){
            $exerciseId = $exerciseDB[$segment_id-1]->id;
            $module_id = $exerciseDB[$segment_id-1]->module_id;
@@ -124,7 +129,7 @@ class ExamController extends Controller
           'exam_id', 'module_id', 
           'segment_id', 'total_segment',
           'countExercise', 
-          'totalQuestionCount', 'exam_time', 'student_id', 'allModule'));
+          'totalQuestionCount', 'min', 'sec','student_id', 'allModule'));
         }
     }
     public function examSubmission(Request $request)
@@ -371,8 +376,23 @@ class ExamController extends Controller
                     }
                 }
             }
+            if($data['minute'] ==0 && $data['second'] ==0){
+                TestSubmissionLog::updateOrCreate(
+                    [
+                        'student_id'       => $student_id,
+                        'advisor_id'     => Auth::user()->id,
+                        'test_id'     => $test_id,
+                    ],
+                    [
+                        'test_end'     => time(),
+                        'status'         =>'completed',
+                    ]);
+                $deleteSession = session()->forget('test_session');
+                return view('advisor.student.exam.exam-completed');
+            }
             if($segment_id < $count_exercise){
                 return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
+                
             }elseif($segment_id == $count_exercise){
                 $time = time();
             
@@ -391,6 +411,7 @@ class ExamController extends Controller
             }else{
                 echo 'Over ... segment finshied';
             }
+            
     }
    private function testCreate($array, $segment_id, $student_id)
     {
@@ -580,5 +601,20 @@ class ExamController extends Controller
             $sum_valve += count($data);
         }
         return $sum_valve;
+    }
+    public function examCompleted($student_id)
+    {
+        TestSubmissionLog::updateOrCreate(
+            [
+                'student_id'       => $student_id,
+                'advisor_id'     => Auth::user()->id,
+                'test_id'     => 1,
+            ],
+            [
+                'test_end'     => time(),
+                'status'         =>'completed',
+            ]);
+            $deleteSession = session()->forget('test_session');
+        return view('advisor.student.exam.exam-completed');
     }
 }

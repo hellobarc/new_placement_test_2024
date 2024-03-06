@@ -60,8 +60,8 @@ function allowDrop(ev) {
  }
 
  
-let time = parseInt((startingMinutes - get_time)) * 60;
-
+let ex_min = parseInt((startingMinutes - get_min)) * 60;
+let time = ex_min+parseInt(get_sec);
 let myInterval = setInterval(updateCountDown, 1000);
 function updateCountDown(){
     var countdownEle = document.getElementById('countdown');
@@ -72,9 +72,17 @@ function updateCountDown(){
     time--;
     if(minutes == 4 && seconds == 58){
       $('#exampleModal').modal('show');
+    }else{
+      $('#exampleModal').modal('hide');
     }
-    $('#time_value').val(minutes);
+    if(minutes == 0 && seconds == 0){
+      document.getElementById("questionForm").submit();
+      
+    }
+    $('#time_value_minute').val(minutes);
+    $('#time_value_second').val(seconds);
 }
+
 
  function effect(key){
    let indicator_id = "indicator_"+key;
