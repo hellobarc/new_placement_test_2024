@@ -58,8 +58,9 @@ class ExamController extends Controller
        $curr_sec = date("s", $current_time);
        $sess_min = date("i", $session_time[0]);
        $sess_sec = date("s", $session_time[0]);
-       $min = ($curr_min - $sess_min)*60;
-       $sec = $curr_sec - $sess_sec;
+       $curr_total_sec = ($curr_min*60) + $curr_sec;
+       $sess_total_sec = ($sess_min*60) + $sess_sec;
+       $exam_time = $curr_total_sec - $sess_total_sec;
        //$exam_time = date("i",($current_time-$session_time[0]));
        
         if($segment_id <= $countExercise){
@@ -129,7 +130,7 @@ class ExamController extends Controller
           'exam_id', 'module_id', 
           'segment_id', 'total_segment',
           'countExercise', 
-          'totalQuestionCount', 'min', 'sec','student_id', 'allModule'));
+          'totalQuestionCount', 'exam_time','student_id', 'allModule'));
         }
     }
     public function examSubmission(Request $request)
@@ -376,22 +377,24 @@ class ExamController extends Controller
                     }
                 }
             }
-            if($data['minute'] ==0 && $data['second'] ==0){
-                TestSubmissionLog::updateOrCreate(
-                    [
-                        'student_id'       => $student_id,
-                        'advisor_id'     => Auth::user()->id,
-                        'test_id'     => $test_id,
-                    ],
-                    [
-                        'test_end'     => time(),
-                        'status'         =>'completed',
-                    ]);
-                $deleteSession = session()->forget('test_session');
-                return view('advisor.student.exam.exam-completed');
-            }
+            
             if($segment_id < $count_exercise){
-                return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
+                if($data['minute'] ==0 && $data['second'] ==1){
+                    TestSubmissionLog::updateOrCreate(
+                        [
+                            'student_id'       => $student_id,
+                            'advisor_id'     => Auth::user()->id,
+                            'test_id'     => $test_id,
+                        ],
+                        [
+                            'test_end'     => time(),
+                            'status'         =>'completed',
+                        ]);
+                    $deleteSession = session()->forget('test_session');
+                    return view('advisor.student.exam.exam-completed');
+                }else{
+                    return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
+                }
                 
             }elseif($segment_id == $count_exercise){
                 $time = time();

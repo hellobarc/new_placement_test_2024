@@ -10,6 +10,7 @@
                         {{-- <p><i class="bi bi-house-lock"></i></p> --}}
                         <h2>Welcome Back</h2>
                         <p>Please join with us</p>
+                        @include('admin.partials.flash-message')
                         @isset($route)
                             <form method="POST" action="{{ $route }}">
                         @else

@@ -23,6 +23,7 @@ use App\Http\Controllers\Manager\{
 };
 use App\Http\Controllers\Advisor\{
     ExamController,
+    StudentSearchController,
 };
 /*
 |--------------------------------------------------------------------------
@@ -195,6 +196,9 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/exam-submission', 'examSubmission')->name('student.exam.submission');
         Route::get('/exam-result/{student_id}', 'examResult')->name('student.exam.result');
         Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');
+    });
+    Route::controller(StudentSearchController::class)->group(function(){
+        Route::post('/visitor-search', 'search')->name('visitor.search');
     });
 });
 

@@ -7,6 +7,12 @@
 <section>
     <div class="container">
         <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div style="background: #d9d9d9" class="text-center p-3">
+                    <p class="fs-4 fw-bold mb-1">Set</p>
+                    <p class="mb-0 fs-4 fw-bold">{{$exam_id}}</p>
+                </div>
+            </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 mx-auto">
                 <div class="mock_timer">
                     <div class="d-flex justify-content-center pt-2">
@@ -293,7 +299,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 {{-- <button type="submit" class="assment-test-btn fw-bold" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;"> Next <i class="fa-solid fa-angle-right"></i></button> --}}
-                                                <input id="submit_button" type="submit" class="btn btn-primary btn-sm" value="Submit"  onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;">
+                                                <input id="submit_button" type="submit" class="assment-test-btn fw-bold" value="Submit"  onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;">
                                             </div>
                                         </div>
                                     </div>
@@ -341,10 +347,9 @@
 @endsection
 <script>
 
-    var get_min ="{{$min}}"
-    var get_sec ="{{$sec}}"
-    var startingMinutes = 3;
-    let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
+    var get_time ="{{$exam_time}}"
+    var startingMinutes = 50*60;
+    //let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
     //console.log( document.getElementById('countdown').value())
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

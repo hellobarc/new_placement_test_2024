@@ -7,9 +7,11 @@
             <div class="col-md-12">
                 <div class="card" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); width: 25%">
                     <div class="card-body p-5">
+                       
                         {{-- <p><i class="bi bi-house-lock"></i></p> --}}
                         <h2>Welcome Back</h2>
                         <p>Please join with us</p>
+                        @include('admin.partials.flash-message')
                         @isset($route)
                             <form method="POST" action="{{ $route }}">
                         @else

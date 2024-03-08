@@ -60,8 +60,8 @@ function allowDrop(ev) {
  }
 
  
-let ex_min = parseInt((startingMinutes - get_min)) * 60;
-let time = ex_min+parseInt(get_sec);
+let time = parseInt(startingMinutes - get_time);
+
 let myInterval = setInterval(updateCountDown, 1000);
 function updateCountDown(){
     var countdownEle = document.getElementById('countdown');
