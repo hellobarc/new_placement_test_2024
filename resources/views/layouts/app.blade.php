@@ -92,70 +92,90 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --}}
 
-    <script>
-        $( function() {
-          $( "#date_of_birth" ).datepicker({
-            dateFormat: "dd-mm-yy"
+<script>
+    $( function() {
+        $( "#date_of_birth" ).datepicker({
+        dateFormat: "dd-mm-yy"
+        });
+        $( "#ielts_exam_date" ).datepicker({
+        dateFormat: "dd-mm-yy"
+        });
+    });
+</script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var time =600*1000;
+    //make it a named function
+    $(function poll(){
+        //this makes the setTimeout a self run function it runs the first time always
+        setTimeout(function(){
+            $.ajax({
+                url:'{{url('/')}}/check-time', // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data : "",
+                success: function()   // A function to be called if request succeeds
+                {
+                    console.log("Ajax Processed");
+                    location.reload();
+                },
+                //this is where you call the function again so when ajax complete it will cal itself after the time out you set.
+                complete: poll
             });
-        } );
-        </script>
-  <script src="{{asset('admin/ckeditor/ckeditor.js')}}"></script>
-    <script>
-        CKEDITOR.replace('ck');
-    </script>
-    <script src="{{asset('frontend/js/question_js.js')}}"></script>
+            //end setTimeout and ajax 
+        },time);
+        //end poll function
+    });
+</script>
+<script src="{{asset('frontend/js/question_js.js')}}"></script>
 
 {{-- push notification --}}
-  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
 <script>
     // Send the Ajax request
     $(document).ready(function (){
             $('#onclickTableShow').click(function(){
                 $('#exampleModal').modal('show');
-           
-            })
-            
-    })
-    
+            }) 
+        })
 </script>
 
 {{-- <script src="{{asset('js/app.js')}}"></script> --}}
 <script>
     window.onload=function(){
-    Echo.channel('student_notification')
-    .listen('.Student_PushNotification', (e) => {
-        // console.log(e.message.length)
-        // e.forEach(element => {
-        //     console.log(element.length)
-        // })
+        Echo.channel('student_notification')
+        .listen('.Student_PushNotification', (e) => {
+            // console.log(e.message.length)
+            // e.forEach(element => {
+            //     console.log(element.length)
+            // })
+            let notification_count = e.message.length;
+            document.getElementById("notification_count").innerHTML = notification_count;
+            
+        });
+        // }
+        //     window.onload=function(){
+        Echo.channel('FrontDesk_Notification')
+        .listen('.FrontDeskNotification', (e) => {
+            // console.log(e.message.length)
+            // e.forEach(element => {
+            //     console.log(element.length)
+            // })
 
-        let notification_count = e.message.length;
-        document.getElementById("notification_count").innerHTML = notification_count;
-        
-    
-    });
-// }
-//     window.onload=function(){
-    Echo.channel('FrontDesk_Notification')
-    .listen('.FrontDeskNotification', (e) => {
-        // console.log(e.message.length)
-        // e.forEach(element => {
-        //     console.log(element.length)
-        // })
-
-        let front_notification_count = e.data.length;
-        document.getElementById("front_notification_count").innerHTML = front_notification_count;
-        
-    
-    });
-}
+            let front_notification_count = e.data.length;
+            document.getElementById("front_notification_count").innerHTML = front_notification_count;
+        });
+    }
 </script>
 <script src="{{asset('frontend/ckeditor/ckeditor.js')}}"></script>
 <script>
     CKEDITOR.replace('ck');
 </script>
-
 <script src="{{asset('frontend/js/main.js')}}"></script>
 <script  src="{{asset('frontend/js/manager_sidebar.js')}}"></script>
 </body>

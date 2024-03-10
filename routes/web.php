@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\FrontDeskController;
+use App\Http\Controllers\CheckTimeController;
 use App\Http\Controllers\Admin\Test\{
     ManageTestController,
     ManageTestSectionController,
@@ -48,20 +49,18 @@ All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/studentList', [HomeController::class, 'frontStudentList'])->name('front.student.list');
-    
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/home', 'index')->name('home');
+        Route::get('/studentList', 'frontStudentList')->name('front.student.list');
+    });
     Route::post('/student-change-advisor/{id}',[FrontDeskController::class, 'changeAdvisor'])->name('front.change.advisor');
-
-    //Visitor Info 
-
-    Route::post('/store-visitorInfo', [VisitorController::class, 'storeVisitorInfo'])->name('store.VisitorInfo');
-    Route::post('/change-status/{id}', [VisitorController::class, 'statusChanged'])->name('change.status');
-
-    //Notification seen
-    Route::get('/notification-seen', [VisitorController::class, 'frontNotification'])->name('fnotify.status.change');
-    
+    Route::controller(VisitorController::class)->group(function () {
+        //Visitor Info 
+        Route::post('/store-visitorInfo', 'storeVisitorInfo')->name('store.VisitorInfo');
+        Route::post('/change-status/{id}', 'statusChanged')->name('change.status');
+        //Notification seen
+        Route::get('/notification-seen', 'frontNotification')->name('fnotify.status.change');
+    });
 });
   
 /*------------------------------------------
@@ -170,26 +169,23 @@ All Advisor Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:advisor'])->group(function () {
-  
-    Route::get('/advisor/home', [HomeController::class, 'advisorHome'])->name('advisor.home');
-    
-    Route::get('/student-Info/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details');
-    Route::post('/student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
-
-    Route::get('/student-data', [HomeController::class, 'getStudentData'])->name('student.data');
-
-    Route::post('/studen-status-update', [VisitorController::class, 'adivserUpdateStudentStatus'])->name('status.update.adviser');
-    Route::post('/student-decline/{id}', [VisitorController::class, 'DeclineStudentAssign'])->name('student.decline');
-
-    Route::get('/price-list/{id}', [HomeController::class, 'priceList'])->name('price.List');
-    Route::post('/student-follow-up/{id}', [VisitorController::class, 'storeFollowUp'])->name('store.followUP');
-    Route::get('/student-followup-edit-view/{id}', [HomeController::class, 'followUpEditView'])->name('followUPEdit.View');
-    Route::post('/student-follow-up-edit', [VisitorController::class, 'followUpEdit'])->name('followUP.Edit');
-    Route::get('/student-followUp-delete/{id}', [VisitorController::class, 'followUpDelete'])->name('followUp.Delete');
-
-    Route::get('/unapproved-students-change', [VisitorController::class,'timeOutDeclined'])->name('time-out.decline');
-
-    Route::get('/advisor/notification-seen', [VisitorController::class, 'AdviserNotification'])->name('advnotify.status.change');
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/advisor/home', 'advisorHome')->name('advisor.home');
+        Route::get('/student-data', 'getStudentData')->name('student.data');
+        Route::get('/price-list/{id}', 'priceList')->name('price.List');
+        Route::get('/student-followup-edit-view/{id}', 'followUpEditView')->name('followUPEdit.View');
+    });
+    Route::controller(VisitorController::class)->group(function () {
+        Route::get('/advisor/notification-seen', 'AdviserNotification')->name('advnotify.status.change');
+        Route::get('/unapproved-students-change', 'timeOutDeclined')->name('time-out.decline');
+        Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
+        Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
+        Route::post('/student-follow-up/{id}',  'storeFollowUp')->name('store.followUP');
+        Route::post('/studen-status-update',  'adivserUpdateStudentStatus')->name('status.update.adviser');
+        Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
+        Route::get('/student-Info/{id}', 'studentDetails')->name('student.Details');
+        Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('student.Details.update');
+    });
     Route::controller(ExamController::class)->group(function () {
         Route::get('/exam-set/{student_id}', 'examSet')->name('student.exam.set');
         Route::get('/start-exam/{exam_id}/{segment_id}/{student_id}', 'startExam')->name('student.exam.start');
@@ -198,7 +194,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');
     });
     Route::controller(StudentSearchController::class)->group(function(){
-        Route::post('/visitor-search', 'search')->name('visitor.search');
+        Route::get('/visitor-search', 'search')->name('visitor.search');
     });
 });
 
@@ -210,9 +206,12 @@ All Mock Advisor Routes List
 
 Route::middleware(['auth', 'user-access:mock'])->group(function(){
     Route::get('/mock-student-list', [HomeController::class, 'mockAdvisorHome'])->name('mock.home');
-    Route::post('/mock-status-update', [VisitorController::class, 'mockStatusUpdate'])->name('status.update.mock');
-    Route::get('/mock-student-Details/{id}', [VisitorController::class, 'studentDetails'])->name('student.Details.mock');
-    Route::post('/mock-student-Info-update/{id}', [VisitorController::class, 'studentDetailsUpdate'])->name('student.Details.update');
+    Route::controller(VisitorController::class)->group(function () {
+        Route::post('/mock-status-update',  'mockStatusUpdate')->name('status.update.mock');
+        Route::get('/mock-student-Details/{id}',  'studentDetails')->name('student.Details.mock');
+        Route::post('/mock-student-Info-update/{id}',  'studentDetailsUpdate')->name('student.Details.update');
+    });
 });
 
 
+Route::post('/check-time', [CheckTimeController::class, 'checkTime'])->name('check.time');

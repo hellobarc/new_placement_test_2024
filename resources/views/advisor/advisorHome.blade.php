@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3 col-xl-2 px-sm-2 px-0" style="background: #212529">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
+                <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline text-center fs-4">Dashboard</span>
                     
                 </a>
@@ -77,11 +77,11 @@
             </div>
             <div class="card mt-3 p-4 shadow-sm border-none">
                 <div class="">
-                    <form action="" method="POST">
+                    <form action="{{route('visitor.search')}}" method="GET">
                         @csrf
                         <div class="d-flex  justify-content-end">
-                            <div class="d-flexjustify-content-between"> 
-                                <input type="text" name="search" class="border border-secondary rounded px-2 py-2" placeholder="Search phone number">
+                            <div class="d-flex justify-content-between"> 
+                                <input type="text" name="search" class="border border-secondary rounded px-2 py-2" placeholder="Search phone or email number">
                                 <button type="submit" class="btn btn-primary py-2">Search</button>
                             </div>
                         </div>
@@ -94,7 +94,6 @@
                         <th>Email</th>
                         <th>Mobile</th>
                         <th>Purpose of Visit</th>
-                        <th>Time Log</th>
                         <th>Status</th>
                         <th>Action</th>
                     </thead>
@@ -106,7 +105,6 @@
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->mobile }}</td>
                                 <td>{{ ($item->purpose_of_visit) }}</td>
-                                <td id="time-{{$item->id}}">{{ $item->time_log }}</td>
                                 <td>
                                     @if($item->status == 'approved')
                                     <p class="badge badge-success bg-success">Approved</p>
@@ -162,19 +160,6 @@
     let url = "{{ route('advnotify.status.change')}}"
     document.location.href=url;
 } 
-
-var before_time = "{{$formSubmitTime}}"
-
-var after_time = parseInt(before_time) + 600 ;
-let url = "{{ route('time-out.decline')}}"
-const myInterval = setInterval(CheckOutTimeOut, 1000);
-
-function CheckOutTimeOut(){
-    if(before_time >= after_time){
-        clearInterval(myInterval);
-        document.location.href = url;
-    }
-}
 
 </script>
 

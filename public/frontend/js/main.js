@@ -1,148 +1,4 @@
-// $(document).ready(function(){
-//     $('#a1_a2_price_table').show();
-//     $('#A1-A2-btn').addClass('course-btn-active');
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
 
-//   $('#A1-A2-btn').click(function(){
-//     $('#A1-A2-btn').addClass('course-btn-active');
-
-//     // $('#A1-A2-btn').addClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-
-//     $('#a1_a2_price_table').show();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#B1-B2-btn').click(function(){
-//     $('#B1-B2-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').show();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#B2-C1-btn').click(function(){
-//     $('#B2-C1-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').show();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#A2-B2-btn').click(function(){
-//     $('#A2-B2-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-    
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').show();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#B1-C1-btn').click(function(){
-//     $('#B1-C1-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').show();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#A1-B2-btn').click(function(){
-//     $('#A1-B2-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A2-C1-btn').removeClass('course-btn-active');
-
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').show();
-//     $('#a2_c1_price_table').hide();
-//   });  
-//   $('#A2-C1-btn').click(function(){
-//     $('#A2-C1-btn').addClass('course-btn-active');
-//     $('#A1-A2-btn').removeClass('course-btn-active');
-//     $('#B1-B2-btn').removeClass('course-btn-active');
-//     $('#B2-C1-btn').removeClass('course-btn-active');
-//     $('#A2-B2-btn').removeClass('course-btn-active');
-//     $('#B1-C1-btn').removeClass('course-btn-active');
-//     $('#A1-B2-btn').removeClass('course-btn-active');
-    
-//     $('#a1_a2_price_table').hide();
-//     $('#b1_b2_price_table').hide();
-//     $('#b2_c1_price_table').hide();
-//     $('#a2_b1_price_table').hide();
-//     $('#b1_c1_price_table').hide();
-//     $('#a1_b2_price_table').hide();
-//     $('#a2_c1_price_table').show();
-//   });  
-
-
-//   // $('#duration').hide();
-//   // $('#discount').hide();
-//   // $('#individual_price').hide();
-//   // $('#offered_price').hide();
-
-//   document.getElementById("discount").style.display = "none";
-//   document.getElementById("offered_price").style.display = "none";
-//   document.getElementById("duration").style.display = "none";
-//   document.getElementById("individual_price").style.display = "none";
-// });
-
-// 
 function package_value(event){
   let x = event.target.value;
   console.log(x);
@@ -289,4 +145,67 @@ function courseBundleBtn(value){
     document.getElementById('course_bundle_btn_7').classList.add("price-btn-active-class");
   }
   
+}
+
+function handleVisit(event){
+    let value =  event.target.value;
+    console.log(value);
+    if(value == 'ielts_certificate'){
+        document.getElementById("ielts_certificate_div").style.display = "block";
+    }else{
+      document.getElementById("ielts_certificate_div").style.display = "none";
+    }
+    if(value == 'ielts_registration'){
+        document.getElementById("ielts_registration_id").style.display = "block";
+        document.getElementById("know_about_us_id").style.display = "block";
+    }else{
+      document.getElementById("ielts_registration_id").style.display = "none";
+    }
+    if(value == 'basic_english' || value == 'spoken' || value == 'ielts_courses'|| value == 'online_courses' || value == 'others'){
+        document.getElementById("know_about_us_id").style.display = "block";
+        document.getElementById("profession").style.display = "block";
+        document.getElementById("purpose_id_ielts_id").style.display = "block";
+        document.getElementById("course_advisor").style.display = "block";
+    }else{
+      document.getElementById("course_advisor").style.display = "none";
+    }
+
+    if(value == 'mock'){
+      document.getElementById("know_about_us_id").style.display = "block";
+      document.getElementById("profession").style.display = "block";
+      document.getElementById("purpose_id_ielts_id").style.display = "block";
+    }else{
+      //document.getElementById("ielts_registration_id").style.display = "none";
+    }
+    
+}
+function handleKnow(event){
+  let value =  event.target.value;
+  console.log(value);
+  if(value == 'student_reference'){
+    document.getElementById("reference_id").style.display = "block";
+  }else{
+    document.getElementById("reference_id").style.display = "none";
+  }
+}
+function handleIELTSExamType(event){
+  let value =  event.target.value;
+  if(value == 'paper_based'){
+    document.getElementById("category_ielts_id").style.display = "block";
+    
+  }else if(value == 'computed_delivered'){
+    document.getElementById("category_ielts_id").style.display = "block";
+    document.getElementById("purpose_id_ielts_id").style.display = "none";
+  }
+  else{
+    document.getElementById("category_ielts_id").style.display = "none";
+  }
+}
+function handleIELTSCategory(event){
+  let value =  event.target.value;
+  if(value == 'standered' || value == 'ukvi'){
+    document.getElementById("purpose_id_ielts_id").style.display = "block";
+  }else{
+    document.getElementById("purpose_id_ielts_id").style.display = "none";
+  }
 }

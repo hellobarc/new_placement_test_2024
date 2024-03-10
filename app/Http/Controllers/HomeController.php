@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function index()
     {   
         $data = User::where('type', 3)
-                ->where('status', 'active')
+                ->orWhere('type', 4)->where('status', 'active')
                 ->get();
         return view('front-desk.student-info', compact('data'));
     } 
@@ -81,18 +81,8 @@ class HomeController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-        //time check
-        $getTime = VisitorLog::where('id', 1)->first();
-        if(isset($getTime)){
-            $formSubmitTime = $getTime->time_log;
-        }
-        else
-        {
-            $formSubmitTime = 0;
-        }
-
         $notificationCount = Helpers::AdvisorNotification($advisorID);
-        return view('advisor.advisorHome', compact('getData','notificationCount','formSubmitTime'));
+        return view('advisor.advisorHome', compact('getData','notificationCount'));
     }
 
     public function mockAdvisorHome()
