@@ -513,6 +513,23 @@ input.check_box{
   color: red;
   border-bottom: 2px solid red;
 }
+.assessment-tes-question{
+  border: 1px solid #000;
+  background-color: #f9f9fa;
+  padding: 20px;
+  border-radius: 3px;
+}
+.assessment-test-passage{
+  /* border: 1px solid #000; */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 3px;
+}
+.assessment-test-audio{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 3px;
+}
   @media (max-width: 420px) {
     .sidebar.close .nav-links li .sub-menu{
       display: none;

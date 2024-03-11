@@ -152,6 +152,10 @@ function handleVisit(event){
     console.log(value);
     if(value == 'ielts_certificate'){
         document.getElementById("ielts_certificate_div").style.display = "block";
+        document.getElementById("know_about_us_id").style.display = "none";
+        document.getElementById("profession").style.display = "none";
+        document.getElementById("purpose_id_ielts_id").style.display = "none";
+        document.getElementById("course_advisor").style.display = "none";
     }else{
       document.getElementById("ielts_certificate_div").style.display = "none";
     }

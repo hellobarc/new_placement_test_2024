@@ -36,7 +36,8 @@ class HomeController extends Controller
         $data = User::where('type', 3)
                 ->orWhere('type', 4)->where('status', 'active')
                 ->get();
-        return view('front-desk.student-info', compact('data'));
+        $notificationCount = Helpers::FrontNotification();
+        return view('front-desk.student-info', compact('data', 'notificationCount'));
     } 
 
     public function frontStudentList(){
@@ -46,6 +47,10 @@ class HomeController extends Controller
         $getAdvisorList = User::where('type', 3)->get();
 
         $frontID = Auth::user()->id;
+        VisitorLog::where('front_desk_notification', 'not_seen')
+                    ->update([
+                        'front_desk_notification' => 'seen'
+]);
         $notificationCount = Helpers::FrontNotification();
         return view('front-desk.studentList', compact('getDeclinedStudents','notificationCount','getAdvisorList'));
     }

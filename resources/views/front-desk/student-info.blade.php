@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
                 <div style="background: #ebf6fc !important" class="p-5 mb-5">
-                    <div class="d-flex justify-content-center">
-                        <a href="{{ route('front.student.list') }}" class="btn btn-primary mb-4">Declined Students</a>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('front.student.list') }}" class="btn mb-4 text-white" style="background: #0E34A0">Declined Students <span id="front_notification_count" class="bg-danger px-2 py-1 rounded">{{ $notificationCount}}</span></a>
                     </div>
                     <div style="padding:10px 20px; border-radius:5px" class="text-center">
                         <h1 class="fw-bold" style="color:#284664">Visitor Infromation Form</h1>
@@ -18,15 +18,6 @@
                         <form action="{{ route('store.VisitorInfo')}} " method="POST">
                             @csrf
                             <input type="hidden" name="assessment_group_id" value="1">
-                            <!-- phone number -->
-                            <div class="row">
-                                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 mx-auto">
-                                    <div class="form-group">
-                                        <label for="mobile-number">Mobile Number <span class="text-danger fw-bold">*</span></label>
-                                        <input name="contact_number" id="contact_number" type="tel" class="form-control" placeholder="Mobile" pattern="[0-9]{11}||[0-9]{3}-[0-9]{8}||[0-9]{4}-[0-9]{7}" required>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- purpose of visit -->
                             <div class="row">
                                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 mx-auto">
@@ -34,27 +25,33 @@
                                         <label for="email"> Purpose of Visiting BARC <span class="text-danger fw-bold">*</span></label>
                                         <select class="form-control dropdown" onchange="handleVisit(event)" id="purpose_of_visit" name="purpose_of_visit" required>
                                             <option value="" selected="selected" disabled="disabled">-- select one --</option>
-                                                <option value="basic_english">  English Foundation </option>
-                                                <option value="spoken">  Spoken Course </option>
-                                                <option value="ielts_courses">  IELTS Courses </option>
-                                                <option value="online_courses">  Online Courses </option>
-                                                <option value="mock">  Mock Test </option>
-                                                <option value="ielts_registration">  IELTS Registration </option>
-                                                <option value="ielts_certificate">  IELTS Certificate </option>
-                                                <option value="others">  Other Info </option>
-                                            </select>
+                                            <option value="basic_english">  English Foundation </option>
+                                            <option value="spoken">  Spoken Course </option>
+                                            <option value="ielts_courses">  IELTS Courses </option>
+                                            <option value="online_courses">  Online Courses </option>
+                                            <option value="mock">  Mock Test </option>
+                                            <option value="ielts_registration">  IELTS Registration </option>
+                                            <option value="ielts_certificate">  IELTS Certificate </option>
+                                            <option value="others">  Other Info </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <!-- email name --> 
+                            <!-- email phone name --> 
                             <div class="row mt-3">
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mx-auto">
+                                    <div class="form-group">
+                                        <label for="mobile-number">Mobile Number <span class="text-danger fw-bold">*</span></label>
+                                        <input name="contact_number" id="contact_number" type="tel" class="form-control" placeholder="Mobile" pattern="[0-9]{11}||[0-9]{3}-[0-9]{8}||[0-9]{4}-[0-9]{7}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="full-name">Full Name <span class="text-danger fw-bold">*</span></label>
                                         <input name="full_name" type="text" class="form-control" placeholder="Full Name" id="full_name" required>
                                     </div>
                                 </div>
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="email">Email <span class="text-danger fw-bold">*</span></label>
                                         <input name="email" id="email" type="email" class="form-control" placeholder="Email" required>
@@ -86,20 +83,20 @@
                                 <div class="row mt-3">
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="refet_stu_name">Reference Student Name</label>
-                                            <input name="refet_stu_name" id="refet_stu_name" type="text" class="form-control" placeholder="Refer Phone Number">
+                                            <label for="refer_stu_name">Reference Student Name</label>
+                                            <input name="refer_stu_name" id="refer_stu_name" type="text" class="form-control" placeholder="Refer Phone Number" value="na">
                                         </div>
                                     </div>
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="refer_phone_number">Refer phone number</label>
-                                            <input name="refer_phone_number" id="refer_phone_number" type="text" class="form-control" placeholder="Refer Phone Number">
+                                            <input name="refer_phone_number" id="refer_phone_number" type="text" class="form-control" placeholder="Refer Phone Number" value="na">
                                         </div>
                                     </div>
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="refer_batch_name">Refer batch Name</label>
-                                            <input name="refer_batch_name" id="refer_batch_name" type="text" class="form-control" placeholder="Refer Phone Number">
+                                            <input name="refer_batch_name" id="refer_batch_name" type="text" class="form-control" placeholder="Refer Batch Name" value="na">
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +106,8 @@
                                 <div class="row mt-3">
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="email">IELTS Test Center</label>
-                                            <select class="form-control dropdown" id="howtoknow" name="how_you_know" onchange="handleKnow(event)">
+                                            <label for="ielts_test_center">IELTS Test Center</label>
+                                            <select class="form-control dropdown" id="ielts_test_center" name="ielts_test_center" onchange="handleKnow(event)">
                                                 <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                 <option value="idp"> IDP IELTS</option>
                                                 <option value="british_councile">  British Council </option>
@@ -119,7 +116,7 @@
                                     </div>
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="email">IELTS Exam Type</label>
+                                            <label for="ielts_exam_type">IELTS Exam Type</label>
                                             <select class="form-control dropdown" id="ielts_exam_type" name="ielts_exam_type" onchange="handleIELTSExamType(event)">
                                                 <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                     <option value="paper_based">Paper Based </option>
@@ -133,7 +130,7 @@
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="email">Category of IELTS</label>
-                                                    <select class="form-control dropdown" id="purpose_of_ielts" name="purpose_of_ielts" onchange="handleIELTSCategory(event)">
+                                                    <select class="form-control dropdown" id="category_of_ielts" name="category_of_ielts" onchange="handleIELTSCategory(event)">
                                                         <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                         <option value="standered">Standered IELTS</option>
                                                         <option value="ukvi">UKVI IELTS </option>
@@ -150,7 +147,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="occupation">Profession </label>
-                                            <select class="form-control dropdown" id="occupation" name="occupation" required>
+                                            <select class="form-control dropdown" id="occupation" name="occupation">
                                                 <option value="" selected="selected">-- select one --</option>
                                                 <option value="Govt. Service">  Govt. Service</option>
                                                 <option value="Private Service">  Private Service </option>
@@ -168,7 +165,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="address">Location</label>
-                                            <select class="form-control dropdown" id="location" name="location" required>
+                                            <select class="form-control dropdown" id="location" name="location">
                                                 <option value="" selected="selected" >-- select one --</option>
                                                     <option value="Uttara"> Uttara</option>
                                                     <option value="Mirpur"> Mirpur</option>
@@ -190,7 +187,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input name="address" id="address" type="text" class="form-control" placeholder="Address" required>
+                                            <input name="address" id="address" type="text" class="form-control" placeholder="Address">
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +198,7 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                         <div class="form-group">
                                             <label for="email"> Purpose of IELTS</label>
-                                            <select class="form-control dropdown" id="purpose_of_ielts" name="purpose_of_ielts" required>
+                                            <select class="form-control dropdown" id="purpose_of_ielts" name="purpose_of_ielts">
                                                 <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                     <option value="Academic">Academic </option>
                                                     <option value="General">General </option>
@@ -216,20 +213,20 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="organization">Current Organization/Institution  Name</label>
-                                            <input name="organization" id="organization" type="text" class="form-control" placeholder="Organization/Institution" value="na" required>
+                                            <input name="organization" id="organization" type="text" class="form-control" placeholder="Organization/Institution" value="na">
                                         </div>
                                     </div>
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="date_of_birth">Date of Birth</label>
-                                            <input name="date_of_birth" id="date_of_birth" type="text" class="form-control" placeholder="Date of Birth" required>
+                                            <input name="date_of_birth" id="date_of_birth" type="text" class="form-control" placeholder="Date of Birth">
                                         </div>
 
                                     </div>
                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="address">Educational Qualification</label>
-                                            <select class="form-control dropdown" id="education" name="education" required>
+                                            <select class="form-control dropdown" id="education" name="education">
                                             <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                 <option value="SSC">  SSC </option>
                                                 <option value="GED">  GED </option>
@@ -246,7 +243,7 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="email">Expected Country to go</label>
-                                            <select class="form-control dropdown" id="expected_country" name="expected_country" required>
+                                            <select class="form-control dropdown" id="expected_country" name="expected_country">
                                             <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                 <option value="USA">  USA </option>
                                                 <option value="UK">  UK </option>
@@ -260,7 +257,7 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="expected_score">Expected IELTS Score</label>
-                                            <input name="expected_score" id="expected_score" type="text" class="form-control" placeholder="example. 7" required>
+                                            <input name="expected_score" id="expected_score" type="text" class="form-control" placeholder="example. 7">
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +274,7 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="address">Exam Date</label>
-                                            <input name="ielts_exam_date" id="ielts_exam_date" type="text" class="form-control" placeholder="Exam Date" required>
+                                            <input name="ielts_exam_date" id="ielts_exam_date" type="text" class="form-control" placeholder="Exam Date">
                                         </div>
                                     </div>
                                 </div>
@@ -286,7 +283,7 @@
                             <div class="row mt-3">
                                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                     <div class="form-group">
-                                        <label for="full-name">Your Adviser will select this</label>
+                                        <label for="full-name">Your Adviser will select this <span class="text-danger fw-bold">*</span></label>
                                         <select class="form-control" name="assign_advisor" required>
                                             <option value="">Select Adviser</option>
                                                 @foreach ($data as $item)

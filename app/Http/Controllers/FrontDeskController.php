@@ -22,8 +22,10 @@ class FrontDeskController extends Controller{
         VisitorLog::where('id',$id)
         ->update([
             'assign_advisor' => $advisorId,
-            'status' => 'unapproved'
-        ]);
+            'status' => 'unapproved',
+            'adviser_notification' => 'not_seen',
+            'front_desk_notification' => 'not_seen',
+]);
 
         Helpers::AdvisorEventPushNotification($advisorId);
         return redirect()->route('front.student.list')->with('success','Student Assigned To Adviser');

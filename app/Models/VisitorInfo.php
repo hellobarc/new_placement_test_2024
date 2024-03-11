@@ -19,12 +19,18 @@ class VisitorInfo extends Model
         'education',
         'how_you_know',
         'expected_country',
-        'purpose_of_ielts',
-        'purpose_of_visit',
         'expected_score',
-        'branch_recomendation',    
+        'refer_stu_name',
+        'refer_phone_number',
+        'refer_batch_name',
+        'purpose_of_ielts',
+        'ielts_test_center',
+        'ielts_exam_type',
+        'category_of_ielts',
+        'ielts_can_id',
+        'ielts_exam_date',
         'comments_from_student',
-        'feedback_from_advisor'
+        'feedback_from_advisor',
     ];
     public function studentInfo(){
         return $this->belongsTo(VisitorLog::class, 'visitor_log_id');
