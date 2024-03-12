@@ -25,6 +25,7 @@ use App\Http\Controllers\Manager\{
 use App\Http\Controllers\Advisor\{
     ExamController,
     StudentSearchController,
+    VisitorFollowUpController,
 };
 /*
 |--------------------------------------------------------------------------
@@ -195,6 +196,9 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     });
     Route::controller(StudentSearchController::class)->group(function(){
         Route::get('/visitor-search', 'search')->name('visitor.search');
+    });
+    Route::controller(VisitorFollowUpController::class)->group(function(){
+        Route::get('/follow-up/{studentId}', 'followup')->name('visitor.follow-up');
     });
 });
 

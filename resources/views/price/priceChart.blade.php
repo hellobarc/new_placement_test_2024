@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-xs-12 col-sm-12">
                         <div class="text-center">
-                            <p class="fs-1 fw-bold background-heading col-md-6 mx-auto">Course Fee Details({{$card->course_bundle}})</p>
+                            <p class="fs-1 fw-bold background-heading col-md-8 mx-auto">Course Fee Details({{$card->course_bundle}})</p>
                         </div>
                     </div>
                 </div>

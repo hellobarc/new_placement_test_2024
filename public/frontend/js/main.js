@@ -213,3 +213,86 @@ function handleIELTSCategory(event){
     document.getElementById("purpose_id_ielts_id").style.display = "none";
   }
 }
+var elem = document.getElementById("myvideo");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+    elem.style.backgroundColor = "white";
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+    elem.style.backgroundColor = "white";
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+    elem.style.backgroundColor = "white";
+  }
+}
+
+// course content
+$(document).ready(function(){
+  $("#course_content_a1").show();
+  $("#course_content_a2").hide();
+  $("#course_content_b1").hide();
+  $("#course_content_b2").hide();
+  $("#course_content_c1").hide();
+  $("#course_content_a1_btn").addClass('course_content_active_btn');
+  $("#course_content_a1_btn").click(function(){
+    $("#course_content_a1").show();
+    $("#course_content_a2").hide();
+    $("#course_content_b1").hide();
+    $("#course_content_b2").hide();
+    $("#course_content_c1").hide();
+    $("#course_content_a1_btn").addClass('course_content_active_btn');
+    $("#course_content_a2_btn").removeClass('course_content_active_btn');
+    $("#course_content_b1_btn").removeClass('course_content_active_btn');
+    $("#course_content_b2_btn").removeClass('course_content_active_btn');
+    $("#course_content_c1_btn").removeClass('course_content_active_btn');
+  });
+  $("#course_content_a2_btn").click(function(){
+    $("#course_content_a1").hide();
+    $("#course_content_a2").show();
+    $("#course_content_b1").hide();
+    $("#course_content_b2").hide();
+    $("#course_content_c1").hide();
+    $("#course_content_a1_btn").removeClass('course_content_active_btn');
+    $("#course_content_a2_btn").addClass('course_content_active_btn');
+    $("#course_content_b1_btn").removeClass('course_content_active_btn');
+    $("#course_content_b2_btn").removeClass('course_content_active_btn');
+    $("#course_content_c1_btn").removeClass('course_content_active_btn');
+  });
+  $("#course_content_b1_btn").click(function(){
+    $("#course_content_a1").hide();
+    $("#course_content_a2").hide();
+    $("#course_content_b1").show();
+    $("#course_content_b2").hide();
+    $("#course_content_c1").hide();
+    $("#course_content_a1_btn").removeClass('course_content_active_btn');
+    $("#course_content_a2_btn").removeClass('course_content_active_btn');
+    $("#course_content_b1_btn").addClass('course_content_active_btn');
+    $("#course_content_b2_btn").removeClass('course_content_active_btn');
+    $("#course_content_c1_btn").removeClass('course_content_active_btn');
+  });
+  $("#course_content_b2_btn").click(function(){
+    $("#course_content_a1").hide();
+    $("#course_content_a2").hide();
+    $("#course_content_b1").hide();
+    $("#course_content_b2").show();
+    $("#course_content_c1").hide();
+    $("#course_content_a1_btn").removeClass('course_content_active_btn');
+    $("#course_content_a2_btn").removeClass('course_content_active_btn');
+    $("#course_content_b1_btn").removeClass('course_content_active_btn');
+    $("#course_content_b2_btn").addClass('course_content_active_btn');
+    $("#course_content_c1_btn").removeClass('course_content_active_btn');
+  });
+  $("#course_content_c1_btn").click(function(){
+    $("#course_content_a1").hide();
+    $("#course_content_a2").hide();
+    $("#course_content_b1").hide();
+    $("#course_content_b2").hide();
+    $("#course_content_c1").show();
+    $("#course_content_a1_btn").removeClass('course_content_active_btn');
+    $("#course_content_a2_btn").removeClass('course_content_active_btn');
+    $("#course_content_b1_btn").removeClass('course_content_active_btn');
+    $("#course_content_b2_btn").removeClass('course_content_active_btn');
+    $("#course_content_c1_btn").addClass('course_content_active_btn');
+  });
+});

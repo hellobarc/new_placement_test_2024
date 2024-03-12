@@ -530,6 +530,10 @@ input.check_box{
   padding: 20px;
   border-radius: 3px;
 }
+.course_content_active_btn{
+  color: #004AAD !important;
+  border-bottom: 2px solid #004AAD;
+}
   @media (max-width: 420px) {
     .sidebar.close .nav-links li .sub-menu{
       display: none;

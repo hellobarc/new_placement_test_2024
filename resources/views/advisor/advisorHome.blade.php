@@ -125,6 +125,7 @@
                                             @endif
                                         @endif
                                         <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
+                                        <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp</a>
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">
                                             @csrf
