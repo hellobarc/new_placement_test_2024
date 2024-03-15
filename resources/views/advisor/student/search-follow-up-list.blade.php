@@ -13,6 +13,7 @@
                         <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-5">
                             <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
                         </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
@@ -35,62 +36,48 @@
         <div class="col-md-9">
            <!-- followup modal -->
             <div class="row mt-3">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-12">
                     <div class="card p-5">
-                        <h5 class="text-center fw-bold">Add Follow Up</h5>
+                        <h3 class="text-center fw-bold">Search Follow Up List</h3>
                         @include('flash-message')
-                        <form action="{{ route('store.followUP', $studentId ) }}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="addmission">Admission Status</label>
-                                <select name="admission_status" id="admission" class="form-control" required>
-                                    <option selected>Select Options</option>
-                                    <option value="admitted">Admitted</option>
-                                    <option value="this_month">This Month</option>
-                                    <option value="next_month">Next Month</option>
-                                    <option value="two_month">After Two Month</option>
-                                    <option value="three_month">After Three Month</option>
-                                    <option value="four_month">After Four Month</option>
-                                    <option value="later_admit">Later Admitted</option>
-                                    <option value="not_admitted">Not Admitted</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <label for="Comment">Remark</label>
-                                <textarea name="remarks" id="comment" cols="30" rows="5" class="form-control" placeholder="Write follow up message"></textarea>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <label for="">Next Follow Up Date</label>
-                                <input type="date" name="next_follow_up_date" class="form-control" placeholder="Next follow up date">
-                            </div>
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary mt-4">Save Follow Up</button>
-                            </div>
-                        </form>
-                       
+                        <div>
+                            <h5 class="fw-bold text-primary">Search List</h5>
+                           <form action="{{route('visitor.followUp.Search')}}" method="POST">
+                                @csrf
+                                <input type="checkbox" name="month_search"  value="this_month"> <label for="">This Month</label><br>
+                                <input type="checkbox" name="month_search"  value="next_month"> <label for="">Next Month</label><br>
+                                <input type="checkbox" name="month_search" value="two_month"> <label for="">Two Month</label><br>
+                                <input type="checkbox" name="month_search"  value="three_month"> <label for="">Three Month</label><br>
+                                <input type="checkbox" name="month_search"  value="four_month"> <label for="">Four Month</label><br>
+                                <input type="checkbox" name="month_search"  value="later_admit"> <label for="">Later Admission</label><br>
+                                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                           </form>
+                        </div>
                         <!-- followup table -->
-                        {{-- <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Follow Up Date</th>
-                                        <th>Follow Up Remarks</th>
-                                        <th>Admission_Status</th>
-                                        <th>Next Follow Up Date</th>
-                                        <th>Actions</th>
-                                    </tr>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped" style="border: 1px solid #000">
+                                <thead class="text-center">
+                                    <th>Sl No</th>
+                                    <th>Student Name</th>
+                                    <th>Student Phone</th>
+                                    <th>Frist Follow Up Date</th>
+                                    <th>Admission_Status</th>
+                                    <th>Next Follow Up Date</th>
+                                    <th>Follow Up Remarks</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <tbody>
                                     @foreach($getData as $data)
                                     <tr>
+                                        <td>{{$loop->index+1}}</td>
+                                        <td>{{$data->student->full_name}}</td>
+                                        <td>{{$data->student->mobile}}</td>
                                         <td>{{ date('d-m-Y', strtotime($data->current_follow_up_date)) }}</td>
-                                        <td>{{ $data->remarks }}</td>
                                         <td>{{ $data->admission_status}}</td>
                                         <td>{{ date('d-m-Y', strtotime($data->next_follow_up_date)) }}</td>
+                                        <td>{{ $data->remarks }}</td>
                                         <td>
-                                            <a href="{{ route('followUPEdit.View', $data->id )}}" class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('visitor.follow-up.edit', $data->id )}}" class="btn btn-primary">Edit</a>
                                             <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFollowUp-{{$data->id}}">Delete</a>
                                         </td>
                                     </tr>
@@ -110,7 +97,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>

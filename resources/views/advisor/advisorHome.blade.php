@@ -9,12 +9,12 @@
                     
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    {{-- <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0 text-white fs-5">
-                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                    <li class="nav-item">
+                        <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-5">
+                            <i class="fa-solid fa-magnifying-glass"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
                             <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">All Test <i class="fa-solid fa-angle-down"></i></span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -54,7 +54,7 @@
                 <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">loser</span>
+                        <span class="d-none d-sm-inline mx-1">{{auth()->user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -63,7 +63,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="{{route('logout')}}">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,6 +87,7 @@
                         </div>
                     </form>
                 </div>
+                @include('flash-message')
                 <table class="table table-bordered table-striped" style="border: 1.5px solid #3e3e3e;">
                     <thead class="text-center fw-bold">
                         <th>SL No</th>
@@ -125,7 +126,13 @@
                                             @endif
                                         @endif
                                         <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
-                                        <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp</a>
+                                        @if (Helper::followUpStatus($item->id) == 'admitted')
+                                            <p class="mb-0 badge badge-success bg-success">Admitted</p>
+                                        @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
+                                            <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
+                                        @else
+                                            <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp</a>
+                                        @endif
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">
                                             @csrf

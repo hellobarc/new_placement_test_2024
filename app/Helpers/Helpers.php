@@ -9,7 +9,8 @@ use App\Models\{
     Module,
     VisitorInfo,
     VisitorLog,
-    Course
+    Course,
+    FollowUp,
 };
 
 use App\Events\{
@@ -168,5 +169,15 @@ class Helpers {
         $data =  Course::where('name', $value)->first();
        return $data->course_benefits;
     }
+    public static function followUpStatus($student_id){
+        $adviserID = Auth::user()->id;
+        $student = FollowUp::where('student_id', $student_id)->where('adviser_id', $adviserID)->first();
+        if($student){
+            $status  = $student->admission_status;
+           return $status;
+        }else{
+            return 'not_found';
+        }
 
+    }
 }

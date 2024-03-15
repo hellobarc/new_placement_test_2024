@@ -17,4 +17,8 @@ class FollowUp extends Model
         'current_follow_up_date',
         'next_follow_up_date'
     ];
+    public function student()
+    {
+        return $this->belongsTo(VisitorLog::class, 'student_id');
+    }
 }

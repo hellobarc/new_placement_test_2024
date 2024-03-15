@@ -179,9 +179,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::controller(VisitorController::class)->group(function () {
         Route::get('/advisor/notification-seen', 'AdviserNotification')->name('advnotify.status.change');
         Route::get('/unapproved-students-change', 'timeOutDeclined')->name('time-out.decline');
-        Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
         Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
-        Route::post('/student-follow-up/{id}',  'storeFollowUp')->name('store.followUP');
         Route::post('/studen-status-update',  'adivserUpdateStudentStatus')->name('status.update.adviser');
         Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
         Route::get('/student-Info/{id}', 'studentDetails')->name('student.Details');
@@ -199,6 +197,12 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     });
     Route::controller(VisitorFollowUpController::class)->group(function(){
         Route::get('/follow-up/{studentId}', 'followup')->name('visitor.follow-up');
+        Route::post('/student-follow-up/{id}',  'storeFollowUp')->name('store.followUP');
+        Route::get('/follow-up-list', 'followuplist')->name('visitor.follow-up.list');
+        Route::get('/follow-up-edit/{id}', 'followUpEditView')->name('visitor.follow-up.edit');
+        Route::post('/update/student-follow-up/{id}',  'updateFollowUp')->name('update.followUP');
+        Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
+        Route::post('/student-followUp-list-search', 'followUpSearch')->name('visitor.followUp.Search');
     });
 });
 
