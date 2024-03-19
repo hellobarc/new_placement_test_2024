@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center">
             <button class="btn btn-danger my-3" id="onclickTableShow" onClick="refreshPage()">
                 <i class="bi bi-bell"></i>
-                <span id="notification_count">{{ $notificationCount }}</span>
+                <span id="mock_notification_count">{{ $notificationCount }}</span>
             </button>
         </div>
         <div class="card mt-3 p-4 shadow-sm border-none">
@@ -77,7 +77,24 @@
 
 <script>
     function refreshPage(){
-    window.location.reload();
+        let url = "{{ route('mocknotify.status.change')}}"
+    document.location.href=url;   
 } 
+
+(function () {
+    setInterval(notificationNewStudents, 10000);
+    })();
+
+    function notificationNewStudents(){
+        console.log('self-function');
+        $.ajax({
+            type: "POST",
+            url: '/mock/notification-count',
+            data: {"data":"check"},
+            success: function(data){
+                    document.getElementById('mock_notification_count').innerHTML = data;                
+                }
+        });
+    }
 </script>
 

@@ -38,8 +38,8 @@ class HomeController extends Controller
                 ->get();
         $notificationCount = Helpers::FrontNotification();
         return view('front-desk.student-info', compact('data', 'notificationCount'));
-    } 
-
+    }
+    
     public function frontStudentList(){
         $getDeclinedStudents = VisitorLog::where('status', 'declined')
         ->paginate(10);

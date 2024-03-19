@@ -59,8 +59,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         //Visitor Info 
         Route::post('/store-visitorInfo', 'storeVisitorInfo')->name('store.VisitorInfo');
         Route::post('/change-status/{id}', 'statusChanged')->name('change.status');
-        //Notification seen
+        //Notification
+        Route::post('/front/notification-count', 'frontNotificationCount');
         Route::get('/notification-seen', 'frontNotification')->name('fnotify.status.change');
+
     });
 });
   
@@ -177,6 +179,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/student-followup-edit-view/{id}', 'followUpEditView')->name('followUPEdit.View');
     });
     Route::controller(VisitorController::class)->group(function () {
+        Route::post('/advisor/notification-count', 'AdviserNotificationCount');
         Route::get('/advisor/notification-seen', 'AdviserNotification')->name('advnotify.status.change');
         Route::get('/unapproved-students-change', 'timeOutDeclined')->name('time-out.decline');
         Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
@@ -215,9 +218,12 @@ All Mock Advisor Routes List
 Route::middleware(['auth', 'user-access:mock'])->group(function(){
     Route::get('/mock-student-list', [HomeController::class, 'mockAdvisorHome'])->name('mock.home');
     Route::controller(VisitorController::class)->group(function () {
+        Route::post('/mock/notification-count',  'mockNotificationCount');
         Route::post('/mock-status-update',  'mockStatusUpdate')->name('status.update.mock');
         Route::get('/mock-student-Details/{id}',  'studentDetails')->name('student.Details.mock');
         Route::post('/mock-student-Info-update/{id}',  'studentDetailsUpdate')->name('student.Details.update');
+        Route::get('/mock/notification-seen', 'MockNotificationChange')->name('mocknotify.status.change');
+
     });
 });
 

@@ -155,7 +155,7 @@ class VisitorController extends Controller
         ]);
 
         $advisorID = $request->assign_advisor;
-        Helpers::AdvisorEventPushNotification($advisorID);
+        // Helpers::AdvisorEventPushNotification($advisorID);
 
         return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
     } 
@@ -192,6 +192,13 @@ class VisitorController extends Controller
 
     }
 
+    public function AdviserNotificationCount(){
+        $advisorID = Auth::user()->id;
+        $notificationCount = VisitorLog::where('assign_advisor',$advisorID)
+        ->where('adviser_notification','not_seen')->count();
+
+        return $notificationCount;
+    }
 
     public function adivserUpdateStudentStatus(Request $request){
 
@@ -203,7 +210,7 @@ class VisitorController extends Controller
             'status' => $status
         ]);
         
-        Helpers::FrontEventPushNotification();
+        // Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
 
@@ -228,7 +235,7 @@ class VisitorController extends Controller
                         'adviser_notification' => 'not_seen',
                         'front_desk_notification' => 'not_seen'
                     ]);
-        Helpers::FrontEventPushNotification();
+        // Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
 
@@ -242,7 +249,7 @@ class VisitorController extends Controller
                     ->update([
                         'status' => 'declined'
                     ]);
-        Helpers::FrontEventPushNotification();
+        // Helpers::FrontEventPushNotification();
         return redirect()->back()->with('success','Unapproved Students Declined');
     }
 
@@ -256,8 +263,37 @@ class VisitorController extends Controller
         return redirect()->back();
     }
 
-    public function adviserNotification(){
-        VisitorLog::where('adviser_notification', 'not_seen')
+    public function AdviserNotification(){
+        $advisorID = Auth::user()->id;
+        VisitorLog::where('assign_advisor',$advisorID)
+        ->where('adviser_notification', 'not_seen')
+                    ->update([
+                        'adviser_notification' => 'seen'
+                    ]);
+        return redirect()->back();
+    }
+
+    public function frontNotificationCount(){
+        $notificationCount = VisitorLog::where('status', 'declined')
+        ->where('front_desk_notification','not_seen')
+        ->count();
+
+        return $notificationCount;
+    }
+
+    public function mockNotificationCount(){
+        $advisorID = Auth::user()->id;
+        $notificationCount = VisitorLog::where('assign_advisor', $advisorID)
+        ->where('adviser_notification','not_seen')
+        ->count();
+
+        return $notificationCount;
+    }
+
+    public function MockNotificationChange(){
+        $advisorID = Auth::user()->id;
+        VisitorLog::where('assign_advisor',$advisorID)
+        ->where('adviser_notification', 'not_seen')
                     ->update([
                         'adviser_notification' => 'seen'
                     ]);
