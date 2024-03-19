@@ -134,6 +134,26 @@
     document.location.href=url;
 } 
 
+//auto decline
+(function () {
+    console.log('self-function-auto-decline');
+    setInterval(autodecline, 600000);
+    })();
+
+    function autodecline(){
+        console.log('self-function-auto-decline');
+        console.log('self-function');
+        $.ajax({
+            type: "GET",
+            url: '/unapproved-students-change',
+            data: {"data":"check"},
+            success: function(){
+                    console.log('status updated to decline');            
+                }
+        });
+    }
+
+//notification for new students
 (function () {
     console.log('self-function');
     setInterval(notificationNewStudents, 10000);

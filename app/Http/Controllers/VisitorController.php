@@ -239,13 +239,11 @@ class VisitorController extends Controller
         return redirect('/advisor/home');
     }
 
-
-    
-
     public function timeOutDeclined(){
         $adviserId = Auth::user()->id;
 
         VisitorLog::where('assign_advisor', $adviserId)
+                    ->where('status', 'unapproved')
                     ->update([
                         'status' => 'declined'
                     ]);
