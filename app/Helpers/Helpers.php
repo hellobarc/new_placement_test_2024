@@ -80,7 +80,7 @@ class Helpers {
         $find_data = TestPassage::where('test_id', $test_id)->where('section_id', $section_id)->first();
         return $find_data;
     }
-    public static function find_assessment_test_audio($test_id, $section_id)
+    public static function find_test_audio($test_id, $section_id)
     {
         $find_data = TestAudio::where('test_id', $test_id)->where('section_id', $section_id)->first();
         return $find_data;

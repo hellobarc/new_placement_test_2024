@@ -51,7 +51,7 @@ class ManageTestAudio extends Controller
             'audio'       => $fileName,
             'title'         => $audio_title,
         ]);
-        return redirect()->route('admin.manage.section.test')->with('success', 'Track Uploaded Successfully');
+        return redirect()->route('admin.test.manage-audio')->with('success', 'Track Uploaded Successfully');
     }
     public function editAudio($id)
     {
@@ -99,7 +99,7 @@ class ManageTestAudio extends Controller
             'audio'       => $fileName,
             'title'         => $audio_title,
         ]);
-        return redirect()->route('admin.manage.passage.test')->with('success', 'Track Updated Successfully');
+        return redirect()->route('admin.test.manage-audio')->with('success', 'Track Updated Successfully');
     }
     public function deleteAudio($id)
     {
@@ -108,6 +108,6 @@ class ManageTestAudio extends Controller
             File::delete('admin/files/uploads/test-audio/'.$find_id->listening_track);
         }
         $data->delete();
-        return redirect()->route('admin.manage.passage.test')->with('success', 'Track deleted Successfully');
+        return redirect()->route('admin.test.manage-audio')->with('success', 'Track deleted Successfully');
     }
 }

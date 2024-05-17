@@ -135,3 +135,4 @@
         </div>
     </div>
 @endsection
+<script src="{{asset('frontend/js/question_js.js')}}"></script>

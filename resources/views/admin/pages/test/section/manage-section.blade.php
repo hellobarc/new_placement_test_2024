@@ -29,20 +29,21 @@
 									<td>
 										<a href="{{route('admin.edit.section.test',$rows->id)}}" class="btn btn-primary btn-sm">Edit</a>
 										<a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal_{{$rows->id}}">Delete</a>
-										{{-- @if(strtolower(Helper::find_module($rows->module_id)) == 'reading')
-											@if(Helper::find_assessment_test_passage($rows->assessmentTest->id, $rows->id))
-												<a href="{{route('admin.manage.passage.assessment-test')}}" class="btn btn-dark btn-sm">View Passage</a>
+										
+										@if(strtolower(Helper::find_module($rows->module_id)) == 'reading')
+											@if(Helper::find_test_passage($rows->manageTest->id, $rows->id))
+												<a href="{{route('admin.manage.passage.test')}}" class="btn btn-dark btn-sm">View Passage</a>
 											@else
-												<a href="{{route('admin.add-passage.section.assessment-test', ['test_id'=>$rows->assessmentTest->id,'section_id'=>$rows->id])}}" class="btn btn-success btn-sm">+ Add Passage</a>
+												<a href="{{route('admin.add-passage.section.test', ['test_id'=>$rows->manageTest->id,'section_id'=>$rows->id])}}" class="btn btn-success btn-sm">+ Add Passage</a>
 											@endif
 										@elseif(strtolower(Helper::find_module($rows->module_id)) == 'listening')
-											@if (Helper::find_assessment_test_audio($rows->assessmentTest->id, $rows->id))
-												<a href="{{route('admin.assessment-test.manage-audio')}}" class="btn btn-dark btn-sm">View Audio</a>
+											@if (Helper::find_test_audio($rows->manageTest->id, $rows->id))
+												<a href="{{route('admin.test.manage-audio')}}" class="btn btn-dark btn-sm">View Audio</a>
 											@else
-												<a href="{{route('admin.assessment-test.add-audio', ['test_id'=>$rows->assessmentTest->id,'section_id'=>$rows->id])}}" class="btn btn-secondary btn-sm">+ Add Audio</a>
+												<a href="{{route('admin.test.add-audio', ['test_id'=>$rows->manageTest->id,'section_id'=>$rows->id])}}" class="btn btn-secondary btn-sm">+ Add Audio</a>
 											@endif
 										@else
-										@endif --}}
+										@endif
 										<a href="{{route('admin.add-question.test', ['test_id'=>$rows->manageTest->id,'section_id'=>$rows->id])}}" class="btn btn-info btn-sm">+ Add Question</a>
 									</td>
 								</tr>

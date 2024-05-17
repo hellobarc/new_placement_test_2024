@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Test\{
     ManageTestSectionController,
     ManageTestQuestionController,
     ManageTestAddQuestionController,
+    ManageTestPassage,
+    ManageTestAudio,
 };
 use App\Http\Controllers\Admin\{
     AnalyticsController,
@@ -110,6 +112,22 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::get('/delete-question/fill-blanks/{id}', 'deleteFillBlankQuestion')->name('admin.delete-question.fill-blank.test');
         Route::get('/delete-question/heading-match/{id}', 'deleteHeadingMatchingQuestion')->name('admin.delete-question.heading-matching.test');
         Route::get('/delete-question/heading-match/sub-queston/{id}', 'deleteHeadingMatchSubQuestion')->name('admin.heading-match.delete.sub-question.test');
+    });
+    Route::controller(ManageTestPassage::class)->group(function () {
+        Route::get('add-passage-section/{test_id}/{section_id}', 'addPassageSectionTest')->name('admin.add-passage.section.test');
+        Route::post('store-passage-section', 'storePassageSectionTest')->name('admin.store-passage.section.test');
+        Route::get('manage-passage', 'managePassageTest')->name('admin.manage.passage.test');
+        Route::get('edit-passage/{id}', 'editPassageTest')->name('admin.edit.passage.test');
+        Route::post('update-passage/{id}', 'updatePassageTest')->name('admin.update.passage.test');
+        Route::get('delete-passage/{id}', 'deletePassageTest')->name('admin.delete.passage.test');
+    });
+    Route::controller(ManageTestAudio::class)->group(function () {
+        Route::get('/manage-audio','manageAudio')->name('admin.test.manage-audio');
+        Route::get('/add-audio/{test_id}/{section_id}','addAudio')->name('admin.test.add-audio');
+        Route::post('/store-audio','storeAudio')->name('admin.test.store-audio');
+        Route::get('/edit-audio/{id}','editAudio')->name('admin.test.edit-audio');
+        Route::post('/update-audio/{id}','updateAudio')->name('admin.test.update-audio');
+        Route::get('/delete-audio/{id}','deleteAudio')->name('admin.test.delete-audio');
     });
 
     Route::controller(AnalyticsController::class)->group(function(){
