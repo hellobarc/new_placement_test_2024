@@ -29,5 +29,7 @@ class VisitorLog extends Model
     public function totalUser(){
         return $this->hasMany(User::class, 'id', 'assign_advisor');
     }
-    
+    public function userInfo(){
+        return $this->belongsTo(VisitorInfo::class, 'id', 'visitor_log_id');
+    }
 }

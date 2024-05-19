@@ -54,7 +54,7 @@
                                 </div>
                                 <!-- email --> 
                                 <div class="row mt-4">
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                         <div class="form-group">
                                             <label for="email">Email <span class="text-danger fw-bold">*</span></label>
                                             <input name="email" id="email" type="email" class="form-control" placeholder="Email" required>
@@ -64,11 +64,11 @@
                                 <!-- know about us--> 
                                 <div style="display: none;" id="know_about_us_id">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="email">How to know about us</label>
                                                 <select class="form-control dropdown" id="howtoknow" name="how_you_know" onchange="handleKnow(event)">
-                                                <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                                                    <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                     <option value="Facebook">  Facebook</option>
                                                     <option value="Website">  Website </option>
                                                     <option value="Billboard">  Billboard </option>
@@ -147,6 +147,21 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <!-- purpose of ielts--> 
+                                <div style="display: none" id="purpose_id_ielts_id">
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                            <div class="form-group">
+                                                <label for="email"> Purpose of IELTS</label>
+                                                <select class="form-control dropdown" id="purpose_of_ielts" name="purpose_of_ielts">
+                                                    <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                                                    <option value="Academic">Academic </option>
+                                                    <option value="General">General Training</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             
                                 <!-- profession and location--> 
                                 <div id="profession" style="display: none">
@@ -192,29 +207,14 @@
                                             </div>
                                         </div>     
                                     </div>
+                                    <!-- address -->
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
                                                 <input name="address" id="address" type="text" class="form-control" placeholder="Address">
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="email"> Purpose of IELTS</label>
-                                                <select class="form-control dropdown" id="purpose_of_ielts" name="purpose_of_ielts">
-                                                    <option value="" selected="selected" disabled="disabled">-- select one --</option>
-                                                    <option value="Academic">Academic </option>
-                                                    <option value="General">General </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- purpose of ielts--> 
-                                <div style="display: none" id="purpose_id_ielts_id">
-                                    <div class="row mt-3">
-                                        
                                     </div>
                                 </div>
                                 <!-- advisor part -->
@@ -234,7 +234,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Educational Qualification</label>
                                                 <select class="form-control dropdown" id="education" name="education">
@@ -292,13 +292,13 @@
                                 </div>
                                 <!-- advisor list --> 
                                 <div class="row mt-4">
-                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                         <div class="form-group">
                                             <label for="full-name">Your Adviser will select this <span class="text-danger fw-bold">*</span></label>
-                                            <select class="form-control" name="assign_advisor" required>
+                                            <select class="form-control" name="assign_advisor" id="assign_advisor" required>
                                                 <option value="">Select Adviser</option>
                                                     @foreach ($data as $item)
-                                                        <option value="{{ $item->id}} ">{{ $item->name}} </option>
+                                                        <option value="{{$item->id}}">{{ $item->name}} </option>
                                                     @endforeach
                                             </select>
                                         </div>
@@ -318,6 +318,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 
 <script>
@@ -339,4 +340,5 @@
         });
     }
 </script>
+
 

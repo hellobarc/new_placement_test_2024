@@ -64,7 +64,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         //Notification
         Route::post('/front/notification-count', 'frontNotificationCount');
         Route::get('/notification-seen', 'frontNotification')->name('fnotify.status.change');
-
+        Route::post('/get-visitor/info', 'getUserInfoByUserContact')->name('frontend.get.user.info.by.contact.number');
     });
 });
   

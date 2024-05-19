@@ -22,11 +22,11 @@ class VisitorController extends Controller
     public function storeVisitorInfo(Request $request){
 
         $request->validate([
-            'full_name' => 'required|string|max:50',
-            'contact_number' => 'required|string|max:50',
-            'email' => 'required|email|max:50',
-            'purpose_of_visit' => 'required|string|max:50',
-            'assign_advisor' => 'required|int|max:50'
+            'full_name'             => 'required|string|max:50',
+            'contact_number'        => 'required|string|max:50',
+            'email'                 => 'required|email|max:50',
+            'purpose_of_visit'      => 'required|string|max:50',
+            'assign_advisor'        => 'required|int|max:50'
         ]);
         $purpose_of_visit   = $request->input('purpose_of_visit');
         $fullName           = $request->input('full_name');
@@ -296,5 +296,12 @@ class VisitorController extends Controller
                         'adviser_notification' => 'seen'
                     ]);
         return redirect()->back();
+    }
+    public function getUserInfoByUserContact(Request $request)
+    {
+        $data = $request->all();
+        $contact_number = $data['contact_number'];
+        $getData = VisitorLog::where('mobile', $contact_number)->with('userInfo')->first();
+        return response()->json(['find_data'=>$getData, 200]);
     }
 }
