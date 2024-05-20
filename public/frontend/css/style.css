@@ -17,6 +17,61 @@ body{
   font-family: "Roboto", sans-serif;
   font-style: normal;
 }
+.question-set-card{
+  background-color: #fff;
+  box-shadow: 2px #fff;
+  border: 1px solid #d9d9d9; 
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  padding-bottom: 20px;
+  margin-top: 30px;
+}
+.question-set-card .header{
+  display: flex;
+  justify-content: center;
+  /* background-color: #ba131a; */
+  color: #fff;
+  padding: 12px 0;
+  background: linear-gradient(90deg, rgba(171, 0, 42, 0.85) 30%, #6E012B 92.12%), url(../images/exam_set.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.question-set-card .header .number{
+  font-size: 120px;
+  font-weight: 900;
+}
+.question-set-card .header .set{
+  font-size: 80px;
+    font-weight: 600;
+    margin-top: 22px;
+}
+.question-set-card .exam-time{
+  font-size: 22px;
+  font-weight: 500;
+  margin: 28px 19px;
+}
+.question-set-card .button_exam{
+  text-decoration: none;
+    color: #fff;
+    background-color: #035388;
+    display: block;
+    font-size: 18px;
+    padding: 10px 0;
+    font-weight: 500;
+}
+.exam-set-title{
+  font-size: 36px;
+  margin-top: 30px;
+  font-family: "Roboto", sans-serif;
+  background-color: #D6EFFF;
+  padding: 20px 20px;
+}
+.exam_panel_header_title{
+  text-align: center;
+  margin-top: 27px;
+  font-family: "Roboto", sans-serif;
+}
 .notification-number{
   background-color: red;
     color: #fff;
@@ -504,17 +559,21 @@ input.check_box{
   /* background-color: #ffc107; */
   background-color: #d9d9d9;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
   text-align: center;
 }
 .assessment-test-progress progress{
   width: 100%;
-  padding: 18px;
+  padding: 20px;
   accent-color: #004AAD;
 }
 .continue-part-div{
-  display: flex;
-  justify-content: space-between;
+  border-radius: 4px;
+  background: #FFF;
+  box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
+  padding: 15px 12px;
+  position: fixed;
 }
 .continue-part-div .reading{
   background-color: #d9d9d9;
@@ -527,7 +586,7 @@ input.check_box{
 .continue-part-div-listening-active{
   background-color: #13be24;
   margin-bottom: 5px;
-  padding: 10px 20px;
+  padding: 10px 50px;
   border-radius: 3px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -539,17 +598,18 @@ input.check_box{
   color: red;
   border-bottom: 2px solid red;
 }
-.assessment-tes-question{
-  border: 1px solid #000;
-  background-color: #f9f9fa;
+.assessment-test-question{
+  background: #fff;
+  box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .assessment-test-passage{
-  /* border: 1px solid #000; */
-  background-color: #fff;
+  background: #FFF;
+
+box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .assessment-test-audio{
   background-color: #fff;

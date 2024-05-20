@@ -5,26 +5,59 @@
     $continute_sl = 1; 
 @endphp
 <section>
-    <div class="container">
-        <div style="background: #ebf6fc !important" class="px-5 pb-5 mb-5">
+    <div class="container-fluid">
+        <div style="background: #FBFBFB !important" class="px-5 pb-5 mb-5">
+            <div style="background-color: #D6EFFF; margin: 20px 0">
             <div class="row">
-                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div style="background: #d9d9d9" class="text-center p-3">
-                        <p class="fs-4 fw-bold mb-1">Set</p>
-                        <p class="mb-0 fs-4 fw-bold">{{$exam_id}}</p>
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="question-set-card mt-0 pb-0">
+                        <div class="header">
+                            <h3 class="number" style="font-size: 54px !important;">{{$exam_id}}</h3>
+                            <h3 class="set mt-2" style="font-size: 36px !important;">Set </h3>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 mx-auto">
-                    <div class="mock_timer">
-                        <div class="d-flex justify-content-center pt-2">
-                            <div class="main-text mx-2">
-                                <i class="fa-regular fa-clock"></i>
-                            </div>
-                            <div class="mx-2">
-                            <p class="main-text fw-bold" id="countdown"></p>
+                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <div class="test-center">
+                        <h1 class="exam_panel_header_title">Placement Test</h1>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <!-- Module Progress -->
+                    <div class="continue-part-div">
+                        @foreach ($allModule as $rows)
+                            @if ($module_id == $rows->id)
+                                <div class="d-flex justify-content-between continue-part-div-listening-active">
+                                    <p class="mb-0">{{$rows->name}}</p>
+                                    <p style="font-size: 12px; padding-left: 10px !important;" class="mb-0 mt-3"><i class="fas fa-edit"></i> Continue Part</p>
+                                </div>
+                            @else
+                                <p class="reading">{{$rows->name}}</p>
+                            @endif
+                            @if ($loop->index+1 == 4)
+                            @else
+                                <p class="mb-0" style="font-size: 50px;"></p>
+                            @endif
+                        @endforeach
+                    <hr>
+                        <div class="mock_timer">
+                            <div class="d-flex justify-content-center pt-2">
+                                <div class="main-text mx-2">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div class="mx-2">
+                                <p class="main-text fw-bold" id="countdown"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    
                     <!-- time finishing modal alert start -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -44,47 +77,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Module Progress -->
-                    <div class="continue-part-div">
-                        @foreach ($allModule as $rows)
-                            @if ($module_id == $rows->id)
-                                <div class="d-flex justify-content-between continue-part-div-listening-active">
-                                    <p class="mb-0">{{$rows->name}}</p>
-                                    <p style="font-size: 12px; padding-left: 10px !important;" class="mb-0 mt-3"><i class="fas fa-edit"></i> Continue Part</p>
-                                </div>
-                            @else
-                                <p class="reading">{{$rows->name}}</p>
-                            @endif
-                            @if ($loop->index+1 == 4)
-                            @else
-                            <p class="mb-0" style="font-size: 50px;"><i class="fa-solid fa-arrow-right-long"></i></p>
-                            @endif
-                        @endforeach
-                    </div>
+                    
                     <!--Finished Progress bar -->
-                    <div class="assessment-test-progress">
+                    <div class="assessment-test-progress mb-4">
                         <progress id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}"> 50% </progress>
                     </div>
-                    <!-- reading Warning Modal -->
-                    <div class="modal fade" id="readingWarning" tabindex="-1" aria-labelledby="readingWarningLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 fw-bolder text-danger" id="readingWarningLabel">Test Instrunction</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <ul class="fs-5">
-                                        <li>Read the questions and instructions properly.</li><br>
-                                        <li>After completing passage 1 Click the next button to go to the next passage. The next passage will not start automatically. As soon as you complete your passage click next.</li><br>
-                                        <li>When you click the next button questions will be submitted. You can not change your answer again.</li><br>
-                                        <li>Do not give extra space, comma before or after your answers.</li><br>
-                                        <li>Careful about uppercase and lowercase. In the IELTS exam answer is sensitive. So write your answer proper way.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- Question template -->
                     <div>
                         <div class="row mt-2">
@@ -112,7 +110,7 @@
                             @else
                             @endif
                             <div class="col-md-6 mx-auto">
-                                <div class="assessment-tes-question">
+                                <div class="assessment-test-question">
                                     <form action="{{ route('student.exam.submission') }}" id="questionForm" method="POST">
                                         @csrf
                                         <input type="hidden" name="minute" id="time_value_minute">

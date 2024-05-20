@@ -2,21 +2,25 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 mx-auto">
-            <div style="background: #ebf6fc !important" class="p-5 mb-5">
-                <div class="row">
-                    @foreach ($allExamSet as $exam)
-                        <div class="col-md-4">
-                            <div class="card py-5 text-center">
-                                <h3 class="fw-bold" style="color: #284664">Set {{$exam->id}}</h3>
-                                <p class="">Time: {{$exam->time}} Minutes</p>
-                                <div class="text-center">
-                                    <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>1, 'student_id'=>$student_id])}}" class="btn btn-sm text-white w-50" style="background: #0E34A0">Start Now >></a>
-                                </div>
+        <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="exam-set-title">
+                <h1>Exam Set</h1>
+            </div>
+            <div class="row">
+                @foreach ($allExamSet as $exam)
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="question-set-card">
+                            <div class="header">
+                                <h3 class="number">{{$exam->id}}</h3>
+                                <h3 class="set">Set </h3>
+                            </div>
+                            <p class="exam-time">Time: {{$exam->time}} Minutes</p>
+                            <div class="text-center px-3">
+                                <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>1, 'student_id'=>$student_id])}}" class="button_exam">Start Now</a>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
