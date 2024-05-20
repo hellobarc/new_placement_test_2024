@@ -2,16 +2,16 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-xl-2 px-sm-2 px-0" style="background: #212529">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 px-sm-2 px-0" style="background: #212529">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline text-center fs-4">Dashboard</span>
+                <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mt-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-house"></i> Dashboard</span>
                     
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-5">
-                            <i class="fa-solid fa-magnifying-glass"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
+                        <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-6">
+                            <i class="fa-regular fa-calendar-days"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
                         </a>
                     </li>
                 </ul>
@@ -33,35 +33,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-danger my-3" id="onclickTableShow" onClick="refreshPage()">
-                    <i class="bi bi-bell"></i>
-                    <span id="notification_count">{{ $notificationCount }}</span>
-                </button>
-            </div>
-            <div class="card mt-3 p-4 shadow-sm border-none">
-                <div class="">
-                    <form action="{{route('visitor.search')}}" method="GET">
-                        @csrf
-                        <div class="d-flex  justify-content-end">
-                            <div class="d-flex justify-content-between"> 
-                                <input type="text" name="search" class="border border-secondary rounded px-2 py-2" placeholder="Search phone or email number">
-                                <button type="submit" class="btn btn-primary py-2">Search</button>
+        <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+            <div class="card p-4 shadow-sm border-none" style="margin: 20px 20px !important;">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <form action="{{route('visitor.search')}}" method="GET">
+                            @csrf
+                            <div class="">
+                                <div class="d-flex justify-content-between" style="border: 1px solid #000;border-radius: 4px;"> 
+                                    <input type="text" name="search" class="px-2 py-2" style="border: none;" placeholder="Search phone or email number" required>
+                                    <button type="submit" class="btn btn-dark py-2 px-4 rounded-0"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="">
+                        <button class="border-0 bg-light" id="onclickTableShow" onClick="refreshPage()">
+                            <i class="fa-regular fa-bell fs-2 text-dark"></i>
+                            <span id="notification_count" class="notification-number">{{ $notificationCount }}</span>
+                        </button>
+                    </div>
+                    
                 </div>
                 @include('flash-message')
-                <table class="table table-bordered table-striped" style="border: 1.5px solid #3e3e3e;">
+                <table class="table table-striped table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
-                        <th>SL No</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Purpose of Visit</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th style="background: #DBEBF5;">SL No</th>
+                        <th style="background: #DBEBF5;">Full Name</th>
+                        <th style="background: #DBEBF5;">Email</th>
+                        <th style="background: #DBEBF5;">Mobile</th>
+                        <th style="background: #DBEBF5;">Purpose of Visit</th>
+                        <th style="background: #DBEBF5;">Status</th>
+                        <th style="background: #DBEBF5;">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($getData as $item)
@@ -74,29 +77,29 @@
                                 <td>
                                     @if($item->status == 'approved')
                                     <p class="badge badge-success bg-success">Approved</p>
-                                @elseif($item->status == 'unapproved')
-                                <p class="badge badge-warning bg-warning">UnApproved</p>
-                                @elseif($item->status == 'decline')
-                                <p class="badge badge-danger bg-danger">Decline</p>
-                                @else
-                                @endif
+                                    @elseif($item->status == 'unapproved')
+                                    <p class="badge badge-warning bg-warning">UnApproved</p>
+                                    @elseif($item->status == 'decline')
+                                    <p class="badge badge-danger bg-danger">Decline</p>
+                                    @else
+                                    @endif
                                 </td>
-                                <td>
+                                <td class="d-flex justify-content-between">
                                     @if($item->status == 'approved')
                                         @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                             @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
-                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn btn-primary">Start Assessment</button></a>
+                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn text-white fw-bold" style="background-color: #ba131a">Start Assessment  <i class="fa-solid fa-arrow-up-right-from-square"></i></button></a>
                                             @else
-                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn btn-success">View Result</button></a>
+                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn btn-success">View Result <i class="fa-solid fa-chart-line"></i></button></a>
                                             @endif
                                         @endif
-                                        <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary">Details</button></a>
+                                        <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary px-4">Details <i class="fa-solid fa-circle-info"></i></button></a>
                                         @if (Helper::followUpStatus($item->id) == 'admitted')
                                             <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
                                             <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
                                         @else
-                                            <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp</a>
+                                            <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp <i class="fa-solid fa-user-plus"></i></a>
                                         @endif
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">

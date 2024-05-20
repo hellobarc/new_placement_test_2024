@@ -17,6 +17,18 @@ body{
   font-family: "Roboto", sans-serif;
   font-style: normal;
 }
+.notification-number{
+  background-color: red;
+    color: #fff;
+    /* width: 10px; */
+    /* height: 21px; */
+    border-radius: 500%;
+    padding: 0px 6px;
+    position: absolute;
+    font-size: 13px;
+    top: 10%;
+    right: 1.5%;
+}
 /* Price card */
 .background{
     background-color: #F2B9C8;
@@ -415,8 +427,8 @@ body{
 }
 input[type=checkbox] {
   accent-color: #004AAD;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+    height: 16px;
 }
 input.check_box{
   width: 25px;

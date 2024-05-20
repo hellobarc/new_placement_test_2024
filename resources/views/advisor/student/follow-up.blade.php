@@ -2,17 +2,18 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-xl-2 px-sm-2 px-0" style="background: #212529">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 px-sm-2 px-0" style="background: #212529">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline text-center fs-4">Dashboard</span>
+                <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mt-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-house"></i> Dashboard</span>
                     
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-5">
-                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
+                        <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-6">
+                            <i class="fa-regular fa-calendar-days"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
                         </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
@@ -32,17 +33,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
            <!-- followup modal -->
-            <div class="row mt-3">
+            <div class="row mt-2">
                 <div class="col-md-10 mx-auto">
-                    <div class="card p-5">
-                        <h5 class="text-center fw-bold">Add Follow Up</h5>
+                    <div class="d-flex justify-content-between my-4">
+                        <div>
+                            <span>
+                                <a href="{{route('advisor.home')}}" class="text-decoration-none text-dark">Dashboard</a>
+                            </span>
+                            <span style="font-size: 12px;"><i class="fa-solid fa-angle-right"></i></span>
+                            <span>Follow Up</span>
+                        </div>
+                        <div>
+                            <a href="{{route('advisor.home')}}" class="text-decoration-none text-dark"><i class="fa-solid fa-arrow-left"></i> Previous Page</a>
+                        </div>
+                    </div>
+                    <div class="card mt-4 p-5">
+                        <h3 class="text-center fw-bolder" style="color:#284664">Add Follow Up</h3>
                         @include('flash-message')
                         <form action="{{ route('store.followUP', $studentId ) }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="addmission">Admission Status</label>
+                                <label for="addmission" class="fw-bold">Admission Status</label>
                                 <select name="admission_status" id="admission" class="form-control" required>
                                     <option selected>Select Options</option>
                                     <option value="admitted">Admitted</option>
@@ -57,16 +70,16 @@
                             </div>
 
                             <div class="form-group mt-3">
-                                <label for="Comment">Remark</label>
+                                <label for="Comment" class="fw-bold">Remark</label>
                                 <textarea name="remarks" id="comment" cols="30" rows="5" class="form-control" placeholder="Write follow up message"></textarea>
                             </div>
 
                             <div class="form-group mt-3">
-                                <label for="">Next Follow Up Date</label>
+                                <label for="" class="fw-bold">Next Follow Up Date</label>
                                 <input type="date" name="next_follow_up_date" class="form-control" placeholder="Next follow up date">
                             </div>
                             <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary mt-4">Save Follow Up</button>
+                                <button type="submit" class="btn mt-4 text-white fw-bold" style="background-color: #035388">Save Follow Up</button>
                             </div>
                         </form>
                        
