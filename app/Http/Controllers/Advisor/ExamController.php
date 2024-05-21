@@ -46,22 +46,25 @@ class ExamController extends Controller
         $total_segment = count($exerciseDB);
         $countExercise = count($exerciseDB);
         $totalQuestionCount = 0;
+        
+        $getSession = Session::get('test_session');
+        if($getSession){
+            session()->forget('test_session');
+        }
+        $notsubmittedLog = TestSubmissionLog::where('student_id', session('student_id'))->where('status', 'started')->first();
+        if($notsubmittedLog){
+            $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->sum('spent_time');
+            $exam_time = $activityLog;
+        }else{
+            $exam_time = 0;
+        }
+
         $current_time = time();
+        
         if(!(Session::has('test_session'))){
-           $value = $current_time.'.'.rand(1000, 9999);
-           Session::put('test_session', $value);
-       }
-  
-       $getSession = Session::get('test_session');
-       $session_time = explode('.', $getSession);
-       $curr_min = date("i", $current_time);
-       $curr_sec = date("s", $current_time);
-       $sess_min = date("i", $session_time[0]);
-       $sess_sec = date("s", $session_time[0]);
-       $curr_total_sec = ($curr_min*60) + $curr_sec;
-       $sess_total_sec = ($sess_min*60) + $sess_sec;
-       $exam_time = $curr_total_sec - $sess_total_sec;
-       //$exam_time = date("i",($current_time-$session_time[0]));
+            $value = $current_time.'.'.rand(1000, 9999);
+            Session::put('test_session', $value);
+        }
        
         if($segment_id <= $countExercise){
            $exerciseId = $exerciseDB[$segment_id-1]->id;
@@ -135,28 +138,30 @@ class ExamController extends Controller
     }
     public function examSubmission(Request $request)
     {
-            $data                = $request->input();
-            //dd($data);
-            $test_id             = $data['test_id'];
-            $module_id           = $data['module_id'];
-            $exercise_id         = $data['exercise_id'];
-            $segment_id          = $data['segment_id'];
-            $count_exercise      = $data['count_exercise'];
-            $student_id      = $data['student_id'];
+        $data                = $request->input();
+        //dd($data);
+        $test_id             = $data['test_id'];
+        $module_id           = $data['module_id'];
+        $exercise_id         = $data['exercise_id'];
+        $segment_id          = $data['segment_id'];
+        $count_exercise      = $data['count_exercise'];
+        $student_id         = $data['student_id'];
 
-            if(isset($data['multiple_question_type'])){
-                $multiple_ques_id          = $data['multiple_ques_id'];
-                $exam_multiple_sub_ques_id = $data['exam_multiple_sub_ques_id'];
-                $exam_multiple_sub_ques_ans= $data['exam_multiple_sub_ques_ans'];
-
-                foreach($exam_multiple_sub_ques_ans as $key=>$answer){
-                    $sub_question_id        = $exam_multiple_sub_ques_id[$key];
+        if(isset($data['multiple_question_type'])){
+            $multiple_ques_id          = $data['multiple_ques_id'];
+            
+            foreach($multiple_ques_id as $question_id){
+                $sub_ques_id_name       = 'exam_multiple_sub_ques_id_'.$question_id;
+                $sub_ques_id_arr        = $data[$sub_ques_id_name];
+                $sub_ques_ans_name      = 'exam_multiple_sub_ques_ans_'.$question_id;
+                $sub_ques_ans_name_arr  = $data[$sub_ques_ans_name];
+                foreach($sub_ques_ans_name_arr as $key=>$answer){
+                    $sub_question_id        = $sub_ques_id_arr[$key];
                     $allMultipleChoice      = TestMultipleChoice::find($sub_question_id);
-                    $multiple_choice_id     = $allMultipleChoice->mock_question_id;
                     $correct_array          = json_decode($allMultipleChoice->is_correct);
                     $question_marks         = $allMultipleChoice->marks;
 
-                    if( in_array( $answer, $correct_array )  ){
+                    if( in_array( $answer, $correct_array )){
                         $iscorrect      = 'yes';
                         $obtainMarks    = $question_marks;
                     }else{
@@ -164,7 +169,7 @@ class ExamController extends Controller
                         $obtainMarks    = 0;
                     }
                     if($answer == null){
-                        $m_user_ans = 'not_answered';
+                        $m_user_ans = '99';
                     }else{
                         $m_user_ans = $answer;
                     }
@@ -172,7 +177,7 @@ class ExamController extends Controller
                         'test_id'          =>$test_id,
                         'module_id'        =>$module_id, 
                         'exercise_id'      =>$exercise_id, 
-                        'question_id' =>$multiple_ques_id, 
+                        'question_id'      =>$question_id, 
                         'sub_question_id'  =>$sub_question_id,
                         'fillblankans'     =>NULL, 
                         'submitted_ans'    =>$m_user_ans, 
@@ -183,20 +188,23 @@ class ExamController extends Controller
                     $this->testCreate($array, $segment_id, $student_id);
                 }
             }
-            if(isset($data['radio_question_type'])){
-                $radio_ques_id          = $data['radio_ques_id'];
-                $radio_sub_ques_id      = $data['radio_sub_ques_id'];
-                $radio_sub_ques_ans     = $data['radio_sub_ques_ans'];
-                $submited_id = array_keys($radio_sub_ques_ans);
-               // dd();
-                foreach($radio_sub_ques_id as $sub_ques_id){
-                    if(in_array($sub_ques_id,$submited_id)){
-                        foreach($radio_sub_ques_ans as $question_id=>$answer){
-                            $submitted_ans_index        = $answer[0];
-                            $radio_db                   = TestRadio::find($question_id);
+        }
+        if(isset($data['radio_question_type'])){
+            $radio_ques_id          = $data['radio_ques_id'];
+            foreach($radio_ques_id as $question_id){
+                $sub_ques_ans_name = 'radio_sub_ques_ans_'.$question_id;
+                $sub_ques_id_name = 'radio_sub_ques_id_'.$question_id;
+                if(isset($data[$sub_ques_ans_name])){
+                    $radio_sub_ques_ans     = $data[$sub_ques_ans_name];
+                    //which input are clicked
+                    $submited_id = array_keys($radio_sub_ques_ans);
+                    foreach($data[$sub_ques_id_name] as $sub_ques_id){
+                        if(in_array($sub_ques_id,$submited_id)){
+                            $submitted_ans_index        = $radio_sub_ques_ans[$sub_ques_id];
+                            $radio_db                   = TestRadio::find($sub_ques_id);
                             $is_correct_arr             = json_decode($radio_db->is_correct);
                             $question_marks             = $radio_db->marks;
-
+                            
                             if(in_array($submitted_ans_index, $is_correct_arr)){
                                 $is_correct = "yes";
                                 $obtainMarks = $question_marks;
@@ -204,69 +212,59 @@ class ExamController extends Controller
                                 $is_correct = "no";
                                 $obtainMarks = 0;
                             }
+                        }else{
+                            $submitted_ans_index = 'not_answered';
+                            $is_correct = "no";
+                            $obtainMarks = 0;
                         }
-                    }else{
+                        $array = [
+                            'test_id'          =>$test_id,
+                            'module_id'        =>$module_id, 
+                            'exercise_id'      =>$exercise_id, 
+                            'question_id'      =>$question_id, 
+                            'sub_question_id'  =>$sub_ques_id,
+                            'fillblankans'     =>NULL, 
+                            'submitted_ans'    =>$submitted_ans_index, 
+                            'question_type'    =>$data['radio_question_type'], 
+                            'is_correct'       =>$is_correct, 
+                            'obtained_marks'   =>$obtainMarks
+                        ];
+                        $this->testCreate($array, $segment_id, $student_id);
+                    }
+                }else{
+                    foreach($data[$sub_ques_id_name] as $sub_ques_id){
                         $submitted_ans_index = 'not_answered';
                         $is_correct = "no";
                         $obtainMarks = 0;
+                        $array = [
+                            'test_id'          =>$test_id,
+                            'module_id'        =>$module_id, 
+                            'exercise_id'      =>$exercise_id, 
+                            'question_id'      =>$question_id, 
+                            'sub_question_id'  =>$sub_ques_id,
+                            'fillblankans'     =>NULL, 
+                            'submitted_ans'    =>$submitted_ans_index, 
+                            'question_type'    =>$data['radio_question_type'], 
+                            'is_correct'       =>$is_correct, 
+                            'obtained_marks'   =>$obtainMarks
+                        ];
+                        $this->testCreate($array, $segment_id, $student_id);
                     }
-                    
-                    $array = [
-                        'test_id'          =>$test_id,
-                        'module_id'        =>$module_id, 
-                        'exercise_id'      =>$exercise_id, 
-                        'question_id'      =>$radio_ques_id, 
-                        'sub_question_id'  =>$sub_ques_id,
-                        'fillblankans'     =>NULL, 
-                        'submitted_ans'    =>$submitted_ans_index, 
-                        'question_type'    =>$data['radio_question_type'], 
-                        'is_correct'       =>$is_correct, 
-                        'obtained_marks'   =>$obtainMarks
-                    ];
-                    
-                    $this->testCreate($array, $segment_id, $student_id);
                 }
-                // foreach($radio_sub_ques_ans as $question_id=>$answer){
-                //     $submitted_ans_index        = $answer[0]; // Its a seril of Radio button
-                //     $radio_db                   = TestRadio::find($question_id);
-                //     $is_correct_arr             = json_decode($radio_db->is_correct);
-                //     $question_marks             = $radio_db->marks;
-
-                //     if(in_array($submitted_ans_index, $is_correct_arr)){
-                //         $is_correct = "yes";
-                //         $obtainMarks = $question_marks;
-                //     }else{
-                //         $is_correct = "no";
-                //         $obtainMarks = 0;
-                //     }
-
-                //     $array = [
-                //         'test_id'          =>$test_id,
-                //         'module_id'        =>$module_id, 
-                //         'exercise_id'      =>$exercise_id, 
-                //         'question_id'      =>$radio_ques_id, 
-                //         'sub_question_id'  =>$question_id,
-                //         'fillblankans'     =>NULL, 
-                //         'submitted_ans'    =>$submitted_ans_index, 
-                //         'question_type'    =>$data['radio_question_type'], 
-                //         'is_correct'       =>$is_correct, 
-                //         'obtained_marks'   =>$obtainMarks
-                //     ];
-                    
-                //     $this->testCreate($array, $segment_id, $student_id);
-                // }
             }
-            if(isset($data['drop_down_question_type'])){
-                $drop_down_ques_id          = $data['drop_down_ques_id'];
-                $drop_down_sub_ques_id      = $data['drop_down_sub_ques_id'];
-                $drop_down_sub_ques_ans     = $data['drop_down_sub_ques_ans'];
-
-                foreach($drop_down_sub_ques_ans as $key=>$answer){
-                    $sub_question_id   = $drop_down_sub_ques_id[$key];
+        }
+        if(isset($data['drop_down_question_type'])){
+            $drop_down_ques_id          = $data['drop_down_ques_id'];
+            foreach($drop_down_ques_id as $question_id){
+                $sub_ques_id_name = 'drop_down_sub_ques_id_'.$question_id;
+                $sub_ques_id_arr = $data[$sub_ques_id_name];
+                $sub_ques_ans_name = 'drop_down_sub_ques_ans_'.$question_id;
+                $sub_ques_ans_name_arr = $data[$sub_ques_ans_name];
+                foreach($sub_ques_ans_name_arr as $key=>$answer){
+                    $sub_question_id   = $sub_ques_id_arr[$key];
                     $drop_down_db      = TestDropDown::find($sub_question_id);
                     $correct_array     = json_decode($drop_down_db->is_correct);
                     $question_marks    = $drop_down_db->marks;
-
                     if( in_array( $answer, $correct_array )  ){
                         $iscorrect      = 'yes';
                         $obtainMarks    = $question_marks;
@@ -277,152 +275,154 @@ class ExamController extends Controller
                     $array = [
                         'test_id'               =>$test_id,
                         'module_id'             =>$module_id, 
-                        'exercise_id'      =>$exercise_id, 
-                        'question_id'      =>$drop_down_ques_id, 
+                        'exercise_id'           =>$exercise_id, 
+                        'question_id'           =>$question_id, 
                         'sub_question_id'       =>$sub_question_id,
                         'fillblankans'          =>NULL, 
                         'submitted_ans'         =>$answer, 
-                        'question_type'    =>$data['drop_down_question_type'], 
+                        'question_type'         =>$data['drop_down_question_type'], 
                         'is_correct'            =>$iscorrect, 
                         'obtained_marks'        =>$obtainMarks
                     ];
-                    
                     $this->testCreate($array, $segment_id, $student_id);
                 }
             }
-            if(isset($data['fillBlank_question_type'])){
-                $fillBlank_ques_id  = $data['fillBlank_ques_id'];//question id
-                $sub_ques_id        = $data['fillBlank_sub_ques_id'];//sub ques id
-                foreach($fillBlank_ques_id as $question_index=>$question_id){
-                    $fill_blank_db                   = TestFillBlank::where('test_question_id',$question_id)->first();
-                    $correct_ans_array               = json_decode($fill_blank_db->blank_answer);
-                    $question_marks                  = $fill_blank_db->marks;
-                    $ans_name                        = 'fillBlank_sub_ques_ans_'.$question_id;
-                    $fillBlank_sub_ques_ans         = $data[$ans_name]; //submitted ans
-                    $fillblankJson                   = json_encode($data[$ans_name]); //store submitted ans
-                    $fill_correct = 0;
-                    
-                    foreach($correct_ans_array as $key=>$correct_ans){
-                        // $submitted_ans = strtolower($fillBlank_sub_ques_ans[$key]);
-                        $submitted_ans = $fillBlank_sub_ques_ans[$key];
-                        if(strpos($correct_ans, '/')){
-                            $explode_correct_ans = explode('/', $correct_ans);
-                            if($submitted_ans == null){
-                                echo "Fill the all field";
-                            }else{
-                                $trim_arr = array_map('trim', $explode_correct_ans);
-                                if(in_array($submitted_ans, $trim_arr)){
-                                    $fill_correct +=1;
-                                }
-                            }
+        }
+        if(isset($data['fillBlank_question_type'])){
+            $fillBlank_ques_id  = $data['fillBlank_ques_id'];//question id
+            $sub_ques_id        = $data['fillBlank_sub_ques_id'];//sub ques id
+            foreach($fillBlank_ques_id as $question_index=>$question_id){
+                $fill_blank_db                   = TestFillBlank::where('test_question_id',$question_id)->first();
+                $correct_ans_array               = json_decode($fill_blank_db->blank_answer);
+                $question_marks                  = $fill_blank_db->marks;
+                $ans_name                        = 'fillBlank_sub_ques_ans_'.$question_id;
+                $fillBlank_sub_ques_ans         = $data[$ans_name]; //submitted ans
+                $fillblankJson                   = json_encode($data[$ans_name]); //store submitted ans
+                $fill_correct = 0;
+                
+                foreach($correct_ans_array as $key=>$correct_ans){
+                    // $submitted_ans = strtolower($fillBlank_sub_ques_ans[$key]);
+                    $submitted_ans = $fillBlank_sub_ques_ans[$key];
+                    if(strpos($correct_ans, '/')){
+                        $explode_correct_ans = explode('/', $correct_ans);
+                        if($submitted_ans == null){
+                            echo "Fill the all field";
                         }else{
-                            if($submitted_ans == null){
-                                echo "Fill the all field";
-                            }else{
-                                $strcomp              = strcmp(trim($correct_ans, " "), trim($submitted_ans, " "));
-                                if($strcomp == 0){
-                                    $fill_correct +=1;
-                                }
-                            }
-                        }
-                    }
-                    $array = [
-                        'test_id'         =>$test_id,
-                        'module_id'       =>$module_id, 
-                        'exercise_id'     =>$exercise_id, 
-                        'question_id'     =>$question_id, 
-                        'sub_question_id' =>$sub_ques_id[$question_index],
-                        'fillblankans'    =>$fillblankJson, 
-                        'submitted_ans'  =>NULL, 
-                        'question_type'  =>$data['fillBlank_question_type'], 
-                        'is_correct'     =>$fill_correct, 
-                        'obtained_marks' =>$fill_correct
-                    ];
-                    
-                    $this->testCreate($array, $segment_id, $student_id);
-                }
-            }
-            if(isset($data['multi_selector_question_type'])){
-                $multi_selector_ques_id          = $data['multi_selector_ques_id'];
-                $multi_selector_sub_ques_id      = $data['multi_selector_sub_ques_id'];
-                foreach($multi_selector_ques_id as $question_id){
-                    foreach($multi_selector_sub_ques_id as $key=>$sub_ques_id){
-                        $ans_name              = 'user_multi_selector_'.$sub_ques_id;
-                        $sub_ques_ans     = $data[$ans_name];
-                        $fillblankJson          = json_encode($data[$ans_name]);
-                        $allMultipleChoice      = TestMultiSelector::find($sub_ques_id);
-                        $correct_array          = json_decode($allMultipleChoice->is_correct);
-                        $question_marks         = $allMultipleChoice->marks;
-                        $fill_correct = 0;
-                        foreach($sub_ques_ans as $user_ans){
-                            if(in_array( $user_ans, $correct_array ) ){
+                            $trim_arr = array_map('trim', $explode_correct_ans);
+                            if(in_array($submitted_ans, $trim_arr)){
                                 $fill_correct +=1;
                             }
                         }
-                        
-                        $array = [
-                            'test_id'               =>$test_id,
-                            'module_id'             =>$module_id, 
-                            'exercise_id'      =>$exercise_id, 
-                            'question_id'      =>$question_id, 
-                            'sub_question_id'       =>$sub_ques_id,
-                            'fillblankans'          =>NULL, 
-                            'submitted_ans'         =>$sub_ques_ans, 
-                            'question_type'    =>$data['multi_selector_question_type'], 
-                            'is_correct'            =>$fill_correct, 
-                            'obtained_marks'        =>$fill_correct
-                        ];
-                        
-                        $this->testCreate($array, $segment_id, $student_id);
+                    }else{
+                        if($submitted_ans == null){
+                            echo "Fill the all field";
+                        }else{
+                            $strcomp              = strcmp(trim($correct_ans, " "), trim($submitted_ans, " "));
+                            if($strcomp == 0){
+                                $fill_correct +=1;
+                            }
+                        }
                     }
                 }
-            }
-            
-            if($segment_id < $count_exercise){
-                if($data['minute'] ==0 && $data['second'] ==1){
-                    TestSubmissionLog::updateOrCreate(
-                        [
-                            'student_id'       => $student_id,
-                            'advisor_id'     => Auth::user()->id,
-                            'test_id'     => $test_id,
-                        ],
-                        [
-                            'test_end'     => time(),
-                            'status'         =>'completed',
-                        ]);
-                    $deleteSession = session()->forget('test_session');
-                    return view('advisor.student.exam.exam-completed');
-                }else{
-                    return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
-                }
+                $array = [
+                    'test_id'         =>$test_id,
+                    'module_id'       =>$module_id, 
+                    'exercise_id'     =>$exercise_id, 
+                    'question_id'     =>$question_id, 
+                    'sub_question_id' =>$sub_ques_id[$question_index],
+                    'fillblankans'    =>$fillblankJson, 
+                    'submitted_ans'  =>NULL, 
+                    'question_type'  =>$data['fillBlank_question_type'], 
+                    'is_correct'     =>$fill_correct, 
+                    'obtained_marks' =>$fill_correct
+                ];
                 
-            }elseif($segment_id == $count_exercise){
-                $time = time();
-            
-                $examLog = TestSubmissionLog::UpdateOrCreate(
+                $this->testCreate($array, $segment_id, $student_id);
+            }
+        }
+        if(isset($data['multi_selector_question_type'])){
+            $multi_selector_ques_id          = $data['multi_selector_ques_id'];
+            // $multi_selector_sub_ques_id      = $data['multi_selector_sub_ques_id'];
+            foreach($multi_selector_ques_id as $question_id){
+                $sub_ques_ans_name = 'user_multi_selector_'.$question_id;
+                $sub_ques_id_name = 'multi_selector_sub_ques_id_'.$question_id;
+                if(isset($data[$sub_ques_ans_name])){
+                    $sub_ques_ans           = $data[$sub_ques_ans_name];
+                    $fillblankJson          = json_encode($data[$sub_ques_ans_name]);
+                    $allMultipleChoice      = TestMultiSelector::find($data[$sub_ques_id_name][0]);
+                    $correct_array          = json_decode($allMultipleChoice->is_correct);
+                    $question_marks         = $allMultipleChoice->marks;
+                    $fill_correct = 0;
+                    foreach($sub_ques_ans as $user_ans){
+                        if(in_array( $user_ans, $correct_array ) ){
+                            $fill_correct +=1;
+                        }
+                    }
+                }else{
+                    $sub_ques_ans = 'not_answered';
+                    $fill_correct = 0;
+                }                                                                    
+                $array = [
+                    'test_id'          =>$test_id,
+                    'module_id'        =>$module_id, 
+                    'exercise_id'      =>$exercise_id, 
+                    'question_id'      =>$question_id, 
+                    'sub_question_id'  =>$data[$sub_ques_id_name][0],
+                    'fillblankans'     =>NULL, 
+                    'submitted_ans'    =>$sub_ques_ans, 
+                    'question_type'    =>$data['multi_selector_question_type'], 
+                    'is_correct'       =>$fill_correct, 
+                    'obtained_marks'   =>$fill_correct
+                ];
+                $this->testCreate($array, $segment_id, $student_id);
+            }
+        }
+        
+        if($segment_id < $count_exercise){
+            if($data['minute'] ==0 && $data['second'] ==1){
+                TestSubmissionLog::updateOrCreate(
                     [
-                        'student_id'    => $student_id,
-                        'test_id'       => $test_id,
+                        'student_id'       => $student_id,
+                        'advisor_id'     => Auth::user()->id,
+                        'test_id'     => $test_id,
                     ],
                     [
-                        'status'     => 'completed',
-                        'test_end'   => $time,
+                        'test_end'     => time(),
+                        'status'         =>'completed',
                     ]);
-        
-                    $deleteSession = session()->forget('test_session');
-                    return redirect()->route('advisor.home');
+                $deleteSession = session()->forget('test_session');
+                return view('advisor.student.exam.exam-completed');
             }else{
-                echo 'Over ... segment finshied';
+                return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
             }
             
+        }elseif($segment_id == $count_exercise){
+            $time = time();
+        
+            $examLog = TestSubmissionLog::UpdateOrCreate(
+                [
+                    'student_id'    => $student_id,
+                    'test_id'       => $test_id,
+                ],
+                [
+                    'status'     => 'completed',
+                    'test_end'   => $time,
+                ]);
+    
+                $deleteSession = session()->forget('test_session');
+                return redirect()->route('advisor.home');
+        }else{
+            echo 'Over ... segment finshied';
+        }
     }
    private function testCreate($array, $segment_id, $student_id)
     {
-        $getSession = Session::get('test_session');
-        $submissionLog = TestSubmissionLog::firstOrCreate(
+        $current_time = time();
+        $getSession         = Session::get('test_session');
+        $submissionLog      = TestSubmissionLog::firstOrCreate(
             [
-                'student_id'       => $student_id,
-                'test_id'       =>$array['test_id'],
+                'student_id'    => $student_id,
+                'test_id'       => $array['test_id'],
             ],
             [
                 'student_id'     => $student_id,
@@ -431,28 +431,43 @@ class ExamController extends Controller
                 'test_start'     => $getSession,
                 'status'         =>'started',
             ]);
+            $session_time = explode('.', $getSession);
+            
+            $spent_time = $current_time -  $session_time[0];
          $activityLog = TestSubmissionActivityLog::firstOrCreate(
             [
-               'finished_part'      => $segment_id,
-            ],[
-            'submission_log_id'  => $submissionLog->id,
-            'module_id'      => $array['module_id'],
-            'finished_part'      => $segment_id,
-            'start_log'          => $getSession,
-            'end_log'            => time(),
-            'status'             => 'submitted',
-         ]);
-        TestSubmission::create([
-            'activity_log_id'    => $activityLog->id,
-            'question_id'     => $array['question_id'],
-            'sub_question_id'      => $array['sub_question_id'],
-            'exercise_id'          => $array['exercise_id'],
-            'question_type'        => $array['question_type'],
-            'answered_text'        => $array['fillblankans'], // fill ans
-            'submitted_ans'        => json_encode($array['submitted_ans']), // ans_id
-            'is_correct'           => $array['is_correct'], // fill ans
-            'obtained_mark'        => $array['obtained_marks'], // fill ans
-        ]);
+                'submission_log_id'     => $submissionLog->id,
+                'module_id'             => $array['module_id'],
+                'finished_part'         => $segment_id,
+            ],
+            [
+                'submission_log_id'     => $submissionLog->id,
+                'module_id'             => $array['module_id'],
+                'finished_part'         => $segment_id,
+                'start_log'             => $session_time[0],
+                'end_log'               => time(),
+                'status'                => 'submitted',
+                'spent_time'            => $spent_time,
+            ]);
+        TestSubmission::updateOrCreate(
+            [
+                'activity_log_id'       => $activityLog->id,
+                'question_id'           => $array['question_id'],
+                'sub_question_id'       => $array['sub_question_id'],
+                'exercise_id'           => $array['exercise_id'],
+                'question_type'         => $array['question_type'],
+            ],
+            [
+                'activity_log_id'       => $activityLog->id,
+                'question_id'           => $array['question_id'],
+                'sub_question_id'       => $array['sub_question_id'],
+                'exercise_id'           => $array['exercise_id'],
+                'question_type'         => $array['question_type'],
+                'answered_text'         => $array['fillblankans'], // fill ans
+                'submitted_ans'         => json_encode($array['submitted_ans']), // ans_id
+                'is_correct'            => $array['is_correct'], // fill ans
+                'obtained_mark'         => $array['obtained_marks'], // fill ans
+            ]);
     }
     public function examResult($student_id)
     {

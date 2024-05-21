@@ -553,7 +553,8 @@ input.check_box{
   color: #fff;
   text-decoration: none;
   padding: 10px 20px;
-  border-radius: 3px;
+  border-radius: 4px;
+  border: none;
 }
 .mock_timer{
   /* background-color: #ffc107; */
@@ -574,6 +575,7 @@ input.check_box{
   box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
   padding: 15px 12px;
   position: fixed;
+  margin-top: 4.375rem;
 }
 .continue-part-div .reading{
   background-color: #d9d9d9;
@@ -583,10 +585,15 @@ input.check_box{
   font-size: 1.2rem;
   font-weight: 700;
 }
+.exam_template{
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  background: #FBFBFB !important
+}
 .continue-part-div-listening-active{
   background-color: #13be24;
   margin-bottom: 5px;
-  padding: 10px 50px;
+  padding: 10px 32px;
   border-radius: 3px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -601,20 +608,20 @@ input.check_box{
 .assessment-test-question{
   background: #fff;
   box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 4px;
 }
 .assessment-test-passage{
   background: #FFF;
-
-box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
-  padding: 20px;
+  box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
+  padding: 20px 30px;
   border-radius: 4px;
 }
 .assessment-test-audio{
-  background-color: #fff;
+  background: #FFF;
+  box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .course_content_active_btn{
   color: #004AAD !important;

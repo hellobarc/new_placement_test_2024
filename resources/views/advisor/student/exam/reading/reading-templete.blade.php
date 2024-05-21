@@ -6,23 +6,23 @@
 @endphp
 <section>
     <div class="container-fluid">
-        <div style="background: #FBFBFB !important" class="px-5 pb-5 mb-5">
+        <div class="exam_template px-5 pb-5 mb-5">
             <div style="background-color: #D6EFFF; margin: 20px 0">
-            <div class="row">
-                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div class="question-set-card mt-0 pb-0">
-                        <div class="header">
-                            <h3 class="number" style="font-size: 54px !important;">{{$exam_id}}</h3>
-                            <h3 class="set mt-2" style="font-size: 36px !important;">Set </h3>
+                <div class="row">
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="question-set-card mt-0 pb-0">
+                            <div class="header">
+                                <h3 class="number" style="font-size: 54px !important;">{{$exam_id}}</h3>
+                                <h3 class="set mt-2" style="font-size: 36px !important;">Set </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <div class="test-center">
+                            <h1 class="exam_panel_header_title">Placement Test</h1>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                    <div class="test-center">
-                        <h1 class="exam_panel_header_title">Placement Test</h1>
-                    </div>
-                </div>
-            </div>
             </div>
             <div class="row">
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -32,32 +32,26 @@
                             @if ($module_id == $rows->id)
                                 <div class="d-flex justify-content-between continue-part-div-listening-active">
                                     <p class="mb-0">{{$rows->name}}</p>
-                                    <p style="font-size: 12px; padding-left: 10px !important;" class="mb-0 mt-3"><i class="fas fa-edit"></i> Continue Part</p>
+                                    <p style="font-size: 12px; padding: 0 0 0 5.313rem !important;" class="mb-0 mt-3"><i class="fas fa-edit"></i> Continue</p>
                                 </div>
                             @else
                                 <p class="reading">{{$rows->name}}</p>
                             @endif
-                            @if ($loop->index+1 == 4)
-                            @else
-                                <p class="mb-0" style="font-size: 50px;"></p>
-                            @endif
                         @endforeach
-                    <hr>
+                        <hr>
                         <div class="mock_timer">
                             <div class="d-flex justify-content-center pt-2">
-                                <div class="main-text mx-2">
+                                <div class="fs-1 mx-2" style="margin-top: 12px;">
                                     <i class="fa-regular fa-clock"></i>
                                 </div>
                                 <div class="mx-2">
-                                <p class="main-text fw-bold" id="countdown"></p>
+                                    <p class="fs-1 fw-bold" id="countdown"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    
                     <!-- time finishing modal alert start -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -77,15 +71,14 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!--Finished Progress bar -->
                     <div class="assessment-test-progress mb-4">
                         <progress id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}"> 50% </progress>
                     </div>
-                    
                     <!-- Question template -->
                     <div>
                         <div class="row mt-2">
+                            <!-- passage Show -->
                             @if ($examPassage != NULL)
                                 <div class="col-md-6">
                                     <div class="assessment-test-passage">
@@ -99,6 +92,7 @@
                                 </div>
                             @else
                             @endif
+                            <!-- audio Show -->
                             @if ($testAudio != NULL)
                                 <div class="col-md-6">
                                     <div class="assessment-test-audio">
@@ -109,6 +103,7 @@
                                 </div>
                             @else
                             @endif
+                            <!-- question show -->
                             <div class="col-md-6 mx-auto">
                                 <div class="assessment-test-question">
                                     <form action="{{ route('student.exam.submission') }}" id="questionForm" method="POST">
@@ -123,33 +118,32 @@
                                         <input type="hidden" name="student_id" value="{{$student_id}}">
                                         @foreach ($data as $items)
                                             @if($items['question_type'] == 'drop-down')
-                                                {{-- drop down section start --}}
+                                                <!-- drop down section start -->
                                                 <div class="question_set_3">
-                                                    <input type="hidden" name="drop_down_ques_id" value="{{$items['question_id']}}">
+                                                    <input type="hidden" name="drop_down_ques_id[]" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="drop_down_question_type" value="{{$items['question_type']}}">
                                                     <p>{!!$items['question_instruction']!!}</p>
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
-                                                            <input type="hidden" name="drop_down_sub_ques_id[]" value="{{$question->id}}">
+                                                            <input type="hidden" name="drop_down_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
                                                             @php
                                                                 $options = json_decode($question->option_text);
                                                             @endphp
                                                             <p class="main-text" id="dropDownId_{{$question->id}}">
                                                                 {{$question->text}}
                                                             </p>
-                                                                <select onchange="effect({{$continute_sl}})" name="drop_down_sub_ques_ans[]" id="" class="drop_down_select">
-                                                                    @foreach( $options as $key=>$option)
-                                                                        <option value="{{$key}}">{{$option}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            {{-- </p> --}}
+                                                            <select onchange="effect({{$continute_sl}})" name="drop_down_sub_ques_ans_{{$question->test_question_id}}[]" id="" class="drop_down_select">
+                                                                @foreach( $options as $key=>$option)
+                                                                    <option value="{{$key}}">{{$option}}</option>
+                                                                @endforeach
+                                                            </select>                                                            
                                                             <br><br>
                                                         @endforeach
                                                     @endif
                                                 </div>
-                                                {{-- drop down section end --}}
+                                                <!-- drop down section end -->
                                             @elseif($items['question_type'] == 'fill-blank')
-                                                {{-- fill blanks section start --}}
+                                                <!-- fill blanks section start -->
                                                 <div class="question_set_1">
                                                     <input type="hidden" name="fillBlank_ques_id[]" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="fillBlank_question_type" value="{{$items['question_type']}}">
@@ -191,73 +185,50 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                {{-- fill blanks section end --}}
+                                                <!-- fill blanks section end -->
                                             @elseif($items['question_type'] == 'radio')
-                                                {{-- radio section start --}}
+                                                <!-- radio section start -->
                                                 <div class="question_set_3">
-                                                    <input type="hidden" name="radio_ques_id" value="{{$items['question_id']}}">
+                                                    <input type="hidden" name="radio_ques_id[]" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="radio_question_type" value="{{$items['question_type']}}">
-                                                    <p class="main-text">{!!$items['question_instruction']!!}</p>
+                                                    <p class="fs-4 fw-bolder">{!!$items['question_instruction']!!}</p>
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
-                                                            <input type="hidden" name="radio_sub_ques_id[]" value="{{$question->id}}">
+                                                            <input type="hidden" name="radio_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
                                                             @php
                                                                 $options = json_decode($question->option_text);
                                                             @endphp
                                                             <p class="fw-bold mb-1 fs-5">{{$question->text}}</p>
                                                             @foreach($options as $option)
-                                                            <div class="d-flex my-2">
-                                                                <div class="side-bar-font">
-                                                                    <input type="radio" class="check_box" onclick="effect({{$continute_sl}})" name="radio_sub_ques_ans[{{$question->id}}]" value="{{$loop->index}}">
-                                                                </div>
-                                                                <div class="check_box_font">
-                                                                    <span>&nbsp;&nbsp;{{$option}}</span>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                            {{-- <div class="accordion mb-3" id="accordionExample">
-                                                                <div class="accordion-item" id="radioId_{{$question->id}}">
-                                                                    <h2 class="accordion-header" id="headingOne">
-                                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                            {{$question->text}}
-                                                                        </button>
-                                                                    </h2>
-                                                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                        <div class="accordion-body">
-                                                                            @foreach($options as $option)
-                                                                                <div class="d-flex my-2">
-                                                                                    <div class="side-bar-font">
-                                                                                        <input type="radio" class="check_box" onclick="effect({{$continute_sl}})" name="radio_sub_ques_ans[{{$question->id}}][]" value="{{$loop->index}}" required>
-                                                                                    </div>
-                                                                                    <div class="check_box_font">
-                                                                                        <span>&nbsp;&nbsp;{{$option}}</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
+                                                                <div class="d-flex my-2">
+                                                                    <div class="side-bar-font">
+                                                                        <input type="radio" class="check_box" onclick="effect({{$continute_sl}})" name="radio_sub_ques_ans_{{$question->test_question_id}}[{{$question->id}}]" value="{{$loop->index}}">
+                                                                    </div>
+                                                                    <div class="check_box_font">
+                                                                        <span>&nbsp;&nbsp;{{$option}}</span>
                                                                     </div>
                                                                 </div>
-                                                            </div> --}}
+                                                            @endforeach
                                                         @endforeach
                                                     @endif
                                                 </div> 
-                                                {{-- radio section end --}}
+                                                <!-- radio section end -->
                                             @elseif($items['question_type'] == 'multiple-choice')
-                                                {{-- multiple choice section start --}}
+                                                <!-- multiple choice section start -->
                                                 <div class="question_set_3">
-                                                    <input type="hidden" name="multiple_ques_id" value="{{$items['question_id']}}">
+                                                    <input type="hidden" name="multiple_ques_id[]" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="multiple_question_type" value="{{$items['question_type']}}">
                                                     <p class="main-text">{!!$items['question_instruction']!!}</p>
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
-                                                            <input type="hidden" name="exam_multiple_sub_ques_id[]" value="{{$question->id}}">
+                                                            <input type="hidden" name="exam_multiple_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
                                                             @php
                                                                 $options = json_decode($question->option_text);
                                                             @endphp
                                                             <div class="questions_radio">
                                                                 <p class="check_box_font">{{$question->text}}</p>
                                                                 <div class="main-text mb-4" id="multipleChoiceId_{{$question->id}}">
-                                                                    <input type="hidden"  value=""  id="user_multiple_choice_{{$question->id}}" name="exam_multiple_sub_ques_ans[]" >
+                                                                    <input type="hidden"  value=""  id="user_multiple_choice_{{$question->id}}" name="exam_multiple_sub_ques_ans_{{$question->test_question_id}}[]" >
                                                                     @foreach($options as $key=>$option)
                                                                         <div  class="mltiple_choice_option option_item{{$question->id}} col-md-8 col-sm-12" id="multipleColorChange_{{$question->id}}{{$key}}" onclick="hitMultipleChoice({{$key}},{{$question->id}}), effect({{$continute_sl}})">{{$option}}</div>
                                                                     @endforeach
@@ -266,16 +237,16 @@
                                                         @endforeach
                                                     @endif
                                                 </div>
-                                                {{-- multiple choice section end --}}
+                                                <!-- multiple choice section end -->
                                             @elseif($items['question_type'] == 'multi-selector')
-                                                {{-- multiple selector section start --}}
+                                                <!-- multiple selector section start -->
                                                 <div class="question_set_3">
                                                     <input type="hidden" name="multi_selector_ques_id[]" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="multi_selector_question_type" value="{{$items['question_type']}}">
                                                     <p class="main-text">{!!$items['question_instruction']!!}</p>
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
-                                                            <input type="hidden" name="multi_selector_sub_ques_id[]" value="{{$question->id}}">
+                                                            <input type="hidden" name="multi_selector_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
                                                             @php
                                                                 $options = json_decode($question->option_text);
                                                             @endphp
@@ -283,7 +254,7 @@
                                                                 <p class="check_box_font">{{$question->text}}</p>
                                                                 @foreach($options as $key=>$option)
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" id="chechbox_{{$question->id}}_{{$key}}" name="user_multi_selector_{{$question->id}}[]" value="{{$key}}">
+                                                                        <input class="form-check-input" type="checkbox" id="chechbox_{{$question->id}}_{{$key}}" name="user_multi_selector_{{$question->assessment_test_question_id}}[]" value="{{$key}}">
                                                                         <label class="form-check-label mt-1" for="chechbox_{{$question->id}}_{{$key}}">{{$option}}</label>
                                                                     </div>
                                                                 @endforeach                                                            
@@ -291,7 +262,7 @@
                                                         @endforeach
                                                     @endif
                                                 </div>
-                                                {{-- multiple selector section end --}}
+                                                <!-- multiple selector section end -->
                                             @else
                                                 <p>nothing</p>
                                             @endif
@@ -299,8 +270,8 @@
                                         <div class="d-flex justify-content-end">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    {{-- <button type="submit" class="assment-test-btn fw-bold" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;"> Next <i class="fa-solid fa-angle-right"></i></button> --}}
-                                                    <input id="submit_button" type="submit" class="assment-test-btn fw-bold" value="Next"  onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;">
+                                                    <button type="submit" class="assment-test-btn fw-bold" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;"> Next <i class="fa-solid fa-arrow-right"></i></button>
+                                                    {{-- <input id="submit_button" type="submit" class="assment-test-btn fw-bold" value="Next"  onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;"> --}}
                                                 </div>
                                             </div>
                                         </div>

@@ -15,5 +15,6 @@ class TestSubmissionActivityLog extends Model
         'end_log',
         'finished_part',
         'status',
+        'spent_time',
     ];
 }
