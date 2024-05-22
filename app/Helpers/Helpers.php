@@ -180,4 +180,10 @@ class Helpers {
         }
 
     }
+    public static function testStatus($student_id, $advisor_id, $exam_id)
+    {
+        $data = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', $advisor_id)
+            ->where('test_id', $exam_id)->first();
+        return $data;
+    }
 }

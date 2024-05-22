@@ -47,9 +47,10 @@ body{
     margin-top: 22px;
 }
 .question-set-card .exam-time{
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   margin: 28px 19px;
+  text-align: center;
 }
 .question-set-card .button_exam{
   text-decoration: none;
@@ -627,9 +628,44 @@ input.check_box{
   color: #004AAD !important;
   border-bottom: 2px solid #004AAD;
 }
-  @media (max-width: 420px) {
-    .sidebar.close .nav-links li .sub-menu{
-      display: none;
-    }
+/* result page css start */
+.result-name-box{
+  border-radius: 0.5rem;
+  background: #FFF;
+  box-shadow: 0px 2px 14px 0px rgba(123, 124, 138, 0.08);
+  padding: 1.125rem 1.5625rem;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+.result-name-box h1{
+  color: #383737;
+  font-family: Roboto;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.625rem; /* 150% */
+}
+.result-name-box h3{
+  color: #272727;
+  font-family: Roboto;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.25rem;
+  letter-spacing: 0.0225rem;
+}
+.result-name-box p{
+  color: #615F5F;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6875rem; /* 168.75% */
+  letter-spacing: 0.02rem;
+}
+@media (max-width: 420px) {
+  .sidebar.close .nav-links li .sub-menu{
+    display: none;
   }
+}
   

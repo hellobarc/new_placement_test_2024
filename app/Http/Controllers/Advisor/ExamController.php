@@ -37,7 +37,17 @@ class ExamController extends Controller
     public function examSet($student_id)
     {
         $allExamSet = ManageTest::where('status', 'active')->get();
-        return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id'));
+        //not completed exam
+        $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('status', 'started')->first();
+        if($notsubmittedLog){
+            $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->select('finished_part')->get()->toArray();
+            $maxValue= max($activityLog);
+            $segment_id = $maxValue['finished_part']+1;
+            $maxValueDb = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->where('finished_part', $maxValue)->first();
+            return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id', 'segment_id'));
+        }else{
+            return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id'));
+        }
     }
     public function startExam($exam_id, $segment_id, $student_id)
     {
@@ -51,7 +61,7 @@ class ExamController extends Controller
         if($getSession){
             session()->forget('test_session');
         }
-        $notsubmittedLog = TestSubmissionLog::where('student_id', session('student_id'))->where('status', 'started')->first();
+        $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', auth()->user()->id)->where('test_id', $exam_id)->where('status', 'started')->first();
         if($notsubmittedLog){
             $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->sum('spent_time');
             $exam_time = $activityLog;
@@ -410,7 +420,7 @@ class ExamController extends Controller
                 ]);
     
                 $deleteSession = session()->forget('test_session');
-                return redirect()->route('advisor.home');
+                return view('advisor.student.exam.exam-completed');
         }else{
             echo 'Over ... segment finshied';
         }
