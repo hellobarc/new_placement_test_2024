@@ -42,7 +42,7 @@
                         <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                             <div class="candidate-info card-background">
                                 <p class="assessment-title">Assessment Results</p>
-                                <p class="name">Hello, Jhumona Mollick </p>
+                                <p class="name">Hello, {{$student_info->studentInfo->full_name}} </p>
                                 <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor </p>
                             </div>
                         </div>
@@ -55,8 +55,21 @@
                                             <p>Overall Score: 6.5</p>
                                         </div>
                                     </div>
-                                    <p class="p-1">A2</p>
-                                    <p class="p-2">Elementary Basic </p>
+                                    <p class="p-1">{{Helper::overall_rubricks($all_module_marks)}}</p>
+                                    <p class="p-2">
+                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                            Elementory Level
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                            Foundation Level
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                            Intermediate Level
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                            Upper Intermediate Level
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A1')
+                                            Advance 
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A1')
+                                        @endif   
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -74,8 +87,8 @@
                                             <span class="modules-span">Reading</span>
                                         </div>
                                         <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-reading" id="file" value="56" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">56%</span>
+                                            <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
+                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_reading_module*100)/15)}}%</span>
                                         </div>
                                     </div>
                                     <div class="modules">
@@ -84,8 +97,8 @@
                                             <span class="modules-span">Grammar</span>
                                         </div>
                                         <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-grammar" id="file" value="38" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">38%</span>
+                                            <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
+                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
                                         </div>
                                     </div>
                                     <div class="modules">
@@ -94,8 +107,8 @@
                                             <span class="modules-span">Vocabulary</span>
                                         </div>
                                         <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-vocabulary" id="file" value="68" max="100"> </progress>
-                                            <span style="margin: 9px 0 0 6px;">68%</span>
+                                            <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
+                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
                                         </div>
                                     </div>
                                     <div class="modules">
@@ -104,8 +117,8 @@
                                             <span class="modules-span">Listening</span>
                                         </div>
                                         <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-listening" id="file" value="48" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">48%</span>
+                                            <progress class="progress-bar-listening" id="file" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
+                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_listening_module*100)/15)}}%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +128,7 @@
                 </section>
                 <section class="mark-analysis_correct-answer">
                     <div class="row">
-                        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                             <div class="mark-analysis card-background">
                                 <p class="card-titles">Mark Analytics</p>
                                 <div class="row">
@@ -140,7 +153,7 @@
                                 </div>
                                 <div class="chart-score">
                                     <div class="mark-analytics-pie-chart-container">
-                                        <canvas id="mark-analytics-pie-chart"></canvas>
+                                        <canvas id="answersQuestion"></canvas>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="chart-score-band">
@@ -150,56 +163,75 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                            <div class="correct-answer p-4 card-background" style="height: 33rem">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="correct-answer p-4 card-background">
                                 <p class="card-titles">Correct Answer</p>
                                 <table class="table table-striped">
                                     <tr>
-                                        <th></th>
                                         <th>Module</th>
                                         <th>Right</th>
-                                        <th>Wrong</th>
-                                        <th></th>
+                                        <th style="color:#fd1818;">Wrong</th>
+                                        <th>Action</th>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <img src="{{asset('frontend/images/others/books.png')}}" alt=""
-                                                class="image-correct-answer-inside-table">
+                                        <td class="fw-bold">
+                                            <img src="{{asset('frontend/images/others/books.png')}}" alt="" class="image-correct-answer-inside-table">
+                                            Reading
                                         </td>
-                                        <td>Reading</td>
-                                        <td>24</td>
-                                        <td>16</td>
-                                        <td><a href="" style="text-decoration: none;">View</a></td>
+                                        <td>
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_reading_module}}</span>
+                                        </td>
+                                        <td>
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_reading_module}}</span>
+                                        </td>
+                                        <td>
+                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <img src="{{asset('frontend/images/others/grammer.png')}}" alt=""
-                                                class="image-correct-answer-inside-table">
+                                        <td class="fw-bold">
+                                            <img src="{{asset('frontend/images/others/grammer.png')}}" alt="" class="image-correct-answer-inside-table">
+                                            Grammar
                                         </td>
-                                        <td>Grammar</td>
-                                        <td>24</td>
-                                        <td>16</td>
-                                        <td><a href="" style="text-decoration: none;">View</a></td>
+                                        <td>
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_grammar_module}}</span>
+                                        </td>
+                                        <td>
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_grammar_module}}</span>
+                                        </td>
+                                        <td>
+                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <img src="{{asset('frontend/images/others/vocabulary.png')}}" alt=""
-                                                class="image-correct-answer-inside-table">
+                                        <td class="fw-bold">
+                                            <img src="{{asset('frontend/images/others/vocabulary.png')}}" alt="" class="image-correct-answer-inside-table">
+                                            Vocabulary
                                         </td>
-                                        <td>Vocabulary</td>
-                                        <td>24</td>
-                                        <td>16</td>
-                                        <td><a href="" style="text-decoration: none;">View</a></td>
+                                        <td>
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_vocabulary_module}}</span>
+                                        </td>
+                                        <td>
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_vocabulary_module}}</span>
+                                        </td>
+                                        <td>
+                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <img src="{{asset('frontend/images/others/listening.png')}}" alt=""
-                                                class="image-correct-answer-inside-table">
+                                        <td class="fw-bold">
+                                            <img src="{{asset('frontend/images/others/listening.png')}}" alt="" class="image-correct-answer-inside-table">
+                                            Listening
                                         </td>
-                                        <td>Listening</td>
-                                        <td>24</td>
-                                        <td>16</td>
-                                        <td><a href="" style="text-decoration: none;">View</a></td>
+                                        <td>
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_listening_module}}</span>
+                                        </td>
+                                        <td>
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_listening_module}}</span>
+                                        </td>
+                                        <td>
+                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -210,8 +242,9 @@
                     <div class="row my-4">
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background p-3">
-                                <p><i class="fa-solid fa-globe"></i><span class="card-titles"> Interested Aboard
-                                    Country</span>
+                                <p class="card-titles">
+                                    <i class="fa-solid fa-globe"></i>
+                                    Interested Aboard Country
                                 </p>
                                 <div class="intended-countries">
                                     <div class="country-name mx-2">
@@ -231,16 +264,18 @@
                         </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background p-3">
-                                <p class="card-titles"><i class="fa-solid fa-building-columns"></i> Intended
-                                    University</p>
+                                <p class="card-titles">
+                                    <i class="fa-solid fa-building-columns"></i> 
+                                    Intended University
+                                </p>
                                 <div class="intended-countries">
                                     <div class="country-name mx-2">
                                         <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
                                             class="me-3">Top</span>
                                     </div>
                                     <div class="country-name mx-2">
-                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
-                                            class="me-3">Middle</span>
+                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
+                                        <span class="me-3">Middle</span>
                                     </div>
                                 </div>
                             </div>
@@ -249,141 +284,322 @@
                     </div>
                     <div class="row my-4">
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
+                            <div class="card-background p-3">
                                 <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
-                                        style="width: 2.125rem;height: 2.125rem;"> Your Score
-                                </p>
-                                <div class="w-25 outline-for-score-small-sections">
-                                    <p>Band Score: 6.5</p>
-                                </div>
+                                    style="width: 2.125rem;height: 2.125rem;"> Result Explation</p>
+                                    <div class="d-flex justify-content-between">
+                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">Reading</a>
+                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">Writing</a>
+                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">Listening</a>
+                                    </div>
                             </div>
-
                         </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background p-3">
                                 <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
                                         style="width: 2.125rem;height: 2.125rem;"> Desired Score</p>
-                                <div class="w-25 outline-for-score-small-sections">
-                                    <p>Band Score: 7.5</p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="outline-for-score-small-sections">Band Score: 7.5</p>
+                                    <p class="outline-for-score-small-sections">Band Score: 6.5</p>
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="collapse" id="collapseOne">
+                                <div class="card-background p-4">
+                                   <table class="table table-bordered table-striped mt-1 mb-1">
+                                        <thead>
+                                            <th>Module</th>
+                                            <th>Remarks</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Readiing</td>
+                                                <td>
+                                                    @if (Helper::module_rubricks($sum_reading_module) == 'A-')
+                                                        <span>Cannot understand very simple sentence.</span>
+                                                    @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
+                                                        <span>Cannot understand very simple sentence.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
+                                                        <span>Face problem in reading and identifying the main points short, clear, simple texts, messages, notices and announcements.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
+                                                        <span>Tough to understand newspaper articles.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
+                                                        <span>Difficulties to read articles and reports with proper understanding.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
+                                                        <span>Understanding well-structured text, expressing points of view at some length. </span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapseTwo">
+                                <div class="card-background p-4">
+                                    <table class="table table-bordered table-striped mt-1 mb-0">
+                                        <thead>
+                                            <th>Module</th>
+                                            <th>Remarks</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Writing</td>
+                                                <td>
+                                                    @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
+                                                        <span>Cannot make simple sentence with correct grammar.</span>
+                                                    @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
+                                                        <span>Cannot make simple sentence with correct grammar.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
+                                                        <span>Unable to write very simple personal letter with accurate structure.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
+                                                        <span>Unable to write short structured paragraphs.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
+                                                        <span>Face problem to write clear, detailed paragraph, letter, essay or report on a wide range of subject.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
+                                                        <span>Facing to write my thoughts efforlessly and spontanceously without any hesitation.</span>
+                                                    @endif
+                                                    <br>
+                                                    @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
+                                                        <span>Cannot understand basice names and words.</span>
+                                                    @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
+                                                        <span>Cannot understand basice names and words.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
+                                                        <span>Find it difficult to handle very short social exchanges.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
+                                                        <span>Can not produce simple connected text on topics.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
+                                                        <span>Unable to interact with fluency and spontaneity that makes regular interaction with native speaker.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
+                                                        <span>Express yourself fluently.</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapseThree">
+                                <div class="card-background p-4">
+                                    <table class="table table-bordered table-striped mt-1 mb-0">
+                                        <thead>
+                                            <th>Module</th>
+                                            <th>Remarks</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Listening</td>
+                                                <td>
+                                                    @if (Helper::module_rubricks($sum_listening_module) == 'A-')
+                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                                    @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
+                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
+                                                        <span>Can not continue or interact in any conversation.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
+                                                        <span>Unable to understand small talks and conversations in native language.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
+                                                        <span>Face problem in understanding long speeches and lectures.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
+                                                        <span>Unable to conversation with a native speaker without any mistakes.</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row-my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="sugg-target-score p-4 card-background">
                                 <p class="card-titles">Suggested & Targeted Band Score</p>
-                                <div class="band-score-tiles-list">
-                                    <div class="w-25 mx-2 outline-for-score-small-sections">
-                                        <p>Band Score: 6</p>
-                                    </div>
-                                    <div class="w-25 mx-2 outline-for-score-small-sections">
-                                        <p>Band Score: 6.5</p>
-                                    </div>
-                                    <div class="w-25 mx-2 outline-for-score-small-sections">
-                                        <p>Band Score: 7</p>
-                                    </div>
-                                    <div class="w-25 mx-2 outline-for-score-small-sections">
-                                        <p>Band Score: 7.5</p>
-                                    </div>
-                                    <div class="w-25 mx-2 outline-for-score-small-sections">
-                                        <p>Band Score: 8</p>
+                                <div class="row">
+                                    <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                        <div class="band-score-tiles-list">
+                                            <div class="outline-for-score-small-sections">
+                                                <p>Band Score: 6</p>
+                                            </div>
+                                            <div class="outline-for-score-small-sections">
+                                                <p>Band Score: 6.5</p>
+                                            </div>
+                                            <div class="outline-for-score-small-sections">
+                                                <p>Band Score: 7</p>
+                                            </div>
+                                            <div class="outline-for-score-small-sections-active">
+                                                <p>Band Score: 7.5</p>
+                                            </div>
+                                            <div class="outline-for-score-small-sections">
+                                                <p>Band Score: 8</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="">
-                    <div class="card-background">
+                <section class="achieved-course-section">
+                    <div class="p-5 card-background">
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="row p-5">
-                                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 d-flex justify-content-end align-items-end">
-                                        <div class="your-score">
-                                            <i class="fa-solid fa-triangle-exclamation me-2"></i>Your Score 6.5
+                                <div class="row">
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 d-flex justify-content-start align-items-end">
+                                        <div class="your-score mb-5">
+                                            <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
+                                            Your Score 6.5
                                         </div>
                                     </div>
-                                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 position-relative">
-                                        <div class="improved-score w-50">
-                                            <i class="fa-solid fa-medal"></i> Achieve 7
-                                        </div>
-                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
-                                        <div class="row course-timeline">
-                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 position-relative">
+                                        {{-- <div class="improved-score w-50"><i class="fa-solid fa-medal"></i> Achieve 7</div>
+                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow">  --}}
+                                        <div class="d-flex justify-content-between">
+                                            <div class="text-center a1-course-duration">
+                                                <div class="a1-course-timelength">
+                                                    <div class="a1-inner-1"></div>
+                                                    <div class="a1-inner-2"></div>
+                                                    <div class="a1-inner-3"></div>
+                                                    <div class="a1-inner-4"></div>
+                                                    <div class="a1-inner-5">
+                                                        <p class="text-1 mb-1">1</p>
+                                                        <p class="text-1 mb-1">Months</p>
+                                                        <p class="text-2 mb-1">Elementory</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <input type="checkbox" name="" id="">
+                                                    <label for="" class="fw-bold fs-5">A1</label>
+                                                </div>
                                             </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="text-center a2-course-duration">
+                                                <div class="a2-course-timelength">
+                                                    <div class="a2-inner-1"></div>
+                                                    <div class="a2-inner-2"></div>
+                                                    <div class="a2-inner-3"></div>
+                                                    <div class="a2-inner-4 pt-4">
+                                                        <p class="text-1 mb-1">1</p>
+                                                        <p class="text-1 mb-1">Months</p>
+                                                        <p class="text-2 mb-1">Basic <br>English</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <input type="checkbox" name="" id="">
+                                                    <label for="" class="fw-bold fs-5">A2</label>
+                                                </div>
                                             </div>
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthThree">
-                                                <p class="text-1 pt-2">3</p>
-                                                <p class="text-1">Months</p>
-                                                <p class="text-2">Intermediate</p>
+                                            <div class="text-center b1-course-duration">
+                                                <div class="b1-course-timelength">
+                                                    <div class="b1-inner-1"></div>
+                                                    <div class="b1-inner-2"></div>
+                                                    <div class="b1-inner-3 pt-4">
+                                                        <p class="text-1 mb-1">1</p>
+                                                        <p class="text-1 mb-1">Months</p>
+                                                        <p class="text-2 mb-1">Pre - <br> IELTS</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <input type="checkbox" name="" id="">
+                                                    <label for="" class="fw-bold fs-5">B1</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row course-timeline">
-                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                            <div class="text-center b2-course-duration">
+                                                <div class="b2-course-timelength">
+                                                    <div class="b2-inner-1"></div>
+                                                    <div class="b2-inner-2 pt-4">
+                                                        <p class="text-1 mb-1">1</p>
+                                                        <p class="text-1 mb-1">Months</p>
+                                                        <p class="text-2 mb-1">Main <br>IELTS</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <input type="checkbox" name="" id="">
+                                                    <label for="" class="fw-bold fs-5">B2</label>
+                                                </div>
                                             </div>
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthTwo">
-                                                <p class="text-1 pt-2">2</p>
-                                                <p class="text-1">Months</p>
-                                                <p class="text-2">Lower Intermediate</p>
-                                            </div>
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthThree">
-                                            </div>
-                                        </div>
-                                        <div class="row course-timeline">
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthOne">
-                                                <p class="text-1 pt-2">1</p>
-                                                <p class="text-1">Month</p>
-                                                <p class="text-2">Elementary</p>
-                                            </div>
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthTwo">
-                                            </div>
-                                            <div
-                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 monthThree">
+                                            <div class="text-center c1-course-duration">
+                                                <div class="c1-course-timelength">
+                                                    <div class="c1-inner-1 pt-4">
+                                                        <p class="text-1 mb-1">1</p>
+                                                        <p class="text-1 mb-1">Months</p>
+                                                        <p class="text-2 mb-1">Advance <br>IELTS</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <input type="checkbox" name="" id="">
+                                                    <label for="" class="fw-bold fs-5">C1</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 d-flex align-items-center">
+                                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex align-items-center">
                                         <div class="row">
-                                            <div class="d-flex flex-row justify-content-between my-3">
-                                                <div class="d-flex flex-row">
-                                                    <div class="circle-course mt-1 ms-4 me-2"></div>
-                                                    <p class="course-name mb-0 me-2" style="font-weight: 700;">A2:</p>
-                                                    <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                    </p>
-                                                </div>
-                                                <div class="details-border"> 
-                                                    <p>Details</p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between my-3">
-                                                <div class="d-flex flex-row">
-                                                    <div class="circle-course mt-1 ms-4 me-2" style="background-color: #679E39;"></div>
-                                                    <p class="course-name mb-0 me-2" style="font-weight: 700;">B1:</p>
-                                                    <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                    </p>
-                                                </div>
-                                                <div class="details-border"> 
-                                                    <p>Details</p>
+                                            <div class="a1-course-description">
+                                                <div class="d-flex flex-row justify-content-between my-3">
+                                                    <div class="d-flex flex-row">
+                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #353a47;"><i class="fa-solid fa-circle"></i></div>
+                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">A1:</p>
+                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
+                                                        </p>
+                                                    </div>
+                                                    <div class="details-border"> 
+                                                        <p>Details</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="d-flex flex-row justify-content-between my-3">
-                                                <div class="d-flex flex-row">
-                                                    <div class="circle-course mt-1 ms-4 me-2" style="background-color: #31409F;"></div>
-                                                    <p class="course-name mb-0 me-2" style="font-weight: 700;">B2:</p>
-                                                    <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                    </p>
+                                            <div class="a2-course-description">
+                                                <div class="d-flex flex-row justify-content-between my-3">
+                                                    <div class="d-flex flex-row">
+                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #355070;"><i class="fa-solid fa-circle"></i></div>
+                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">A2:</p>
+                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
+                                                        </p>
+                                                    </div>
+                                                    <div class="details-border"> 
+                                                        <p>Details</p>
+                                                    </div>
                                                 </div>
-                                                <div class="details-border"> 
-                                                    <p>Details</p>
+                                            </div>
+                                            <div class="b1-course-description">
+                                                <div class="d-flex flex-row justify-content-between my-3">
+                                                    <div class="d-flex flex-row">
+                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #848586;"><i class="fa-solid fa-circle"></i></div>
+                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">B1:</p>
+                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
+                                                        </p>
+                                                    </div>
+                                                    <div class="details-border"> 
+                                                        <p>Details</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="b2-course-description">
+                                                <div class="d-flex flex-row justify-content-between my-3">
+                                                    <div class="d-flex flex-row">
+                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #db5375;"><i class="fa-solid fa-circle"></i></div>
+                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">B2:</p>
+                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
+                                                        </p>
+                                                    </div>
+                                                    <div class="details-border"> 
+                                                        <p>Details</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="c1-course-description">
+                                                <div class="d-flex flex-row justify-content-between my-3">
+                                                    <div class="d-flex flex-row">
+                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #729ea1;"><i class="fa-solid fa-circle"></i></div>
+                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">C1:</p>
+                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
+                                                        </p>
+                                                    </div>
+                                                    <div class="details-border"> 
+                                                        <p>Details</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -392,7 +608,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <p class="total-time ">Total : 6 Months</p>
+                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <p class="total-time">Total : 6 Months</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -618,7 +836,7 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: {
-                padding: 20
+                
             },
             plugins: {
                 tooltip: {
@@ -629,7 +847,8 @@
                         color: 'black',
                     },
                     position: 'right'
-                }
+                },
+                
             }
         }
         };
@@ -639,16 +858,18 @@
         );
     </script>
     <script>
+        let reading_value = "{{$sum_reading_module}}"
+        let grammar_value = "{{$sum_grammar_module}}"
+        let vocabulary_value = "{{$sum_vocabulary_module}}"
+        let listening_value = "{{$sum_listening_module}}"
         var xValues = ["Reading", "Grammar", "Vocabulary", "Listening"];
-        var yValues = [20, 22, 15, 25];
+        var yValues = [reading_value, grammar_value, vocabulary_value, listening_value];
         var barColors = [
             "#FFA84A",
             "#9B88ED",
             "#FB67CA",
             "#04BFDA",
         ];
-    
-    
     
         new Chart("mark-analytics-pie-chart", {
             type: "pie",

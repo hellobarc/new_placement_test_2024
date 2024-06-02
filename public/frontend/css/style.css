@@ -797,7 +797,8 @@ input.check_box{
   margin: 2rem;
 }
 .mark-analysis{
-  padding: 3rem;
+  padding: 2rem 2rem;
+  height: 22rem;
 }
 .overall-score>p {
   color: #FBFBFB;
@@ -1013,10 +1014,7 @@ progress::-webkit-progress-bar {
 }
 
 
-.mark-analytics-pie-chart-container {
-  width: 20rem;
-  height: auto;
-}
+
 
 .chart-score {
   display: flex;
@@ -1051,27 +1049,47 @@ progress::-webkit-progress-bar {
 }
 
 .outline-for-score-small-sections {
-  /* width: 11rem; */
   border-radius: 0.3125rem;
   border: 1px solid var(--Primary-Color, #004AAD);
-}
-
-.outline-for-score-small-sections>p {
   color: var(--Primary-Color, #004AAD);
   font-family: Roboto;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
-  margin-bottom: 0;
   padding: 0.5rem 0.5rem;
+  text-decoration: none;
+  margin: 0 0 0 0;
+}
+.outline-for-score-small-sections-active {
+  border-radius: 0.3125rem;
+  background-color: #004AAD;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+}
+.outline-for-score-small-sections-active p{
+  margin: 0 0 0 0;
+}
+.outline-for-score-small-sections p {
+  margin: 0 0 0 0;
 }
 
 .band-score-tiles-list {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-
+.achieved-course-section{
+  margin: 2rem;
+}
+.achieved-course-section .your-score .icon{
+  background-color: #F3AE2E;
+  margin: 0 0 0 0;
+  padding: 6px 0 6px 8px;
+  border-radius: 50%;
+}
 .td-total {
   color: #FFF;
   font-family: Roboto;
@@ -1131,13 +1149,12 @@ progress::-webkit-progress-bar {
 
 .total-time {
   color: #333;
-
   font-family: Roboto;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
-
-  padding-left: 31rem;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .course-timeline {
@@ -1158,7 +1175,7 @@ progress::-webkit-progress-bar {
   color: #FFF;
 
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 1.375rem;
   font-style: normal;
   font-weight: 400;
   text-align: center;
@@ -1260,7 +1277,81 @@ progress::-webkit-progress-bar {
   line-height: 1.6875rem; /* 168.75% */
   letter-spacing: 0.02rem;
 }
-
+.a1-course-timelength{
+  background-color: #353A47;
+}
+.a2-course-timelength{
+  background-color: #355070;
+}
+.b1-course-timelength{
+  background-color: #848586;
+}
+.b2-course-timelength{
+  background-color: #DB5375;
+}
+.c1-course-timelength{
+  background-color: #729EA1;
+}
+.a1-inner-1{
+  height: 7rem;
+  background-color: #fff;
+}
+.a1-inner-2{
+  height: 7rem;
+  background-color: #fff;
+}
+.a1-inner-3{
+  height: 7rem;
+  background-color: #fff;
+}
+.a1-inner-4{
+  height: 7rem;
+  background-color: #fff;
+}
+.a1-inner-5{
+  height: 7rem;
+  width: 8rem;
+}
+.a2-inner-1{
+  height: 7rem;
+  background-color: #fff;
+}
+.a2-inner-2{
+  height: 7rem;
+  background-color: #fff;
+}
+.a2-inner-3{
+  height: 7rem;
+  background-color: #fff;
+}
+.a2-inner-4{
+  height: 14rem;
+  width: 8rem;
+}
+.b1-inner-1{
+  height: 7rem;
+  background-color: #fff;
+}
+.b1-inner-2{
+  height: 7rem;
+  background-color: #fff;
+}
+.b1-inner-3{
+  height: 21rem;
+  width: 8rem;
+}
+.b2-inner-1{
+  height: 7rem;
+  background-color: #fff;
+}
+.b2-inner-2{
+  height: 28rem;
+  width: 8rem;
+}
+.c1-inner-1{
+  height: 35rem;
+  width: 8rem;
+}
 
 /* result page css end */
 @media (max-width: 420px) {
