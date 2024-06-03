@@ -798,7 +798,6 @@ input.check_box{
 }
 .mark-analysis{
   padding: 2rem 2rem;
-  height: 22rem;
 }
 .overall-score>p {
   color: #FBFBFB;
@@ -1014,14 +1013,12 @@ progress::-webkit-progress-bar {
 }
 
 
-
+#answersQuestion{
+  width: 100% !important;
+    height: 66% !important;
+}
 
 .chart-score {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding: 1rem;
 }
 
 .chart-score-band {
@@ -1208,7 +1205,7 @@ progress::-webkit-progress-bar {
   color: #363535;
 
   font-family: Roboto;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-style: normal;
 
 }
@@ -1218,26 +1215,22 @@ progress::-webkit-progress-bar {
   border: 1px solid #C0DBFF;
 }
 
-.details-border>p {
+.details-border button{
   color: var(--Color-Nutral-color-nutral-1, #282828);
-
-  font-family: Roboto;
-  font-size: 1rem;
-  font-style: normal;
+  font-size: 0.875rem;
   font-weight: 400;
   margin-bottom: 0;
-  padding: .25rem;
+  border: none;
+  background-color: transparent;
 }
 
 .your-score {
   color: #333;
   font-family: Roboto;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
-
-  padding: 1rem;
-
+  padding: 1rem 0.5rem;
   border-radius: var(--Border-Radius-4-px, 0.25rem);
   border: 1px solid #F3AE2E;
   background: #FFF;
