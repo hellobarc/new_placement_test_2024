@@ -31,6 +31,7 @@ use App\Models\{
     FollowUp,
     Module,
     CourseBundle,
+    CoursePrice,
 };
 class ExamController extends Controller
 {
@@ -486,7 +487,7 @@ class ExamController extends Controller
         $getData = FollowUp::where('student_id', $studentId)
                     ->where('adviser_id', $adviserId)
                     ->get();
-        $courseBundle = CourseBundle::where('status', 'active')->with('CoursePrice')->get();
+        // $courseBundle = CourseBundle::where('status', 'active')->with('CoursePrice')->get();
         $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
         $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
         $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
@@ -511,7 +512,7 @@ class ExamController extends Controller
         'all_module_marks',
         'count_reading_question',
         'count_writing_question',
-        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer','courseBundle', 'student_info'));
+        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info'));
     }
     private function count_test_question($test_id, $module_id)
     {

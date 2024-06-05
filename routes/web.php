@@ -158,7 +158,7 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/course-price-form', 'CoursePriceForm')->name('course.prices.form');
         Route::get('/course-price-edit/{id}', 'CoursePriceEdit')->name('course.prices.edit');
         Route::post('/store-price-list', 'storeCouresPrices')->name('store.course.price');
-        Route::post('/update-price-list', 'updateCoursePrices')->name('update.course.price');
+        Route::post('/update-price-list/{id}', 'updateCoursePrices')->name('update.course.price');
         Route::get('/course-price-delete/{id}', 'coursePriceDelete')->name('course.price.delete');
     });
     

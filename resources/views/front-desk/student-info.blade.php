@@ -4,7 +4,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
                 <div class="visitor_info_div">
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('front.student.list') }}" class="btn mb-4" style="background: #FF8C42;">Declined Students <span id="front_notification_count" class="px-2 py-1 text-white rounded" style="background-color:#035388">{{ $notificationCount}}</span></a>
@@ -39,13 +39,16 @@
                                 </div>
                                 <!-- phone name --> 
                                 <div class="row mt-4">
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                         <div class="form-group">
                                             <label for="mobile-number">Mobile Number <span class="text-danger fw-bold">*</span></label>
                                             <input name="contact_number" id="contact_number" type="tel" class="form-control" placeholder="+88" pattern="[0-9]{11}||[0-9]{3}-[0-9]{8}||[0-9]{4}-[0-9]{7}" required>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                </div>
+                                <!-- name --> 
+                                <div class="row mt-4">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                         <div class="form-group">
                                             <label for="full-name">Full Name <span class="text-danger fw-bold">*</span></label>
                                             <input name="full_name" type="text" class="form-control" placeholder="Full Name" id="full_name" required>
@@ -166,7 +169,7 @@
                                 <!-- profession and location--> 
                                 <div id="profession" style="display: none">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="occupation">Profession </label>
                                                 <select class="form-control dropdown" id="occupation" name="occupation">
@@ -183,8 +186,10 @@
                                                     <option value="Others"> Others </option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        </div>     
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Location</label>
                                                 <select class="form-control dropdown" id="location" name="location">
@@ -205,7 +210,7 @@
                                                         <option value="Other">  Other </option>
                                                     </select>
                                             </div>
-                                        </div>     
+                                        </div>
                                     </div>
                                     <!-- address -->
                                     <div class="row mt-4">
@@ -220,13 +225,15 @@
                                 <!-- advisor part -->
                                 <div id="course_advisor" style="display: none;">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="organization">Current Organization/Institution name</label>
                                                 <input name="organization" id="organization" type="text" class="form-control" placeholder="Organization/Institution" value="na">
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="date_of_birth">Date of Birth</label>
                                                 <input name="date_of_birth" id="date_of_birth" type="text" class="form-control" placeholder="Date of Birth">
@@ -251,7 +258,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="email">Expected Country to go</label>
                                                 <select class="form-control dropdown" id="expected_country" name="expected_country">
@@ -265,7 +272,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="expected_score">Expected IELTS Score</label>
                                                 <input name="expected_score" id="expected_score" type="text" class="form-control" placeholder="example. 7">
@@ -276,13 +285,15 @@
                                 <!-- collect ielts certificate --> 
                                 <div style="display: none;" id="ielts_certificate_div">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Candidate ID</label>
                                                 <input type="text" class="form-control" name="ielts_can_id" id="ielts_can_id" placeholder="Write IELTS Candidate ID">
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Exam Date</label>
                                                 <input name="ielts_exam_date" id="ielts_exam_date" type="text" class="form-control" placeholder="Exam Date">

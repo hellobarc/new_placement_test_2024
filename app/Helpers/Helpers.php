@@ -10,6 +10,7 @@ use App\Models\{
     VisitorInfo,
     VisitorLog,
     Course,
+    CoursePrice,
     FollowUp,
 };
 
@@ -185,5 +186,14 @@ class Helpers {
         $data = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', $advisor_id)
             ->where('test_id', $exam_id)->first();
         return $data;
+    }
+    public static function coursePrice($name)
+    {
+        $data = CoursePrice::where('course_level', $name)->first();
+        $arr = [
+            'regular_price'=>$data->regular_price,
+            'discount_price'=>$data->discount_price,
+        ];
+        return $arr;
     }
 }

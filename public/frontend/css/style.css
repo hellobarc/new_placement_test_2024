@@ -77,7 +77,7 @@ body{
   background-color: red;
     color: #fff;
     /* width: 10px; */
-    /* height: 21px; */
+    /* width: 21px; */
     border-radius: 500%;
     padding: 0px 6px;
     position: absolute;
@@ -1028,16 +1028,16 @@ progress::-webkit-progress-bar {
 
 .chart-score-band>p {
   color: #212121;
-
   font-family: Roboto;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-
   margin-bottom: 0;
   padding: 1rem 2rem;
 }
-
+.package-table{
+  margin: 2rem;
+}
 
 .image-correct-answer-inside-table {
   width: 2rem;
@@ -1058,14 +1058,8 @@ progress::-webkit-progress-bar {
   margin: 0 0 0 0;
 }
 .outline-for-score-small-sections-active {
-  border-radius: 0.3125rem;
-  background-color: #004AAD;
-  color: #fff;
-  font-family: Roboto;
-  font-size: 1.125rem;
-  font-style: normal;
-  font-weight: 500;
-  padding: 0.5rem 0.5rem;
+  color: #004AAD !important;
+  border-bottom: 2px solid #004AAD !important;
 }
 .outline-for-score-small-sections-active p{
   margin: 0 0 0 0;
@@ -1150,7 +1144,6 @@ progress::-webkit-progress-bar {
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
-  text-align: center;
   margin-top: 2rem;
 }
 
@@ -1227,7 +1220,7 @@ progress::-webkit-progress-bar {
 .your-score {
   color: #333;
   font-family: Roboto;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   padding: 1rem 0.5rem;
@@ -1235,32 +1228,32 @@ progress::-webkit-progress-bar {
   border: 1px solid #F3AE2E;
   background: #FFF;
   box-shadow: 0px 2px 14px 0px rgba(115, 111, 111, 0.08);
+  width: 35%;
+  margin-left: 30px;
 }
 
 .arrow {
   position: absolute;
-  transform: rotate(-25deg);
-  left: -2.5rem;
-  bottom: 15rem;
+  rotate: 344deg;
+  right: -7%;
+  top: 28%;
+  width: 60%;
 }
 
 .improved-score {
-  position: relative;
-  padding: 0.25rem 1rem;
-  text-align: center;
-
-
-  border-radius: var(--Border-Radius-4-px, 0.25rem);
-  border: 1px solid var(--Primary-Color, #004AAD);
-  background: #FFF;
-  box-shadow: 0px 2px 14px 0px rgba(115, 111, 111, 0.08);
-
-  color: #333;
-
-  font-family: Roboto;
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 600;
+  position: absolute;
+    padding: 0.25rem 1rem;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid var(--Primary-Color, #004AAD);
+    background: #FFF;
+    box-shadow: 0px 2px 14px 0px rgba(115, 111, 111, 0.08);
+    color: #333;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    right: -28%;
 }
 
 .candidate-info .details{
@@ -1271,81 +1264,88 @@ progress::-webkit-progress-bar {
   letter-spacing: 0.02rem;
 }
 .a1-course-timelength{
-  background-color: #353A47;
+  /* background-color: #353A47; */
+  margin-bottom: 10px;
 }
 .a2-course-timelength{
-  background-color: #355070;
+  /* background-color: #355070; */
+  margin: 10px 0;
 }
 .b1-course-timelength{
-  background-color: #848586;
+  /* background-color: #848586; */
+  margin: 10px 0;
 }
 .b2-course-timelength{
-  background-color: #DB5375;
+  /* background-color: #DB5375; */
+  margin: 10px 0;
 }
 .c1-course-timelength{
-  background-color: #729EA1;
+  /* background-color: #729EA1; */
 }
 .a1-inner-1{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a1-inner-2{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a1-inner-3{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a1-inner-4{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a1-inner-5{
-  height: 7rem;
-  width: 8rem;
+  width: 7rem;
+  background-color: #353A47;
 }
 .a2-inner-1{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a2-inner-2{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a2-inner-3{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .a2-inner-4{
-  height: 14rem;
-  width: 8rem;
+  width: 16rem;
+  background-color: #355070;
 }
 .b1-inner-1{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .b1-inner-2{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .b1-inner-3{
-  height: 21rem;
-  width: 8rem;
+  width: 21rem;
+  background-color: #848586;
 }
 .b2-inner-1{
-  height: 7rem;
+  width: 7rem;
   background-color: #fff;
 }
 .b2-inner-2{
-  height: 28rem;
-  width: 8rem;
+  width: 28rem;
+  background-color: #DB5375;
 }
 .c1-inner-1{
-  height: 35rem;
-  width: 8rem;
+  width: 35rem;
+ background-color: #729EA1;
 }
-
+.onlclik_price_active{
+  background-color: #d9d9d9 !important;
+  color: #313131 !important;
+}
 /* result page css end */
 @media (max-width: 420px) {
   .sidebar.close .nav-links li .sub-menu{

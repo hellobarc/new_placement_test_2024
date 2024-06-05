@@ -6,42 +6,30 @@
             @include('flash-message')
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('course.prices.form')}}" class="btn btn-primary float-end">Add New</a>
+                    <a href="{{ route('course.prices.form')}}" class="btn btn-success btn-sm float-end">Add New</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
-                            <tr>
-                                <th>Serial No</th>
-                                <th>Course Bundle</th>
-                                <th>Course Level</th>
-                                <th>Package</th>
-                                <th>Duration</th>
-                                <th>Individual Price</th>
-                                <th>Discount</th>
-                                <th>Offered Price</th>
-                                <th>Total Price</th>
-                                <th>Actions</th>
-                            </tr>
+                            <th>Sl No</th>
+                            <th>Course Level</th>
+                            <th>Regular Price</th>
+                            <th>Standered Price</th>
+                            <th>Actions</th>
                         </thead>
                         <tbody>
                             @foreach ($getCourseData as $item)
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
-                                    <td>{{ $item->course_bundle }}</td>
-                                    <td>{{ $item->course_level }}</td>
-                                    <td>{{ $item->package }}</td>
-                                    <td>{{ $item->duration }}</td>
-                                    <td>{{ $item->individual_price }}</td>
-                                    <td>{{ $item->discount }}</td>
-                                    <td>{{ $item->offered_price }}</td>
-                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ ucfirst($item->course_level) }}</td>
+                                    <td>{{ $item->regular_price }}</td>
+                                    <td>{{ $item->discount_price }}</td>
                                     <td>
                                         <a href="{{ route('course.prices.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                         <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFollowUp-{{$item->id}}">Delete</a>
                                     </td>
                                 </tr>
-                                {{-- Delete Modal --}}
+                                <!-- Delete Modal -->
                                 <div class="modal fade" id="deleteFollowUp-{{$item->id}}" tabindex="-1" aria-labelledby="deleteFollowUpLabel-{{$item->id}}" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
@@ -59,7 +47,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-end">
-                        {!! $getCourseData->links() !!}
+                        {{-- {!! $getCourseData->links() !!} --}}
                     </div>
                 </div>
             </div>

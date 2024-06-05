@@ -298,12 +298,12 @@
                     <div class="row my-4">
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="card-background p-3">
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
-                                    style="width: 2.125rem;height: 2.125rem;"> Result Explation</p>
-                                    <div class="d-flex justify-content-between">
-                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">Reading</a>
-                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">Writing</a>
-                                        <a class="outline-for-score-small-sections" data-bs-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">Listening</a>
+                                <p class="card-titles"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt=""
+                                    style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
+                                    <div class="d-flex justify-content-between mx-3">
+                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne"><i class="fa-solid fa-book-open"></i> Reading</a>
+                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo"><i class="fa-solid fa-pen-to-square"></i> Writing</a>
+                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree"><i class="fa-solid fa-headphones-simple"></i> Listening</a>
                                     </div>
                             </div>
                         </div>
@@ -311,8 +311,8 @@
                             <div class="int-abroad-country card-background p-3">
                                 <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
                                         style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
-                                <div class="d-flex justify-content-between">
-                                    <p class="outline-for-score-small-sections">Desired Score: 
+                                <div class="d-flex justify-content-between mx-3">
+                                    <p class="mb-0 fs-5 fw-bold">Desired Score: 
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                             2.0 - 2.5
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -326,7 +326,7 @@
                                         @else
                                         @endif
                                     </p>
-                                    <p class="outline-for-score-small-sections">Target Score: {{$student_info->expected_score}}</p>
+                                    <p class="mb-0 fs-5 fw-bold" style="color: #004AAD;">Target Score: {{$student_info->expected_score}}</p>
                                 </div>
                             </div>
 
@@ -443,28 +443,28 @@
                     <div class="row-my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="sugg-target-score p-4 card-background">
-                                <p class="card-titles">Suggested & Targeted Band Score</p>
+                                <p class="card-titles"><i class="fa-solid fa-bullseye"></i> Suggested & Targeted Band Score</p>
                                 <div class="band-score-tiles-list">
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_6" >
-                                        <p>Band Score: 6</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" >
+                                        Band Score: 6
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_more_than_6" >
-                                        <p>Band Score: 6.5</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" >
+                                        Band Score: 6.5
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
-                                        <p>Band Score: 7</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
+                                        Band Score: 7
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_more_than_7" >
-                                        <p>Band Score: 7.5</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" >
+                                        Band Score: 7.5
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_8" >
-                                        <p>Band Score: 8</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" >
+                                        Band Score: 8
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_more_than_8" >
-                                        <p>Band Score: 8.5</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" >
+                                        Band Score: 8.5
                                     </button>
-                                    <button class="outline-for-score-small-sections" id="targeted_band_score_9" >
-                                        <p>Band Score: 9</p>
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" >
+                                        Band Score: 9
                                     </button>
                                 </div>
                             </div>
@@ -476,105 +476,110 @@
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
-                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 d-flex justify-content-start align-items-end">
-                                        <div class="your-score mb-5">
-                                            <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
-                                            Your Score 
-                                            @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                2.0 - 2.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                3.0 - 3.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                4.0 - 4.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                5.0 - 6.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                7
-                                            @else
-                                            @endif
-                                        </div>
-                                    </div>
                                     <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 position-relative">
-                                        {{-- <div class="improved-score w-50"><i class="fa-solid fa-medal"></i> Achieve 7</div>
-                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow">  --}}
-                                        <div class="d-flex justify-content-between">
-                                            <div class="text-center a1-course-duration" id="a1_course_duration">
-                                                <div class="a1-course-timelength">
-                                                    <div class="a1-inner-1"></div>
-                                                    <div class="a1-inner-2"></div>
-                                                    <div class="a1-inner-3"></div>
-                                                    <div class="a1-inner-4"></div>
-                                                    <div class="a1-inner-5">
-                                                        <p class="text-1 mb-1">1+</p>
-                                                        <p class="text-1 mb-1">Months</p>
-                                                        <p class="text-2 mb-1">Elementory</p>
+                                        <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve 7</div>
+                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
+                                        <div class="">
+                                            <div id="c1_course_duration">
+                                                <div class="d-flex justify-content-start">
+                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 10px 10px 0 0;">C1</div>
+                                                    <div class="text-center c1-course-duration">
+                                                        <div class="c1-course-timelength">
+                                                            <div class="c1-inner-1 py-2">
+                                                                <span class="text-1 mb-0">1+</span>
+                                                                <span class="text-1 mb-0">Months</span>
+                                                                <span class="text-2 mb-0">Advance IELTS</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3">
-                                                    <input type="checkbox" name="" id="a1_course_selected_checkbox" value="a1CourseBox">
-                                                    <label for="" class="fw-bold fs-5">A1</label>
-                                                </div>
                                             </div>
-                                            <div class="text-center a2-course-duration" id="a2_course_duration">
-                                                <div class="a2-course-timelength">
-                                                    <div class="a2-inner-1"></div>
-                                                    <div class="a2-inner-2"></div>
-                                                    <div class="a2-inner-3"></div>
-                                                    <div class="a2-inner-4 pt-4">
-                                                        <p class="text-1 mb-1">1+</p>
-                                                        <p class="text-1 mb-1">Months</p>
-                                                        <p class="text-2 mb-1">Basic <br>English</p>
+                                            <div id="b2_course_duration">
+                                                <div class="d-flex justify-content-start">
+                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B2</div>
+                                                    <div class="text-center b2-course-duration">
+                                                        <div class="b2-course-timelength">
+                                                            <div class="b2-inner-1"></div>
+                                                            <div class="b2-inner-2 py-2">
+                                                                <span class="text-1 mb-0">1+</span>
+                                                                <span class="text-1 mb-0">Months</span>
+                                                                <span class="text-2 mb-0">Main IELTS</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3">
-                                                    <input type="checkbox" name="" id="a2_course_selected_checkbox" value="a2CourseBox">
-                                                    <label for="" class="fw-bold fs-5">A2</label>
-                                                </div>
                                             </div>
-                                            <div class="text-center b1-course-duration" id="b1_course_duration">
-                                                <div class="b1-course-timelength">
-                                                    <div class="b1-inner-1"></div>
-                                                    <div class="b1-inner-2"></div>
-                                                    <div class="b1-inner-3 pt-4">
-                                                        <p class="text-1 mb-1">1+</p>
-                                                        <p class="text-1 mb-1">Months</p>
-                                                        <p class="text-2 mb-1">Pre - <br> IELTS</p>
+                                            <div id="b1_course_duration">
+                                                <div class="d-flex justify-content-start">
+                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B1</div>
+                                                    <div class="text-center b1-course-duration">
+                                                        <div class="b1-course-timelength">
+                                                            <div class="b1-inner-1"></div>
+                                                            <div class="b1-inner-2"></div>
+                                                            <div class="b1-inner-3 py-2">
+                                                                <span class="text-1 mb-0">1+</span>
+                                                                <span class="text-1 mb-0">Months</span>
+                                                                <span class="text-2 mb-0">Pre - IELTS</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3">
-                                                    <input type="checkbox" name="" id="b1_course_selected_checkbox" value="b1CourseBox">
-                                                    <label for="" class="fw-bold fs-5">B1</label>
-                                                </div>
                                             </div>
-                                            <div class="text-center b2-course-duration" id="b2_course_duration">
-                                                <div class="b2-course-timelength">
-                                                    <div class="b2-inner-1"></div>
-                                                    <div class="b2-inner-2 pt-4">
-                                                        <p class="text-1 mb-1">1+</p>
-                                                        <p class="text-1 mb-1">Months</p>
-                                                        <p class="text-2 mb-1">Main <br>IELTS</p>
+                                            <div id="a2_course_duration">
+                                                <div class="d-flex justify-content-start">
+                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A2</div>
+                                                    <div class="text-center a2-course-duration">
+                                                        <div class="a2-course-timelength">
+                                                            <div class="a2-inner-1"></div>
+                                                            <div class="a2-inner-2"></div>
+                                                            <div class="a2-inner-3"></div>
+                                                            <div class="a2-inner-4 py-2">
+                                                                <span class="text-1 mb-0">1+</span>
+                                                                <span class="text-1 mb-0">Months</span>
+                                                                <span class="text-2 mb-0">Basic English</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3">
-                                                    <input type="checkbox" name="" id="b2_course_selected_checkbox" value="b2ourseBox">
-                                                    <label for="" class="fw-bold fs-5">B2</label>
-                                                </div>
                                             </div>
-                                            <div class="text-center c1-course-duration" id="c1_course_duration">
-                                                <div class="c1-course-timelength">
-                                                    <div class="c1-inner-1 pt-4">
-                                                        <p class="text-1 mb-1">1+</p>
-                                                        <p class="text-1 mb-1">Months</p>
-                                                        <p class="text-2 mb-1">Advance <br>IELTS</p>
+                                            <div id="a1_course_duration">
+                                                <div class="d-flex justify-content-start" >
+                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A1</div>
+                                                    <div class="text-center a1-course-duration">
+                                                        <div class="a1-course-timelength">
+                                                            <div class="a1-inner-1"></div>
+                                                            <div class="a1-inner-2"></div>
+                                                            <div class="a1-inner-3"></div>
+                                                            <div class="a1-inner-4"></div>
+                                                            <div class="a1-inner-5">
+                                                                <span class="mb-0">1+</span>
+                                                                <span class="mb-0">Months</span>
+                                                                <span class="mb-0">Elementory</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-3">
-                                                    <input type="checkbox" name="" id="c1_course_selected_checkbox" value="11CourseBox">
-                                                    <label for="" class="fw-bold fs-5">C1</label>
-                                                </div>
                                             </div>
+                                            <div class="your-score">
+                                                <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
+                                                Your Score 
+                                                @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                    2.0 - 2.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                    3.0 - 3.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                    4.0 - 4.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                    5.0 - 6.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                    7
+                                                @else
+                                                @endif
+                                            </div>
+                                            <p class="total-time">Total : <span id="course_completed_time"></span> Months</p>
                                         </div>
                                     </div>
+                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
                                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex align-items-center">
                                         <div class="row">
                                             <div id="a1-course-description">
@@ -742,66 +747,187 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <p class="total-time">Total : <span id="course_completed_time"></span> Months</p>
-                            </div>
-                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                <button onclick="getPriceButton()">Get Price</button>
-                            </div>
-                        </div>
                     </div>
                 </section>
                 <section class="package-table" id="course_price_section">
                     <div class="row my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="p-5 card-background">
+                                {{-- <div class="d-flex justify-content-start">
+                                    <div>
+                                        <div class="d-flex justify-content-start">
+                                            <div>
+                                                <div style="background-color: #ffffff;" class="td-total text-white px-5 py-2">as</div>
+                                                <div style="background-color: #353A47;" class="td-total text-light px-5 py-2">A1</div>
+                                                <div style="background-color: #355070;" class="td-total text-light px-5 py-2">A2</div>
+                                                <div style="background-color: #848586;" class="td-total text-light px-5 py-2">B1</div>
+                                                <div style="background-color: #db5375;" class="td-total text-light px-5 py-2">B2</div>
+                                                <div style="background-color: #729ea1;" class="td-total text-light px-5 py-2">C1</div>
+                                                <div style="background-color: #7a34b0;" class="td-total text-light px-5 py-2">Total</div>
+                                            </div>
+                                            <div>
+                                                <div>9,999/-</div>
+                                                <div>9,999/-</div>
+                                                <div>9,999/-</div>
+                                                <div>9,999/-</div>
+                                                <div>9,999/-</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-start">
+                                            <div style="background-color: #067DC8;" class="td-total px-5 py-2">Regular <span class="fs-6">Fees</span></div>
+                                            <div style="background-color: #9B88ED;" class="td-total px-5 py-2">Standard</div>
+                                            <div style="background-color: #FFA84A;" class="td-total px-5 py-2">Privileged</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div> --}}
+                                {{-- <div class="d-flex justify-content-start">
+                                    <div>
+                                        <div style="background-color: #a0a0a0;" class="td-total text-dark px-5 py-2">Courses</div>
+                                        <div style="background-color: #353A47;" class="td-total text-light px-5 py-2">A1</div>
+                                        <div style="background-color: #355070;" class="td-total text-light px-5 py-2">A2</div>
+                                        <div style="background-color: #848586;" class="td-total text-light px-5 py-2">B1</div>
+                                        <div style="background-color: #db5375;" class="td-total text-light px-5 py-2">B2</div>
+                                        <div style="background-color: #729ea1;" class="td-total text-light px-5 py-2">C1</div>
+                                        <div style="background-color: #FFA84A;" class="td-total text-light px-5 py-2">Privileged</div>
+                                        <div style="background-color: #7A34B0;" class="td-total text-light px-5 py-2">Total</div>
+                                        
+                                    </div>
+                                    <div>
+                                        <div style="background-color: #067DC8;" class="td-total text-dark px-5 py-2">Regular</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
+                                    </div>
+                                    <div>
+                                        <div style="background-color: #9B88ED;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
+                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Privileged</div>
+                                    </div>
+                                </div> --}}
                                 <div class="mx-5 px-5">
                                     <table class="table">
                                         <tr>
-                                            <th></th>
+                                            <th style="background-color: #ffffff;"></th>
                                             <th style="background-color: #067DC8;" class="td-total">Regular <p>Fees</p></th>
                                             <th style="background-color: #9B88ED;" class="td-total">Standard <p>Package</p></th>
-                                            <th style="background-color: #FFA84A;" class="td-total">Privileged <p>Package</p></th>
                                         </tr>
                                         <tr id="a1_course_price_row">
-                                            <td style="background-color: #353A47;" class="td-total text-light">A1</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">9,999/-</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">9,999/-</td>
-                                            <td rowspan="3">
-                                                <p class="td-price">1,799/-</p>
-                                                <p style="color: #AD002A" class="td-price">Only Visit Day offer</p>
+                                            <td style="background-color: #353A47; cursor: pointer; color:#f8f8f8" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseA1TdPrice1">
+                                                   {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
+                                                </div>
+                                                <input type="hidden" name="" id="courseA1TdPrice1Input" value="{{Helper::coursePrice('a1')['regular_price']}}">
+                                            </td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseA1TdPrice2">
+                                                    @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
+                                                        {{Helper::coursePrice('a1')['discount_price']}}
+                                                    @else
+                                                       {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
+                                                    @endif
+                                                </div>
+                                                <input type="hidden" name="" id="courseA1TdDiscountPrice1Input" value="{{Helper::coursePrice('a1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('a1')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="a2_course_price_row">
-                                            <td style="background-color: #355070;" class="td-total text-light">A2</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">9,999/-</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">9,999/-</td>
-                                            {{-- <td rowspan="3">
-                                                <p class="td-price">1,799/-</p>
-                                                <p style="color: #AD002A" class="td-price">Only Visit Day offer</p>
-                                            </td> --}}
+                                            <td style="background-color: #355070; cursor: pointer; color:#f8f8f8" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseA2TdPrice1">
+                                                    {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
+                                                </div>
+                                                <input type="hidden" name="" id="courseA2TdPrice1Input" value="{{Helper::coursePrice('a2')['regular_price']}}">
+                                            </td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseA2TdPrice2">
+                                                    @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
+                                                        {{Helper::coursePrice('a2')['discount_price']}}
+                                                    @else
+                                                        {{number_format(Helper::coursePrice('a2')['discount_price'])}}/-
+                                                    @endif
+                                                </div>
+                                                <input type="hidden" name="" id="courseA2TdDiscountPrice1Input" value="{{Helper::coursePrice('a2')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('a2')['discount_price']}}">
+                                            </td>
                                         </tr>
                                         <tr id="b1_course_price_row">
-                                            <td style="background-color: #848586;" class="td-total text-light">B1</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">11,999/-</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">4,799/-</td>
+                                            <td style="background-color: #848586; cursor: pointer; color:#f8f8f8" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
+                                            <td style="background-color: #E3E3E3;" class="td-price">
+                                                <div id="courseB1TdPrice1">
+                                                    {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
+                                                </div>
+                                                <input type="hidden" name="" id="courseB1TdPrice1Input" value="{{Helper::coursePrice('b1')['regular_price']}}">
+                                            </td>
+                                            <td style="background-color: #E3E3E3;" class="td-price">
+                                                <div id="courseB1TdPrice2">
+                                                    @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
+                                                        {{Helper::coursePrice('b1')['discount_price']}}
+                                                    @else
+                                                        {{number_format(Helper::coursePrice('b1')['discount_price'])}}/-
+                                                    @endif
+                                                </div>
+                                                <input type="hidden" name="" id="courseB1TdDiscountPrice1Input" value="{{Helper::coursePrice('b1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('b1')['discount_price']}}">
+                                            </td>
                                         </tr>
                                         <tr id="b2_course_price_row">
-                                            <td style="background-color: #db5375;" class="td-total text-light">B2</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">11,999/-</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">11,999/-</td>
+                                            <td style="background-color: #db5375; cursor: pointer; color:#f8f8f8" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseB2TdPrice1">
+                                                    {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
+                                                </div>
+                                                <input type="hidden" name="" id="courseB2TdPrice1Input" value="{{Helper::coursePrice('b2')['regular_price']}}">
+                                            </td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseB2TdPrice2">
+                                                    @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
+                                                        {{Helper::coursePrice('b2')['discount_price']}}
+                                                    @else
+                                                        {{number_format(Helper::coursePrice('b2')['discount_price'])}}/-
+                                                    @endif
+                                                </div>
+                                                <input type="hidden" name="" id="courseB2TdDiscountPrice1Input" value="{{Helper::coursePrice('b2')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('b2')['discount_price']}}">
+                                            </td>
                                         </tr>
                                         <tr id="c1_course_price_row">
-                                            <td style="background-color: #729ea1;" class="td-total text-light">C1</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">11,999/-</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">11,999/-</td>
+                                            <td style="background-color: #729ea1; cursor: pointer; color:#f8f8f8" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseC1TdPrice1">
+                                                    {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
+                                                </div>
+                                                <input type="hidden" name="" id="courseC1TdPrice1Input" value="{{Helper::coursePrice('c1')['regular_price']}}">
+                                            </td>
+                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                                <div id="courseC1TdPrice2">
+                                                    @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
+                                                        {{Helper::coursePrice('c1')['discount_price']}}
+                                                    @else
+                                                        {{number_format(Helper::coursePrice('c1')['discount_price'])}}/-
+                                                    @endif
+                                                </div>
+                                                <input type="hidden" name="" id="courseC1TdDiscountPrice1Input" value="{{Helper::coursePrice('c1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('c1')['discount_price']}}">
+                                            </td>
+                                        </tr>
+                                        <tr id="priviliged_price_row">
+                                            <td style="background-color: #FFA84A; cursor: pointer;" class="td-total text-dark" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
+                                            <td style="background-color: #E3E3E3;" class="td-price" colspan="2">
+                                                <div id="coursePrivileged">
+                                                    1799/-
+                                                </div>
+                                                <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="1799">
+                                            </td>
                                         </tr>
                                         <tr id="total_course_price_row">
-                                            <td style="background: #7A34B0;" class="td-total">Total</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">33,997/-</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">26,797/-</td>
-                                            <td style="background: #7A34B0;" class="td-total">24,998/-</td>
+                                            <td style="background: #7A34B0;" class="td-total text-light">Total</td>
+                                            <td style="background-color: #E3E3E3;" class="td-price" id="totalCourseRegularPrice"></td>
+                                            <td style="background-color: #E3E3E3;" class="td-price" id="totalCourseDiscountPrice"></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -817,7 +943,7 @@
 
 
                 
-                <div id="myvideo">
+                {{-- <div id="myvideo">
                     <div class="row">
                         <div class="col-md-12">
 
@@ -888,7 +1014,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
