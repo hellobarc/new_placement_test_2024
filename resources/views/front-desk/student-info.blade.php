@@ -87,13 +87,15 @@
                                 <!-- student reference--> 
                                 <div id="reference_id" style="display: none;">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="refer_stu_name">Reference Student Name</label>
                                                 <input name="refer_stu_name" id="refer_stu_name" type="text" class="form-control" placeholder="Refer Phone Number" value="na">
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="refer_phone_number">Refer phone number</label>
                                                 <input name="refer_phone_number" id="refer_phone_number" type="text" class="form-control" placeholder="Refer Phone Number" value="na">
@@ -101,7 +103,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="refer_batch_name">Refer batch Name</label>
                                                 <input name="refer_batch_name" id="refer_batch_name" type="text" class="form-control" placeholder="Refer Batch Name" value="na">
@@ -109,8 +111,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                
                                 <!-- ielts registration--> 
                                 <div style="display: none;" id="ielts_registration_id">
                                     <div class="row mt-4">

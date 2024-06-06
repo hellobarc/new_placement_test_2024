@@ -759,6 +759,7 @@ input.check_box{
   padding: 1.25rem 2rem;
   border-radius: 4px;
   margin-right: 7%;
+  height: 100%;
 }
 .result-overall-container {
   border-radius: 4px;
@@ -772,26 +773,24 @@ input.check_box{
 .aboard_inquire_section{
   margin: 2rem;
 }
-.result-overall>.div-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.result-overall .div-1 {
+  
 }
 
-.result-overall>.div-1>.p-1 {
+.result-overall .div-1 .p-1 {
   color: #FEFEFE;
-
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Roboto;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 600;
   margin-bottom: 0;
 }
-
+.int-abroad-country{
+  height: 92%;
+}
 .overall-score {
   border-radius: var(--Border-Radius-4-px, 0.25rem);
   border: 1px solid #FBFBFB;
+  width: 65%;
 }
 .mark-analysis_correct-answer{
   margin: 2rem;
@@ -799,7 +798,7 @@ input.check_box{
 .mark-analysis{
   padding: 2rem 2rem;
 }
-.overall-score>p {
+.overall-score p {
   color: #FBFBFB;
 
   font-family: Roboto;
@@ -1345,6 +1344,11 @@ progress::-webkit-progress-bar {
 .onlclik_price_active{
   background-color: #d9d9d9 !important;
   color: #313131 !important;
+}
+#mark-analytics-pie-chart{
+  width: 23% !important;
+  height: 40% !important;
+  margin: 1.25rem 0 0 0 !important;
 }
 /* result page css end */
 @media (max-width: 420px) {

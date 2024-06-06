@@ -50,26 +50,27 @@
                             <div class="result-overall-container">
                                 <div class="result-overall">
                                     <div class="div-1">
-                                        <p class="p-1">Assessment Level</p>
-                                        <div class="overall-score">
-                                            <p>Overall Score: 
-                                                @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                    2.0 - 2.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                    3.0 - 3.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                    4.0 - 4.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                    5.0 - 6.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                    7
-                                                @else
-                                                @endif
-                                            </p>
-                                        </div>
+                                        <p class="p-1">Assessment Score: {{$all_module_marks}} out of 60</p>
+                                        
                                     </div>
-                                    <p class="p-1">{{Helper::overall_rubricks($all_module_marks)}}</p>
-                                    <p class="p-2">
+                                    <p class="fs-3 text-light fw-bold mb-1">CEFR: {{Helper::overall_rubricks($all_module_marks)}}</p>
+                                    <div class="overall-score">
+                                        <p>Equivalent Band Score: 
+                                            @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                2.0 - 2.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                3.0 - 3.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                4.0 - 4.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                5.0 - 6.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                7
+                                            @else
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <p class="mt-3 fs-5 text-light mb-1">Overall English Level:
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                             Elementory Level
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -254,49 +255,6 @@
                 <section class="aboard_inquire_section">
                     <div class="row my-4">
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
-                                <p class="card-titles">
-                                    <i class="fa-solid fa-globe"></i>
-                                    Interested Aboard Country
-                                </p>
-                                <div class="intended-countries">
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">USA</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">UK</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">AUS</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
-                                <p class="card-titles">
-                                    <i class="fa-solid fa-building-columns"></i> 
-                                    Intended University
-                                </p>
-                                <div class="intended-countries">
-                                    <div class="country-name mx-2">
-                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
-                                            class="me-3">Top</span>
-                                    </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
-                                        <span class="me-3">Middle</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row my-4">
-                        <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="card-background p-3">
                                 <p class="card-titles"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt=""
                                     style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
@@ -308,28 +266,29 @@
                             </div>
                         </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
-                                        style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
-                                <div class="d-flex justify-content-between mx-3">
-                                    <p class="mb-0 fs-5 fw-bold">Desired Score: 
-                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                            2.0 - 2.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                            3.0 - 3.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                            4.0 - 4.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                            5.0 - 6.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                            7
-                                        @else
-                                        @endif
-                                    </p>
-                                    <p class="mb-0 fs-5 fw-bold" style="color: #004AAD;">Target Score: {{$student_info->expected_score}}</p>
+                            <div class="card-background p-5">
+                                 <div class="row">
+                                    <div class="col-md-4">
+                                        <span style="color: #FFA84A;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
+                                        <span class="text-secondary fw-bold">Reading</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span style="color: #9B88ED;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
+                                        <span class="text-secondary fw-bold">Listening</span>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span style="color: #FB67CA;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
+                                        <span class="text-secondary fw-bold">Grammar</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span style="color: #04BFDA;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
+                                        <span class="text-secondary fw-bold">Vocabulary</span>
+                                    </div>
+                                </div>
+                                <canvas id="mark-analytics-pie-chart"></canvas>
                             </div>
-
                         </div>
                     </div>
                     <div class="row my-4">
@@ -438,6 +397,72 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="int-abroad-country card-background p-3">
+                                <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
+                                        style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
+                                <div class="mx-3">
+                                    <p class="mb-0 fs-5 fw-bold"><i class="fa-regular fa-circle-dot"></i> Desired Score: 
+                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                            2.0 - 2.5
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                            3.0 - 3.5
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                            4.0 - 4.5
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                            5.0 - 6.5
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                            7
+                                        @else
+                                        @endif
+                                    </p>
+                                    <p class="mb-0 fs-5 fw-bold mt-2" style="color: #004AAD;"><i class="fa-regular fa-circle-dot"></i> Target Score: {{$student_info->expected_score}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="int-abroad-country card-background p-3">
+                                <p class="card-titles">
+                                    <i class="fa-solid fa-globe"></i>
+                                    Interested Aboard Country
+                                </p>
+                                <div class="intended-countries">
+                                    <div class="country-name mx-2">
+                                        <span class="me-3">USA</span><span><i
+                                                class="fa-solid fa-plane"></i></span>
+                                    </div>
+                                    <div class="country-name mx-2">
+                                        <span class="me-3">UK</span><span><i
+                                                class="fa-solid fa-plane"></i></span>
+                                    </div>
+                                    <div class="country-name mx-2">
+                                        <span class="me-3">AUS</span><span><i
+                                                class="fa-solid fa-plane"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="int-abroad-country card-background p-3">
+                                <p class="card-titles">
+                                    <i class="fa-solid fa-building-columns"></i> 
+                                    Intended University
+                                </p>
+                                <div class="intended-countries">
+                                    <div class="country-name mx-2">
+                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
+                                            class="me-3">Top</span>
+                                    </div>
+                                    <div class="country-name mx-2">
+                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
+                                        <span class="me-3">Middle</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="row-my-4">
@@ -753,66 +778,6 @@
                     <div class="row my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="p-5 card-background">
-                                {{-- <div class="d-flex justify-content-start">
-                                    <div>
-                                        <div class="d-flex justify-content-start">
-                                            <div>
-                                                <div style="background-color: #ffffff;" class="td-total text-white px-5 py-2">as</div>
-                                                <div style="background-color: #353A47;" class="td-total text-light px-5 py-2">A1</div>
-                                                <div style="background-color: #355070;" class="td-total text-light px-5 py-2">A2</div>
-                                                <div style="background-color: #848586;" class="td-total text-light px-5 py-2">B1</div>
-                                                <div style="background-color: #db5375;" class="td-total text-light px-5 py-2">B2</div>
-                                                <div style="background-color: #729ea1;" class="td-total text-light px-5 py-2">C1</div>
-                                                <div style="background-color: #7a34b0;" class="td-total text-light px-5 py-2">Total</div>
-                                            </div>
-                                            <div>
-                                                <div>9,999/-</div>
-                                                <div>9,999/-</div>
-                                                <div>9,999/-</div>
-                                                <div>9,999/-</div>
-                                                <div>9,999/-</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-start">
-                                            <div style="background-color: #067DC8;" class="td-total px-5 py-2">Regular <span class="fs-6">Fees</span></div>
-                                            <div style="background-color: #9B88ED;" class="td-total px-5 py-2">Standard</div>
-                                            <div style="background-color: #FFA84A;" class="td-total px-5 py-2">Privileged</div>
-                                        </div>
-                                    </div>
-                                    
-                                </div> --}}
-                                {{-- <div class="d-flex justify-content-start">
-                                    <div>
-                                        <div style="background-color: #a0a0a0;" class="td-total text-dark px-5 py-2">Courses</div>
-                                        <div style="background-color: #353A47;" class="td-total text-light px-5 py-2">A1</div>
-                                        <div style="background-color: #355070;" class="td-total text-light px-5 py-2">A2</div>
-                                        <div style="background-color: #848586;" class="td-total text-light px-5 py-2">B1</div>
-                                        <div style="background-color: #db5375;" class="td-total text-light px-5 py-2">B2</div>
-                                        <div style="background-color: #729ea1;" class="td-total text-light px-5 py-2">C1</div>
-                                        <div style="background-color: #FFA84A;" class="td-total text-light px-5 py-2">Privileged</div>
-                                        <div style="background-color: #7A34B0;" class="td-total text-light px-5 py-2">Total</div>
-                                        
-                                    </div>
-                                    <div>
-                                        <div style="background-color: #067DC8;" class="td-total text-dark px-5 py-2">Regular</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Regular</div>
-                                    </div>
-                                    <div>
-                                        <div style="background-color: #9B88ED;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Standard</div>
-                                        <div style="background-color: #DBEBF5;" class="td-total text-dark px-5 py-2">Privileged</div>
-                                    </div>
-                                </div> --}}
                                 <div class="mx-5 px-5">
                                     <table class="table">
                                         <tr>
@@ -831,12 +796,13 @@
                                             <td style="background-color: #DBEBF5;" class="td-price">
                                                 <div id="courseA1TdPrice2">
                                                     @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
-                                                        {{Helper::coursePrice('a1')['discount_price']}}
+                                                        {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
+                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
-                                                       {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
+                                                        {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
                                                     @endif
                                                 </div>
-                                                <input type="hidden" name="" id="courseA1TdDiscountPrice1Input" value="{{Helper::coursePrice('a1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('a1')['discount_price']}}">
+                                                <input type="hidden" name="" id="courseA1TdDiscountPrice1Input" value="{{Helper::coursePrice('a1')['discount_price'] == 'N/A'? Helper::coursePrice('a1')['regular_price'] : Helper::coursePrice('a1')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="a2_course_price_row">
@@ -850,12 +816,13 @@
                                             <td style="background-color: #DBEBF5;" class="td-price">
                                                 <div id="courseA2TdPrice2">
                                                     @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
-                                                        {{Helper::coursePrice('a2')['discount_price']}}
+                                                        {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
+                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('a2')['discount_price'])}}/-
                                                     @endif
                                                 </div>
-                                                <input type="hidden" name="" id="courseA2TdDiscountPrice1Input" value="{{Helper::coursePrice('a2')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('a2')['discount_price']}}">
+                                                <input type="hidden" name="" id="courseA2TdDiscountPrice1Input" value="{{Helper::coursePrice('a2')['discount_price'] == 'N/A'? Helper::coursePrice('a2')['regular_price'] : Helper::coursePrice('a2')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="b1_course_price_row">
@@ -869,12 +836,13 @@
                                             <td style="background-color: #E3E3E3;" class="td-price">
                                                 <div id="courseB1TdPrice2">
                                                     @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
-                                                        {{Helper::coursePrice('b1')['discount_price']}}
+                                                        {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
+                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('b1')['discount_price'])}}/-
                                                     @endif
                                                 </div>
-                                                <input type="hidden" name="" id="courseB1TdDiscountPrice1Input" value="{{Helper::coursePrice('b1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('b1')['discount_price']}}">
+                                                <input type="hidden" name="" id="courseB1TdDiscountPrice1Input" value="{{Helper::coursePrice('b1')['discount_price'] == 'N/A'? Helper::coursePrice('b1')['regular_price'] : Helper::coursePrice('b1')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="b2_course_price_row">
@@ -888,12 +856,13 @@
                                             <td style="background-color: #DBEBF5;" class="td-price">
                                                 <div id="courseB2TdPrice2">
                                                     @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
-                                                        {{Helper::coursePrice('b2')['discount_price']}}
+                                                        {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
+                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('b2')['discount_price'])}}/-
                                                     @endif
                                                 </div>
-                                                <input type="hidden" name="" id="courseB2TdDiscountPrice1Input" value="{{Helper::coursePrice('b2')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('b2')['discount_price']}}">
+                                                <input type="hidden" name="" id="courseB2TdDiscountPrice1Input" value="{{Helper::coursePrice('b2')['discount_price'] == 'N/A'? Helper::coursePrice('b2')['regular_price'] : Helper::coursePrice('b2')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="c1_course_price_row">
@@ -907,12 +876,13 @@
                                             <td style="background-color: #DBEBF5;" class="td-price">
                                                 <div id="courseC1TdPrice2">
                                                     @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
-                                                        {{Helper::coursePrice('c1')['discount_price']}}
+                                                        {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
+                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('c1')['discount_price'])}}/-
                                                     @endif
                                                 </div>
-                                                <input type="hidden" name="" id="courseC1TdDiscountPrice1Input" value="{{Helper::coursePrice('c1')['discount_price'] == 'N/A'? 0 : Helper::coursePrice('c1')['discount_price']}}">
+                                                <input type="hidden" name="" id="courseC1TdDiscountPrice1Input" value="{{Helper::coursePrice('c1')['discount_price'] == 'N/A'? Helper::coursePrice('c1')['regular_price'] : Helper::coursePrice('c1')['discount_price']}}">
                                             </td>
                                         </tr>
                                         <tr id="priviliged_price_row">
@@ -1044,7 +1014,7 @@
           options: {
             scales: {
               y: {
-                beginAtZero: true
+                beginAtZero: false
               }
             },
             plugins: {
@@ -1135,7 +1105,7 @@
         ];
     
         new Chart("mark-analytics-pie-chart", {
-            type: "pie",
+            type: "bar",
             data: {
                 labels: xValues,
                 datasets: [{
