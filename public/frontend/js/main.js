@@ -281,19 +281,82 @@ var b1_course_description = document.getElementById("b1-course-description").sty
 var b2_course_description = document.getElementById("b2-course-description").style.display = "none";
 var c1_course_description = document.getElementById("c1-course-description").style.display = "none";
 
-var course_price_section = document.getElementById("course_price_section").style.display = "block";
+var course_price_section = document.getElementById("course_price_section").style.display = "none";
 
 function expected_band_score_func(ev){
   document.getElementById("course-related-info").style.display = "block";
-  
-  if(desired_level == 'A2' && ev >= 7){
-    var element = document.getElementById("targeted_band_score_7");
-    element.classList.add("outline-for-score-small-sections-active");
+  document.getElementById("course_price_section").style.display = "block";
+  if(desired_level == 'A1' && ev < 7){
+    document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
+    if(ev == 6.5){
+      document.getElementById("targeted_band_score_6").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById("targeted_band_score_more_than_6").classList.add("outline-for-score-small-sections-active");
+    }else if(ev == 6){
+      document.getElementById("targeted_band_score_6").classList.add("outline-for-score-small-sections-active");
+      document.getElementById("targeted_band_score_more_than_6").classList.remove("outline-for-score-small-sections-active");
+    }
+    document.getElementById("a1_course_duration").style.display = "block";
+    document.getElementById("a2_course_duration").style.display = "block";
+    document.getElementById("b1_course_duration").style.display = "block";
+    document.getElementById("b2_course_duration").style.display = "block";
+    document.getElementById("c1_course_duration").style.display = "none";
+
+    document.getElementById("a1-course-description").style.display = "block";
+    document.getElementById("a2-course-description").style.display = "block";
+    document.getElementById("b1-course-description").style.display = "block";
+    document.getElementById("b2-course-description").style.display = "block";
+    document.getElementById("c1-course-description").style.display = "none";
+
+    document.getElementById('course_completed_time').innerHTML = 5;
+  }
+  if(desired_level == 'A2' && ev < 7){
+    document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
+    if(ev == 6.5){
+      document.getElementById("targeted_band_score_6").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById("targeted_band_score_more_than_6").classList.add("outline-for-score-small-sections-active");
+    }else if(ev == 6){
+      document.getElementById("targeted_band_score_6").classList.add("outline-for-score-small-sections-active");
+      document.getElementById("targeted_band_score_more_than_6").classList.remove("outline-for-score-small-sections-active");
+    }
+    document.getElementById("a1_course_duration").style.display = "none";
+    document.getElementById("a2_course_duration").style.display = "block";
+    document.getElementById("b1_course_duration").style.display = "block";
+    document.getElementById("b2_course_duration").style.display = "block";
+    document.getElementById("c1_course_duration").style.display = "none";
+
+    document.getElementById("a1-course-description").style.display = "none";
+    document.getElementById("a2-course-description").style.display = "block";
+    document.getElementById("b1-course-description").style.display = "block";
+    document.getElementById("b2-course-description").style.display = "block";
+    document.getElementById("c1-course-description").style.display = "none";
+
+    document.getElementById('course_completed_time').innerHTML = 4;
+  }
+  if(desired_level == 'A1' && ev >= 7){
+    document.getElementById("targeted_band_score_7").classList.add("outline-for-score-small-sections-active");
+    document.getElementById("a1_course_duration").style.display = "block";
     document.getElementById("a2_course_duration").style.display = "block";
     document.getElementById("b1_course_duration").style.display = "block";
     document.getElementById("b2_course_duration").style.display = "block";
     document.getElementById("c1_course_duration").style.display = "block";
 
+    document.getElementById("a1-course-description").style.display = "block";
+    document.getElementById("a2-course-description").style.display = "block";
+    document.getElementById("b1-course-description").style.display = "block";
+    document.getElementById("b2-course-description").style.display = "block";
+    document.getElementById("c1-course-description").style.display = "block";
+
+    document.getElementById('course_completed_time').innerHTML = 6;
+  }
+  if(desired_level == 'A2' && ev >= 7){
+    document.getElementById("targeted_band_score_7").classList.add("outline-for-score-small-sections-active");
+    document.getElementById("a1_course_duration").style.display = "none";
+    document.getElementById("a2_course_duration").style.display = "block";
+    document.getElementById("b1_course_duration").style.display = "block";
+    document.getElementById("b2_course_duration").style.display = "block";
+    document.getElementById("c1_course_duration").style.display = "block";
+
+    document.getElementById("a1-course-description").style.display = "none";
     document.getElementById("a2-course-description").style.display = "block";
     document.getElementById("b1-course-description").style.display = "block";
     document.getElementById("b2-course-description").style.display = "block";

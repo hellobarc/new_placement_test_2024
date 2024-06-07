@@ -51,9 +51,8 @@
                                 <div class="result-overall">
                                     <div class="div-1">
                                         <p class="p-1">Assessment Score: {{$all_module_marks}} out of 60</p>
-                                        
                                     </div>
-                                    <p class="fs-3 text-light fw-bold mb-1">CEFR: {{Helper::overall_rubricks($all_module_marks)}}</p>
+                                    <p class="fs-1 fw-bolder mb-3" style="color: #FFBB0D">CEFR: {{Helper::overall_rubricks($all_module_marks)}}</p>
                                     <div class="overall-score">
                                         <p>Equivalent Band Score: 
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
@@ -72,15 +71,15 @@
                                     </div>
                                     <p class="mt-3 fs-5 text-light mb-1">Overall English Level:
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                            Elementory Level
+                                            <span style="color: #FFBB0D">Elementory</span>    
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                            Foundation Level
+                                            <span style="color: #FFBB0D">Foundation</span>    
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                            Intermediate Level
+                                            <span style="color: #FFBB0D">Intermediate</span> 
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                            Upper Intermediate Level
+                                            <span style="color: #FFBB0D"> Upper Intermediate</span> 
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                            Advance 
+                                            <span style="color: #FFBB0D">Advance</span> 
                                         @else
                                         @endif   
                                     </p>
@@ -255,19 +254,114 @@
                 <section class="aboard_inquire_section">
                     <div class="row my-4">
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="card-background p-3">
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt=""
-                                    style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
-                                    <div class="d-flex justify-content-between mx-3">
-                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne"><i class="fa-solid fa-book-open"></i> Reading</a>
-                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo"><i class="fa-solid fa-pen-to-square"></i> Writing</a>
-                                        <a class="text-decoration-none text-dark fs-5 fw-bold" data-bs-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree"><i class="fa-solid fa-headphones-simple"></i> Listening</a>
+                            <div class="result_explanation card-background p-4">
+                                <p class="card-titles mb-4"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa-solid fa-book-open"></i> <span class="mx-3">Reading</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_reading_module) == 'A-')
+                                                        <span>Cannot understand very simple sentence.</span>
+                                                    @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
+                                                        <span>Cannot understand very simple sentence.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
+                                                        <span>Face problem in reading and identifying the main points short, clear, simple texts, messages, notices and announcements.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
+                                                        <span>Tough to understand newspaper articles.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
+                                                        <span>Difficulties to read articles and reports with proper understanding.</span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
+                                                        <span>Understanding well-structured text, expressing points of view at some length. </span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
                                     </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa-solid fa-pen-to-square"></i> <span class="mx-3">Writing</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
+                                                        <span>Cannot make simple sentence with correct grammar.</span>
+                                                    @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
+                                                        <span>Cannot make simple sentence with correct grammar.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
+                                                        <span>Unable to write very simple personal letter with accurate structure.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
+                                                        <span>Unable to write short structured paragraphs.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
+                                                        <span>Face problem to write clear, detailed paragraph, letter, essay or report on a wide range of subject.</span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
+                                                        <span>Facing to write my thoughts efforlessly and spontanceously without any hesitation.</span>
+                                                    @endif
+                                                </li>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
+                                                        <span>Cannot understand basice names and words.</span>
+                                                    @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
+                                                        <span>Cannot understand basice names and words.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
+                                                        <span>Find it difficult to handle very short social exchanges.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
+                                                        <span>Can not produce simple connected text on topics.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
+                                                        <span>Unable to interact with fluency and spontaneity that makes regular interaction with native speaker.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
+                                                        <span>Express yourself fluently.</span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <i class="fa-solid fa-headphones-simple"></i> <span class="mx-3">Listening</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_listening_module) == 'A-')
+                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                                    @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
+                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
+                                                        <span>Can not continue or interact in any conversation.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
+                                                        <span>Unable to understand small talks and conversations in native language.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
+                                                        <span>Face problem in understanding long speeches and lectures.</span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
+                                                        <span>Unable to conversation with a native speaker without any mistakes.</span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="card-background p-5">
-                                 <div class="row">
+                            <div class="marks_bar_graph card-background p-4">
+                                 {{-- <div class="row">
                                     <div class="col-md-4">
                                         <span style="color: #FFA84A;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
                                         <span class="text-secondary fw-bold">Reading</span>
@@ -286,123 +380,16 @@
                                         <span style="color: #04BFDA;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
                                         <span class="text-secondary fw-bold">Vocabulary</span>
                                     </div>
-                                </div>
+                                </div> --}}
+                                <p class="card-titles"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt=""> Module Wise Marks</p>
                                 <canvas id="mark-analytics-pie-chart"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="row my-4">
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="collapse" id="collapseOne">
-                                <div class="card-background p-4">
-                                   <table class="table table-bordered table-striped mt-1 mb-1">
-                                        <thead>
-                                            <th>Module</th>
-                                            <th>Remarks</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Readiing</td>
-                                                <td>
-                                                    @if (Helper::module_rubricks($sum_reading_module) == 'A-')
-                                                        <span>Cannot understand very simple sentence.</span>
-                                                    @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
-                                                        <span>Cannot understand very simple sentence.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
-                                                        <span>Face problem in reading and identifying the main points short, clear, simple texts, messages, notices and announcements.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
-                                                        <span>Tough to understand newspaper articles.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
-                                                        <span>Difficulties to read articles and reports with proper understanding.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
-                                                        <span>Understanding well-structured text, expressing points of view at some length. </span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="collapse" id="collapseTwo">
-                                <div class="card-background p-4">
-                                    <table class="table table-bordered table-striped mt-1 mb-0">
-                                        <thead>
-                                            <th>Module</th>
-                                            <th>Remarks</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Writing</td>
-                                                <td>
-                                                    @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
-                                                        <span>Cannot make simple sentence with correct grammar.</span>
-                                                    @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
-                                                        <span>Cannot make simple sentence with correct grammar.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
-                                                        <span>Unable to write very simple personal letter with accurate structure.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
-                                                        <span>Unable to write short structured paragraphs.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
-                                                        <span>Face problem to write clear, detailed paragraph, letter, essay or report on a wide range of subject.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
-                                                        <span>Facing to write my thoughts efforlessly and spontanceously without any hesitation.</span>
-                                                    @endif
-                                                    <br>
-                                                    @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
-                                                        <span>Cannot understand basice names and words.</span>
-                                                    @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
-                                                        <span>Cannot understand basice names and words.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
-                                                        <span>Find it difficult to handle very short social exchanges.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
-                                                        <span>Can not produce simple connected text on topics.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
-                                                        <span>Unable to interact with fluency and spontaneity that makes regular interaction with native speaker.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
-                                                        <span>Express yourself fluently.</span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="collapse" id="collapseThree">
-                                <div class="card-background p-4">
-                                    <table class="table table-bordered table-striped mt-1 mb-0">
-                                        <thead>
-                                            <th>Module</th>
-                                            <th>Remarks</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Listening</td>
-                                                <td>
-                                                    @if (Helper::module_rubricks($sum_listening_module) == 'A-')
-                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
-                                                    @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
-                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
-                                                        <span>Can not continue or interact in any conversation.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
-                                                        <span>Unable to understand small talks and conversations in native language.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
-                                                        <span>Face problem in understanding long speeches and lectures.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
-                                                        <span>Unable to conversation with a native speaker without any mistakes.</span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-4">
+                    <div class="row mt-4 mb-4">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background p-3">
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
+                                <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
                                         style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
                                 <div class="mx-3">
                                     <p class="mb-0 fs-5 fw-bold"><i class="fa-regular fa-circle-dot"></i> Desired Score: 
@@ -465,31 +452,31 @@
 
                         </div>
                     </div>
-                    <div class="row-my-4">
+                    <div class="row my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="sugg-target-score p-4 card-background">
-                                <p class="card-titles"><i class="fa-solid fa-bullseye"></i> Suggested & Targeted Band Score</p>
+                                <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested course for targeted band score</p>
                                 <div class="band-score-tiles-list">
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" >
-                                        Band Score: 6
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
+                                        Band: 6
                                     </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" >
-                                        Band Score: 6.5
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" onclick="expected_band_score_func(6.5)">
+                                        Band: 6.5
                                     </button>
                                     <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
-                                        Band Score: 7
+                                        Band: 7
                                     </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" >
-                                        Band Score: 7.5
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" onclick="expected_band_score_func(7.5)">
+                                        Band: 7.5
                                     </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" >
-                                        Band Score: 8
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
+                                        Band: 8
                                     </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" >
-                                        Band Score: 8.5
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" onclick="expected_band_score_func(8.5)">
+                                        Band: 8.5
                                     </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" >
-                                        Band Score: 9
+                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" onclick="expected_band_score_func(9)">
+                                        Band: 9
                                     </button>
                                 </div>
                             </div>
@@ -500,175 +487,184 @@
                     <div class="p-5 card-background">
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="row">
-                                    <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 position-relative">
-                                        <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve 7</div>
-                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
-                                        <div class="">
-                                            <div id="c1_course_duration">
-                                                <div class="d-flex justify-content-start">
-                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 10px 10px 0 0;">C1</div>
-                                                    <div class="text-center c1-course-duration">
-                                                        <div class="c1-course-timelength">
-                                                            <div class="c1-inner-1 py-2">
-                                                                <span class="text-1 mb-0">1+</span>
-                                                                <span class="text-1 mb-0">Months</span>
-                                                                <span class="text-2 mb-0">Advance IELTS</span>
-                                                            </div>
+                                <div class="position-relative">
+                                    <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve 7</div>
+                                    <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
+                                    <div class="">
+                                        <div id="c1_course_duration">
+                                            <div class="d-flex justify-content-start">
+                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 10px 10px 0 0;">C1</div>
+                                                <div class="text-center c1-course-duration">
+                                                    <div class="c1-course-timelength">
+                                                        <div class="c1-inner-1 py-2">
+                                                            <span class="text-1 mb-0">1</span>
+                                                            <span class="text-1 mb-0">Months +</span>
+                                                            <span class="text-2 mb-0">Advance IELTS</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="b2_course_duration">
-                                                <div class="d-flex justify-content-start">
-                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B2</div>
-                                                    <div class="text-center b2-course-duration">
-                                                        <div class="b2-course-timelength">
-                                                            <div class="b2-inner-1"></div>
-                                                            <div class="b2-inner-2 py-2">
-                                                                <span class="text-1 mb-0">1+</span>
-                                                                <span class="text-1 mb-0">Months</span>
-                                                                <span class="text-2 mb-0">Main IELTS</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="b1_course_duration">
-                                                <div class="d-flex justify-content-start">
-                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B1</div>
-                                                    <div class="text-center b1-course-duration">
-                                                        <div class="b1-course-timelength">
-                                                            <div class="b1-inner-1"></div>
-                                                            <div class="b1-inner-2"></div>
-                                                            <div class="b1-inner-3 py-2">
-                                                                <span class="text-1 mb-0">1+</span>
-                                                                <span class="text-1 mb-0">Months</span>
-                                                                <span class="text-2 mb-0">Pre - IELTS</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="a2_course_duration">
-                                                <div class="d-flex justify-content-start">
-                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A2</div>
-                                                    <div class="text-center a2-course-duration">
-                                                        <div class="a2-course-timelength">
-                                                            <div class="a2-inner-1"></div>
-                                                            <div class="a2-inner-2"></div>
-                                                            <div class="a2-inner-3"></div>
-                                                            <div class="a2-inner-4 py-2">
-                                                                <span class="text-1 mb-0">1+</span>
-                                                                <span class="text-1 mb-0">Months</span>
-                                                                <span class="text-2 mb-0">Basic English</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="a1_course_duration">
-                                                <div class="d-flex justify-content-start" >
-                                                    <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A1</div>
-                                                    <div class="text-center a1-course-duration">
-                                                        <div class="a1-course-timelength">
-                                                            <div class="a1-inner-1"></div>
-                                                            <div class="a1-inner-2"></div>
-                                                            <div class="a1-inner-3"></div>
-                                                            <div class="a1-inner-4"></div>
-                                                            <div class="a1-inner-5">
-                                                                <span class="mb-0">1+</span>
-                                                                <span class="mb-0">Months</span>
-                                                                <span class="mb-0">Elementory</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="your-score">
-                                                <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
-                                                Your Score 
-                                                @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                    2.0 - 2.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                    3.0 - 3.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                    4.0 - 4.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                    5.0 - 6.5
-                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                    7
-                                                @else
-                                                @endif
-                                            </div>
-                                            <p class="total-time">Total : <span id="course_completed_time"></span> Months</p>
                                         </div>
+                                        <div id="b2_course_duration">
+                                            <div class="d-flex justify-content-start">
+                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B2</div>
+                                                <div class="text-center b2-course-duration">
+                                                    <div class="b2-course-timelength">
+                                                        <div class="b2-inner-1"></div>
+                                                        <div class="b2-inner-2 py-2">
+                                                            <span class="text-1 mb-0">1</span>
+                                                            <span class="text-1 mb-0">Months+</span>
+                                                            <span class="text-2 mb-0">Main IELTS</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="b1_course_duration">
+                                            <div class="d-flex justify-content-start">
+                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B1</div>
+                                                <div class="text-center b1-course-duration">
+                                                    <div class="b1-course-timelength">
+                                                        <div class="b1-inner-1"></div>
+                                                        <div class="b1-inner-2"></div>
+                                                        <div class="b1-inner-3 py-2">
+                                                            <span class="text-1 mb-0">1</span>
+                                                            <span class="text-1 mb-0">Months+</span>
+                                                            <span class="text-2 mb-0">Pre - IELTS</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="a2_course_duration">
+                                            <div class="d-flex justify-content-start">
+                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A2</div>
+                                                <div class="text-center a2-course-duration">
+                                                    <div class="a2-course-timelength">
+                                                        <div class="a2-inner-1"></div>
+                                                        <div class="a2-inner-2"></div>
+                                                        <div class="a2-inner-3"></div>
+                                                        <div class="a2-inner-4 py-2">
+                                                            <span class="text-1 mb-0">1</span>
+                                                            <span class="text-1 mb-0">Months+</span>
+                                                            <span class="text-2 mb-0">Basic English</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="a1_course_duration">
+                                            <div class="d-flex justify-content-start" >
+                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A1</div>
+                                                <div class="text-center a1-course-duration">
+                                                    <div class="a1-course-timelength">
+                                                        <div class="a1-inner-1"></div>
+                                                        <div class="a1-inner-2"></div>
+                                                        <div class="a1-inner-3"></div>
+                                                        <div class="a1-inner-4"></div>
+                                                        <div class="a1-inner-5 py-2">
+                                                            <span class="text-1 mb-0">1</span>
+                                                            <span class="text-1 mb-0">Months +</span>
+                                                            <span class="text-2 mb-0">Elementory</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="your-score">
+                                            <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
+                                            Your Score 
+                                            @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                2.0 - 2.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                3.0 - 3.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                4.0 - 4.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                5.0 - 6.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                7
+                                            @else
+                                            @endif
+                                        </div>
+                                        <p class="total-time">Total Course Duration: <span id="course_completed_time"></span> Months +</p>
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex align-items-center">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <p class="card-titles mt-3 mb-1"><i class="fa-solid fa-book-bookmark"></i> Course Content</p>
                                         <div class="row">
-                                            <div id="a1-course-description">
-                                                <div class="d-flex flex-row justify-content-between my-3">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #353a47;"><i class="fa-solid fa-circle"></i></div>
-                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">A1:</p>
-                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                        </p>
+                                            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div id="a1-course-description">
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="mt-1 fs-5" style="color: #353a47;"><i class="fa-solid fa-circle"></i></div>
+                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">A1:</p>
+                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
+                                                                    </p>
+                                                                </div>
+                                                                <div class="details-border"> 
+                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">Details</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="a2-course-description">
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="mt-1 fs-5" style="color: #355070;"><i class="fa-solid fa-circle"></i></div>
+                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">A2:</p>
+                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
+                                                                    </p>
+                                                                </div>
+                                                                <div class="details-border"> 
+                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">Details</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="details-border"> 
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">Details</button>
+                                                    <div class="col-md-4">
+                                                        <div id="b1-course-description">
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="mt-1 fs-5" style="color: #848586;"><i class="fa-solid fa-circle"></i></div>
+                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">B1:</p>
+                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
+                                                                    </p>
+                                                                </div>
+                                                                <div class="details-border"> 
+                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">Details</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="b2-course-description">
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="mt-1 fs-5" style="color: #db5375;"><i class="fa-solid fa-circle"></i></div>
+                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">B2:</p>
+                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
+                                                                    </p>
+                                                                </div>
+                                                                <div class="details-border"> 
+                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">Details</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div id="a2-course-description">
-                                                <div class="d-flex flex-row justify-content-between my-3">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #355070;"><i class="fa-solid fa-circle"></i></div>
-                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">A2:</p>
-                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                        </p>
-                                                    </div>
-                                                    <div class="details-border"> 
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">Details</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="b1-course-description">
-                                                <div class="d-flex flex-row justify-content-between my-3">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #848586;"><i class="fa-solid fa-circle"></i></div>
-                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">B1:</p>
-                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                        </p>
-                                                    </div>
-                                                    <div class="details-border"> 
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">Details</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="b2-course-description">
-                                                <div class="d-flex flex-row justify-content-between my-3">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #db5375;"><i class="fa-solid fa-circle"></i></div>
-                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">B2:</p>
-                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                        </p>
-                                                    </div>
-                                                    <div class="details-border"> 
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">Details</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="c1-course-description">
-                                                <div class="d-flex flex-row justify-content-between my-3">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="mt-1 ms-4 me-2 fs-5" style="color: #729ea1;"><i class="fa-solid fa-circle"></i></div>
-                                                        <p class="course-name mb-0 me-2" style="font-weight: 700;">C1:</p>
-                                                        <p class="course-name mb-0 " style="font-weight: 400;">Course Content
-                                                        </p>
-                                                    </div>
-                                                    <div class="details-border"> 
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">Details</button>
+                                                    <div class="col-md-4">
+                                                        <div id="c1-course-description">
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="mt-1 fs-5" style="color: #729ea1;"><i class="fa-solid fa-circle"></i></div>
+                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">C1:</p>
+                                                                    <p class="course-name mb-0 " style="font-weight: 400;">Course Content</p>
+                                                                </div>
+                                                                <div class="details-border"> 
+                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">Details</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -778,6 +774,7 @@
                     <div class="row my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="p-5 card-background">
+                                <p class="card-titles"><span style="rotate: 180deg"><i class="fa-solid fa-tags"></i></span> Course Price</p>
                                 <div class="mx-5 px-5">
                                     <table class="table">
                                         <tr>
@@ -1123,6 +1120,12 @@
                     },
                     tooltip: {
                         enabled: false // This hides the tooltips
+                    }
+                },
+                scales: {
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 15,
                     }
                 }
             }

@@ -6,7 +6,7 @@ body{
   background-color: #fff !important;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif !important;
   font-style: normal;
 }
 .visitor_info_div{
@@ -1057,8 +1057,8 @@ progress::-webkit-progress-bar {
   margin: 0 0 0 0;
 }
 .outline-for-score-small-sections-active {
-  color: #004AAD !important;
-  border-bottom: 2px solid #004AAD !important;
+  color: #ba131a !important;
+  border-bottom: 2px solid #ba131a !important;
 }
 .outline-for-score-small-sections-active p{
   margin: 0 0 0 0;
@@ -1138,10 +1138,8 @@ progress::-webkit-progress-bar {
 
 
 .total-time {
-  color: #333;
-  font-family: Roboto;
-  font-size: 1.5rem;
-  font-style: normal;
+  color: #004AAD;
+  font-size: 1rem;
   font-weight: 600;
   margin-top: 2rem;
 }
@@ -1149,29 +1147,18 @@ progress::-webkit-progress-bar {
 .course-timeline {
   height: 9.8125rem;
 }
-
 .text-1 {
   color: #FAFAFA;
-
-  font-family: Roboto;
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
   text-align: center;
 }
-
 .text-2 {
   color: #FFF;
-
-  font-family: Roboto;
-  font-size: 1.375rem;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-align: center;
+  margin-left: 30px;
 }
-
-
-
 .course-timeline>.monthOne {
   background-color: #FDB200;
 }
@@ -1195,16 +1182,13 @@ progress::-webkit-progress-bar {
 
 .course-name {
   color: #363535;
-
-  font-family: Roboto;
   font-size: 1rem;
-  font-style: normal;
-
 }
 
 .details-border {
   border-radius: var(--Border-Radius-4-px, 0.25rem);
   border: 1px solid #C0DBFF;
+  margin-left: 16px;
 }
 
 .details-border button{
@@ -1227,16 +1211,17 @@ progress::-webkit-progress-bar {
   border: 1px solid #F3AE2E;
   background: #FFF;
   box-shadow: 0px 2px 14px 0px rgba(115, 111, 111, 0.08);
-  width: 35%;
+  width: 17%;
   margin-left: 30px;
+  margin-top: 16px;
 }
 
 .arrow {
   position: absolute;
-  rotate: 344deg;
-  right: -7%;
-  top: 28%;
-  width: 60%;
+  rotate: 353deg;
+  right: 15%;
+  top: 24%;
+  width: 36%;
 }
 
 .improved-score {
@@ -1252,7 +1237,7 @@ progress::-webkit-progress-bar {
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
-    right: -28%;
+    right: 1%;
 }
 
 .candidate-info .details{
@@ -1264,7 +1249,8 @@ progress::-webkit-progress-bar {
 }
 .a1-course-timelength{
   /* background-color: #353A47; */
-  margin-bottom: 10px;
+  margin: 10px 0;
+  color: #fff;
 }
 .a2-course-timelength{
   /* background-color: #355070; */
@@ -1280,6 +1266,7 @@ progress::-webkit-progress-bar {
 }
 .c1-course-timelength{
   /* background-color: #729EA1; */
+  margin-bottom: 10px;
 }
 .a1-inner-1{
   width: 7rem;
@@ -1298,7 +1285,7 @@ progress::-webkit-progress-bar {
   background-color: #fff;
 }
 .a1-inner-5{
-  width: 7rem;
+  width: 20rem;
   background-color: #353A47;
 }
 .a2-inner-1{
@@ -1314,7 +1301,7 @@ progress::-webkit-progress-bar {
   background-color: #fff;
 }
 .a2-inner-4{
-  width: 16rem;
+  width: 30rem;
   background-color: #355070;
 }
 .b1-inner-1{
@@ -1326,7 +1313,7 @@ progress::-webkit-progress-bar {
   background-color: #fff;
 }
 .b1-inner-3{
-  width: 21rem;
+  width: 40rem;
   background-color: #848586;
 }
 .b2-inner-1{
@@ -1334,11 +1321,11 @@ progress::-webkit-progress-bar {
   background-color: #fff;
 }
 .b2-inner-2{
-  width: 28rem;
+  width: 50rem;
   background-color: #DB5375;
 }
 .c1-inner-1{
-  width: 35rem;
+  width: 60rem;
  background-color: #729EA1;
 }
 .onlclik_price_active{
@@ -1346,9 +1333,15 @@ progress::-webkit-progress-bar {
   color: #313131 !important;
 }
 #mark-analytics-pie-chart{
-  width: 23% !important;
-  height: 40% !important;
-  margin: 1.25rem 0 0 0 !important;
+  width: 70% !important;
+  height: 75% !important;
+  margin: 1.25rem 0 0 3rem !important;
+}
+.result_explanation{
+  height: 25rem;
+}
+.marks_bar_graph{
+  height: 25rem;
 }
 /* result page css end */
 @media (max-width: 420px) {
