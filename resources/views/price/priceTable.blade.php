@@ -1076,7 +1076,7 @@
                     labels: {
                         color: 'black',
                     },
-                    position: 'top'
+                    position: 'left'
                 },
                 
             }

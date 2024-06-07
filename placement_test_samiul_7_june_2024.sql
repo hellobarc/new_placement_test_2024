@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 02:27 PM
+-- Generation Time: Jun 07, 2024 at 02:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -957,6 +957,16 @@ CREATE TABLE `visitor_infos` (
   `category_of_ielts` varchar(255) DEFAULT NULL,
   `ielts_can_id` varchar(255) DEFAULT NULL,
   `ielts_exam_date` varchar(255) DEFAULT NULL,
+  `ielts_enough_time` varchar(255) DEFAULT NULL,
+  `ielts_taken` varchar(255) DEFAULT NULL,
+  `reading_expected_module` int(11) DEFAULT NULL,
+  `listening_expected_module` int(11) DEFAULT NULL,
+  `writing_expected_module` int(11) DEFAULT NULL,
+  `speaking_expected_module` int(11) DEFAULT NULL,
+  `nid_passport_number` int(255) DEFAULT NULL,
+  `blood_group` int(255) DEFAULT NULL,
+  `emergency_number` varchar(255) DEFAULT NULL,
+  `total_enroll_course` varchar(255) DEFAULT NULL,
   `comments_from_student` varchar(255) DEFAULT NULL,
   `feedback_from_advisor` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -967,9 +977,9 @@ CREATE TABLE `visitor_infos` (
 -- Dumping data for table `visitor_infos`
 --
 
-INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `location`, `organization`, `date_of_birth`, `education`, `how_you_know`, `expected_country`, `expected_score`, `refer_stu_name`, `refer_phone_number`, `refer_batch_name`, `purpose_of_ielts`, `ielts_test_center`, `ielts_exam_type`, `category_of_ielts`, `ielts_can_id`, `ielts_exam_date`, `comments_from_student`, `feedback_from_advisor`, `created_at`, `updated_at`) VALUES
-(1, 1, 'University Student', 'Sector 11', 'Uttara', 'Uttara University', '19-05-2024', 'HSC', 'student_reference', 'USA', 7, 'Ariful Rahman', '017850540839', 'na', 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-19 06:22:27', '2024-05-19 06:22:27'),
-(2, 2, 'Govt. Service', 'Uttara 12', 'Uttara', 'na', '16-04-2024', 'Graduate', 'Facebook', 'USA', 7, NULL, NULL, NULL, 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-06-03 23:23:56', '2024-06-03 23:23:56');
+INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `location`, `organization`, `date_of_birth`, `education`, `how_you_know`, `expected_country`, `expected_score`, `refer_stu_name`, `refer_phone_number`, `refer_batch_name`, `purpose_of_ielts`, `ielts_test_center`, `ielts_exam_type`, `category_of_ielts`, `ielts_can_id`, `ielts_exam_date`, `ielts_enough_time`, `ielts_taken`, `reading_expected_module`, `listening_expected_module`, `writing_expected_module`, `speaking_expected_module`, `nid_passport_number`, `blood_group`, `emergency_number`, `total_enroll_course`, `comments_from_student`, `feedback_from_advisor`, `created_at`, `updated_at`) VALUES
+(1, 1, 'University Student', 'Sector 11', 'Uttara', 'Uttara University', '19-05-2024', 'HSC', 'student_reference', 'USA', 7, 'Ariful Rahman', '017850540839', 'na', 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-19 06:22:27', '2024-05-19 06:22:27'),
+(3, 5, 'Govt. Service', 'Sector 8', 'Uttara', 'na', NULL, 'HSC', 'Facebook', '[\"USA\",\"Canada\"]', 7, NULL, NULL, NULL, 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-06-07 03:52:50', '2024-06-07 03:52:50');
 
 -- --------------------------------------------------------
 
@@ -998,7 +1008,7 @@ CREATE TABLE `visitor_logs` (
 
 INSERT INTO `visitor_logs` (`id`, `assign_advisor`, `full_name`, `email`, `mobile`, `purpose_of_visit`, `status`, `adviser_notification`, `front_desk_notification`, `time_log`, `created_at`, `updated_at`) VALUES
 (1, 4, 'Minar Ahmed', 'minar.barc@gmail.com', '01521210037', 'ielts_courses', 'approved', 'seen', 'not_seen', '1716121347', '2024-05-19 06:22:27', '2024-05-19 06:29:33'),
-(2, 5, 'Saimul Karim', 'saim.barc@gmail.com', '01780540839', 'ielts_courses', 'approved', 'seen', 'not_seen', '1717478636', '2024-06-03 23:23:56', '2024-06-03 23:25:36');
+(5, 4, 'Samiul Shadman', 'shadaman.barc@gmail.com', '01780540839', 'ielts_courses', 'approved', 'not_seen', 'not_seen', '1717753970', '2024-06-07 03:52:50', '2024-06-07 03:53:24');
 
 --
 -- Indexes for dumped tables
@@ -1304,13 +1314,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitor_infos`
 --
 ALTER TABLE `visitor_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `visitor_logs`
 --
 ALTER TABLE `visitor_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

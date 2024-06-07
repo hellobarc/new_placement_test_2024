@@ -261,8 +261,9 @@
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="email">Expected Country to go</label>
-                                                <select class="form-control dropdown" id="expected_country" name="expected_country">
-                                                <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                                                <select data-width="100%" id="expected_country" name="expected_country[]" multiple="multiple">
+                                                {{-- <select class="w-100 dropdown" id="expected_country" name="expected_country[]" multiple="multiple"> --}}
+                                                    <option value="">-- select one --</option>
                                                     <option value="USA">  USA </option>
                                                     <option value="UK">  UK </option>
                                                     <option value="Canada">  Canada </option>

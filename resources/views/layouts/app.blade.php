@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>British American Resource Center</title>
     <link rel="icon" type="image/x-icon" href="{{asset('frontend/images/logo.png')}}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,18 +87,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js "></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> --}}
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('#expected_country').select2();
+});
+    </script>
 <script>
     $( function() {
         $( "#date_of_birth" ).datepicker({
-        dateFormat: "dd-mm-yy"
+            dateFormat: "dd-mm-yy"
         });
         $( "#ielts_exam_date" ).datepicker({
-        dateFormat: "dd-mm-yy"
+            dateFormat: "dd-mm-yy"
         });
     });
 </script>
+
 <script>
     $.ajaxSetup({
         headers: {

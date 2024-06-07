@@ -29,6 +29,17 @@ class VisitorInfo extends Model
         'category_of_ielts',
         'ielts_can_id',
         'ielts_exam_date',
+        
+        'ielts_enough_time',
+        'ielts_taken',
+        'reading_expected_module',
+        'listening_expected_module',
+        'writing_expected_module',
+        'speaking_expected_module',
+        'nid_passport_number',
+        'blood_group',
+        'emergency_number',
+        'total_enroll_course',
         'comments_from_student',
         'feedback_from_advisor',
     ];

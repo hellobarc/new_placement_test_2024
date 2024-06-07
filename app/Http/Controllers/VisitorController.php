@@ -20,7 +20,7 @@ class VisitorController extends Controller
 {
 
     public function storeVisitorInfo(Request $request){
-
+        //dd($request->all());
         $request->validate([
             'full_name'             => 'required|string|max:50',
             'contact_number'        => 'required|string|max:50',
@@ -51,7 +51,7 @@ class VisitorController extends Controller
             $organization       = $request->input('organization');
             $date_of_birth      = $request->input('date_of_birth');
             $education          = $request->input('education');
-            $expected_country   = $request->input('expected_country');
+            $expected_country   = json_encode($request->input('expected_country'));
             $expected_score     = $request->input('expected_score');
             $purpose_of_ielts   = $request->input('purpose_of_ielts');
             //others
@@ -162,26 +162,26 @@ class VisitorController extends Controller
 
 
     public function studentDetails($id){
-        $getDetails = DB::table('visitor_infos')
-        ->join('visitor_logs', 'visitor_infos.visitor_log_id', '=', 'visitor_logs.id')
-        ->first();
+        $getDetails = VisitorInfo::where('visitor_log_id', $id)->with('studentInfo')->first();
+        // DB::table('visitor_infos')
+        // ->join('visitor_logs', 'visitor_infos.visitor_log_id', '=', 'visitor_logs.id')
+        // ->first();
 
         return view('studentDetails', compact('getDetails'));
     }
     
-    public function studentDetailsUpdate(Request $request,$id){
-        VisitorInfo::updateOrCreate(
-            ['visitor_log_id' => $id],
+    public function studentDetailsUpdate(Request $request,$id)
+    {
+        dd($request->all());
+        VisitorInfo::updateOrCreate([
+                'visitor_log_id' => $id,
+            ],
             [
                 'comments_from_student' => $request->comments_from_student,
                 'feedback_from_advisor' => $request->feedback_from_advisor
-            ]
-            );
-
+            ]);
         return redirect()->route('student.Details', ['id' => $id]);
     }
-
-
     public function statusChanged(Request $request, $id){
         $changedStatus = $request->input('status');
         
@@ -191,7 +191,6 @@ class VisitorController extends Controller
         ]);
 
     }
-
     public function AdviserNotificationCount(){
         $advisorID = Auth::user()->id;
         $notificationCount = VisitorLog::where('assign_advisor',$advisorID)
@@ -199,7 +198,6 @@ class VisitorController extends Controller
 
         return $notificationCount;
     }
-
     public function adivserUpdateStudentStatus(Request $request){
 
         $id = $request->input('id');
@@ -213,7 +211,6 @@ class VisitorController extends Controller
         // Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
-
     public function mockStatusUpdate(Request $request){
 
         $id = $request->input('id');
@@ -226,8 +223,6 @@ class VisitorController extends Controller
         
         return redirect('/mock-student-list');
     }
-
-
     public function DeclineStudentAssign($studentId){
         VisitorLog::where('id', $studentId)
                     ->update([
@@ -238,7 +233,6 @@ class VisitorController extends Controller
         // Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
-
     public function timeOutDeclined(){
         $adviserId = Auth::user()->id;
 
@@ -250,9 +244,7 @@ class VisitorController extends Controller
         // Helpers::FrontEventPushNotification();
         return redirect()->back()->with('success','Unapproved Students Declined');
     }
-
     //Notification status Change
-
     public function frontNotification(){
         VisitorLog::where('front_desk_notification', 'not_seen')
                     ->update([
@@ -260,7 +252,6 @@ class VisitorController extends Controller
                     ]);
         return redirect()->back();
     }
-
     public function AdviserNotification(){
         $advisorID = Auth::user()->id;
         VisitorLog::where('assign_advisor',$advisorID)
@@ -270,7 +261,6 @@ class VisitorController extends Controller
                     ]);
         return redirect()->back();
     }
-
     public function frontNotificationCount(){
         $notificationCount = VisitorLog::where('status', 'declined')
         ->where('front_desk_notification','not_seen')
@@ -278,7 +268,6 @@ class VisitorController extends Controller
 
         return $notificationCount;
     }
-
     public function mockNotificationCount(){
         $advisorID = Auth::user()->id;
         $notificationCount = VisitorLog::where('assign_advisor', $advisorID)
@@ -287,7 +276,6 @@ class VisitorController extends Controller
 
         return $notificationCount;
     }
-
     public function MockNotificationChange(){
         $advisorID = Auth::user()->id;
         VisitorLog::where('assign_advisor',$advisorID)
@@ -297,8 +285,7 @@ class VisitorController extends Controller
                     ]);
         return redirect()->back();
     }
-    public function getUserInfoByUserContact(Request $request)
-    {
+    public function getUserInfoByUserContact(Request $request){
         $data = $request->all();
         $contact_number = $data['contact_number'];
         $getData = VisitorLog::where('mobile', $contact_number)->with('userInfo')->first();

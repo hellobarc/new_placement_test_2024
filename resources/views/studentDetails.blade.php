@@ -18,7 +18,7 @@
             <div style="background: #ebf6fc !important" class="p-5 mb-5">
                 <h1 style="color: #284664; font-weight:700" class="text-center">Student Details Information</h1>
                 <div class="mt-3">
-                    <form action="{{ route('student.Details.update', $getDetails->id )}}" method="POST">
+                    <form action="{{ route('advisor.student.Details.update', $getDetails->id )}}" method="POST">
                         @csrf
                         @include('flash-message')
                         <!-- name and mobile -->
@@ -26,13 +26,13 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="full-name" class="fw-bold">Full Name</label><br>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->full_name}}">
+                                    <p style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->studentInfo->full_name}}</p>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="mobile-number" class="fw-bold">Mobile Number</label><br>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->mobile}}">
+                                    <p style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->studentInfo->mobile}}</p>
                                 </div>
                             </div>
                             
@@ -42,25 +42,25 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold">Email</label><br>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->email}}">
+                                    <p style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->studentInfo->email}}</p>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="occupation" class="fw-bold">Profession </label><br>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->occupation}}">
+                                    <input type="text" name="occupation" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->occupation}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="address" class="fw-bold">Location</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->location}}">
+                                    <input type="text" name="location" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->location}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="address" class="fw-bold">Address</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->address}}">
+                                    <input type="text" name="address" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->address}}">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="organization" class="fw-bold">Current Organization/Institution  Name</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->organization}}">
+                                    <input type="text" name="organization" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->organization}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -84,28 +84,51 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="address" class="fw-bold">Educational Qualification</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->education}}">
+                                    <input type="text" name="education" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->education}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold">How to know about us</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->how_you_know}}">
+                                    <p style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->how_you_know}}</p>
                                 </div>
                             </div>  
                         </div>
+                        <!-- student reference -->
+                        @if ($getDetails->how_you_know == 'student_reference')
+                            <div class="row mt-3">
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="address" class="fw-bold">Reference Student Name</label>
+                                        <input type="text" name="refer_stu_name" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->refer_stu_name}}">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="email" class="fw-bold">Refer phone number</label>
+                                        <input type="text" name="refer_phone_number" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->refer_phone_number}}">
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="email" class="fw-bold">Refer batch Name</label>
+                                        <input type="text" name="refer_batch_name" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->refer_batch_name}}">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <!-- expected country to go, expected ielts score -->
                         <div class="row mt-3">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold">Expected Country to go</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->expected_country}}">
+                                    <input type="text" name="expected_country" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->expected_country}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="expected_score" class="fw-bold">Expected IELTS Score</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->expected_score}}">
+                                    <input type="text" name="expected_score" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->expected_score}}">
                                 </div>
                             </div>
                         </div>
@@ -114,16 +137,91 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold"> Purpose of IELTS</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->purpose_of_ielts}}">
+                                    <input type="text" name="purpose_of_ielts" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->purpose_of_ielts}}">
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold"> Purpose of Visiting BARC</label>
-                                    <input type="text" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->purpose_of_visit}}">
+                                    <p style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->studentInfo->purpose_of_visit}}</p>
                                 </div>
                             </div>
                         </div>
+                         <!-- others information -->
+                         <div class="row mt-3">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> How much time to take IELTS?</label>
+                                    <input type="text" name="ielts_enough_time" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->ielts_enough_time}}">
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> How much time to take IELTS?</label>
+                                    <select name="ielts_taken" id="" class="mb-1 py-2 px-2 fs-5 w-100" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;">
+                                        <option value="">Please select one</option>
+                                        <option value="{{$getDetails->ielts_taken == 'yes'?'selected':''}}">Yes</option>
+                                        <option value="{{$getDetails->ielts_taken == 'no'?'selected':''}}">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                         </div>
+                         <div class="row mt-3">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Expected score for reading module</label>
+                                    <input type="text" name="reading_expected_module" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->reading_expected_module}}">
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Expected score for listening module</label>
+                                    <input type="text" name="listening_expected_module" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->listening_expected_module}}">
+                                </div>
+                            </div>
+                         </div>
+                         <div class="row mt-3">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Expected score for writing module</label>
+                                    <input type="text" name="writing_expected_module" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->writing_expected_module}}">
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Expected score for speaking module</label>
+                                    <input type="text" name="speaking_expected_module" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->speaking_expected_module}}">
+                                </div>
+                            </div>
+                         </div>
+                         <div class="row mt-3">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> NID/Passport Number</label>
+                                    <input type="text" name="nid_passport_number" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->nid_passport_number}}">
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Blood Group</label>
+                                    <input type="text" name="blood_group" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->blood_group}}">
+                                </div>
+                            </div>
+                         </div>
+                         <div class="row mt-3">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Emergency Number</label>
+                                    <input type="text" name="emergency_number" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->emergency_number}}">
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="email" class="fw-bold"> Total Enrolled Course</label>
+                                    <input type="text" name="total_enroll_course" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100" value="{{$getDetails->total_enroll_course}}">
+                                </div>
+                            </div>
+                         </div>
                          <!-- Comments From Student, Feedback From Advisor -->
                         <div class="row mt-3">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
