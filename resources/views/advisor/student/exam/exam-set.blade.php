@@ -28,10 +28,10 @@
                                     @if (Helper::testStatus($student_id, Auth::user()->id, $exam->id)->status == 'completed')
                                         <a href="#" class="btn btn-success btn-sm px-3 py-2">View Result</a>
                                     @else
-                                        <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>$segment_id, 'student_id'=>$student_id])}}" class="button_exam">Pending</a>
+                                        <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>$segment_id,'module_id'=>$current_module_id, 'student_id'=>$student_id])}}" class="button_exam">Pending</a>
                                     @endif
                                 @else
-                                    <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>1, 'student_id'=>$student_id])}}" class="button_exam">Start Now</a>
+                                    <a href="{{route('student.exam.start', ['exam_id'=>$exam->id, 'segment_id'=>1, 'module_id'=>1, 'student_id'=>$student_id])}}" class="button_exam">Start Now</a>
                                 @endif
                             </div>
                         </div>

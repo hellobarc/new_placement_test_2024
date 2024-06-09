@@ -160,6 +160,8 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::post('/store-price-list', 'storeCouresPrices')->name('store.course.price');
         Route::post('/update-price-list/{id}', 'updateCoursePrices')->name('update.course.price');
         Route::get('/course-price-delete/{id}', 'coursePriceDelete')->name('course.price.delete');
+        Route::get('/priviliged-price', 'priviligedPrice')->name('course.priviliged.price');
+        Route::post('/submit/priviliged-price', 'storePriviligedPrice')->name('course.submit.priviliged.price');
     });
     
     Route::controller(CourseBundleController::class)->group(function(){
@@ -208,7 +210,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     });
     Route::controller(ExamController::class)->group(function () {
         Route::get('/exam-set/{student_id}', 'examSet')->name('student.exam.set');
-        Route::get('/start-exam/{exam_id}/{segment_id}/{student_id}', 'startExam')->name('student.exam.start');
+        Route::get('/start-exam/{exam_id}/{segment_id}/{module_id}/{student_id}', 'startExam')->name('student.exam.start');
         Route::post('/exam-submission', 'examSubmission')->name('student.exam.submission');
         Route::get('/exam-result/{student_id}', 'examResult')->name('student.exam.result');
         Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');

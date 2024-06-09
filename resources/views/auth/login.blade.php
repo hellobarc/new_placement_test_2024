@@ -6,7 +6,7 @@
         <div class="" style="border:none; box-shadow: 0px 3px 14px 0px rgba(130, 125, 125, 0.08);">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{asset('frontend/images/ceo.png')}}" alt="" class="" style="width: 100%;">
+                    <img src="{{asset('frontend/images/ceo.jpg')}}" alt="" class="" style="width: 100%;">
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5">

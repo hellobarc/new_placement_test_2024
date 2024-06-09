@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 02:51 PM
+-- Generation Time: Jun 09, 2024 at 02:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,8 +40,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `name`, `course_benefits`, `created_at`, `updated_at`) VALUES
-(1, 'A1', '<ul>\r\n	<li>use simple words and phrases for talking with others.</li>\r\n	<li>introduce themselves and talk about common things using everyday words.</li>\r\n	<li>understand and use basic grammar rules and patterns</li>\r\n	<li>find the main points and details in sentences with simple words and structure.</li>\r\n	<li>read simple texts and write easy sentences.</li>\r\n</ul>', '2024-03-04 00:23:54', '2024-03-04 01:15:36'),
-(2, 'A2', '<ul>\r\n	<li><span style=\"font-size:18px\">write paragraphs with a main idea, supporting details, and a conclusion.</span></li>\r\n	<li><span style=\"font-size:18px\">talk about everyday situations like describing daily routines, a day at work or in school, hobbies etc.</span></li>\r\n	<li><span style=\"font-size:18px\">discuss fairly more complex ideas and objects.</span></li>\r\n	<li><span style=\"font-size:18px\">understand and use words and phrases for everyday situations.</span></li>\r\n	<li><span style=\"font-size:18px\">use major grammar rules like the Degree of Adjectives, Wh- questions, Subject-verb Agreement, and Clauses in a basic way.</span></li>\r\n	<li><span style=\"font-size:18px\">listen and understand feelings in speech and find the main points.</span></li>\r\n</ul>', '2024-03-04 02:35:35', '2024-03-04 02:35:35'),
+(1, 'A1', '<p style=\"text-align:center\"><strong><span style=\"font-size:20px\">Course Outcomes</span></strong><br />\r\n<span style=\"font-size:18px\">After finishing this level students will be able to:</span></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">use simple words and phrases for talking with others.</span></li>\r\n	<li><span style=\"font-size:16px\">introduce themselves and talk about common things using everyday words.</span></li>\r\n	<li><span style=\"font-size:16px\">understand and use basic grammar rules and patterns.</span></li>\r\n	<li><span style=\"font-size:16px\">read simple texts and write easy sentences.</span></li>\r\n	<li><span style=\"font-size:16px\">find the main points and details in sentences with simple words and structure.</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><strong><span style=\"font-size:20px\">Assessment Process</span></strong></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">Pre-course Assessment Test</span></li>\r\n	<li><span style=\"font-size:16px\">Class test- 12</span></li>\r\n	<li><span style=\"font-size:16px\">Mid-term progress test</span></li>\r\n	<li><span style=\"font-size:16px\">Promotion test</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><strong><span style=\"font-size:20px\">Study materials/books</span></strong></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">A2 Skill Builder, Student Book</span></li>\r\n	<li><span style=\"font-size:16px\">Vocabulary Dairy</span></li>\r\n	<li><span style=\"font-size:16px\">Online Portal</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><strong><span style=\"font-size:20px\">​​​​​​​On-campus class</span></strong></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">Student Book- 36&nbsp;hours</span></li>\r\n	<li><span style=\"font-size:16px\">Language Club- 6 hours</span></li>\r\n	<li><span style=\"font-size:16px\">Assessments- 3 hours</span></li>\r\n</ul>', '2024-03-04 00:23:54', '2024-06-09 04:18:45'),
+(2, 'A2', '<p>&nbsp;</p>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:20px\"><strong>Course Outcomes</strong></span><br />\r\n<span style=\"font-size:18px\">After finishing this level students will be able to:</span></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">write paragraphs with a main idea, supporting details, and a conclusion.</span></li>\r\n	<li><span style=\"font-size:16px\">talk about everyday situations like describing daily routines, a day at work or in school, hobbies, etc.</span></li>\r\n	<li><span style=\"font-size:16px\">discuss fairly more complex ideas and objects.</span></li>\r\n	<li><span style=\"font-size:16px\">understand and use words and phrases for everyday situations.</span></li>\r\n	<li><span style=\"font-size:16px\">use major grammar rules like the Degree of Adjectives, Wh- questions, Subject-verb Agreement, and Clauses in a basic way.</span></li>\r\n	<li><span style=\"font-size:16px\">listen and understand feelings in speech and find the main points.</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:20px\"><strong>Assessment Process</strong></span></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">Pre-course Assessment Test</span></li>\r\n	<li><span style=\"font-size:16px\">Class test- 16 (2 tests in each 3-hour class) Mid-term progress test</span></li>\r\n	<li><span style=\"font-size:16px\">Mid-term progress test</span></li>\r\n	<li><span style=\"font-size:16px\">Promotion test</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:20px\"><strong>Study materials/books</strong></span></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">A2 Skill Builder, Student Book</span></li>\r\n	<li><span style=\"font-size:16px\">Vocabulary Dairy</span></li>\r\n	<li><span style=\"font-size:16px\">Online Portal</span></li>\r\n</ul>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:20px\"><strong>​​​​​​​​​​​​​​On-campus class</strong></span></p>\r\n\r\n<ul>\r\n	<li><span style=\"font-size:16px\">Student Book- 24 hours&nbsp;</span></li>\r\n	<li><span style=\"font-size:16px\">Language Club- 6 hours</span></li>\r\n	<li><span style=\"font-size:16px\">Assessments- 3 hours</span></li>\r\n</ul>', '2024-03-04 02:35:35', '2024-06-09 04:19:48'),
 (3, 'B1', '<ul>\r\n	<li><span style=\"font-size:18px\">﻿use grammar better when writing your own work. </span></li>\r\n	<li><span style=\"font-size:18px\">write different types of paragraphs, like giving opinions or solving problems, to create longer essays.</span></li>\r\n	<li><span style=\"font-size:18px\">talk comfortably about things like environment, technology, past or current events etc.</span></li>\r\n	<li><span style=\"font-size:18px\">read quickly to find the main ideas in long passages. </span></li>\r\n	<li><span style=\"font-size:18px\">understand complex words by looking at the surrounding text and using synonymous words.</span></li>\r\n	<li><span style=\"font-size:18px\">understand what a speaker is trying to say and summarize their main ideas when listening.</span></li>\r\n</ul>', '2024-03-04 02:40:44', '2024-03-04 02:40:44'),
 (4, 'B2', '<ul>\r\n	<li><span style=\"font-size:18px\">﻿write persuasively using different grammar rules correctly.</span></li>\r\n	<li><span style=\"font-size:18px\">write academic essays using examples and opinions to make strong arguments.</span></li>\r\n	<li><span style=\"font-size:18px\">speak easily on topics that frequently appear on IELTS exam.</span></li>\r\n	<li><span style=\"font-size:18px\">use more advanced words correctly in your writing.</span></li>\r\n	<li><span style=\"font-size:18px\">understand and use information from what you read and hear in your own writing.</span></li>\r\n</ul>', '2024-03-04 02:42:17', '2024-03-04 02:42:17'),
 (5, 'C1', '<ul>\r\n	<li><span style=\"font-size:18px\">﻿analyze difficult essay topics and write long argument essays with good command on formal written English</span></li>\r\n	<li><span style=\"font-size:18px\">explain difficult ideas with accuracy and fluency when talking without planning.</span></li>\r\n	<li><span style=\"font-size:18px\">understand and use difficult words with accuracy in all modules of IELTS exam.</span></li>\r\n	<li><span style=\"font-size:18px\">critically read and analyze complex texts on both familiar and unfamiliar topics.</span></li>\r\n</ul>', '2024-03-04 02:43:58', '2024-03-04 02:43:58');
@@ -56,6 +56,7 @@ CREATE TABLE `course_bundles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_bundle` varchar(255) NOT NULL,
   `status` enum('active','inactive') NOT NULL,
+  `priviliged_price` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,14 +65,15 @@ CREATE TABLE `course_bundles` (
 -- Dumping data for table `course_bundles`
 --
 
-INSERT INTO `course_bundles` (`id`, `course_bundle`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'A1-A2', 'active', NULL, NULL),
-(2, 'B1-B2', 'active', NULL, NULL),
-(3, 'B2-C1', 'active', NULL, NULL),
-(4, 'A2-B2', 'active', NULL, NULL),
-(5, 'B1-C1', 'active', NULL, NULL),
-(6, 'A1-B2', 'active', NULL, NULL),
-(7, 'A2-C1', 'active', NULL, NULL);
+INSERT INTO `course_bundles` (`id`, `course_bundle`, `status`, `priviliged_price`, `created_at`, `updated_at`) VALUES
+(1, 'A1-A2', 'active', NULL, NULL, NULL),
+(2, 'B1-B2', 'active', NULL, NULL, NULL),
+(3, 'B2-C1', 'active', NULL, NULL, NULL),
+(4, 'A2-B2', 'active', NULL, NULL, NULL),
+(5, 'B1-C1', 'active', NULL, NULL, NULL),
+(6, 'A1-B2', 'active', NULL, NULL, NULL),
+(7, 'A2-C1', 'active', NULL, NULL, NULL),
+(8, 'Priviliged Price', 'active', 2799, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -777,57 +779,60 @@ CREATE TABLE `test_submissions` (
 --
 
 INSERT INTO `test_submissions` (`id`, `activity_log_id`, `question_id`, `sub_question_id`, `exercise_id`, `question_type`, `answered_text`, `submitted_ans`, `is_correct`, `obtained_mark`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 'radio', NULL, '\"0\"', 'no', 0, '2024-05-22 04:31:28', '2024-05-22 04:31:28'),
-(2, 1, 1, 2, 1, 'radio', NULL, '\"1\"', 'yes', 1, '2024-05-22 04:31:28', '2024-05-22 04:31:28'),
-(3, 1, 1, 3, 1, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 04:31:28', '2024-05-22 04:31:28'),
-(4, 2, 2, 1, 2, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-05-22 04:31:37', '2024-05-22 04:31:37'),
-(5, 2, 2, 2, 2, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-05-22 04:31:37', '2024-05-22 04:31:37'),
-(6, 2, 2, 3, 2, 'drop-down', NULL, '\"3\"', 'yes', 1, '2024-05-22 04:31:37', '2024-05-22 04:31:37'),
-(7, 3, 3, 2, 3, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 04:32:12', '2024-05-22 04:32:12'),
-(8, 3, 3, 3, 3, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 04:32:12', '2024-05-22 04:32:12'),
-(9, 3, 3, 4, 3, 'multiple-choice', NULL, '\"1\"', 'yes', 1, '2024-05-22 04:32:12', '2024-05-22 04:32:12'),
-(10, 4, 4, 4, 4, 'radio', NULL, '\"1\"', 'yes', 1, '2024-05-22 06:04:12', '2024-05-22 06:04:12'),
-(11, 4, 4, 5, 4, 'radio', NULL, '\"1\"', 'yes', 1, '2024-05-22 06:04:12', '2024-05-22 06:04:12'),
-(12, 4, 4, 6, 4, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 06:04:12', '2024-05-22 06:04:12'),
-(13, 5, 5, 5, 5, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:04:20', '2024-05-22 06:04:20'),
-(14, 5, 5, 6, 5, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-05-22 06:04:20', '2024-05-22 06:04:20'),
-(15, 5, 5, 7, 5, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:20', '2024-05-22 06:04:20'),
-(16, 6, 6, 4, 6, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:35', '2024-05-22 06:04:35'),
-(17, 6, 6, 5, 6, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-05-22 06:04:35', '2024-05-22 06:04:35'),
-(18, 6, 6, 6, 6, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:35', '2024-05-22 06:04:35'),
-(19, 7, 7, 8, 7, 'multiple-choice', NULL, '\"1\"', 'yes', 1, '2024-05-22 06:04:40', '2024-05-22 06:04:40'),
-(20, 7, 7, 9, 7, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:40', '2024-05-22 06:04:40'),
-(21, 7, 7, 10, 7, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:04:40', '2024-05-22 06:04:40'),
-(22, 8, 8, 7, 8, 'radio', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:46', '2024-05-22 06:04:46'),
-(23, 8, 8, 8, 8, 'radio', NULL, '\"2\"', 'no', 0, '2024-05-22 06:04:46', '2024-05-22 06:04:46'),
-(24, 8, 8, 9, 8, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 06:04:46', '2024-05-22 06:04:46'),
-(25, 9, 9, 11, 9, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:04:54', '2024-05-22 06:04:54'),
-(26, 9, 9, 12, 9, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:04:54', '2024-05-22 06:04:54'),
-(27, 9, 9, 13, 9, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-05-22 06:04:54', '2024-05-22 06:04:54'),
-(28, 10, 10, 10, 10, 'radio', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:05:02', '2024-05-22 06:05:02'),
-(29, 10, 10, 11, 10, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:02', '2024-05-22 06:05:02'),
-(30, 10, 10, 12, 10, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:02', '2024-05-22 06:05:02'),
-(31, 11, 11, 7, 11, 'drop-down', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:09', '2024-05-22 06:05:09'),
-(32, 11, 11, 8, 11, 'drop-down', NULL, '\"3\"', 'no', 0, '2024-05-22 06:05:09', '2024-05-22 06:05:09'),
-(33, 11, 11, 9, 11, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-05-22 06:05:09', '2024-05-22 06:05:09'),
-(34, 12, 12, 13, 12, 'radio', NULL, '\"2\"', 'no', 0, '2024-05-22 06:05:15', '2024-05-22 06:05:15'),
-(35, 12, 12, 14, 12, 'radio', NULL, '\"2\"', 'no', 0, '2024-05-22 06:05:15', '2024-05-22 06:05:15'),
-(36, 12, 12, 15, 12, 'radio', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:15', '2024-05-22 06:05:15'),
-(37, 13, 13, 14, 13, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:05:20', '2024-05-22 06:05:20'),
-(38, 13, 13, 15, 13, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:20', '2024-05-22 06:05:20'),
-(39, 13, 13, 16, 13, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:20', '2024-05-22 06:05:20'),
-(40, 14, 14, 10, 14, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:05:30', '2024-05-22 06:05:30'),
-(41, 14, 14, 11, 14, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-05-22 06:05:30', '2024-05-22 06:05:30'),
-(42, 14, 14, 12, 14, 'drop-down', NULL, '\"3\"', 'yes', 1, '2024-05-22 06:05:30', '2024-05-22 06:05:30'),
-(43, 15, 15, 17, 15, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-05-22 06:05:35', '2024-05-22 06:05:35'),
-(44, 15, 15, 18, 15, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:05:35', '2024-05-22 06:05:35'),
-(45, 15, 15, 19, 15, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-05-22 06:05:35', '2024-05-22 06:05:35'),
-(46, 16, 16, 1, 16, 'fill-blank', '[\"sdf\",\"asdf\",\"asdf\",\"asd\",\"asd\"]', 'null', '0', 0, '2024-05-22 06:05:47', '2024-05-22 06:05:47'),
-(47, 17, 19, 2, 17, 'fill-blank', '[\"asdf\",\"asd\"]', 'null', '0', 0, '2024-05-22 06:05:53', '2024-05-22 06:05:53'),
-(48, 17, 17, 1, 17, 'multi-selector', NULL, '\"not_answered\"', '0', 0, '2024-05-22 06:05:53', '2024-05-22 06:05:53'),
-(49, 18, 20, 25, 18, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-05-22 06:06:00', '2024-05-22 06:06:00'),
-(50, 18, 20, 26, 18, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-05-22 06:06:00', '2024-05-22 06:06:00'),
-(51, 18, 18, 3, 18, 'fill-blank', '[\"asd\",\"asd\",\"asd\"]', 'null', '0', 0, '2024-05-22 06:06:00', '2024-05-22 06:06:00');
+(1, 1, 1, 1, 1, 'radio', NULL, '\"1\"', 'yes', 1, '2024-06-09 02:57:46', '2024-06-09 02:57:46'),
+(2, 1, 1, 2, 1, 'radio', NULL, '\"3\"', 'no', 0, '2024-06-09 02:57:46', '2024-06-09 02:57:46'),
+(3, 1, 1, 3, 1, 'radio', NULL, '\"1\"', 'no', 0, '2024-06-09 02:57:46', '2024-06-09 02:57:46'),
+(4, 2, 2, 1, 2, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:57:53', '2024-06-09 02:57:53'),
+(5, 2, 2, 2, 2, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:57:53', '2024-06-09 02:57:53'),
+(6, 2, 2, 3, 2, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:57:53', '2024-06-09 02:57:53'),
+(7, 3, 3, 2, 3, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:57:59', '2024-06-09 02:57:59'),
+(8, 3, 3, 3, 3, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:57:59', '2024-06-09 02:57:59'),
+(9, 3, 3, 4, 3, 'multiple-choice', NULL, '\"1\"', 'yes', 1, '2024-06-09 02:57:59', '2024-06-09 02:57:59'),
+(10, 4, 4, 4, 4, 'radio', NULL, '\"3\"', 'no', 0, '2024-06-09 02:58:09', '2024-06-09 02:58:09'),
+(11, 4, 4, 5, 4, 'radio', NULL, '\"1\"', 'yes', 1, '2024-06-09 02:58:09', '2024-06-09 02:58:09'),
+(12, 4, 4, 6, 4, 'radio', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:09', '2024-06-09 02:58:09'),
+(13, 5, 5, 5, 5, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-06-09 02:58:25', '2024-06-09 02:58:25'),
+(14, 5, 5, 6, 5, 'multiple-choice', NULL, '\"0\"', 'no', 0, '2024-06-09 02:58:25', '2024-06-09 02:58:25'),
+(15, 5, 5, 7, 5, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:25', '2024-06-09 02:58:25'),
+(16, 6, 6, 4, 6, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:33', '2024-06-09 02:58:33'),
+(17, 6, 6, 5, 6, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:33', '2024-06-09 02:58:33'),
+(18, 6, 6, 6, 6, 'drop-down', NULL, '\"1\"', 'no', 0, '2024-06-09 02:58:33', '2024-06-09 02:58:33'),
+(19, 7, 7, 8, 7, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:38', '2024-06-09 02:58:38'),
+(20, 7, 7, 9, 7, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:38', '2024-06-09 02:58:38'),
+(21, 7, 7, 10, 7, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-06-09 02:58:38', '2024-06-09 02:58:38'),
+(22, 8, 8, 7, 8, 'radio', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:45', '2024-06-09 02:58:45'),
+(23, 8, 8, 8, 8, 'radio', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:45', '2024-06-09 02:58:45'),
+(24, 8, 8, 9, 8, 'radio', NULL, '\"1\"', 'no', 0, '2024-06-09 02:58:45', '2024-06-09 02:58:45'),
+(25, 9, 9, 11, 9, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:50', '2024-06-09 02:58:50'),
+(26, 9, 9, 12, 9, 'multiple-choice', NULL, '\"3\"', 'yes', 1, '2024-06-09 02:58:50', '2024-06-09 02:58:50'),
+(27, 9, 9, 13, 9, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:50', '2024-06-09 02:58:50'),
+(28, 10, 10, 10, 10, 'radio', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:58:56', '2024-06-09 02:58:56'),
+(29, 10, 10, 11, 10, 'radio', NULL, '\"1\"', 'no', 0, '2024-06-09 02:58:56', '2024-06-09 02:58:56'),
+(30, 10, 10, 12, 10, 'radio', NULL, '\"2\"', 'no', 0, '2024-06-09 02:58:56', '2024-06-09 02:58:56'),
+(31, 11, 11, 7, 11, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:59:03', '2024-06-09 02:59:03'),
+(32, 11, 11, 8, 11, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:59:03', '2024-06-09 02:59:03'),
+(33, 11, 11, 9, 11, 'drop-down', NULL, '\"2\"', 'no', 0, '2024-06-09 02:59:03', '2024-06-09 02:59:03'),
+(34, 12, 12, 13, 12, 'radio', NULL, '\"1\"', 'yes', 1, '2024-06-09 02:59:10', '2024-06-09 02:59:10'),
+(35, 12, 12, 14, 12, 'radio', NULL, '\"1\"', 'yes', 1, '2024-06-09 02:59:10', '2024-06-09 02:59:10'),
+(36, 12, 12, 15, 12, 'radio', NULL, '\"1\"', 'no', 0, '2024-06-09 02:59:10', '2024-06-09 02:59:10'),
+(37, 13, 13, 14, 13, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-06-09 02:59:15', '2024-06-09 02:59:15'),
+(38, 13, 13, 15, 13, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:59:15', '2024-06-09 02:59:15'),
+(39, 13, 13, 16, 13, 'multiple-choice', NULL, '\"0\"', 'no', 0, '2024-06-09 02:59:15', '2024-06-09 02:59:15'),
+(40, 14, 14, 10, 14, 'drop-down', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:59:24', '2024-06-09 02:59:24'),
+(41, 14, 14, 11, 14, 'drop-down', NULL, '\"3\"', 'yes', 1, '2024-06-09 02:59:24', '2024-06-09 02:59:24'),
+(42, 14, 14, 12, 14, 'drop-down', NULL, '\"3\"', 'yes', 1, '2024-06-09 02:59:24', '2024-06-09 02:59:24'),
+(43, 15, 15, 17, 15, 'multiple-choice', NULL, '\"2\"', 'yes', 1, '2024-06-09 02:59:30', '2024-06-09 02:59:30'),
+(44, 15, 15, 18, 15, 'multiple-choice', NULL, '\"2\"', 'no', 0, '2024-06-09 02:59:30', '2024-06-09 02:59:30'),
+(45, 15, 15, 19, 15, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-06-09 02:59:30', '2024-06-09 02:59:30'),
+(46, 16, 16, 1, 16, 'fill-blank', '[\"afsd\",\"dfsa\",\"adsf\",\"sdf\",\"dasf\"]', 'null', '0', 0, '2024-06-09 02:59:43', '2024-06-09 02:59:43'),
+(47, 17, 19, 2, 17, 'fill-blank', '[\"asfd\",\"asdf\"]', 'null', '0', 0, '2024-06-09 02:59:51', '2024-06-09 02:59:51'),
+(48, 17, 17, 1, 17, 'multi-selector', NULL, '\"not_answered\"', '0', 0, '2024-06-09 02:59:51', '2024-06-09 02:59:51'),
+(49, 18, 20, 25, 18, 'multiple-choice', NULL, '\"1\"', 'no', 0, '2024-06-09 02:59:59', '2024-06-09 02:59:59'),
+(50, 18, 20, 26, 18, 'multiple-choice', NULL, '\"0\"', 'no', 0, '2024-06-09 02:59:59', '2024-06-09 02:59:59'),
+(51, 18, 18, 3, 18, 'fill-blank', '[\"adf\",\"df\",\"sadf\"]', 'null', '0', 0, '2024-06-09 02:59:59', '2024-06-09 02:59:59'),
+(52, 19, 1, 1, 1, 'radio', NULL, '\"2\"', 'no', 0, '2024-06-09 06:11:53', '2024-06-09 06:11:53'),
+(53, 19, 1, 2, 1, 'radio', NULL, '\"2\"', 'no', 0, '2024-06-09 06:11:53', '2024-06-09 06:11:53'),
+(54, 19, 1, 3, 1, 'radio', NULL, '\"2\"', 'yes', 1, '2024-06-09 06:11:53', '2024-06-09 06:11:53');
 
 -- --------------------------------------------------------
 
@@ -853,24 +858,25 @@ CREATE TABLE `test_submission_activity_logs` (
 --
 
 INSERT INTO `test_submission_activity_logs` (`id`, `submission_log_id`, `module_id`, `finished_part`, `start_log`, `end_log`, `spent_time`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1716373786, 1716373888, '602', 'submitted', '2024-05-22 04:31:28', '2024-05-22 04:31:28'),
-(2, 1, 1, 2, 1716373888, 1716373897, '9', 'submitted', '2024-05-22 04:31:37', '2024-05-22 04:31:37'),
-(3, 1, 1, 3, 1716373898, 1716373932, '34', 'submitted', '2024-05-22 04:32:12', '2024-05-22 04:32:12'),
-(4, 1, 1, 4, 1716379442, 1716379452, '10', 'submitted', '2024-05-22 06:04:12', '2024-05-22 06:04:12'),
-(5, 1, 1, 5, 1716379452, 1716379460, '8', 'submitted', '2024-05-22 06:04:20', '2024-05-22 06:04:20'),
-(6, 1, 2, 6, 1716379460, 1716379475, '15', 'submitted', '2024-05-22 06:04:35', '2024-05-22 06:04:35'),
-(7, 1, 2, 7, 1716379475, 1716379480, '5', 'submitted', '2024-05-22 06:04:40', '2024-05-22 06:04:40'),
-(8, 1, 2, 8, 1716379480, 1716379486, '6', 'submitted', '2024-05-22 06:04:46', '2024-05-22 06:04:46'),
-(9, 1, 2, 9, 1716379486, 1716379494, '8', 'submitted', '2024-05-22 06:04:54', '2024-05-22 06:04:54'),
-(10, 1, 2, 10, 1716379494, 1716379502, '8', 'submitted', '2024-05-22 06:05:02', '2024-05-22 06:05:02'),
-(11, 1, 3, 11, 1716379502, 1716379509, '7', 'submitted', '2024-05-22 06:05:09', '2024-05-22 06:05:09'),
-(12, 1, 3, 12, 1716379509, 1716379515, '6', 'submitted', '2024-05-22 06:05:15', '2024-05-22 06:05:15'),
-(13, 1, 3, 13, 1716379515, 1716379520, '5', 'submitted', '2024-05-22 06:05:20', '2024-05-22 06:05:20'),
-(14, 1, 3, 14, 1716379520, 1716379530, '10', 'submitted', '2024-05-22 06:05:30', '2024-05-22 06:05:30'),
-(15, 1, 3, 15, 1716379530, 1716379535, '5', 'submitted', '2024-05-22 06:05:35', '2024-05-22 06:05:35'),
-(16, 1, 4, 16, 1716379535, 1716379547, '12', 'submitted', '2024-05-22 06:05:47', '2024-05-22 06:05:47'),
-(17, 1, 4, 17, 1716379547, 1716379553, '6', 'submitted', '2024-05-22 06:05:53', '2024-05-22 06:05:53'),
-(18, 1, 4, 18, 1716379553, 1716379560, '7', 'submitted', '2024-05-22 06:06:00', '2024-05-22 06:06:00');
+(1, 1, 1, 1, 1717923448, 1717923466, '18', 'submitted', '2024-06-09 02:57:46', '2024-06-09 02:57:46'),
+(2, 1, 1, 2, 1717923466, 1717923473, '7', 'submitted', '2024-06-09 02:57:53', '2024-06-09 02:57:53'),
+(3, 1, 1, 3, 1717923473, 1717923479, '6', 'submitted', '2024-06-09 02:57:59', '2024-06-09 02:57:59'),
+(4, 1, 1, 4, 1717923479, 1717923489, '10', 'submitted', '2024-06-09 02:58:09', '2024-06-09 02:58:09'),
+(5, 1, 1, 5, 1717923490, 1717923505, '15', 'submitted', '2024-06-09 02:58:25', '2024-06-09 02:58:25'),
+(6, 1, 2, 1, 1717923505, 1717923513, '8', 'submitted', '2024-06-09 02:58:33', '2024-06-09 02:58:33'),
+(7, 1, 2, 2, 1717923513, 1717923518, '5', 'submitted', '2024-06-09 02:58:38', '2024-06-09 02:58:38'),
+(8, 1, 2, 3, 1717923518, 1717923525, '7', 'submitted', '2024-06-09 02:58:45', '2024-06-09 02:58:45'),
+(9, 1, 2, 4, 1717923525, 1717923530, '5', 'submitted', '2024-06-09 02:58:50', '2024-06-09 02:58:50'),
+(10, 1, 2, 5, 1717923530, 1717923536, '6', 'submitted', '2024-06-09 02:58:56', '2024-06-09 02:58:56'),
+(11, 1, 3, 1, 1717923536, 1717923543, '7', 'submitted', '2024-06-09 02:59:03', '2024-06-09 02:59:03'),
+(12, 1, 3, 2, 1717923543, 1717923550, '7', 'submitted', '2024-06-09 02:59:10', '2024-06-09 02:59:10'),
+(13, 1, 3, 3, 1717923550, 1717923555, '5', 'submitted', '2024-06-09 02:59:15', '2024-06-09 02:59:15'),
+(14, 1, 3, 4, 1717923555, 1717923564, '9', 'submitted', '2024-06-09 02:59:24', '2024-06-09 02:59:24'),
+(15, 1, 3, 5, 1717923564, 1717923570, '6', 'submitted', '2024-06-09 02:59:30', '2024-06-09 02:59:30'),
+(16, 1, 4, 1, 1717923571, 1717923583, '12', 'submitted', '2024-06-09 02:59:43', '2024-06-09 02:59:43'),
+(17, 1, 4, 2, 1717923583, 1717923591, '8', 'submitted', '2024-06-09 02:59:51', '2024-06-09 02:59:51'),
+(18, 1, 4, 3, 1717923591, 1717923599, '8', 'submitted', '2024-06-09 02:59:59', '2024-06-09 02:59:59'),
+(19, 2, 1, 1, 1717935095, 1717935113, '18', 'submitted', '2024-06-09 06:11:53', '2024-06-09 06:11:53');
 
 -- --------------------------------------------------------
 
@@ -895,7 +901,8 @@ CREATE TABLE `test_submission_logs` (
 --
 
 INSERT INTO `test_submission_logs` (`id`, `student_id`, `advisor_id`, `test_id`, `status`, `test_start`, `test_end`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, 1, 'completed', '1716373786.5465', '1716379560', '2024-05-22 04:31:28', '2024-05-22 06:06:00');
+(1, 1, 4, 1, 'completed', '1717923448.4748', '1717923599', '2024-06-09 02:57:46', '2024-06-09 02:59:59'),
+(2, 5, 4, 1, 'started', '1717935095.7751', NULL, '2024-06-09 06:11:53', '2024-06-09 06:11:53');
 
 -- --------------------------------------------------------
 
@@ -922,12 +929,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin User', 'admin@hellobarc.com', NULL, '$2y$12$S6zoK59cZ.h348opKko/pec/qX6h1e8oStmrS1Fz8LNCCqYkMkdiq', 1, 'active', NULL, '2024-02-28 21:49:33', '2024-02-28 21:49:33'),
-(2, 'Muktadir', 'muktadir.barc@gmail.com', NULL, '$2y$12$iJ7PnzhWSo.9ckCoxy.4.uFj94eYvHU9s/OJGLH0rmo5Xv8yvzQgO', 2, 'active', NULL, '2024-02-28 21:49:33', '2024-03-14 22:26:52'),
+(2, 'Muktadir', 'muktadir.barc@gmail.com', NULL, '$2y$12$iJ7PnzhWSo.9ckCoxy.4.uFj94eYvHU9s/OJGLH0rmo5Xv8yvzQgO', 3, 'active', NULL, '2024-02-28 21:49:33', '2024-03-14 22:26:52'),
 (3, 'Soniya Akter', 'soniya2.barc@gmail.com', NULL, '$2y$12$YN7Gj64.RCQG2TnfyVQKwOGGeu8HexZEJFgwZB2G7KwKLJp0hlTeK', 0, 'active', NULL, '2024-02-28 21:49:33', '2024-03-14 22:24:25'),
 (4, 'Saida Tanjin', 'tanjin.barc@gmail.com', NULL, '$2y$12$MB.W4H2bVZXXZvlPMj0JBOTe7F1fb4Rxe7Zc91//ssm8RT0rOSyQe', 3, 'active', NULL, '2024-02-28 22:15:42', '2024-03-14 22:25:03'),
 (5, 'Mousumi Mou', 'mousumi.barc@gmail.com', NULL, '$2y$12$i811p6YiRHoMLiXov9hTn.qY7Cb5stnRShQ1vSUkb2Yyulof.ItKC', 3, 'active', NULL, '2024-02-28 22:16:50', '2024-03-14 22:25:38'),
 (6, 'Registration Department', 'registration@barc.com', NULL, '$2y$12$i811p6YiRHoMLiXov9hTn.qY7Cb5stnRShQ1vSUkb2Yyulof.ItKC', 4, 'active', NULL, '2024-02-28 22:16:50', '2024-02-28 22:18:02'),
-(7, 'Munjerin Firoz', 'shoma.barc@gmail.com', NULL, '$2y$12$dOmLTahiea2EZsjZx1W8qei7UP4XzlhkhcSdVksb6AYtpeqvabSbu', 2, 'active', NULL, '2024-03-14 22:27:35', '2024-03-14 22:27:35'),
+(7, 'Munjerin Firoz', 'shoma.barc@gmail.com', NULL, '$2y$12$dOmLTahiea2EZsjZx1W8qei7UP4XzlhkhcSdVksb6AYtpeqvabSbu', 3, 'active', NULL, '2024-03-14 22:27:35', '2024-03-14 22:27:35'),
 (8, 'Afsana Akter', 'afrin.barc@gmail.com', NULL, '$2y$12$GJ1P2JGX8Z5odVCv7pHfAeqjAFAs2fL9/2.sZRx7rJrgDQoX/1uB6', 2, 'active', NULL, '2024-03-14 22:28:07', '2024-03-14 22:28:07');
 
 -- --------------------------------------------------------
@@ -978,7 +985,7 @@ CREATE TABLE `visitor_infos` (
 --
 
 INSERT INTO `visitor_infos` (`id`, `visitor_log_id`, `occupation`, `address`, `location`, `organization`, `date_of_birth`, `education`, `how_you_know`, `expected_country`, `expected_score`, `refer_stu_name`, `refer_phone_number`, `refer_batch_name`, `purpose_of_ielts`, `ielts_test_center`, `ielts_exam_type`, `category_of_ielts`, `ielts_can_id`, `ielts_exam_date`, `ielts_enough_time`, `ielts_taken`, `reading_expected_module`, `listening_expected_module`, `writing_expected_module`, `speaking_expected_module`, `nid_passport_number`, `blood_group`, `emergency_number`, `total_enroll_course`, `comments_from_student`, `feedback_from_advisor`, `created_at`, `updated_at`) VALUES
-(1, 1, 'University Student', 'Sector 11', 'Uttara', 'Uttara University', '19-05-2024', 'HSC', 'student_reference', 'USA', 7, 'Ariful Rahman', '017850540839', 'na', 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-19 06:22:27', '2024-05-19 06:22:27'),
+(1, 1, 'University Student', 'Sector 11', 'Uttara', 'Uttara University', '19-05-2024', 'HSC', 'student_reference', '[\"USA\",\"Canada\", \"UK\"]', 7, 'Ariful Rahman', '017850540839', 'na', 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-19 06:22:27', '2024-05-19 06:22:27'),
 (3, 5, 'Govt. Service', 'Sector 8', 'Uttara', 'na', NULL, 'HSC', 'Facebook', '[\"USA\",\"Canada\"]', 7, NULL, NULL, NULL, 'Academic', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-06-07 03:52:50', '2024-06-07 03:52:50');
 
 -- --------------------------------------------------------
@@ -1182,13 +1189,13 @@ ALTER TABLE `visitor_logs`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `course_bundles`
 --
 ALTER TABLE `course_bundles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `course_prices`
@@ -1290,19 +1297,19 @@ ALTER TABLE `test_radios`
 -- AUTO_INCREMENT for table `test_submissions`
 --
 ALTER TABLE `test_submissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `test_submission_activity_logs`
 --
 ALTER TABLE `test_submission_activity_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `test_submission_logs`
 --
 ALTER TABLE `test_submission_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1314,13 +1321,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitor_infos`
 --
 ALTER TABLE `visitor_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `visitor_logs`
 --
 ALTER TABLE `visitor_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

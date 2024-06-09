@@ -6,7 +6,7 @@
 @endphp
 <section>
     <div class="container-fluid">
-        <div class="exam_template px-5 pb-5 mb-5">
+        <div class="exam_template px-5 pb-5 ">
             <div style="background-color: #D6EFFF; margin: 20px 0">
                 <div class="row">
                     <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <!--Finished Progress bar -->
-                    <div class="assessment-test-progress mb-4">
-                        <progress id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}"> 50% </progress>
+                    <div class="mt-3 mb-5">
+                        <progress style="accent-color: #004AAD;" id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}">50%  </progress>
                     </div>
                     <!-- Question template -->
                     <div>
@@ -321,7 +321,14 @@
 <script>
 
     var get_time ="{{$exam_time}}"
-    var startingMinutes = 50*60;
+    let module_id = "{{$module_id}}"
+    if(module_id == 1){
+        var startingMinutes = 15*60;
+    }else if(module_id == 2 || module_id == 3){
+        var startingMinutes = 8*60;
+    }else if(module_id == 4){
+        var startingMinutes = 14*60;
+    }
     //let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
     //console.log( document.getElementById('countdown').value())
 </script>

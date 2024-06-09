@@ -159,7 +159,7 @@
 //notification for new students
 (function () {
     console.log('self-function');
-    setInterval(notificationNewStudents, 10000);
+        setInterval(notificationNewStudents, 10000);
     })();
 
     function notificationNewStudents(){

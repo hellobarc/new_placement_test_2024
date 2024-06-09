@@ -32,6 +32,7 @@ use App\Models\{
     Module,
     CourseBundle,
     CoursePrice,
+    Course,
 };
 class ExamController extends Controller
 {
@@ -41,110 +42,138 @@ class ExamController extends Controller
         //not completed exam
         $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('status', 'started')->first();
         if($notsubmittedLog){
-            $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->select('finished_part')->get()->toArray();
-            $maxValue= max($activityLog);
-            $segment_id = $maxValue['finished_part']+1;
-            $maxValueDb = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->where('finished_part', $maxValue)->first();
-            return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id', 'segment_id'));
+            $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->latest()->first();
+            $module_id = $activityLog->module_id;
+            $current_segement_id = $activityLog->finished_part;
+            $exerciseDB = ManageTestSection::where('test_id', $notsubmittedLog->test_id)->where('module_id', $module_id)->get();
+            $total_segment = count($exerciseDB);
+
+            if($total_segment == $current_segement_id){
+                $segment_id = 1;
+                $current_module_id = $module_id + 1; 
+            }else{
+                $segment_id = $current_segement_id + 1;
+                $current_module_id = $module_id;
+            }
+            return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id', 'segment_id', 'current_module_id'));
         }else{
             return view('advisor.student.exam.exam-set', compact('allExamSet', 'student_id'));
         }
     }
-    public function startExam($exam_id, $segment_id, $student_id)
+    public function startExam($exam_id, $segment_id, $module_id, $student_id)
     {
-        $allModule = Module::where('name','!=','Speaking')->get();
-        $exerciseDB = ManageTestSection::where('test_id', $exam_id)->get();
-        $total_segment = count($exerciseDB);
-        $countExercise = count($exerciseDB);
-        $totalQuestionCount = 0;
-        
-        $getSession = Session::get('test_session');
-        if($getSession){
-            session()->forget('test_session');
-        }
-        $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', auth()->user()->id)->where('test_id', $exam_id)->where('status', 'started')->first();
-        if($notsubmittedLog){
-            $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->sum('spent_time');
-            $exam_time = $activityLog;
+        if($module_id == 5){
+            TestSubmissionLog::updateOrCreate(
+                [
+                    'student_id'       => $student_id,
+                    'advisor_id'     => Auth::user()->id,
+                    'test_id'     => $exam_id,
+                ],
+                [
+                    'test_end'     => time(),
+                    'status'         =>'completed',
+                ]);
+            $deleteSession = session()->forget('test_session');
+            return view('advisor.student.exam.exam-completed');
         }else{
-            $exam_time = 0;
-        }
+            $allModule = Module::where('name','!=','Speaking')->get();
+            $exerciseDB = ManageTestSection::where('test_id', $exam_id)->where('module_id', $module_id)->get();
+            $total_segment = count($exerciseDB);
+            $countExercise = count($exerciseDB);
+            $totalQuestionCount = 0;
+            
+            $getSession = Session::get('test_session');
+            if($getSession){
+                session()->forget('test_session');
+            }
+            $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', auth()->user()->id)->where('test_id', $exam_id)->where('status', 'started')->first();
+            if($notsubmittedLog){
+                $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->where('module_id', $module_id)->sum('spent_time');
+                if($activityLog){
+                    $exam_time = $activityLog;
+                }else{
+                    $exam_time = 0;
+                }
+            }else{
+                $exam_time = 0;
+            }
 
-        $current_time = time();
+            $current_time = time();
+            
+            if(!(Session::has('test_session'))){
+                $value = $current_time.'.'.rand(1000, 9999);
+                Session::put('test_session', $value);
+            }
         
-        if(!(Session::has('test_session'))){
-            $value = $current_time.'.'.rand(1000, 9999);
-            Session::put('test_session', $value);
-        }
-       
-        if($segment_id <= $countExercise){
-           $exerciseId = $exerciseDB[$segment_id-1]->id;
-           $module_id = $exerciseDB[$segment_id-1]->module_id;
-           $module_name = Helpers::find_module($exerciseDB[$segment_id-1]->module_id);
-           $questionDB  = ManageTestQuestion::where('section_id', $exerciseId)->get();
-           foreach($questionDB as $question){
-              $question_type              = $question->question_type;
-              $question_instruction       = $question->instruction;
-              $question_id                = $question->id;
-  
-              $countMultipleChoice            = 0;
-              $countRadio                     = 0;
-              $countDropDown                  = 0;
-              $countHeadingMatchingQuestion   = 0;
-              $countSingleCheck               = 0;
-              $countFillBlank                 = 0;
-              $countHeadingMatchingTrueOfNice = 0;
-              $countMultiSelector             = 0;
-  
-              $subQ = [];
-              if($question_type == 'fill-blank'){
-                 $subQ = TestFillBlank::where('test_question_id',  $question_id)->get();
-                 foreach($subQ as $fillQuestion){
-                     $countFillBlank += substr_count(($fillQuestion->text), "##blank##");
-                 }
-              }elseif($question_type == 'multiple-choice'){
-                 $subQ = TestMultipleChoice::where('test_question_id',  $question_id)->get();
-                 $countMultipleChoice += count($subQ);
-              }elseif($question_type == 'radio'){
-                 $subQ = TestRadio::where('test_question_id',  $question_id)->get();
-                 $countRadio+= count($subQ);
-              }elseif($question_type == 'drop-down'){
-                 $subQ = TestDropDown::where('test_question_id',  $question_id)->get();
-                 $countDropDown += count($subQ);
-              }elseif($question_type == 'multi-selector'){
-                 $subQ = TestMultiSelector::where('test_question_id',  $question_id)->get();
-                 $countMultiSelector += count($subQ);
-             }
-             $totalQuestionCount +=   $countMultipleChoice+
-                                      $countRadio+
-                                      $countDropDown+
-                                      $countHeadingMatchingQuestion+
-                                      $countFillBlank+
-                                      $countHeadingMatchingTrueOfNice+
-                                      $countMultiSelector;
-              $data[] = array(
-                 'question_type'=> $question_type,
-                 'question_instruction'=> $question_instruction,
-                 'question_id'=> $question_id,
-                 'sub-q' => $subQ,
-              );
-           }
-          if(strtolower($module_name) == 'reading'){
-              $examPassage = TestPassage::where('section_id', $exerciseId)->first();
-          }else{
-              $examPassage = NULL;
-          }
-          if(strtolower($module_name) == 'listening'){
-              $testAudio = TestAudio::where('section_id', $exerciseId)->first();
-          }else{
-              $testAudio = NULL;
-          }
-          return view('advisor.student.exam.reading.reading-templete', compact('examPassage','testAudio',
-          'data', 'exerciseId', 
-          'exam_id', 'module_id', 
-          'segment_id', 'total_segment',
-          'countExercise', 
-          'totalQuestionCount', 'exam_time','student_id', 'allModule'));
+            if($segment_id <= $countExercise){
+            $exerciseId = $exerciseDB[$segment_id-1]->id;
+            $module_id = $exerciseDB[$segment_id-1]->module_id;
+            $module_name = Helpers::find_module($exerciseDB[$segment_id-1]->module_id);
+            $questionDB  = ManageTestQuestion::where('section_id', $exerciseId)->get();
+            foreach($questionDB as $question){
+                $question_type              = $question->question_type;
+                $question_instruction       = $question->instruction;
+                $question_id                = $question->id;
+    
+                $countMultipleChoice            = 0;
+                $countRadio                     = 0;
+                $countDropDown                  = 0;
+                $countHeadingMatchingQuestion   = 0;
+                $countSingleCheck               = 0;
+                $countFillBlank                 = 0;
+                $countHeadingMatchingTrueOfNice = 0;
+                $countMultiSelector             = 0;
+    
+                $subQ = [];
+                if($question_type == 'fill-blank'){
+                    $subQ = TestFillBlank::where('test_question_id',  $question_id)->get();
+                    foreach($subQ as $fillQuestion){
+                        $countFillBlank += substr_count(($fillQuestion->text), "##blank##");
+                    }
+                }elseif($question_type == 'multiple-choice'){
+                    $subQ = TestMultipleChoice::where('test_question_id',  $question_id)->get();
+                    $countMultipleChoice += count($subQ);
+                }elseif($question_type == 'radio'){
+                    $subQ = TestRadio::where('test_question_id',  $question_id)->get();
+                    $countRadio+= count($subQ);
+                }elseif($question_type == 'drop-down'){
+                    $subQ = TestDropDown::where('test_question_id',  $question_id)->get();
+                    $countDropDown += count($subQ);
+                }elseif($question_type == 'multi-selector'){
+                    $subQ = TestMultiSelector::where('test_question_id',  $question_id)->get();
+                    $countMultiSelector += count($subQ);
+                }
+                $totalQuestionCount +=   $countMultipleChoice+
+                                        $countRadio+
+                                        $countDropDown+
+                                        $countHeadingMatchingQuestion+
+                                        $countFillBlank+
+                                        $countHeadingMatchingTrueOfNice+
+                                        $countMultiSelector;
+                $data[] = array(
+                    'question_type'=> $question_type,
+                    'question_instruction'=> $question_instruction,
+                    'question_id'=> $question_id,
+                    'sub-q' => $subQ,
+                );
+            }
+            if(strtolower($module_name) == 'reading'){
+                $examPassage = TestPassage::where('section_id', $exerciseId)->first();
+            }else{
+                $examPassage = NULL;
+            }
+            if(strtolower($module_name) == 'listening'){
+                $testAudio = TestAudio::where('section_id', $exerciseId)->first();
+            }else{
+                $testAudio = NULL;
+            }
+            return view('advisor.student.exam.reading.reading-templete', compact('examPassage','testAudio',
+            'data', 'exerciseId', 
+            'exam_id', 'module_id', 
+            'segment_id', 'total_segment',
+            'countExercise', 
+            'totalQuestionCount', 'exam_time','student_id', 'allModule'));
+            }
         }
     }
     public function examSubmission(Request $request)
@@ -391,37 +420,44 @@ class ExamController extends Controller
         
         if($segment_id < $count_exercise){
             if($data['minute'] ==0 && $data['second'] ==1){
-                TestSubmissionLog::updateOrCreate(
-                    [
-                        'student_id'       => $student_id,
-                        'advisor_id'     => Auth::user()->id,
-                        'test_id'     => $test_id,
-                    ],
-                    [
-                        'test_end'     => time(),
-                        'status'         =>'completed',
-                    ]);
-                $deleteSession = session()->forget('test_session');
-                return view('advisor.student.exam.exam-completed');
+                if($module_id == 4){
+                    TestSubmissionLog::updateOrCreate(
+                        [
+                            'student_id'       => $student_id,
+                            'advisor_id'     => Auth::user()->id,
+                            'test_id'     => $test_id,
+                        ],
+                        [
+                            'test_end'     => time(),
+                            'status'         =>'completed',
+                        ]);
+                    $deleteSession = session()->forget('test_session');
+                    return view('advisor.student.exam.exam-completed');
+                }else{
+                    $current_segment = 1;
+                    $current_module_id  = $module_id + 1;
+                    return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $current_segment, 'module_id'=>$current_module_id, 'student_id'=> $student_id]);
+                }
             }else{
-                return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1,'student_id'=> $student_id]);
+                return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1, 'module_id'=>$module_id, 'student_id'=> $student_id]);
             }
             
         }elseif($segment_id == $count_exercise){
-            $time = time();
+            // $time = time();
         
-            $examLog = TestSubmissionLog::UpdateOrCreate(
-                [
-                    'student_id'    => $student_id,
-                    'test_id'       => $test_id,
-                ],
-                [
-                    'status'     => 'completed',
-                    'test_end'   => $time,
-                ]);
+            // $examLog = TestSubmissionLog::UpdateOrCreate(
+            //     [
+            //         'student_id'    => $student_id,
+            //         'test_id'       => $test_id,
+            //     ],
+            //     [
+            //         'status'     => 'completed',
+            //         'test_end'   => $time,
+            //     ]);
     
-                $deleteSession = session()->forget('test_session');
-                return view('advisor.student.exam.exam-completed');
+            //     $deleteSession = session()->forget('test_session');
+                // return view('advisor.student.exam.exam-completed');
+            return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> 1, 'module_id'=>$module_id+1, 'student_id'=> $student_id]);
         }else{
             echo 'Over ... segment finshied';
         }
@@ -487,7 +523,7 @@ class ExamController extends Controller
         $getData = FollowUp::where('student_id', $studentId)
                     ->where('adviser_id', $adviserId)
                     ->get();
-        // $courseBundle = CourseBundle::where('status', 'active')->with('CoursePrice')->get();
+        $priviliged_price = CourseBundle::where('course_bundle', 'Priviliged Price')->first();
         $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
         $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
         $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
@@ -503,7 +539,7 @@ class ExamController extends Controller
         $count_writing_question = $count_grammar_question+$count_listening_question;
         $correct_answer = $this->correctAnswer($log_id->id);
         $in_correct_answer = $this->inCorrectAnswer($log_id->id);
-        $unAnswer = $this->unAnswered($log_id->id);
+        $unAnswer = 60 -($correct_answer+$in_correct_answer);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',
         'sum_listening_module', 
         'sum_grammar_module', 
@@ -512,7 +548,7 @@ class ExamController extends Controller
         'all_module_marks',
         'count_reading_question',
         'count_writing_question',
-        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info'));
+        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info', 'priviliged_price'));
     }
     private function count_test_question($test_id, $module_id)
     {
@@ -618,16 +654,6 @@ class ExamController extends Controller
         foreach($activeLog as $rows){
             $data = TestSubmission::where('activity_log_id', $rows->id)->where('obtained_mark', '=', 0)->get();
              $sum_valve += count($data);
-        }
-        return $sum_valve;
-    }
-    private function unAnswered($log_id)
-    {
-        $activeLog = TestSubmissionActivityLog::where('submission_log_id', $log_id)->get();
-        $sum_valve = 0;
-        foreach($activeLog as $rows){
-            $data = TestSubmission::where('activity_log_id', $rows->id)->where('obtained_mark', '=', 0)->where('submitted_ans', '"not_answered"')->get();
-            $sum_valve += count($data);
         }
         return $sum_valve;
     }

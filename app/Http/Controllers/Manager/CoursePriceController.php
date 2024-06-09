@@ -69,4 +69,17 @@ class CoursePriceController extends Controller
 
         return redirect()->back()->with('success','Course Price info Deleted');
     }
+    public function priviligedPrice(){
+       return view('manager.priviliged-price');
+    }
+    public function storePriviligedPrice(Request $request){
+        $data = $request->all();
+        //dd($data);
+        CourseBundle::insert([
+            'course_bundle'=> 'Priviliged Price',
+            'status'=> 'active',
+            'priviliged_price'=>$data['priviliged_price'],
+        ]);
+        return redirect()->back()->with('success','Priviliged Price insert successfully');
+    }
 }

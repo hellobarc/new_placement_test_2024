@@ -14,8 +14,8 @@ use App\Models\{
 };
 use Auth;
 use DB;
-
-
+use Mail;
+use App\Mail\AdvisorEmailNotification;
 class VisitorController extends Controller
 {
 
@@ -156,6 +156,15 @@ class VisitorController extends Controller
 
         $advisorID = $request->assign_advisor;
         // Helpers::AdvisorEventPushNotification($advisorID);
+        $advisor = User::find($assign_advisor);
+        $email_visitor_info = [
+            'full_name'                 => $fullName,
+            'email'                     => $email,
+            'mobile'                    => $contact_number,
+            'purpose_of_visit'          => $purpose_of_visit,
+        ];
+        
+        Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
 
         return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
     } 

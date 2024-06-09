@@ -144,35 +144,10 @@
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                             <div class="mark-analysis card-background">
                                 <p class="card-titles">Mark Analytics</p>
-                                {{-- <div class="row">
-                                    <div class="col-md-4">
-                                        <span style="color: #FFA84A;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
-                                        <span class="text-secondary fw-bold">Reading</span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span style="color: #9B88ED;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
-                                        <span class="text-secondary fw-bold">Listening</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <span style="color: #FB67CA;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
-                                        <span class="text-secondary fw-bold">Grammar</span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span style="color: #04BFDA;margin-top: 4px; margin-right: 7px;"><i class="fa-solid fa-circle"></i></span>
-                                        <span class="text-secondary fw-bold">Vocabulary</span>
-                                    </div>
-                                </div> --}}
                                 <div class="chart-score">
                                     <div class="mark-analytics-pie-chart-container">
                                         <canvas id="answersQuestion"></canvas>
                                     </div>
-                                    {{-- <div class="d-flex align-items-center">
-                                        <div class="chart-score-band">
-                                            <p>Band Score : 6.5</p>
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -198,7 +173,7 @@
                                             <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_reading_module}}</span>
                                         </td>
                                         <td>
-                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                            <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -417,18 +392,15 @@
                                     Interested Aboard Country
                                 </p>
                                 <div class="intended-countries">
+                                    @foreach (json_decode($student_info->expected_country) as $country)
+                                        
+                                    
                                     <div class="country-name mx-2">
-                                        <span class="me-3">USA</span><span><i
+                                        <span class="me-3">{{$country}}</span><span><i
                                                 class="fa-solid fa-plane"></i></span>
                                     </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">UK</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">AUS</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
+                                    @endforeach
+                                   
                                 </div>
                             </div>
                         </div>
@@ -678,14 +650,14 @@
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <!-- A1 Course Content Modal -->
                                 <div class="modal fade" id="courseContentA1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentA1Label" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="courseContentA1Label">A1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            ...
+                                            {!! Helper::course_benefit('A1') !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -696,14 +668,14 @@
                                 </div>
                                 <!-- A2 Course Content Modal -->
                                 <div class="modal fade" id="courseContentA2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentA2Label" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="courseContentA2Label">A2 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            ...
+                                                {!! Helper::course_benefit('A2') !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -714,14 +686,14 @@
                                 </div>
                                 <!-- B1 Course Content Modal -->
                                 <div class="modal fade" id="courseContentB1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentB1Label" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="courseContentB1Label">B1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            ...
+                                                {!! Helper::course_benefit('B1') !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -732,14 +704,14 @@
                                 </div>
                                 <!-- B2 Course Content Modal -->
                                 <div class="modal fade" id="courseContentB2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentB2Label" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="courseContentA2Label">B2 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            ...
+                                                {!! Helper::course_benefit('B2') !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -750,14 +722,14 @@
                                 </div>
                                 <!-- C1 Course Content Modal -->
                                 <div class="modal fade" id="courseContentC1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentC1Label" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="courseContentC1Label">C1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            ...
+                                                {!! Helper::course_benefit('C1') !!}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -886,9 +858,9 @@
                                             <td style="background-color: #FFA84A; cursor: pointer;" class="td-total text-dark" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
                                             <td style="background-color: #E3E3E3;" class="td-price" colspan="2">
                                                 <div id="coursePrivileged">
-                                                    1799/-
+                                                    {{number_format($priviliged_price->priviliged_price)}}/-
                                                 </div>
-                                                <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="1799">
+                                                <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="{{$priviliged_price->priviliged_price}}">
                                             </td>
                                         </tr>
                                         <tr id="total_course_price_row">
@@ -902,86 +874,6 @@
                         </div>
                     </div>
                 </section>
-
-
-
-
-
-
-
-                
-                {{-- <div id="myvideo">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                                <div class="carousel-inner" style="width:100%;max-height: 900% !important;">
-                                    <div class="carousel-item active">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.overall-result')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.question-answered')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.result-explanation')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.suggested-course')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.course-level')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                            @include('advisor.student.exam.result.course-content')
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="p-4">
-                                        <!-- price -->
-                                            <div class="row">
-                                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <h2 class="fw-bolder mt-3">Price List:</h2>
-                                                    <div class="text-center">
-                                                        <ul>
-                                                            @foreach ($courseBundle as $rows)
-                                                                <li class="d-inline px-3 fs-5 fw-bold" id="course_bundle_btn_{{$rows->id}}" onclick="courseBundleBtn({{$rows->id}})" style="cursor: pointer;">{{$rows->course_bundle}}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @include('price.priceChart')
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true" style="position: absolute;
-                                top: 91%;
-                                left: 292%;"></span>
-                                <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true" style="position: absolute;
-                                top: 91%;
-                                /* color: #000; */
-                                right: 278%;"></span>
-                                <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

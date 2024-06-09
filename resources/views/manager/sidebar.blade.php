@@ -12,7 +12,8 @@
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Manage Course Price<i class="fa-solid fa-angle-down"></i></span> </a>
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Manage Course Price<i class="fa-solid fa-angle-down"></i></span> 
+                </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
                         <a href="{{route('course.prices.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price List </span></a>
@@ -20,11 +21,9 @@
                     <li class="w-100">
                         <a href="{{route('course.prices.form')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Set </span></a>
                     </li>
-                    {{-- <li class="w-100">
-                        <a href="{{route('admin.manage.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Update </span></a>
-                    </li> --}}
-                    
-                    
+                    <li class="w-100">
+                        <a href="{{route('course.priviliged.price')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Priviliged Price </span></a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -40,28 +39,27 @@
                 </ul>
             </li>
             <li>
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Course Content<i class="fa-solid fa-angle-down"></i></span> </a>
-                <ul class="collapse nav flex-column ms-2" id="submenu2" data-bs-parent="#menu">
+                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Course Content<i class="fa-solid fa-angle-down"></i></span> 
+                </a>
+                <ul class="collapse nav flex-column ms-2" id="submenu3" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{route('user.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> User List </span></a>
-                    </li>
-                    <li class="w-100">
+                        <a href="{{route('manager.course.manage')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Manage Course</span></a>
                         <a href="{{route('manager.course.create')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Create Course</span></a>
                     </li>
                 </ul>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#" class="nav-link px-0 align-middle text-white fs-5">
                     <i class="fa-solid fa-cart-shopping"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
         <hr>
         <div class="dropdown pb-4">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                <span class="d-none d-sm-inline mx-1">loser</span>
+                <span class="d-none d-sm-inline mx-1">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="#">New project...</a></li>

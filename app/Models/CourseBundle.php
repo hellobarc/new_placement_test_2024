@@ -11,7 +11,8 @@ class CourseBundle extends Model
 
     protected $fillable = [
         'course_bundle',
-        'status'
+        'status',
+        'priviliged_price',
     ];
 
     public function CoursePrice()
