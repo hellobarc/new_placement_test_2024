@@ -226,6 +226,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/update/student-follow-up/{id}',  'updateFollowUp')->name('update.followUP');
         Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
         Route::post('/student-followUp-list-search', 'followUpSearch')->name('visitor.followUp.Search');
+        Route::post('/student/total-enrolled-course', 'studentTotalEnrolledCourse')->name('student.total.enrolled course');
     });
 });
 

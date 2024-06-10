@@ -56,15 +56,15 @@
                                     <div class="overall-score">
                                         <p>Equivalent Band Score: 
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                2.0 - 2.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                3.0 - 3.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
                                                 4.0 - 4.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                4.5 - 5.0
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                5.0 - 5.5
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                5.0 - 6.5
+                                                6.0 - 6.5
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                7
+                                                7.0
                                             @else
                                             @endif
                                         </p>
@@ -363,21 +363,21 @@
                     </div>
                     <div class="row mt-4 mb-4">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
+                            <div class="int-abroad-country card-background px-3 pt-3 pb-5">
                                 <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
                                         style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
-                                <div class="mx-3">
+                                <div class="mx-3 pt-3">
                                     <p class="mb-0 fs-5 fw-bold"><i class="fa-regular fa-circle-dot"></i> Desired Score: 
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                            2.0 - 2.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                            3.0 - 3.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
                                             4.0 - 4.5
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                            4.5 - 5.0
+                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                            5.0 - 5.5
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                            5.0 - 6.5
+                                            6.0 - 6.5
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                            7
+                                            7.0
                                         @else
                                         @endif
                                     </p>
@@ -386,14 +386,13 @@
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
+                            <div class="int-abroad-country card-background px-3 pt-3 pb-5">
                                 <p class="card-titles">
                                     <i class="fa-solid fa-globe"></i>
                                     Interested Aboard Country
                                 </p>
-                                <div class="intended-countries">
+                                <div class="intended-countries pt-3">
                                     @foreach (json_decode($student_info->expected_country) as $country)
-                                        
                                     
                                     <div class="country-name mx-2">
                                         <span class="me-3">{{$country}}</span><span><i
@@ -405,12 +404,12 @@
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="int-abroad-country card-background p-3">
+                            <div class="int-abroad-country card-background px-3 pt-3 pb-5">
                                 <p class="card-titles">
                                     <i class="fa-solid fa-building-columns"></i> 
                                     Intended University
                                 </p>
-                                <div class="intended-countries">
+                                <div class="intended-countries pt-3">
                                     <div class="country-name mx-2">
                                         <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
                                             class="me-3">Top</span>
@@ -460,7 +459,7 @@
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="position-relative">
-                                    <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve 7</div>
+                                    <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve <span id="achive_band_score"></span></div>
                                     <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
                                     <div class="">
                                         <div id="c1_course_duration">
@@ -547,15 +546,15 @@
                                             <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
                                             Your Score 
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                2.0 - 2.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                3.0 - 3.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
                                                 4.0 - 4.5
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                4.5 - 5.0
+                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                5.0 - 5.5
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                5.0 - 6.5
+                                                6.0 - 6.5
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                7
+                                                7.0
                                             @else
                                             @endif
                                         </div>
@@ -652,16 +651,15 @@
                                 <div class="modal fade" id="courseContentA1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentA1Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="courseContentA1Label">A1 Course Content</h1>
+                                            <div class="modal-header" style="background-color: #6db98e; color:#f8f8f8;">
+                                                <h1 class="modal-title" style="font-size: 1.75rem !important; font-weight: 700; margin-left: 2rem;" id="courseContentA2Label">A1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                            {!! Helper::course_benefit('A1') !!}
+                                            <div class="modal-body" style="background-color: #d9f0e3; padding: 8px 50px;">
+                                                {!! Helper::course_benefit('A1') !!}
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
+                                            <div class="modal-footer" style="background-color: #acbfb4;">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -670,16 +668,15 @@
                                 <div class="modal fade" id="courseContentA2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentA2Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="courseContentA2Label">A2 Course Content</h1>
+                                            <div class="modal-header" style="background-color: #6db98e; color:#f8f8f8;">
+                                                <h1 class="modal-title" style="font-size: 1.75rem !important; font-weight: 700; margin-left: 2rem;" id="courseContentA2Label">A2 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body" style="background-color: #d9f0e3; padding: 8px 50px;">
                                                 {!! Helper::course_benefit('A2') !!}
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
+                                            <div class="modal-footer" style="background-color: #acbfb4;">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -688,16 +685,15 @@
                                 <div class="modal fade" id="courseContentB1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentB1Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="courseContentB1Label">B1 Course Content</h1>
+                                            <div class="modal-header" style="background-color: #6db98e; color:#f8f8f8;">
+                                                <h1 class="modal-title" style="font-size: 1.75rem !important; font-weight: 700; margin-left: 2rem;" id="courseContentB1Label">B1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body" style="background-color: #d9f0e3; padding: 8px 50px;">
                                                 {!! Helper::course_benefit('B1') !!}
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
+                                            <div class="modal-footer" style="background-color: #acbfb4;">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -706,16 +702,15 @@
                                 <div class="modal fade" id="courseContentB2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentB2Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="courseContentA2Label">B2 Course Content</h1>
+                                            <div class="modal-header" style="background-color: #6db98e; color:#f8f8f8;">
+                                                <h1 class="modal-title" style="font-size: 1.75rem !important; font-weight: 700; margin-left: 2rem;" id="courseContentA2Label">B2 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body" style="background-color: #d9f0e3; padding: 8px 50px;">
                                                 {!! Helper::course_benefit('B2') !!}
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
+                                            <div class="modal-footer" style="background-color: #acbfb4;">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -724,18 +719,27 @@
                                 <div class="modal fade" id="courseContentC1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="courseContentC1Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="courseContentC1Label">C1 Course Content</h1>
+                                            <div class="modal-header" style="background-color: #6db98e; color:#f8f8f8;">
+                                                <h1 class="modal-title" style="font-size: 1.75rem !important; font-weight: 700; margin-left: 2rem;" id="courseContentA2Label">C1 Course Content</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body" style="background-color: #d9f0e3; padding: 8px 50px;">
                                                 {!! Helper::course_benefit('C1') !!}
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Understood</button>
+                                            <div class="modal-footer" style="background-color: #acbfb4;">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="card-titles mt-3 mb-1"><i class="fa-regular fa-calendar-days"></i> Class Schdule</p>
+                                    <div style="border: 1.5px solid #7c7c7c; width:40%; border-radius: 4px; margin-top: 20px; padding: 20px 10px;">
+                                        <ul class="mb-0">
+                                            <li class="fs-5"><span class="fw-bold">Regular Batch:</span> Weekly Two or Three days</li>
+                                            <li class="fs-5"><span class="fw-bold">Weekend Batch:</span> Friday</li>
+                                            <li class="fs-5 mb-0"><span class="fw-bold">Language Club:</span> Saturday</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -751,18 +755,18 @@
                                     <table class="table">
                                         <tr>
                                             <th style="background-color: #ffffff;"></th>
-                                            <th style="background-color: #067DC8;" class="td-total">Regular <p>Fees</p></th>
-                                            <th style="background-color: #9B88ED;" class="td-total">Standard <p>Package</p></th>
+                                            <th style="background-color: #067DC8;" class="td-total text-white">Regular <p>Fees</p></th>
+                                            <th style="background-color: #9B88ED;" class="td-total text-white">Standard <p>Package</p></th>
                                         </tr>
                                         <tr id="a1_course_price_row">
-                                            <td style="background-color: #353A47; cursor: pointer; color:#f8f8f8" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseA1TdPrice1">
                                                    {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseA1TdPrice1Input" value="{{Helper::coursePrice('a1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseA1TdPrice2">
                                                     @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
@@ -775,14 +779,14 @@
                                             </td>
                                         </tr>
                                         <tr id="a2_course_price_row">
-                                            <td style="background-color: #355070; cursor: pointer; color:#f8f8f8" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseA2TdPrice1">
                                                     {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseA2TdPrice1Input" value="{{Helper::coursePrice('a2')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseA2TdPrice2">
                                                     @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
@@ -795,14 +799,14 @@
                                             </td>
                                         </tr>
                                         <tr id="b1_course_price_row">
-                                            <td style="background-color: #848586; cursor: pointer; color:#f8f8f8" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseB1TdPrice1">
                                                     {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseB1TdPrice1Input" value="{{Helper::coursePrice('b1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #E3E3E3;" class="td-price">
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseB1TdPrice2">
                                                     @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
@@ -815,14 +819,14 @@
                                             </td>
                                         </tr>
                                         <tr id="b2_course_price_row">
-                                            <td style="background-color: #db5375; cursor: pointer; color:#f8f8f8" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseB2TdPrice1">
                                                     {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseB2TdPrice1Input" value="{{Helper::coursePrice('b2')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseB2TdPrice2">
                                                     @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
@@ -835,14 +839,14 @@
                                             </td>
                                         </tr>
                                         <tr id="c1_course_price_row">
-                                            <td style="background-color: #729ea1; cursor: pointer; color:#f8f8f8" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseC1TdPrice1">
                                                     {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseC1TdPrice1Input" value="{{Helper::coursePrice('c1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #DBEBF5;" class="td-price">
+                                            <td style="background-color: #dbebf59e;" class="td-price">
                                                 <div id="courseC1TdPrice2">
                                                     @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
@@ -855,8 +859,8 @@
                                             </td>
                                         </tr>
                                         <tr id="priviliged_price_row">
-                                            <td style="background-color: #FFA84A; cursor: pointer;" class="td-total text-dark" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price" colspan="2">
+                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
+                                            <td style="background-color: #dbebf59e;" class="td-price" colspan="2">
                                                 <div id="coursePrivileged">
                                                     {{number_format($priviliged_price->priviliged_price)}}/-
                                                 </div>
@@ -869,6 +873,44 @@
                                             <td style="background-color: #E3E3E3;" class="td-price" id="totalCourseDiscountPrice"></td>
                                         </tr>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="total_enrolled_course my-4" id="total_enrolled_course_section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card-background px-5 py-4">
+                                    <p class="card-titles"><i class="fa-solid fa-box-open"></i> Total Enrolled Course</p>
+                                    <form action="{{route('student.total.enrolled course')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="student_id" value="{{$student_info->visitor_log_id}}">
+                                        <div class="form-group">
+                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="A1" aria-label="Checkbox for following text input">
+                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">A1</label>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="A2" aria-label="Checkbox for following text input">
+                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">A2</label>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="B1" aria-label="Checkbox for following text input">
+                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">B1</label>
+                                        </div> 
+                                        <div class="form-group mt-2">
+                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="B2" aria-label="Checkbox for following text input">
+                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">B2</label>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="C1" aria-label="Checkbox for following text input">
+                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">C1</label>
+                                        </div>
+                                        <div class="pt-4">
+                                            <button type="submit" class="btn btn-sm text-light fs-5 fw-bold px-3 py-1" style="background-color: #004AAD; ">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

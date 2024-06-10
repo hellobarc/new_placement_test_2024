@@ -75,11 +75,21 @@ class CoursePriceController extends Controller
     public function storePriviligedPrice(Request $request){
         $data = $request->all();
         //dd($data);
-        CourseBundle::insert([
-            'course_bundle'=> 'Priviliged Price',
-            'status'=> 'active',
-            'priviliged_price'=>$data['priviliged_price'],
-        ]);
+        $getData = CourseBundle::where('course_bundle', 'Priviliged Price')->first();
+        if($getData){
+            CourseBundle::updateOrCreate([
+                'id'=>$getData->id,
+            ],[
+                'priviliged_price'=>$data['priviliged_price'],
+            ]);
+        }else{
+            CourseBundle::insert([
+                'course_bundle'=> 'Priviliged Price',
+                'status'=> 'active',
+                'priviliged_price'=>$data['priviliged_price'],
+            ]);
+        }
+        
         return redirect()->back()->with('success','Priviliged Price insert successfully');
     }
 }

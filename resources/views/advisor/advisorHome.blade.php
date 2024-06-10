@@ -63,6 +63,7 @@
                         <th style="background: #DBEBF5;">Email</th>
                         <th style="background: #DBEBF5;">Mobile</th>
                         <th style="background: #DBEBF5;">Purpose of Visit</th>
+                        <th style="background: #DBEBF5;">Enrolled Course</th>
                         <th style="background: #DBEBF5;">Status</th>
                         <th style="background: #DBEBF5;">Action</th>
                     </thead>
@@ -74,6 +75,7 @@
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->mobile }}</td>
                                 <td>{{ ($item->purpose_of_visit) }}</td>
+                                <td>Pending</td>
                                 <td>
                                     @if($item->status == 'approved')
                                     <p class="badge badge-success bg-success">Approved</p>

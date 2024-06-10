@@ -224,7 +224,7 @@
                                 </div>
                                 <!-- advisor part -->
                                 <div id="course_advisor" style="display: none;">
-                                    <div class="row mt-4">
+                                    {{-- <div class="row mt-4">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="organization">Current Organization/Institution name</label>
@@ -239,8 +239,8 @@
                                                 <input name="date_of_birth" id="date_of_birth" type="text" class="form-control" placeholder="Date of Birth">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-4">
+                                    </div> --}}
+                                    {{-- <div class="row mt-4">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="address">Educational Qualification</label>
@@ -256,13 +256,12 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-4">
+                                    </div> --}}
+                                    {{-- <div class="row mt-4">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="email">Expected Country to go</label>
                                                 <select data-width="100%" id="expected_country" name="expected_country[]" multiple="multiple">
-                                                {{-- <select class="w-100 dropdown" id="expected_country" name="expected_country[]" multiple="multiple"> --}}
                                                     <option value="">-- select one --</option>
                                                     <option value="USA">  USA </option>
                                                     <option value="UK">  UK </option>
@@ -273,7 +272,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mt-4">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">

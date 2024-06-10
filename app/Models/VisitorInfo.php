@@ -39,6 +39,7 @@ class VisitorInfo extends Model
         'nid_passport_number',
         'blood_group',
         'emergency_number',
+        'suggested_course',
         'total_enroll_course',
         'comments_from_student',
         'feedback_from_advisor',

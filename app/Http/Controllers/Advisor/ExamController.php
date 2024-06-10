@@ -340,9 +340,10 @@ class ExamController extends Controller
                 $fillblankJson                   = json_encode($data[$ans_name]); //store submitted ans
                 $fill_correct = 0;
                 
-                foreach($correct_ans_array as $key=>$correct_ans){
+                foreach($correct_ans_array as $key=>$value){
                     // $submitted_ans = strtolower($fillBlank_sub_ques_ans[$key]);
-                    $submitted_ans = $fillBlank_sub_ques_ans[$key];
+                    $correct_ans = strtolower($value);
+                    $submitted_ans = strtolower($fillBlank_sub_ques_ans[$key]);
                     if(strpos($correct_ans, '/')){
                         $explode_correct_ans = explode('/', $correct_ans);
                         if($submitted_ans == null){

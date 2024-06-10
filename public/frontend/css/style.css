@@ -483,8 +483,9 @@ body{
 }
 input[type=checkbox] {
   accent-color: #004AAD;
-  width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid #004AAD !important;
 }
 input.check_box{
   width: 25px;
@@ -1331,8 +1332,8 @@ progress::-webkit-progress-bar {
  background-color: #729EA1;
 }
 .onlclik_price_active{
-  background-color: #d9d9d9 !important;
-  color: #313131 !important;
+  background-color: #355070 !important;
+  color: #f8f8f8 !important;
 }
 #mark-analytics-pie-chart{
   width: 70% !important;

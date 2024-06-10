@@ -175,21 +175,54 @@ class VisitorController extends Controller
         // DB::table('visitor_infos')
         // ->join('visitor_logs', 'visitor_infos.visitor_log_id', '=', 'visitor_logs.id')
         // ->first();
-
+        //dd($getDetails);
         return view('studentDetails', compact('getDetails'));
     }
     
     public function studentDetailsUpdate(Request $request,$id)
     {
-        dd($request->all());
+        //dd($request->all());
+        $ielts_enough_time = $request->ielts_enough_time;
+        $ielts_taken = $request->ielts_taken;
+        $expected_score_reading = $request->expected_score_reading;
+        $expected_score_listening = $request->expected_score_listening;
+        $expected_score_writing = $request->expected_score_writing;
+        $expected_score_speaking = $request->expected_score_speaking;
+        $nid_passport_number = $request->nid_passport_number;
+        $emergency_number = $request->emergency_number;
+        $blood_group = $request->blood_group;
+        $education = $request->education;
+        
+        $date_of_birth = $request->date_of_birth;
+        $organization = $request->organization;
+        
+        $suggested_course = $request->suggested_course;
+        $total_enroll_course = $request->total_enroll_course;
+        $comments_from_student = $request->comments_from_student;
+        $feedback_from_advisor = $request->feedback_from_advisor;
         VisitorInfo::updateOrCreate([
-                'visitor_log_id' => $id,
+                'id' => $id,
+                'visitor_log_id' =>$request->student_id,
             ],
             [
-                'comments_from_student' => $request->comments_from_student,
-                'feedback_from_advisor' => $request->feedback_from_advisor
+                'education' =>$education,
+                'organization' =>$organization,
+                'date_of_birth' =>$date_of_birth,
+                'ielts_enough_time'=> $ielts_enough_time,
+                'ielts_taken'=> $ielts_taken,
+                'reading_expected_module'=> $expected_score_reading,
+                'listening_expected_module'=> $expected_score_listening,
+                'writing_expected_module'=> $expected_score_writing,
+                'speaking_expected_module'=> $expected_score_speaking,
+                'nid_passport_number'=> $nid_passport_number,
+                'blood_group'=> $blood_group,
+                'emergency_number'=> $emergency_number,
+                'suggested_course'=> $suggested_course,
+                'total_enroll_course'=> $total_enroll_course,
+                'comments_from_student' => $comments_from_student,
+                'feedback_from_advisor' => $feedback_from_advisor
             ]);
-        return redirect()->route('student.Details', ['id' => $id]);
+        return redirect()->route('student.Details', $request->student_id);
     }
     public function statusChanged(Request $request, $id){
         $changedStatus = $request->input('status');

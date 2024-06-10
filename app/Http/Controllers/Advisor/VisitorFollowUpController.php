@@ -10,6 +10,7 @@ use App\Models\{
     VisitorLog,
     FollowUp,
     CourseBundle,
+    VisitorInfo,
 };
 class VisitorFollowUpController extends Controller
 {
@@ -108,25 +109,18 @@ class VisitorFollowUpController extends Controller
         $adviserID = Auth::user()->id;
         $month_search = $request->month_search;
         $getData = FollowUp::where('adviser_id', $adviserID)->where('admission_status', $month_search)->get();
-        // if($request->this_month_search == 'on'){
-            
-        // }
-        // elseif($request->next_month_search == 'on'){
-        //     $getData = FollowUp::where('adviser_id', $adviserID)->whereNot('admission_status', 'next_month')->get();
-        // }
-        // elseif($request->two_month_search == 'on'){
-        //     $getData = FollowUp::where('adviser_id', $adviserID)->whereNot('admission_status', 'two_month')->get();
-        // }
-        // elseif($request->three_month_search == 'on'){
-        //     $getData = FollowUp::where('adviser_id', $adviserID)->whereNot('admission_status', 'three_month')->get();
-        // }
-        // elseif($request->four_month_search == 'on'){
-        //     $getData = FollowUp::where('adviser_id', $adviserID)->whereNot('admission_status', 'four_month')->get();
-        // }
-        // elseif($request->later_admit_search == 'on'){
-        //     $getData = FollowUp::where('adviser_id', $adviserID)->whereNot('admission_status', 'later_admit')->get();
-        // }
-        // dd($getData);
         return view('advisor.student.search-follow-up-list', compact('getData'));
+    }
+    public function studentTotalEnrolledCourse(Request $request)
+    {
+        $enrolled_course = $request->total_enrolled_course;
+        $student_id = $request->student_id;
+        VisitorInfo::updateOrCreate([
+                'visitor_log_id' => $student_id,
+            ],
+            [
+                'total_enroll_course' => json_encode($enrolled_course),
+            ]);
+            return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
     }
 }

@@ -268,6 +268,7 @@ $(document).ready(function(){
 
 
 var course_info = document.getElementById("course-related-info").style.display = "none";
+document.getElementById("total_enrolled_course_section").style.display = "none";
 
 var a1_course_lenght = document.getElementById("a1_course_duration").style.display = "none";
 var a2_course_lenght = document.getElementById("a2_course_duration").style.display = "none";
@@ -286,6 +287,7 @@ var course_price_section = document.getElementById("course_price_section").style
 function expected_band_score_func(ev){
   document.getElementById("course-related-info").style.display = "block";
   document.getElementById("course_price_section").style.display = "block";
+  document.getElementById("total_enrolled_course_section").style.display = "block";
   if(desired_level == 'A1' && ev < 7){
     if(ev == 6.5){
       document.getElementById("targeted_band_score_6").classList.remove("outline-for-score-small-sections-active");
@@ -295,6 +297,7 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 6.5;
     }else if(ev == 6){
       document.getElementById("targeted_band_score_6").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_6").classList.remove("outline-for-score-small-sections-active");
@@ -303,6 +306,7 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 6;
     }
     document.getElementById("a1_course_duration").style.display = "block";
     document.getElementById("a2_course_duration").style.display = "block";
@@ -327,6 +331,7 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 6.5;
     }else if(ev == 6){
       document.getElementById("targeted_band_score_6").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_6").classList.remove("outline-for-score-small-sections-active");
@@ -335,6 +340,7 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 6;
     }
     document.getElementById("a1_course_duration").style.display = "none";
     document.getElementById("a2_course_duration").style.display = "block";
@@ -357,30 +363,35 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7;
     }else if(ev == 7.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7.5;
     }else if(ev == 8){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8;
     }else if(ev == 8.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8.5;
     }else if(ev == 9){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.add("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 9;
     }
     document.getElementById("a1_course_duration").style.display = "block";
     document.getElementById("a2_course_duration").style.display = "block";
@@ -403,30 +414,35 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7;
     }else if(ev == 7.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7.5;
     }else if(ev == 8){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8;
     }else if(ev == 8.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8.5;
     }else if(ev == 9){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.add("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 9;
     }
     
     document.getElementById("a1_course_duration").style.display = "none";
@@ -450,30 +466,35 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7;
     }else if(ev == 7.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7.5;
     }else if(ev == 8){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8;
     }else if(ev == 8.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8.5;
     }else if(ev == 9){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.add("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 9;
     }
     
     document.getElementById("a1_course_duration").style.display = "none";
@@ -497,30 +518,35 @@ function expected_band_score_func(ev){
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7;
     }else if(ev == 7.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 7.5;
     }else if(ev == 8){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8;
     }else if(ev == 8.5){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.add("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.remove("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 8.5;
     }else if(ev == 9){
       document.getElementById("targeted_band_score_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_7").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_more_than_8").classList.remove("outline-for-score-small-sections-active");
       document.getElementById("targeted_band_score_9").classList.add("outline-for-score-small-sections-active");
+      document.getElementById('achive_band_score').innerHTML = 9;
     }
     
     document.getElementById("a1_course_duration").style.display = "none";

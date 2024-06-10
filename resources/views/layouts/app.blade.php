@@ -91,6 +91,7 @@
     <script>
         $(document).ready(function() {
     $('#expected_country').select2();
+    $('#school_goes').select2();
 });
     </script>
 <script>
