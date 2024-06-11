@@ -97,6 +97,7 @@ class HomeController extends Controller
         $getData = VisitorLog::where('assign_advisor', $advisorID)
         ->where('purpose_of_visit','mock')
         ->orWhere('purpose_of_visit','ielts_registration')
+        ->orWhere('purpose_of_visit','ielts_certificate')
         ->orderBy('id', 'desc')
         ->paginate(10);
 

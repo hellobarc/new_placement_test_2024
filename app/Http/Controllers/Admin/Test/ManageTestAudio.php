@@ -63,7 +63,7 @@ class ManageTestAudio extends Controller
     public function updateAudio(Request $request, $id)
     {
         $data = $request->all();
-       
+        //dd($data);
         $test_id = $data['test_id'];
         $section_id = $data['section_id'];
        
@@ -75,6 +75,7 @@ class ManageTestAudio extends Controller
         }
 
         $find_id = TestAudio::find($id);
+        
         if($request->listening_title){
             $listening_title = $request->listening_title;
         }else{
@@ -82,8 +83,8 @@ class ManageTestAudio extends Controller
         }
         $file = $request->file('listening_track');
         if($file){
-            if (File::exists('admin/files/uploads/test-audio/'.$find_id->listening_track)) {
-                File::delete('admin/files/uploads/test-audio/'.$find_id->listening_track);
+            if (File::exists('admin/files/uploads/test-audio/'.$find_id->audio)) {
+                File::delete('admin/files/uploads/test-audio/'.$find_id->audio);
             }
             $fileName = time().'.'.$file->getClientOriginalExtension();
             $file->move('admin/files/uploads/test-audio/', $fileName);
@@ -104,8 +105,8 @@ class ManageTestAudio extends Controller
     public function deleteAudio($id)
     {
         $find_id = TestAudio::find($id);
-        if (File::exists('admin/files/uploads/test-audio/'.$find_id->listening_track)) {
-            File::delete('admin/files/uploads/test-audio/'.$find_id->listening_track);
+        if (File::exists('admin/files/uploads/test-audio/'.$find_id->audio)) {
+            File::delete('admin/files/uploads/test-audio/'.$find_id->audio);
         }
         $data->delete();
         return redirect()->route('admin.test.manage-audio')->with('success', 'Track deleted Successfully');

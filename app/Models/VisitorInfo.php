@@ -19,6 +19,7 @@ class VisitorInfo extends Model
         'education',
         'how_you_know',
         'expected_country',
+        'school_goes',
         'expected_score',
         'refer_stu_name',
         'refer_phone_number',

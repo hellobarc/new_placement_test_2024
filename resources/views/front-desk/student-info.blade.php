@@ -114,7 +114,34 @@
                                 <!-- ielts registration--> 
                                 <div style="display: none;" id="ielts_registration_id">
                                     <div class="row mt-4">
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                            <div class="form-group">
+                                                <label for="email">Expected Country to go</label>
+                                                <select data-width="100%" id="expected_country" name="expected_country[]" multiple="multiple">
+                                                    <option value="USA">  USA </option>
+                                                    <option value="UK">  UK </option>
+                                                    <option value="Canada">  Canada </option>
+                                                    <option value="Australia">  Australia </option>
+                                                    <option value="Europe">  Europe </option>
+                                                    <option value="Others"> Others </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                            <div class="form-group">
+                                                <label for="email" class="fw-bold"> IELTS taken before?</label>
+                                                <select name="ielts_taken" id="" class="form-control">
+                                                    <option value="">Please select one</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="ielts_test_center">IELTS Test Center</label>
                                                 <select class="form-control dropdown" id="ielts_test_center" name="ielts_test_center" onchange="handleKnow(event)">
@@ -124,7 +151,10 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="ielts_exam_type">IELTS Exam Type</label>
                                                 <select class="form-control dropdown" id="ielts_exam_type" name="ielts_exam_type" onchange="handleIELTSExamType(event)">

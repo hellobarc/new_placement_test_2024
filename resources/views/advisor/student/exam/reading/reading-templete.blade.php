@@ -12,8 +12,8 @@
                     <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                         <div class="question-set-card mt-0 pb-0">
                             <div class="header">
-                                <h3 class="number" style="font-size: 54px !important;">{{$exam_id}}</h3>
                                 <h3 class="set mt-2" style="font-size: 36px !important;">Set </h3>
+                                <h3 class="number" style="font-size: 54px !important;">{{$exam_id}}</h3>
                             </div>
                         </div>
                     </div>
@@ -327,7 +327,7 @@
     }else if(module_id == 2 || module_id == 3){
         var startingMinutes = 8*60;
     }else if(module_id == 4){
-        var startingMinutes = 14*60;
+        var startingMinutes = 10*60;
     }
     //let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
     //console.log( document.getElementById('countdown').value())

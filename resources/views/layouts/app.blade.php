@@ -92,6 +92,7 @@
         $(document).ready(function() {
     $('#expected_country').select2();
     $('#school_goes').select2();
+    $('#total_enroll_course_details').select2();
 });
     </script>
 <script>

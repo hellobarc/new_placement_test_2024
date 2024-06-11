@@ -62,6 +62,7 @@ class VisitorController extends Controller
              $ielts_exam_date       = NULL;
              $comments_from_student = NULL;
              $feedback_from_advisor = NULL;
+             $ielts_taken   = NULL;
         }elseif($purpose_of_visit == 'mock'){
             $occupation         = $request->input('occupation');
             $address            = $request->input('address');
@@ -73,6 +74,7 @@ class VisitorController extends Controller
             $expected_score     = NULL;
             $purpose_of_ielts   = $request->input('purpose_of_ielts');
             //others
+            $ielts_taken   = NULL;
              $ielts_test_center     = NULL;
              $ielts_exam_type       = NULL;
              $category_of_ielts     = NULL;
@@ -87,9 +89,10 @@ class VisitorController extends Controller
             $organization       = NULL;
             $date_of_birth      = NULL;
             $education          = NULL;
-            $expected_country   = NULL;
+            $expected_country   = json_encode($request->input('expected_country'));;
             $expected_score     = NULL;
-            $purpose_of_ielts   = NULL;
+            $purpose_of_ielts   = $request->input('purpose_of_ielts');
+            $ielts_taken   = $request->input('ielts_taken');
             //others
              $ielts_test_center     = $request->input('ielts_test_center');
              $ielts_exam_type       = $request->input('ielts_exam_type');
@@ -152,6 +155,7 @@ class VisitorController extends Controller
             'comments_from_student'     => $comments_from_student,
             'feedback_from_advisor'     => $feedback_from_advisor,
             'how_you_know'              => $how_you_know,
+            'ielts_taken'              => $ielts_taken,
         ]);
 
         $advisorID = $request->assign_advisor;
@@ -164,7 +168,7 @@ class VisitorController extends Controller
             'purpose_of_visit'          => $purpose_of_visit,
         ];
         
-        Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
+        // Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
 
         return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
     } 
@@ -172,11 +176,10 @@ class VisitorController extends Controller
 
     public function studentDetails($id){
         $getDetails = VisitorInfo::where('visitor_log_id', $id)->with('studentInfo')->first();
-        // DB::table('visitor_infos')
-        // ->join('visitor_logs', 'visitor_infos.visitor_log_id', '=', 'visitor_logs.id')
-        // ->first();
-        //dd($getDetails);
-        return view('studentDetails', compact('getDetails'));
+        $expected_country_arr = json_decode($getDetails->expected_country);
+        $school_goes_arr = json_decode($getDetails->school_goes);
+        $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
+        return view('studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr'));
     }
     
     public function studentDetailsUpdate(Request $request,$id)
@@ -195,9 +198,11 @@ class VisitorController extends Controller
         
         $date_of_birth = $request->date_of_birth;
         $organization = $request->organization;
+        $expected_country = json_encode($request->expected_country);
+        $school_goes = json_encode($request->school_goes);
         
         $suggested_course = $request->suggested_course;
-        $total_enroll_course = $request->total_enroll_course;
+        $total_enroll_course = json_encode($request->total_enroll_course_details);
         $comments_from_student = $request->comments_from_student;
         $feedback_from_advisor = $request->feedback_from_advisor;
         VisitorInfo::updateOrCreate([
@@ -208,6 +213,8 @@ class VisitorController extends Controller
                 'education' =>$education,
                 'organization' =>$organization,
                 'date_of_birth' =>$date_of_birth,
+                'expected_country' =>$expected_country,
+                'school_goes' =>$school_goes,
                 'ielts_enough_time'=> $ielts_enough_time,
                 'ielts_taken'=> $ielts_taken,
                 'reading_expected_module'=> $expected_score_reading,

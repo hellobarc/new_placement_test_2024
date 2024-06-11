@@ -58,35 +58,35 @@
                 @include('flash-message')
                 <table class="table table-striped table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
-                        <th style="background: #DBEBF5;">SL No</th>
-                        <th style="background: #DBEBF5;">Full Name</th>
-                        <th style="background: #DBEBF5;">Email</th>
-                        <th style="background: #DBEBF5;">Mobile</th>
-                        <th style="background: #DBEBF5;">Purpose of Visit</th>
-                        <th style="background: #DBEBF5;">Enrolled Course</th>
-                        <th style="background: #DBEBF5;">Status</th>
-                        <th style="background: #DBEBF5;">Action</th>
+                        <th style="background: #DBEBF5; font-size:15px">SL No</th>
+                        <th style="background: #DBEBF5; font-size:15px">Full Name</th>
+                        <th style="background: #DBEBF5; font-size:15px">Email</th>
+                        <th style="background: #DBEBF5; font-size:15px">Mobile</th>
+                        <th style="background: #DBEBF5; font-size:15px">Purpose of Visit</th>
+                        <th style="background: #DBEBF5; font-size:15px">Enrolled Course</th>
+                        <th style="background: #DBEBF5; font-size:15px">Status</th>
+                        <th style="background: #DBEBF5; font-size:15px">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($getData as $item)
                             <tr id="cf-data-container">
-                                <td>{{ $loop->index+1}}</td>
-                                <td>{{ $item->full_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->mobile }}</td>
-                                <td>{{ ($item->purpose_of_visit) }}</td>
-                                <td>Pending</td>
-                                <td>
+                                <td style="font-size:14px;">{{ $loop->index+1}}</td>
+                                <td style="font-size:14px;">{{ $item->full_name }}</td>
+                                <td style="font-size:14px;">{{ $item->email }}</td>
+                                <td style="font-size:14px;">{{ $item->mobile }}</td>
+                                <td style="font-size:14px;">{{ ($item->purpose_of_visit) }}</td>
+                                <td style="font-size:14px;">Pending</td>
+                                <td style="font-size:14px;">
                                     @if($item->status == 'approved')
-                                    <p class="badge badge-success bg-success">Approved</p>
+                                    <p class="badge badge-success bg-success mt-2 mb-0">Approved</p>
                                     @elseif($item->status == 'unapproved')
-                                    <p class="badge badge-warning bg-warning">UnApproved</p>
+                                    <p class="badge badge-warning bg-warning mt-2 mb-0">UnApproved</p>
                                     @elseif($item->status == 'decline')
-                                    <p class="badge badge-danger bg-danger">Decline</p>
+                                    <p class="badge badge-danger bg-danger mt-2 mb-0">Decline</p>
                                     @else
                                     @endif
                                 </td>
-                                <td class="d-flex justify-content-between">
+                                <td class="d-flex justify-content-between" style="font-size:14px;">
                                     @if($item->status == 'approved')
                                         @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                             @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)

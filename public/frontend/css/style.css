@@ -40,6 +40,7 @@ body{
 .question-set-card .header .number{
   font-size: 120px;
   font-weight: 900;
+  margin-left: 16px;
 }
 .question-set-card .header .set{
   font-size: 80px;
