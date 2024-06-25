@@ -229,7 +229,7 @@ class ExamController extends Controller
                 }
             }
         }
-        if(isset($data['radio_question_type'])){
+        elseif(isset($data['radio_question_type'])){
             $radio_ques_id          = $data['radio_ques_id'];
             foreach($radio_ques_id as $question_id){
                 $sub_ques_ans_name = 'radio_sub_ques_ans_'.$question_id;
@@ -293,7 +293,7 @@ class ExamController extends Controller
                 }
             }
         }
-        if(isset($data['drop_down_question_type'])){
+        elseif(isset($data['drop_down_question_type'])){
             $drop_down_ques_id          = $data['drop_down_ques_id'];
             foreach($drop_down_ques_id as $question_id){
                 $sub_ques_id_name = 'drop_down_sub_ques_id_'.$question_id;
@@ -328,7 +328,7 @@ class ExamController extends Controller
                 }
             }
         }
-        if(isset($data['fillBlank_question_type'])){
+        elseif(isset($data['fillBlank_question_type'])){
             $fillBlank_ques_id  = $data['fillBlank_ques_id'];//question id
             $sub_ques_id        = $data['fillBlank_sub_ques_id'];//sub ques id
             foreach($fillBlank_ques_id as $question_index=>$question_id){
@@ -381,7 +381,7 @@ class ExamController extends Controller
                 $this->testCreate($array, $segment_id, $student_id);
             }
         }
-        if(isset($data['multi_selector_question_type'])){
+        elseif(isset($data['multi_selector_question_type'])){
             $multi_selector_ques_id          = $data['multi_selector_ques_id'];
             // $multi_selector_sub_ques_id      = $data['multi_selector_sub_ques_id'];
             foreach($multi_selector_ques_id as $question_id){

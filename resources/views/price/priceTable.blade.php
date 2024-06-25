@@ -38,15 +38,75 @@
             {{-- <button onclick="openFullscreen();">Click Full Screen</button> --}}
             <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <section class="section-result-overview">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="candidate-info card-background">
                                 <p class="assessment-title">Assessment Results</p>
-                                <p class="name">Hello, {{$student_info->studentInfo->full_name}} </p>
-                                <p class="details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor </p>
+                                <p class="name">Hello, {{$student_info->studentInfo->full_name}} <span style="color: #ee0d21; font-weight: 800;">Your current level</span></p>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_1" id="activeClass1">
+                                                    <p class="fw-bold mb-0">Elementary</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_2" id="activeClass2">
+                                                    <p class="fw-bold mb-0">Lower Intermediate</p>                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_3" id="activeClass3">
+                                                    <p class="fw-bold mb-0">Intermediate</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_4" id="activeClass4">
+                                                    <p class="fw-bold mb-0">Advance Intermediate</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_5" id="activeClass5">
+                                                    <p class="fw-bold mb-0">Advance</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <div class="full_box">
+                                            <div class="box_header">
+                                                <div class="inner_box_top_6" id="activeClass6">
+                                                    <p class="fw-bold mb-0">Proficiency</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="result-overall-container">
                                 <div class="result-overall">
                                     <div class="div-1">
@@ -93,50 +153,52 @@
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="result-overview-subsection">
                                 <p>Results Overview</p>
-                                <div class="d-flex justify-content-between">
-                                    <div class="modules">
-                                        <div>
-                                            <img src="{{asset('frontend/images/others/books.png')}}" alt="" class="modules-img">
-                                            <span class="modules-span">Reading</span>
+                                <div class="row">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="modules">
+                                            <div>
+                                                <span class="modules-span"><i class="fa-solid fa-headphones-simple"></i> Listening</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-listening" id="file" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_listening_module*100)/15)}}%</span>
+                                            </div>
                                         </div>
-                                        <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_reading_module*100)/15)}}%</span>
-                                        </div>
-                                    </div>
-                                    <div class="modules">
-                                        <div>
-                                            <img src="{{asset('frontend/images/others/grammer.png')}}" alt="" class="modules-img">
-                                            <span class="modules-span">Grammar</span>
-                                        </div>
-                                        <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
-                                        </div>
-                                    </div>
-                                    <div class="modules">
-                                        <div>
-                                            <img src="{{asset('frontend/images/others/vocabulary.png')}}" alt="" class="modules-img">
-                                            <span class="modules-span">Vocabulary</span>
-                                        </div>
-                                        <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
-                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
+                                        <div class="modules mt-4">
+                                            <div>
+                                                <span class="modules-span"><i class="fa-solid fa-book-open"></i> Reading</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_reading_module*100)/15)}}%</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="modules">
-                                        <div>
-                                            <img src="{{asset('frontend/images/others/listening.png')}}" alt="" class="modules-img">
-                                            <span class="modules-span">Listening</span>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="modules">
+                                            <div>
+                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span>
+                                            </div>
+                                            <p class="fw-bold mb-0 mt-2">Grammar</p>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-grammar mt-0" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
+                                            </div>
                                         </div>
-                                        <div class="d-flex justify-content-start">
-                                            <progress class="progress-bar-listening" id="file" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
-                                            <span style="margin: 9px 0 0 6px;">{{number_format(($sum_listening_module*100)/15)}}%</span>
+                                        <div class="modules mt-4">
+                                            <div>
+                                                <span class="fw-bold mb-0">Vocabulary</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-vocabulary mt-0" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
+                                                <span style="margin: -5px 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
                 </section>
                 <section class="mark-analysis_correct-answer">
@@ -392,14 +454,18 @@
                                     Interested Aboard Country
                                 </p>
                                 <div class="intended-countries pt-3">
-                                    @foreach (json_decode($student_info->expected_country) as $country)
-                                    
-                                    <div class="country-name mx-2">
-                                        <span class="me-3">{{$country}}</span><span><i
-                                                class="fa-solid fa-plane"></i></span>
-                                    </div>
-                                    @endforeach
-                                   
+                                    @if ($student_info->expected_country == NULL)
+                                        <div class="country-name mx-2">
+                                            <span class="me-3">Not Selected</span>
+                                        </div>
+                                    @else
+                                        @foreach (json_decode($student_info->expected_country) as $country)
+                                            <div class="country-name mx-2">
+                                                <span class="me-3">{{$country}}</span>
+                                                <span><i class="fa-solid fa-plane"></i></span>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -410,14 +476,18 @@
                                     Intended University
                                 </p>
                                 <div class="intended-countries pt-3">
-                                    <div class="country-name mx-2">
-                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span><span
-                                            class="me-3">Top</span>
-                                    </div>
-                                    <div class="country-name mx-2">
-                                        <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
-                                        <span class="me-3">Middle</span>
-                                    </div>
+                                    @if ($student_info->school_goes == null)
+                                        <div class="country-name mx-2">
+                                            <span class="me-3">Not Selected</span>
+                                        </div>
+                                    @else
+                                        @foreach (json_decode($student_info->school_goes) as $school)
+                                            <div class="country-name mx-2">
+                                                <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
+                                                <span class="me-3">{{$school}}</span>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
 
@@ -563,78 +633,37 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="card-titles mt-3 mb-1"><i class="fa-solid fa-book-bookmark"></i> Course Content</p>
+                                        <p class="card-titles mt-3 mb-4"><i class="fa-solid fa-book-bookmark"></i> Course Content</p>
                                         <div class="row">
-                                            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div id="a1-course-description">
-                                                            <div class="d-flex justify-content-start my-3">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="mt-1 fs-5" style="color: #353a47;"><i class="fa-solid fa-circle"></i></div>
-                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">A1:</p>
-                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
-                                                                    </p>
-                                                                </div>
-                                                                <div class="details-border"> 
-                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">Details</button>
-                                                                </div>
-                                                            </div>
+                                            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <div class="d-flex justify-content-between">
+                                                    <div id="a1-course-description" class="d-flex justify-content-start">
+                                                        <div class="details-border"> 
+                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">A1</button>
                                                         </div>
-                                                        <div id="a2-course-description">
-                                                            <div class="d-flex justify-content-start my-3">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="mt-1 fs-5" style="color: #355070;"><i class="fa-solid fa-circle"></i></div>
-                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">A2:</p>
-                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
-                                                                    </p>
-                                                                </div>
-                                                                <div class="details-border"> 
-                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">Details</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div id="b1-course-description">
-                                                            <div class="d-flex justify-content-start my-3">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="mt-1 fs-5" style="color: #848586;"><i class="fa-solid fa-circle"></i></div>
-                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">B1:</p>
-                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
-                                                                    </p>
-                                                                </div>
-                                                                <div class="details-border"> 
-                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">Details</button>
-                                                                </div>
-                                                            </div>
+                                                    <div id="a2-course-description" class="d-flex justify-content-start">
+                                                        <div class="details-border"> 
+                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">A2</button>
                                                         </div>
-                                                        <div id="b2-course-description">
-                                                            <div class="d-flex justify-content-start my-3">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="mt-1 fs-5" style="color: #db5375;"><i class="fa-solid fa-circle"></i></div>
-                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">B2:</p>
-                                                                    <p class="course-name mb-0" style="font-weight: 400;">Course Content
-                                                                    </p>
-                                                                </div>
-                                                                <div class="details-border"> 
-                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">Details</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div id="c1-course-description">
-                                                            <div class="d-flex justify-content-start my-3">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="mt-1 fs-5" style="color: #729ea1;"><i class="fa-solid fa-circle"></i></div>
-                                                                    <p class="course-name mb-0 mx-2" style="font-weight: 700;">C1:</p>
-                                                                    <p class="course-name mb-0 " style="font-weight: 400;">Course Content</p>
-                                                                </div>
-                                                                <div class="details-border"> 
-                                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">Details</button>
-                                                                </div>
-                                                            </div>
+                                                    <div id="b1-course-description" class="d-flex justify-content-start">
+                                                        <div class="details-border"> 
+                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">B1</button>
+                                                        </div>
+                                                        <div class="course-content-arrow"></div>
+                                                    </div>
+                                                    <div id="b2-course-description" class="d-flex justify-content-start">
+                                                        <div class="details-border"> 
+                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">B2</button>
+                                                        </div>
+                                                        <div class="course-content-arrow"></div>
+                                                    </div>
+                                                    <div id="c1-course-description">
+                                                        <div class="details-border"> 
+                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">C1</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -733,7 +762,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <p class="card-titles mt-3 mb-1"><i class="fa-regular fa-calendar-days"></i> Class Schdule</p>
+                                    <p class="card-titles mt-4 mb-1"><i class="fa-regular fa-calendar-days"></i> Class Schdule</p>
                                     <div style="border: 1.5px solid #7c7c7c; width:40%; border-radius: 4px; margin-top: 20px; padding: 20px 10px;">
                                         <ul class="mb-0">
                                             <li class="fs-5"><span class="fw-bold">Regular Batch:</span> Weekly Two or Three days</li>
@@ -976,19 +1005,19 @@
                     label: 'Marks',
                     data: [correct, in_correct, unanswered],
                     backgroundColor: [
-                    '#EC6B56',
-                    'rgb(255, 159, 64)',
-                    '#74BBFB',
+                    '#0db165',
+                    '#df3232',
+                    '#cfe2ff',
                     ],
                     borderColor: [
-                    '#EC6B56',
-                    'rgb(255, 159, 64)',
-                    '#74BBFB',
+                    '#0db165',
+                    '#df3232',
+                    '#cfe2ff',
                     ],
                     backgroundColor: [
-                    '#EC6B56',
-                    'rgb(255, 159, 64)',
-                    '#74BBFB',
+                    '#0db165',
+                    '#df3232',
+                    '#cfe2ff',
                     ],
                     hoverOffset: 4
                 }]

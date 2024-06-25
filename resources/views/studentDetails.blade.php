@@ -275,6 +275,12 @@
                                                 <option value="Medium" {{in_array("Medium", $school_goes_arr) == 1?'selected':''}}>  Medium </option>
                                                 <option value="Low" {{in_array("Low", $school_goes_arr) == 1?'selected':''}}>  Low </option>
                                             </select>
+                                        @else
+                                            <select data-width="100%" id="school_goes" name="school_goes[]" multiple="multiple" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5">
+                                                <option value="Top">  Top </option>
+                                                <option value="Medium">  Medium </option>
+                                                <option value="Low">  Low </option>
+                                            </select>
                                         @endif
                                     </div>
                                 </div>

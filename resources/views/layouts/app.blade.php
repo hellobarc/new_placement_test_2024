@@ -90,13 +90,13 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-    $('#expected_country').select2();
-    $('#school_goes').select2();
-    $('#total_enroll_course_details').select2();
-});
+            $('#expected_country').select2();
+            $('#school_goes').select2();
+            $('#total_enroll_course_details').select2();
+        });
     </script>
 <script>
-    $( function() {
+    $(function() {
         $( "#date_of_birth" ).datepicker({
             dateFormat: "dd-mm-yy"
         });
@@ -112,7 +112,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     var time =600*1000;
     //make it a named function
     $(function poll(){
@@ -135,11 +134,6 @@
         //end poll function
     });
 </script>
-
-
-{{-- push notification --}}
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-
 <script>
     // Send the Ajax request
     $(document).ready(function (){
@@ -149,33 +143,6 @@
         })
 </script>
 
-{{-- <script src="{{asset('js/app.js')}}"></script> --}}
-<script>
-    window.onload=function(){
-        Echo.channel('student_notification')
-        .listen('.Student_PushNotification', (e) => {
-            // console.log(e.message.length)
-            // e.forEach(element => {
-            //     console.log(element.length)
-            // })
-            let notification_count = e.message.length;
-            document.getElementById("notification_count").innerHTML = notification_count;
-            
-        });
-        // }
-        //     window.onload=function(){
-        Echo.channel('FrontDesk_Notification')
-        .listen('.FrontDeskNotification', (e) => {
-            // console.log(e.message.length)
-            // e.forEach(element => {
-            //     console.log(element.length)
-            // })
-
-            let front_notification_count = e.data.length;
-            document.getElementById("front_notification_count").innerHTML = front_notification_count;
-        });
-    }
-</script>
 <script src="{{asset('frontend/ckeditor/ckeditor.js')}}"></script>
 <script>
     CKEDITOR.replace('ck');

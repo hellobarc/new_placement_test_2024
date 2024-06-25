@@ -295,31 +295,9 @@
     </div>
 </section>
 <!-- main section end -->
-<script>
-    // Wrap the native DOM audio element play function and handle any autoplay errors
-    Audio.prototype.play = (function(play) {
-    return function () {
-        var audio = this,
-            args = arguments,
-            promise = play.apply(audio, args);
-            if (promise !== undefined) {
-                promise.catch(_ => {
-                // Autoplay was prevented. This is optional, but add a button to start playing.
-                var el = document.createElement("button");
-                el.innerHTML = "Play the audio again";
-                el.addEventListener("click", function(){play.apply(audio, args);});
-                this.parentNode.insertBefore(el, this.nextSibling)
-                });
-            }
-        };
-    })(Audio.prototype.play);
 
-    // Try automatically playing our audio via script. This would normally trigger and error.
-    document.getElementById('my_play').play()
-</script>
 @endsection
 <script>
-
     var get_time ="{{$exam_time}}"
     let module_id = "{{$module_id}}"
     if(module_id == 1){
@@ -329,20 +307,8 @@
     }else if(module_id == 4){
         var startingMinutes = 10*60;
     }
-    //let examCompletedPage = "{{ route('student.exam.completed', $student_id) }}";
-    //console.log( document.getElementById('countdown').value())
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="{{asset('frontend/js/question_js.js')}}"></script>
-<script>
-    
-    let module = "{{$module_id}}";
-    // $(document).ready(function(){ 
-    //     var windowWidth = $(window).height();
-    //     console.log(windowWidth/2); 
-    //     $(".passage").css('height', windowWidth/2+"px");
-    //     $(".question").css('height', windowWidth/2+"px");
-    // });
-</script>
 
 
