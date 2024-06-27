@@ -890,26 +890,31 @@ progress {
 /* Specific styles for different progress bars */
 progress::-webkit-progress-bar {
   background-color: #ddd;
-  border-radius: 1rem;
+  border-radius: 2px !important;
   overflow: hidden;
 }
 
 
 .progress-bar-reading {
   margin-top: 1rem;
+  height: 12px;
 }
 
 .progress-bar-grammar {
   margin-top: 1rem;
+  height: 12px;
 }
 
 .progress-bar-vocabulary {
   margin-top: 1rem;
+  height: 12px;
 }
 
 .progress-bar-listening {
   margin-top: 1rem;
   width: 100%;
+  height: 12px;
+  border-radius: 0px !important;
 }
 
 .progress-bar-reading::-webkit-progress-value {
@@ -1428,6 +1433,150 @@ progress::-webkit-progress-bar {
 }
 .marks_bar_graph{
   height: 25rem;
+}
+.total_enrolled_course .course-achievement{
+  margin: 1.15rem 0 0 0;
+}
+.total_enrolled_course .course-achievement .course-achievement-box{
+  border: 1.5px solid #004AAD;
+  padding: 10px 15px;
+  border-radius: 4px;
+  width: 50%;
+}
+.total_enrolled_course .course-achievement .course-achievement-box .course{
+  margin: 0 0 0 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.total_enrolled_course .course-achievement .course-achievement-box .status{
+  color: #4D4B4B;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
+  margin: 2px 0 0 0;
+}
+.total_enrolled_course .course-achievement .title{
+  color: #363535;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.total_enrolled_course .price-box{
+  border-radius: 4px;
+  background: var(--GlobalColors-Neutral-0, #FFF);
+  box-shadow: 0px 2px 12px 0px rgba(106, 106, 106, 0.08);
+}
+.total_enrolled_course .price-box .header{
+  background-color: #004AAD;
+  padding: 5px 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.total_enrolled_course .price-box .price-title{
+  margin: 0 0 0 0;
+  color: var(--Primary-Color, #004AAD);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.875rem; /* 150% */
+  padding-bottom: 8px;
+  border-bottom: 1.2px solid #D6D6D6;
+}
+.total_enrolled_course .price-box .inner-box{
+  padding: 10px 15px;
+}
+.total_enrolled_course .price-box .inner-box .regular-price{
+  color: #535252;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.total_enrolled_course .price-box .inner-box .discount-price{
+  color: #535252;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border-bottom: 1.2px solid #D6D6D6;
+}
+.total_enrolled_course .price-box .inner-box .discounted-price{
+  color: #004AAD;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.total_enrolled_course .price-box .inner-box .visit-day-price{
+  color: #535252;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border-bottom: 1.2px solid #D6D6D6;
+}
+.total_enrolled_course .price-box .inner-box .privileged-price{
+  color: #004AAD;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.total_enrolled_course .price-box .inner-box .vat-price{
+  color: #535252;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border-bottom: 1.2px solid #D6D6D6;
+}
+.total_enrolled_course .price-box .inner-box .vat-price{
+  color: #535252;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border-bottom: 1.2px solid #D6D6D6;
+}
+.total_enrolled_course .price-box .inner-box .totaled-price{
+  color: #535252;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem; /* 150% */
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.total_enrolled_course .price-box .inner-box .totaled-month-duration{
+  color: #535252;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 10px 0 30px 0;
+  background-color: #C5FFBC;
+}
+.total_enrolled_course .price-box .inner-box button{
+  background-color: #004AAD;
+  color: #f8f8f8;
+  border-radius: 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  margin: 20px 0 0 0 I !important;
+  text-align: center;
+  padding: 5px 0;
 }
 /* result page css end */
 @media (max-width: 420px) {

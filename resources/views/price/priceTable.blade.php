@@ -4,7 +4,7 @@
 <section style="background: #F8F8F8;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 px-sm-2 px-0" style="background: #212529">
+            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 px-sm-2 px-0" style="background: #072F64">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mt-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-house"></i> Dashboard</span>
@@ -17,7 +17,7 @@
                             </a>
                         </li>
                     </ul>
-                    <hr>
+                    {{-- <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
@@ -32,7 +32,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{{route('logout')}}">Sign out</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             {{-- <button onclick="openFullscreen();">Click Full Screen</button> --}}
@@ -160,7 +160,7 @@
                                                 <span class="modules-span"><i class="fa-solid fa-headphones-simple"></i> Listening</span>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-listening" id="file" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
+                                                <progress class="progress-bar-listening" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
                                                 <span style="margin: 9px 0 0 6px;">{{number_format(($sum_listening_module*100)/15)}}%</span>
                                             </div>
                                         </div>
@@ -912,8 +912,105 @@
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="card-background px-5 py-4">
-                                    <p class="card-titles"><i class="fa-solid fa-box-open"></i> Total Enrolled Course</p>
-                                    <form action="{{route('student.total.enrolled course')}}" method="POST">
+                                    <p class="card-titles"><i class="fa-solid fa-book-open-reader"></i> Course Overview</p>
+                                    <div class="row">
+                                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div style="border-radius: 0.75rem; padding:1rem 1.825rem; background: var(--GlobalColors-Neutral-0, #FFF); box-shadow: 0px 2px 14px 0px rgba(148, 143, 143, 0.08);">
+                                                <table class="table" style="border-bottom: 1px solid #DEDCDC; margin-bottom: 0 !important;">
+                                                    <thead>
+                                                        <th style="background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Enrolled Course</th>
+                                                        <th style="background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Course Level</th>
+                                                        <th style="float: right; background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Duration</th>
+                                                    </thead>
+                                                </table>
+                                                <div id="a1CourseOverview">
+                                                    <div class="d-flex justify-content-between"  style="border-bottom: 1px solid #DEDCDC; padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> A1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Elementory</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="a2CourseOverview">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> A2</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Basic English</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="b1CourseOverview">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> B1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Pre- Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="b2CourseOverview">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> B2</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Main Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="c1CourseOverview">
+                                                    <div class="d-flex justify-content-between" style=" padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> C1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Advance Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="course-achievement">
+                                                <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Course Achievement</p>
+                                                <div class="course-achievement-box">
+                                                    <p class="course"><span style="color:#004AAD;"><i class="fa-solid fa-trophy"></i></span> C1</p>
+                                                    <p class="status">Course Level: Advance IELTS</p>
+                                                    <p class="status">Achieve Band Score: 7 Plus</p>
+                                                    <p class="status">Status: Beginner To Advance</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="price-box">
+                                                <div class="header"></div>
+                                                <div class="inner-box">
+                                                    <p class="price-title">Price</p>
+                                                    <div class="regular-price">
+                                                        <p>Regular price</p>
+                                                        <p id="courseOverviewRegularPrice">0</p>
+                                                    </div>
+                                                    <div class="discount-price">
+                                                        <p>Discount price</p>
+                                                        <p id="courseOverviewDiscountPrice">0</p>
+                                                    </div>
+                                                    <div class="discounted-price">
+                                                        <p>Discounted price</p>
+                                                        <p id="courseOverviewDiscountedPrice">0</p>
+                                                    </div>
+                                                    <div class="visit-day-price">
+                                                        <p>Visit Day Offer</p>
+                                                        <p id="courseOverviewPrivileged">0</p>
+                                                    </div>
+                                                    <div class="privileged-price">
+                                                        <p>Privileged Price</p>
+                                                        <p id="courseOverviewTotalPrivileged">0</p>
+                                                    </div>
+                                                    <div class="vat-price">
+                                                        <p>Vat</p>
+                                                        <p>5%</p>
+                                                    </div>
+                                                    <div class="totaled-price">
+                                                        <p>Total Price</p>
+                                                        <p id="courseOverviewTotalPrice">0</p>
+                                                    </div>
+                                                    <div class="totaled-month-duration">
+                                                        <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months</p>
+                                                    </div>
+                                                    <button type="submit">Confirm Purchase</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <form action="{{route('student.total.enrolled course')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="student_id" value="{{$student_info->visitor_log_id}}">
                                         <div class="form-group">
@@ -939,7 +1036,7 @@
                                         <div class="pt-4">
                                             <button type="submit" class="btn btn-sm text-light fs-5 fw-bold px-3 py-1" style="background-color: #004AAD; ">Submit</button>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
                         </div>
@@ -1005,19 +1102,19 @@
                     label: 'Marks',
                     data: [correct, in_correct, unanswered],
                     backgroundColor: [
-                    '#0db165',
-                    '#df3232',
-                    '#cfe2ff',
+                    '#004AAD',
+                    '#EEB902',
+                    '#87A0B2',
                     ],
                     borderColor: [
-                    '#0db165',
-                    '#df3232',
-                    '#cfe2ff',
+                    '#004AAD',
+                    '#EEB902',
+                    '#87A0B2',
                     ],
                     backgroundColor: [
-                    '#0db165',
-                    '#df3232',
-                    '#cfe2ff',
+                    '#004AAD',
+                    '#EEB902',
+                    '#87A0B2',
                     ],
                     hoverOffset: 4
                 }]

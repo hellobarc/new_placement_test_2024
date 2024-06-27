@@ -113,6 +113,7 @@ class VisitorFollowUpController extends Controller
     }
     public function studentTotalEnrolledCourse(Request $request)
     {
+        dd($request->all());
         $enrolled_course = $request->total_enrolled_course;
         $student_id = $request->student_id;
         VisitorInfo::updateOrCreate([
