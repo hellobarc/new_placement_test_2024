@@ -39,74 +39,14 @@
             <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <section class="section-result-overview">
                     <div class="row">
-                        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="candidate-info card-background">
                                 <p class="assessment-title">Assessment Results</p>
-                                <p class="name">Hello, {{$student_info->studentInfo->full_name}} <span style="color: #ee0d21; font-weight: 800;">Your current level</span></p>
-                                <div class="row">
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_1" id="activeClass1">
-                                                    <p class="fw-bold mb-0">Elementary</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_2" id="activeClass2">
-                                                    <p class="fw-bold mb-0">Lower Intermediate</p>                                                    
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_3" id="activeClass3">
-                                                    <p class="fw-bold mb-0">Intermediate</p>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_4" id="activeClass4">
-                                                    <p class="fw-bold mb-0">Advance Intermediate</p>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_5" id="activeClass5">
-                                                    <p class="fw-bold mb-0">Advance</p>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <div class="full_box">
-                                            <div class="box_header">
-                                                <div class="inner_box_top_6" id="activeClass6">
-                                                    <p class="fw-bold mb-0">Proficiency</p>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+                                <p class="name">Hello, {{$student_info->studentInfo->full_name}}</p>
+                                <p style="margin: 5px 0 0 0; font-size: 1rem;">You have completed your 40-minute IELTS assessment test.</p>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="result-overall-container">
                                 <div class="result-overall">
                                     <div class="div-1">
@@ -129,7 +69,7 @@
                                             @endif
                                         </p>
                                     </div>
-                                    <p class="mt-3 fs-5 text-light mb-1">Overall English Level:
+                                    <p class="mt-3 fs-5 text-light mb-1">
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                             <span style="color: #FFBB0D">Elementory</span>    
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -143,6 +83,145 @@
                                         @else
                                         @endif   
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card-background px-5 py-4 m-4">
+                    <div class="container">
+                        <p class="current-level-title"><i class="fa-solid fa-chart-line"></i> Your Current Level</p>
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_1" id="activeClass1">
+                                            <p class="fs-5 fw-bold">A1</p>
+                                            <h5 class="fw-bolder">Elementary</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR A1</li>
+                                                <li>TOEFL&reg; 0 - 12</li>
+                                                <li>IELTS 3.5 - 4.0</li>
+                                                <li>CAMBRIDGE 100 - 120</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_2" id="activeClass2">
+                                            <p class="fs-5 fw-bold">A2</p>
+                                            <h5 class="fw-bolder">Lower Intermediate</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR A2</li>
+                                                <li>TOEFL&reg; 13 - 36</li>
+                                                <li>IELTS 4.0 - 4.5</li>
+                                                <li>CAMBRIDGE 120 - 140 KET</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_3" id="activeClass3">
+                                            <p class="fs-5 fw-bold">B1</p>
+                                            <h5 class="fw-bolder">Intermediate</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR B1</li>
+                                                <li>TOEFL&reg; 37 - 54</li>
+                                                <li>IELTS 4.5 - 5.5</li>
+                                                <li>CAMBRIDGE 140 - 160 PET</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_4" id="activeClass4">
+                                            <p class="fs-5 fw-bold">B2</p>
+                                            <h5 class="fw-bolder">Advance Intermediate</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR B1</li>
+                                                <li>TOEFL&reg; 55 - 74</li>
+                                                <li>IELTS 5.5 - 6.5</li>
+                                                <li>CAMBRIDGE 160 - 180 FCE</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_5" id="activeClass5">
+                                            <p class="fs-5 fw-bold">C1</p>
+                                            <h5 class="fw-bolder">Advance</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR C1</li>
+                                                <li>TOEFL&reg; 75 - 91</li>
+                                                <li>IELTS 7.0 - 7.5</li>
+                                                <li>CAMBRIDGE 180 - 200 CAE</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="full_box">
+                                    <div class="box_header">
+                                        <div class="inner_box_top_6" id="activeClass6">
+                                            <p class="fs-5 fw-bold">C2</p>
+                                            <h5 class="fw-bolder">Proficiency</h5>
+                                        </div>
+                                    </div>
+                                    <div class="box_bind_class">
+                                        <hr>
+                                        <div class="inner_box_bottom">
+                                            <p class="fw-bold">Exam levels</p>
+                                            <ul>
+                                                <li>CEFR C2</li>
+                                                <li>TOEFL&reg; 92+</li>
+                                                <li>IELTS 7.5+</li>
+                                                <li>CAMBRIDGE 200 CPE</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -497,28 +576,32 @@
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="sugg-target-score p-4 card-background">
                                 <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested course for targeted band score</p>
-                                <div class="band-score-tiles-list">
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
-                                        Band: 6
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" onclick="expected_band_score_func(6.5)">
-                                        Band: 6.5
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
-                                        Band: 7
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" onclick="expected_band_score_func(7.5)">
-                                        Band: 7.5
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
-                                        Band: 8
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" onclick="expected_band_score_func(8.5)">
-                                        Band: 8.5
-                                    </button>
-                                    <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" onclick="expected_band_score_func(9)">
-                                        Band: 9
-                                    </button>
+                                <div class="row">
+                                    <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                        <div class="band-score-tiles-list">
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
+                                                Band: 6
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" onclick="expected_band_score_func(6.5)">
+                                                Band: 6.5
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
+                                                Band: 7
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" onclick="expected_band_score_func(7.5)">
+                                                Band: 7.5
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
+                                                Band: 8
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" onclick="expected_band_score_func(8.5)">
+                                                Band: 8.5
+                                            </button>
+                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" onclick="expected_band_score_func(9)">
+                                                Band: 9
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -528,107 +611,139 @@
                     <div class="p-5 card-background">
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="position-relative">
-                                    <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve <span id="achive_band_score"></span></div>
-                                    <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
-                                    <div class="">
-                                        <div id="c1_course_duration">
-                                            <div class="d-flex justify-content-start">
-                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 10px 10px 0 0;">C1</div>
-                                                <div class="text-center c1-course-duration">
-                                                    <div class="c1-course-timelength">
-                                                        <div class="c1-inner-1 py-2">
-                                                            <span class="text-1 mb-0">1</span>
-                                                            <span class="text-1 mb-0">Months +</span>
-                                                            <span class="text-2 mb-0">Advance IELTS</span>
-                                                        </div>
+                                <div style="margin: 2rem 0 0 0">
+                                    <div class="position-relative">
+                                        <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve <span id="achive_band_score"></span></div>
+                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
+                                        <div class="row">
+                                            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                    <div class="your-score">
+                                                        <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
+                                                        Your Score 
+                                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                            4.0 - 4.5
+                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                            4.5 - 5.0
+                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                            5.0 - 5.5
+                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                            6.0 - 6.5
+                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                            7.0
+                                                        @else
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div id="b2_course_duration">
-                                            <div class="d-flex justify-content-start">
-                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B2</div>
-                                                <div class="text-center b2-course-duration">
-                                                    <div class="b2-course-timelength">
-                                                        <div class="b2-inner-1"></div>
-                                                        <div class="b2-inner-2 py-2">
-                                                            <span class="text-1 mb-0">1</span>
-                                                            <span class="text-1 mb-0">Months+</span>
-                                                            <span class="text-2 mb-0">Main IELTS</span>
+                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="d-flex justify-content-between">
+                                                    <div id="a1_course_duration">
+                                                        <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                            <div style="height: 50px; background-color:#45ba5e;padding:0 24px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="a2_course_duration">
+                                                        <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                            <div style="height: 100px; background-color:#7281e9;padding:0 24px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="b1_course_duration">
+                                                        <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                            <div style="height: 150px; background-color:#d761f4;padding:0 24px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="b2_course_duration">
+                                                        <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                            <div style="height: 200px; background-color:#4849db;padding:0 24px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="c1_course_duration">
+                                                        <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
+                                                            <div style="height: 250px; background-color:#ff5f36;padding:0 24px;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div id="b1_course_duration">
-                                            <div class="d-flex justify-content-start">
-                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">B1</div>
-                                                <div class="text-center b1-course-duration">
-                                                    <div class="b1-course-timelength">
-                                                        <div class="b1-inner-1"></div>
-                                                        <div class="b1-inner-2"></div>
-                                                        <div class="b1-inner-3 py-2">
-                                                            <span class="text-1 mb-0">1</span>
-                                                            <span class="text-1 mb-0">Months+</span>
-                                                            <span class="text-2 mb-0">Pre - IELTS</span>
-                                                        </div>
+                                                <div class="d-flex justify-content-between mt-2">
+                                                    <div id="">
+                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> A1</div>
+                                                    </div>
+                                                    <div id="">
+                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> A2</div>
+                                                    </div>
+                                                    <div id="">
+                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> B1</div>
+                                                    </div>
+                                                    <div id="">
+                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> B2</div>
+                                                    </div>
+                                                    <div id="">
+                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> C1</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div id="a2_course_duration">
-                                            <div class="d-flex justify-content-start">
-                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A2</div>
-                                                <div class="text-center a2-course-duration">
-                                                    <div class="a2-course-timelength">
-                                                        <div class="a2-inner-1"></div>
-                                                        <div class="a2-inner-2"></div>
-                                                        <div class="a2-inner-3"></div>
-                                                        <div class="a2-inner-4 py-2">
-                                                            <span class="text-1 mb-0">1</span>
-                                                            <span class="text-1 mb-0">Months+</span>
-                                                            <span class="text-2 mb-0">Basic English</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                                <p class="course-benefit-title"><i class="fa-solid fa-list-check me-1"></i> Course Benefit</p>
+                                               <div>
+                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">A1 Benefit</span>
+                                               </div>
+                                               <div>
+                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">A2 Benefit</span>
+                                               </div>
+                                               <div>
+                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">B1 Benefit</span>
+                                               </div>
+                                               <div>
+                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">B2 Benefit</span>
+                                               </div>
+                                               <div>
+                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">C1 Benefit</span>
+                                               </div>
                                             </div>
                                         </div>
-                                        <div id="a1_course_duration">
-                                            <div class="d-flex justify-content-start" >
-                                                <div style="font-size: 1.125rem; font-weight: 700; color: #494646; margin: 22px 10px 0 0;">A1</div>
-                                                <div class="text-center a1-course-duration">
-                                                    <div class="a1-course-timelength">
-                                                        <div class="a1-inner-1"></div>
-                                                        <div class="a1-inner-2"></div>
-                                                        <div class="a1-inner-3"></div>
-                                                        <div class="a1-inner-4"></div>
-                                                        <div class="a1-inner-5 py-2">
-                                                            <span class="text-1 mb-0">1</span>
-                                                            <span class="text-1 mb-0">Months +</span>
-                                                            <span class="text-2 mb-0">Elementory</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                                <table class="table table-bordered mt-5">
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Course</td>
+                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Level</td>
+                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Duration</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">A1</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Elementory</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">A2</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Basic English</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">B1</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Pre - IELTS</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">B2</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Main IELTS</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">C1</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Advance IELTS</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
+                                                    </tr>
+                                                </table>
+                                                <p class="total-time">Total Course Duration: <span id="course_completed_time"></span> Months +</p>
                                             </div>
                                         </div>
-                                        <div class="your-score">
-                                            <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
-                                            Your Score 
-                                            @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                4.0 - 4.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                4.5 - 5.0
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                5.0 - 5.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                6.0 - 6.5
-                                            @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                7.0
-                                            @else
-                                            @endif
-                                        </div>
-                                        <p class="total-time">Total Course Duration: <span id="course_completed_time"></span> Months +</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -781,21 +896,21 @@
                             <div class="p-5 card-background">
                                 <p class="card-titles"><span style="rotate: 180deg"><i class="fa-solid fa-tags"></i></span> Course Price</p>
                                 <div class="mx-5 px-5">
-                                    <table class="table">
+                                    <table class="table table-bordered">
                                         <tr>
-                                            <th style="background-color: #ffffff;"></th>
-                                            <th style="background-color: #067DC8;" class="td-total text-white">Regular <p>Fees</p></th>
-                                            <th style="background-color: #9B88ED;" class="td-total text-white">Standard <p>Package</p></th>
+                                            <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Courses</td>
+                                            <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
+                                            <td style="background-color: #5A639C;" class="td-total text-white pt-3">Discount <p>Package</p></td>
                                         </tr>
                                         <tr id="a1_course_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseA1TdPrice1">
                                                    {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseA1TdPrice1Input" value="{{Helper::coursePrice('a1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseA1TdPrice2">
                                                     @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
@@ -808,14 +923,14 @@
                                             </td>
                                         </tr>
                                         <tr id="a2_course_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseA2TdPrice1">
                                                     {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseA2TdPrice1Input" value="{{Helper::coursePrice('a2')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseA2TdPrice2">
                                                     @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
@@ -828,14 +943,14 @@
                                             </td>
                                         </tr>
                                         <tr id="b1_course_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseB1TdPrice1">
                                                     {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseB1TdPrice1Input" value="{{Helper::coursePrice('b1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseB1TdPrice2">
                                                     @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
@@ -848,14 +963,14 @@
                                             </td>
                                         </tr>
                                         <tr id="b2_course_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseB2TdPrice1">
                                                     {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseB2TdPrice1Input" value="{{Helper::coursePrice('b2')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseB2TdPrice2">
                                                     @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
@@ -868,14 +983,14 @@
                                             </td>
                                         </tr>
                                         <tr id="c1_course_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseC1TdPrice1">
                                                     {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="courseC1TdPrice1Input" value="{{Helper::coursePrice('c1')['regular_price']}}">
                                             </td>
-                                            <td style="background-color: #dbebf59e;" class="td-price">
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="courseC1TdPrice2">
                                                     @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
@@ -888,8 +1003,8 @@
                                             </td>
                                         </tr>
                                         <tr id="priviliged_price_row">
-                                            <td style="background-color: #dbebf59e; cursor: pointer; color:#232323" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
-                                            <td style="background-color: #dbebf59e;" class="td-price" colspan="2">
+                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
+                                            <td style="background-color: #fff;" class="td-price" colspan="2">
                                                 <div id="coursePrivileged">
                                                     {{number_format($priviliged_price->priviliged_price)}}/-
                                                 </div>
@@ -897,9 +1012,9 @@
                                             </td>
                                         </tr>
                                         <tr id="total_course_price_row">
-                                            <td style="background: #7A34B0;" class="td-total text-light">Total</td>
-                                            <td style="background-color: #E3E3E3;" class="td-price" id="totalCourseRegularPrice"></td>
-                                            <td style="background-color: #E3E3E3;" class="td-price" id="totalCourseDiscountPrice"></td>
+                                            <td style="background: #5d5071;" class="td-total text-white py-3">Total</td>
+                                            <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseRegularPrice"></td>
+                                            <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseDiscountPrice"></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -959,6 +1074,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="totaled-month-duration">
+                                                <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months</p>
+                                            </div>
                                             <div class="course-achievement">
                                                 <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Course Achievement</p>
                                                 <div class="course-achievement-box">
@@ -975,35 +1093,32 @@
                                                 <div class="inner-box">
                                                     <p class="price-title">Price</p>
                                                     <div class="regular-price">
-                                                        <p>Regular price</p>
-                                                        <p id="courseOverviewRegularPrice">0</p>
+                                                        <p class="mb-0">Regular price</p>
+                                                        <p class="mb-0" id="courseOverviewRegularPrice">0</p>
                                                     </div>
                                                     <div class="discount-price">
-                                                        <p>Discount price</p>
-                                                        <p id="courseOverviewDiscountPrice">0</p>
+                                                        <p class="mb-1">Discount price</p>
+                                                        <p class="mb-1" id="courseOverviewDiscountPrice">0</p>
                                                     </div>
                                                     <div class="discounted-price">
-                                                        <p>Discounted price</p>
-                                                        <p id="courseOverviewDiscountedPrice">0</p>
+                                                        <p class="mb-0">Discounted price</p>
+                                                        <p class="mb-0" id="courseOverviewDiscountedPrice">0</p>
                                                     </div>
                                                     <div class="visit-day-price">
-                                                        <p>Visit Day Offer</p>
-                                                        <p id="courseOverviewPrivileged">0</p>
+                                                        <p class="mb-1">Visit Day Offer</p>
+                                                        <p class="mb-1" id="courseOverviewPrivileged">0</p>
                                                     </div>
                                                     <div class="privileged-price">
-                                                        <p>Privileged Price</p>
-                                                        <p id="courseOverviewTotalPrivileged">0</p>
-                                                    </div>
-                                                    <div class="vat-price">
-                                                        <p>Vat</p>
-                                                        <p>5%</p>
+                                                        <p class="mb-2">Privileged Price</p>
+                                                        <p class="mb-2" id="courseOverviewTotalPrivileged">0</p>
                                                     </div>
                                                     <div class="totaled-price">
-                                                        <p>Total Price</p>
-                                                        <p id="courseOverviewTotalPrice">0</p>
+                                                        <p class="mb-0">Total Price</p>
+                                                        <p class="mb-0" id="courseOverviewTotalPrice">0</p>
                                                     </div>
-                                                    <div class="totaled-month-duration">
-                                                        <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months</p>
+                                                    <div class="d-flex justify-content-between mb-4" style="font-size: 0.625rem">
+                                                        <p class="mb-0">VAT Included (govt.)</p>
+                                                        <p class="mb-0">5%</p>
                                                     </div>
                                                     <button type="submit">Confirm Purchase</button>
                                                 </div>

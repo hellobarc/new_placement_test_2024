@@ -521,8 +521,8 @@ function coursetdlist(ev){
   document.getElementById('courseOverviewRegularPrice').innerHTML = total.toLocaleString() + '/-';
   document.getElementById('courseOverviewDiscountPrice').innerHTML = totalOnlyDiscountPrice.toLocaleString() + '/-';
   document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
-  let totalPriceAll = Math.round(totalOnlyDiscountedPrice+(totalOnlyDiscountedPrice*5/100));
-  document.getElementById('courseOverviewTotalPrice').innerHTML = totalPriceAll.toLocaleString() + '/-';
+
+  document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
   document.getElementById('courseOverviewTime').innerHTML = courseOverviewTime;
 
   if(ev == 'privileged'){
@@ -536,8 +536,7 @@ function coursetdlist(ev){
       document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
       document.getElementById('courseOverviewTotalPrivileged').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
 
-      let totalPriceAll = Math.round(totalOnlyDiscountedPrice+(totalOnlyDiscountedPrice*5/100));
-      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPriceAll.toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
     }else{
       document.getElementById("coursePrivileged").style.display = "block";
       discountTotalPrice -= parseInt(priviligedTotalPrice);
@@ -547,8 +546,7 @@ function coursetdlist(ev){
       let totalOnlyPriviligedPrice = parseInt(totalOnlyDiscountedPrice)-parseInt(priviligedTotalPrice);
       document.getElementById('courseOverviewTotalPrivileged').innerHTML = totalOnlyPriviligedPrice.toLocaleString() + '/-';
 
-      let totalPriceAll = Math.round(totalOnlyPriviligedPrice+(totalOnlyPriviligedPrice*5/100));
-    document.getElementById('courseOverviewTotalPrice').innerHTML = totalPriceAll.toLocaleString() + '/-';
+    document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyPriviligedPrice.toLocaleString() + '/-';
 
     }
   }

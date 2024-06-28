@@ -762,13 +762,13 @@ input.check_box{
 .candidate-info {
   padding: 1.25rem 2rem;
   border-radius: 4px;
+  height: 15.2rem;
 }
 .result-overall-container {
   border-radius: 4px;
   background: #4B79B6;
   box-shadow: 0px 2px 14px 0px rgba(123, 124, 138, 0.08);
   padding: 1.3125rem 2.5rem;
-  height: 20.5rem;
 }
 .progress-module-section{
   margin: 2rem;
@@ -793,6 +793,7 @@ input.check_box{
 .overall-score {
   border-radius: var(--Border-Radius-4-px, 0.25rem);
   border: 1px solid #FBFBFB;
+  width: 60%;
 }
 .mark-analysis_correct-answer{
   margin: 2rem;
@@ -1143,13 +1144,31 @@ progress::-webkit-progress-bar {
 
   padding: .25rem .75rem;
 }
-
-
-.total-time {
-  color: #004AAD;
-  font-size: 1rem;
+.course-benefit-title{
+  color: #363535;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 6rem 0 0.35rem 0;
+}
+.current-level-title{
+  color: #363535;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-top: 2rem;
+}
+.course-benefit-icon{
+  font-size: 14px;
+  color: #cbcbcb;
+}
+.course-benefit-text{
+  font-size: 1rem;
+}
+.total-time {
+  color: #535252;
+  font-size: 1.125rem;
+  font-weight: 600;
+  background-color: #d4f4cf;
+  margin-top: 2rem !important;
+  padding: 10px 15px;
 }
 
 .course-timeline {
@@ -1219,7 +1238,7 @@ progress::-webkit-progress-bar {
 .your-score {
   color: #333;
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 0.825rem;
   font-style: normal;
   font-weight: 600;
   padding: 1rem 0.5rem;
@@ -1227,17 +1246,15 @@ progress::-webkit-progress-bar {
   border: 1px solid #F3AE2E;
   background: #FFF;
   box-shadow: 0px 2px 14px 0px rgba(115, 111, 111, 0.08);
-  width: 17%;
-  margin-left: 30px;
   margin-top: 16px;
 }
 
 .arrow {
   position: absolute;
-  rotate: 353deg;
-  right: 15%;
-  top: 24%;
-  width: 36%;
+    rotate: 353deg;
+    left: 15%;
+    top: 12%;
+    width: 29%;
 }
 
 .improved-score {
@@ -1253,10 +1270,17 @@ progress::-webkit-progress-bar {
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
-    right: 1%;
+    left: 45%;
+    top: -7%;
 }
 /* hello start */
 
+.full_box{
+  /* background-color: #fff; */
+}
+.box_bind_class{
+  background-color: #fff;
+}
 .box_header{
   height: 200px;
   display: flex;
@@ -1336,92 +1360,21 @@ progress::-webkit-progress-bar {
   height: 200px;
   color: #fff;
 }
+.inner_box_middle{
+  padding: 20px;
+  background-color: #f1f1f1;
+  height: 325px;
+}
+.inner_box_bottom{
+  padding: 20px;
+  background-color: #f1f1f1;
+  height: 198px;
+}
 
 /* hello end */
-.a1-course-timelength{
-  /* background-color: #353A47; */
-  margin: 10px 0;
-  color: #fff;
-}
-.a2-course-timelength{
-  /* background-color: #355070; */
-  margin: 10px 0;
-}
-.b1-course-timelength{
-  /* background-color: #848586; */
-  margin: 10px 0;
-}
-.b2-course-timelength{
-  /* background-color: #DB5375; */
-  margin: 10px 0;
-}
-.c1-course-timelength{
-  /* background-color: #729EA1; */
-  margin-bottom: 10px;
-}
-.a1-inner-1{
-  width: 7rem;
-  background-color: #fff;
-}
-.a1-inner-2{
-  width: 7rem;
-  background-color: #fff;
-}
-.a1-inner-3{
-  width: 7rem;
-  background-color: #fff;
-}
-.a1-inner-4{
-  width: 7rem;
-  background-color: #fff;
-}
-.a1-inner-5{
-  width: 20rem;
-  background-color: #353A47;
-}
-.a2-inner-1{
-  width: 7rem;
-  background-color: #fff;
-}
-.a2-inner-2{
-  width: 7rem;
-  background-color: #fff;
-}
-.a2-inner-3{
-  width: 7rem;
-  background-color: #fff;
-}
-.a2-inner-4{
-  width: 30rem;
-  background-color: #355070;
-}
-.b1-inner-1{
-  width: 7rem;
-  background-color: #fff;
-}
-.b1-inner-2{
-  width: 7rem;
-  background-color: #fff;
-}
-.b1-inner-3{
-  width: 40rem;
-  background-color: #848586;
-}
-.b2-inner-1{
-  width: 7rem;
-  background-color: #fff;
-}
-.b2-inner-2{
-  width: 50rem;
-  background-color: #DB5375;
-}
-.c1-inner-1{
-  width: 60rem;
- background-color: #729EA1;
-}
 .onlclik_price_active{
-  background-color: #355070 !important;
-  color: #f8f8f8 !important;
+  background-color: #9B86BD !important;
+  color: #efefef !important;
 }
 #mark-analytics-pie-chart{
   width: 70% !important;
@@ -1463,7 +1416,7 @@ progress::-webkit-progress-bar {
 .total_enrolled_course .price-box{
   border-radius: 4px;
   background: var(--GlobalColors-Neutral-0, #FFF);
-  box-shadow: 0px 2px 12px 0px rgba(106, 106, 106, 0.08);
+  box-shadow: 0px 93px 157px 115px rgba(106, 106, 106, 0.09);
 }
 .total_enrolled_course .price-box .header{
   background-color: #004AAD;
@@ -1481,7 +1434,7 @@ progress::-webkit-progress-bar {
   border-bottom: 1.2px solid #D6D6D6;
 }
 .total_enrolled_course .price-box .inner-box{
-  padding: 10px 15px;
+  padding: 10px 28px 22px 22px;
 }
 .total_enrolled_course .price-box .inner-box .regular-price{
   color: #535252;
@@ -1490,7 +1443,7 @@ progress::-webkit-progress-bar {
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }
 .total_enrolled_course .price-box .inner-box .discount-price{
   color: #535252;
@@ -1499,17 +1452,17 @@ progress::-webkit-progress-bar {
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   border-bottom: 1.2px solid #D6D6D6;
 }
 .total_enrolled_course .price-box .inner-box .discounted-price{
-  color: #004AAD;
+  color: #3aa415;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }
 .total_enrolled_course .price-box .inner-box .visit-day-price{
   color: #535252;
@@ -1518,38 +1471,20 @@ progress::-webkit-progress-bar {
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   border-bottom: 1.2px solid #D6D6D6;
 }
 .total_enrolled_course .price-box .inner-box .privileged-price{
-  color: #004AAD;
+  color: #f08129;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
-}
-.total_enrolled_course .price-box .inner-box .vat-price{
-  color: #535252;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5rem; /* 150% */
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   border-bottom: 1.2px solid #D6D6D6;
 }
-.total_enrolled_course .price-box .inner-box .vat-price{
-  color: #535252;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5rem; /* 150% */
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  border-bottom: 1.2px solid #D6D6D6;
-}
+
 .total_enrolled_course .price-box .inner-box .totaled-price{
   color: #535252;
   font-size: 1.125rem;
@@ -1557,14 +1492,15 @@ progress::-webkit-progress-bar {
   line-height: 1.5rem; /* 150% */
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0 10px 0;
 }
-.total_enrolled_course .price-box .inner-box .totaled-month-duration{
+.total_enrolled_course .totaled-month-duration{
   color: #535252;
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 10px 0 30px 0;
+  margin: 30px 0 30px 0;
   background-color: #C5FFBC;
+  width: 50%;
 }
 .total_enrolled_course .price-box .inner-box button{
   background-color: #004AAD;
@@ -1574,7 +1510,7 @@ progress::-webkit-progress-bar {
   font-weight: 600;
   border: none;
   width: 100%;
-  margin: 20px 0 0 0 I !important;
+  margin: 16px 0 0 0 !important;
   text-align: center;
   padding: 5px 0;
 }
