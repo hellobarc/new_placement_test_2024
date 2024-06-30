@@ -56,7 +56,7 @@
                                     <div class="overall-score">
                                         <p>Equivalent Band Score: 
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                4.0 - 4.5
+                                                4.5
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
                                                 4.5 - 5.0
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
@@ -106,9 +106,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR A1</li>
-                                                <li>TOEFL&reg; 0 - 12</li>
-                                                <li>IELTS 3.5 - 4.0</li>
-                                                <li>CAMBRIDGE 100 - 120</li>
+                                                <li>IELTS 4.5</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -128,9 +126,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR A2</li>
-                                                <li>TOEFL&reg; 13 - 36</li>
-                                                <li>IELTS 4.0 - 4.5</li>
-                                                <li>CAMBRIDGE 120 - 140 KET</li>
+                                                <li>IELTS 4.5 - 5.0</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -150,9 +146,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR B1</li>
-                                                <li>TOEFL&reg; 37 - 54</li>
-                                                <li>IELTS 4.5 - 5.5</li>
-                                                <li>CAMBRIDGE 140 - 160 PET</li>
+                                                <li>IELTS 5.0 - 5.5</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -172,9 +166,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR B1</li>
-                                                <li>TOEFL&reg; 55 - 74</li>
-                                                <li>IELTS 5.5 - 6.5</li>
-                                                <li>CAMBRIDGE 160 - 180 FCE</li>
+                                                <li>IELTS 6.0 - 6.5</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -194,9 +186,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR C1</li>
-                                                <li>TOEFL&reg; 75 - 91</li>
                                                 <li>IELTS 7.0 - 7.5</li>
-                                                <li>CAMBRIDGE 180 - 200 CAE</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -216,9 +206,7 @@
                                             <p class="fw-bold">Exam levels</p>
                                             <ul>
                                                 <li>CEFR C2</li>
-                                                <li>TOEFL&reg; 92+</li>
-                                                <li>IELTS 7.5+</li>
-                                                <li>CAMBRIDGE 200 CPE</li>
+                                                <li>IELTS 8.0+</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -283,18 +271,8 @@
                 <section class="mark-analysis_correct-answer">
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                            <div class="mark-analysis card-background">
-                                <p class="card-titles">Mark Analytics</p>
-                                <div class="chart-score">
-                                    <div class="mark-analytics-pie-chart-container">
-                                        <canvas id="answersQuestion"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                             <div class="correct-answer p-4 card-background">
-                                <p class="card-titles">Correct Answer</p>
+                                <p class="card-titles">Details Result</p>
                                 <table class="table table-striped">
                                     <tr>
                                         <th>Module</th>
@@ -365,116 +343,20 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="mark-analysis card-background">
+                                <p class="card-titles">Mark Analytics</p>
+                                <div class="chart-score">
+                                    <div class="mark-analytics-pie-chart-container">
+                                        <canvas id="answersQuestion"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section class="aboard_inquire_section">
                     <div class="row my-4">
-                        <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="result_explanation card-background p-4">
-                                <p class="card-titles mb-4"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
-                                <div class="accordion" id="accordionExample">
-                                    <div class="accordion-item">
-                                      <h2 class="accordion-header">
-                                        <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <i class="fa-solid fa-book-open"></i> <span class="mx-3">Reading</span>
-                                        </button>
-                                      </h2>
-                                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li style="font-size: 16px !important;">
-                                                    @if (Helper::module_rubricks($sum_reading_module) == 'A-')
-                                                        <span>Cannot understand very simple sentence.</span>
-                                                    @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
-                                                        <span>Cannot understand very simple sentence.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
-                                                        <span>Face problem in reading and identifying the main points short, clear, simple texts, messages, notices and announcements.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
-                                                        <span>Tough to understand newspaper articles.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
-                                                        <span>Difficulties to read articles and reports with proper understanding.</span>
-                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
-                                                        <span>Understanding well-structured text, expressing points of view at some length. </span>
-                                                    @endif
-                                                </li>
-                                            </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                      <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fa-solid fa-pen-to-square"></i> <span class="mx-3">Writing</span>
-                                        </button>
-                                      </h2>
-                                      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li style="font-size: 16px !important;">
-                                                    @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
-                                                        <span>Cannot make simple sentence with correct grammar.</span>
-                                                    @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
-                                                        <span>Cannot make simple sentence with correct grammar.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
-                                                        <span>Unable to write very simple personal letter with accurate structure.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
-                                                        <span>Unable to write short structured paragraphs.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
-                                                        <span>Face problem to write clear, detailed paragraph, letter, essay or report on a wide range of subject.</span>
-                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
-                                                        <span>Facing to write my thoughts efforlessly and spontanceously without any hesitation.</span>
-                                                    @endif
-                                                </li>
-                                                <li style="font-size: 16px !important;">
-                                                    @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
-                                                        <span>Cannot understand basice names and words.</span>
-                                                    @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
-                                                        <span>Cannot understand basice names and words.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
-                                                        <span>Find it difficult to handle very short social exchanges.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
-                                                        <span>Can not produce simple connected text on topics.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
-                                                        <span>Unable to interact with fluency and spontaneity that makes regular interaction with native speaker.</span>
-                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
-                                                        <span>Express yourself fluently.</span>
-                                                    @endif
-                                                </li>
-                                            </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                      <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            <i class="fa-solid fa-headphones-simple"></i> <span class="mx-3">Listening</span>
-                                        </button>
-                                      </h2>
-                                      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li style="font-size: 16px !important;">
-                                                    @if (Helper::module_rubricks($sum_listening_module) == 'A-')
-                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
-                                                    @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
-                                                        <span>Don't have the basic knowledge of english and cannot introduce myself.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
-                                                        <span>Can not continue or interact in any conversation.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
-                                                        <span>Unable to understand small talks and conversations in native language.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
-                                                        <span>Face problem in understanding long speeches and lectures.</span>
-                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
-                                                        <span>Unable to conversation with a native speaker without any mistakes.</span>
-                                                    @endif
-                                                </li>
-                                            </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="marks_bar_graph card-background p-4">
                                  {{-- <div class="row">
@@ -497,50 +379,215 @@
                                         <span class="text-secondary fw-bold">Vocabulary</span>
                                     </div>
                                 </div> --}}
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt=""> Module Wise Marks</p>
+                                <p class="card-titles"><img src="{{asset('frontend/images/icons/module_wise_marks.png')}}" alt="" style="width: 7%;"> Your current condition</p>
                                 <canvas id="mark-analytics-pie-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="result_explanation card-background p-4">
+                                <p class="card-titles mb-4"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa-solid fa-book-open"></i> <span class="mx-3">Reading</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_reading_module) == 'A-')
+                                                        <span>Passage এ থাকা complex sentence গুলোর ব্যবহার বুঝতে পারেন নি। যেখানে synonym বা paraphrase ব্যবহার করা হয়েছে, সেখানে অর্থ বুঝতে পারেন নি।</span>
+                                                    @elseif (Helper::module_rubricks($sum_reading_module) == 'A1')
+                                                        <span>
+                                                            Passage এ থাকা complex sentence গুলোর ব্যবহার বুঝতে পারেন নি। যেখানে synonym বা paraphrase ব্যবহার করা হয়েছে, সেখানে অর্থ বুঝতে পারেন নি।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
+                                                        <span>
+                                                            Complex sentence বুঝতে পারলেও overall idea বুঝতে অসুবিধা হচ্ছে। Synonym বা paraphrase এর কেবল সীমিত ধারনা আছে। 
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
+                                                        <span>
+                                                            Familiar vocabulary থাকলে complex sentence এর অর্থ এবং paragraph এর মূল idea বুঝতে পারছেন। কিন্তু যখন advanced vocabulary সহ complex sentence structure ছিলো তখন বুঝতে সমস্যা হয়েছে।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
+                                                        <span>
+                                                            Passage এ থাকা কয়েকটি advanced situation এর context বুঝতে পারেন নি। Passage পড়ে মাঝে মধ্যে context বোঝার ক্ষেত্রে inaccuracy এবং misunderstanding এর মত সমস্যা face করেছেন। 
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
+                                                        <span>
+                                                            Complex বা unfamiliar situation এ সীমিত কিছু ভুল করেছেন। Advanced vocabulary যেখানে ব্যবহার করা হয়েছে সেখানে context identify করতে confused হয়েছেন। নির্ভুল থাকার জন্য অনেক বেশী practice করতে হবে।
+                                                        </span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa-solid fa-pen-to-square"></i> <span class="mx-3">Writing</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_grammar_module) == 'A-')
+                                                        <span>Cannot make simple sentence with correct grammar.</span>
+                                                    @elseif (Helper::module_rubricks($sum_grammar_module) == 'A1')
+                                                        <p class="mb-0">গ্রামারে অনেক বেশী দুর্বলতা আছে। </p>
+                                                        <p class="mb-0">Sentence structure এ অনেক দুর্বলতা আছে।</p>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'A2')
+                                                        <p class="mb-0">Sentence structure সম্পর্কে basic ধারণা আছে।</p>
+                                                        <p class="mb-0">তবে complex sentence অন্যান্য grammar item এ ভুল করেছেন।</p>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
+                                                        <span>
+                                                            একি passage এ simple এবং complex sentence এর ব্যবহার থাকলে আপনি সমস্যা face করেছেন। তার পাশাপাশি advanced grammar task ভুল করেছেন। 
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
+                                                        <span>
+                                                            Advanced grammatical item এ অল্প পরিমানে ভুল করেছেন। 
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
+                                                        <span>
+                                                            Grammatical এবং lexical item গুলো skillfully ব্যাবহার করতে পেরেছেন। তবে আপনি শতভাগ নির্ভুল নন। Occasional ভুল কমিয়ে আনতে অনেক বেশী practice করতে হবে। 
+                                                        </span>
+                                                    @endif
+                                                </li>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
+                                                        <span>Cannot understand basice names and words.</span>
+                                                    @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
+                                                        <li>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Basic user</li>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
+                                                        <span>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Pre-intermediate user.</span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
+                                                        <span>
+                                                            সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Intermediate user
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
+                                                        <span>
+                                                            সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Upper intermediate user
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
+                                                        <span>
+                                                            সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Advanced user
+                                                        </span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <i class="fa-solid fa-headphones-simple"></i> <span class="mx-3">Listening</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li style="font-size: 16px !important;">
+                                                    @if (Helper::module_rubricks($sum_listening_module) == 'A-')
+                                                        <span>
+                                                            
+                                                        </span>
+                                                    @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
+                                                        <span>
+                                                            Familiar situation-এ basic dialogueবুঝতে পারেন।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
+                                                        <span>
+                                                            পুরো conversation এর main theme বুঝতে পারেন তবে Complex sentence এর track রাখতে পারেন না।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B1')
+                                                        <span>
+                                                            Situational discussion এবং মোটামুটি complex monologue বুঝতে পারেন।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'B2')
+                                                        <span>
+                                                            সাধারনত complex discussion এর track রাখতে পারেন। তবে কিছু কিছু ক্ষেত্রে বা unfamiliar situation এ সঠিক তথ্য খুঁজে বের করতে সমস্যা হতে পারে।
+                                                        </span>
+                                                    @elseif(Helper::module_rubricks($sum_listening_module) == 'C1')
+                                                        <span>
+                                                            ভালো ভাবে যে কোন কথা বুঝতে পারেন। তবে মাঝে মাঝে unfamiliar situation এ misunderstanding হতে পারে।
+                                                        </span>
+                                                    @endif
+                                                </li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4 mb-4">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background px-3 pt-3 pb-5">
-                                <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt=""
-                                        style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
-                                <div class="mx-3 pt-3">
-                                    <p class="mb-0 fs-5 fw-bold"><i class="fa-regular fa-circle-dot"></i> Desired Score: 
-                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                            4.0 - 4.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                            4.5 - 5.0
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                            5.0 - 5.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                            6.0 - 6.5
-                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                            7.0
-                                        @else
-                                        @endif
-                                    </p>
-                                    <p class="mb-0 fs-5 fw-bold mt-2" style="color: #004AAD;"><i class="fa-regular fa-circle-dot"></i> Target Score: {{$student_info->expected_score}}</p>
-                                </div>
+                                <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
+                                <table class="table table-bordered mt-3">
+                                    <thead>
+                                        <th class="text-center">Current Score</th>
+                                        <th class="text-center">Desired Score</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color: transparent; font-size:1.625rem; text-align:center;">{{Helper::overall_rubricks($all_module_marks)}}</td>
+                                            <td style="background-color: transparent; font-size:1.625rem; text-align:center;">
+                                                @if ($student_info->expected_score >= 7)
+                                                    C1
+                                                @elseif($student_info->expected_score <= 6.5)
+                                                    B2
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: transparent; font-size:1rem; text-align:center;">
+                                                @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                    4.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                    4.5 - 5.0
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                    5.0 - 5.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                    6.0 - 6.5
+                                                @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                    7.0
+                                                @else
+                                                @endif
+                                            </td>
+                                            <td style="background-color: transparent; font-size:1rem; text-align:center;">
+                                                @if ($student_info->expected_score >= 7)
+                                                    7 - 7.5
+                                                @elseif($student_info->expected_score <= 6.5)
+                                                    6.0 - 6.5
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background px-3 pt-3 pb-5">
                                 <p class="card-titles">
                                     <i class="fa-solid fa-globe"></i>
-                                    Interested Aboard Country
+                                    Interested Country
                                 </p>
-                                <div class="intended-countries pt-3">
+                                <div class="intended-countries pt-1">
                                     @if ($student_info->expected_country == NULL)
                                         <div class="country-name mx-2">
-                                            <span class="me-3">Not Selected</span>
+                                            <span class="me-2">Not Selected</span>
                                         </div>
                                     @else
                                         @foreach (json_decode($student_info->expected_country) as $country)
                                             <div class="country-name mx-2">
-                                                <span class="me-3">{{$country}}</span>
+                                                <span class="me-2">{{$country}}</span>
                                                 <span><i class="fa-solid fa-plane"></i></span>
                                             </div>
                                         @endforeach
@@ -554,16 +601,16 @@
                                     <i class="fa-solid fa-building-columns"></i> 
                                     Intended University
                                 </p>
-                                <div class="intended-countries pt-3">
+                                <div class="intended-countries pt-1">
                                     @if ($student_info->school_goes == null)
                                         <div class="country-name mx-2">
-                                            <span class="me-3">Not Selected</span>
+                                            <span class="me-2">Not Selected</span>
                                         </div>
                                     @else
                                         @foreach (json_decode($student_info->school_goes) as $school)
                                             <div class="country-name mx-2">
-                                                <span class="me-3"><i class="fa-solid fa-user-graduate"></i></span>
-                                                <span class="me-3">{{$school}}</span>
+                                                <span class="me-2"><i class="fa-solid fa-user-graduate"></i></span>
+                                                <span class="me-2">{{$school}}</span>
                                             </div>
                                         @endforeach
                                     @endif
@@ -614,7 +661,7 @@
                                 <div style="margin: 2rem 0 0 0">
                                     <div class="position-relative">
                                         <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve <span id="achive_band_score"></span></div>
-                                        <img src="{{asset('frontend/images/icons/arrow.svg')}}" alt="" class="arrow"> 
+                                        <img src="{{asset('frontend/images/icons/arrow.png')}}" alt="" class="arrow"> 
                                         <div class="row">
                                             <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                                 <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
@@ -636,79 +683,51 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                                 <div class="d-flex justify-content-between">
                                                     <div id="a1_course_duration">
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 50px; background-color:#45ba5e;padding:0 24px;"></div>
+                                                            <div style="height: 50px; background-color:#1baa2f;padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                     <div id="a2_course_duration">
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 100px; background-color:#7281e9;padding:0 24px;"></div>
+                                                            <div style="height: 100px; background-color:#52d726;padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                     <div id="b1_course_duration">
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 150px; background-color:#d761f4;padding:0 24px;"></div>
+                                                            <div style="height: 150px; background-color:#b9d20d;padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                     <div id="b2_course_duration">
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 200px; background-color:#4849db;padding:0 24px;"></div>
+                                                            <div style="height: 200px; background-color:#ebdb13;padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                     <div id="c1_course_duration">
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 250px; background-color:#ff5f36;padding:0 24px;"></div>
+                                                            <div style="height: 250px; background-color:#ffaf00;padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
-                                                    <div id="">
-                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> A1</div>
+                                                    <div id="a1_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" onclick="courseBenefitRadio('a1')"></span> A1</div>
                                                     </div>
-                                                    <div id="">
-                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> A2</div>
+                                                    <div id="a2_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
                                                     </div>
-                                                    <div id="">
-                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> B1</div>
+                                                    <div id="b1_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b1')"></span> B1</div>
                                                     </div>
-                                                    <div id="">
-                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> B2</div>
+                                                    <div id="b2_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b2')"></span> B2</div>
                                                     </div>
-                                                    <div id="">
-                                                        <div style="font-size: 1rem; font-weight:600"><span><input type="radio" name="" id=""></span> C1</div>
+                                                    <div id="c1_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('c1')"></span> C1</div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                                <p class="course-benefit-title"><i class="fa-solid fa-list-check me-1"></i> Course Benefit</p>
-                                               <div>
-                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">A1 Benefit</span>
-                                               </div>
-                                               <div>
-                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">A2 Benefit</span>
-                                               </div>
-                                               <div>
-                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">B1 Benefit</span>
-                                               </div>
-                                               <div>
-                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">B2 Benefit</span>
-                                               </div>
-                                               <div>
-                                                    <span class="course-benefit-icon"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">C1 Benefit</span>
-                                               </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                                 <table class="table table-bordered mt-5">
                                                     <tr>
                                                         <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Course</td>
@@ -743,6 +762,30 @@
                                                 </table>
                                                 <p class="total-time">Total Course Duration: <span id="course_completed_time"></span> Months +</p>
                                             </div>
+                                            <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <p class="course-benefit-title"><i class="fa-solid fa-list-check me-1"></i> Course Benefit</p>
+                                               <div class="my-2">
+                                                    <span class="course-benefit-icon" id="a1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">A1 Benefit</span>
+                                               </div>
+                                               <div class="my-2">
+                                                    <span class="course-benefit-icon" id="a2_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">A2 Benefit</span>
+                                               </div>
+                                               <div class="my-2">
+                                                    <span class="course-benefit-icon" id="b1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">B1 Benefit</span>
+                                               </div>
+                                               <div class="my-2">
+                                                    <span class="course-benefit-icon" id="b2_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">B2 Benefit</span>
+                                               </div>
+                                               <div class="my-2">
+                                                    <span class="course-benefit-icon" id="c1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                                    <span class="course-benefit-text">C1 Benefit</span>
+                                               </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -750,7 +793,7 @@
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <p class="card-titles mt-3 mb-4"><i class="fa-solid fa-book-bookmark"></i> Course Content</p>
                                         <div class="row">
-                                            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                                 <div class="d-flex justify-content-between">
                                                     <div id="a1-course-description" class="d-flex justify-content-start">
                                                         <div class="details-border"> 
@@ -1080,10 +1123,36 @@
                                             <div class="course-achievement">
                                                 <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Course Achievement</p>
                                                 <div class="course-achievement-box">
-                                                    <p class="course"><span style="color:#004AAD;"><i class="fa-solid fa-trophy"></i></span> C1</p>
-                                                    <p class="status">Course Level: Advance IELTS</p>
-                                                    <p class="status">Achieve Band Score: 7 Plus</p>
-                                                    <p class="status">Status: Beginner To Advance</p>
+                                                    <p class="course"><span style="color:#004AAD;"><i class="fa-solid fa-trophy"></i></span> 
+                                                        {{Helper::overall_rubricks($all_module_marks)}} - 
+                                                        @if ($student_info->expected_score >= 7)
+                                                            C1
+                                                        @elseif($student_info->expected_score <= 6.5)
+                                                            B2
+                                                        @endif
+                                                    </p>
+                                                    <p class="status">Course Level:  IELTS
+                                                        @if ($student_info->expected_score >= 7)
+                                                            Advance
+                                                        @elseif($student_info->expected_score <= 6.5)
+                                                            Main
+                                                        @endif
+                                                    </p>
+                                                    <p class="status">Achieve Band Score:  
+                                                        @if ($student_info->expected_score >= 7)
+                                                            7
+                                                        @elseif($student_info->expected_score <= 6.5)
+                                                            6.5
+                                                        @endif
+                                                        Plus
+                                                    </p>
+                                                    <p class="status">Status: 
+                                                        @if ($student_info->expected_score >= 7)
+                                                            Beginner To Advance
+                                                        @elseif($student_info->expected_score <= 6.5)
+                                                            Beginner To Advance Intermediate
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1217,19 +1286,19 @@
                     label: 'Marks',
                     data: [correct, in_correct, unanswered],
                     backgroundColor: [
-                    '#004AAD',
-                    '#EEB902',
-                    '#87A0B2',
+                    '#007ed6',
+                    '#ff7300',
+                    '#9badf2',
                     ],
                     borderColor: [
-                    '#004AAD',
-                    '#EEB902',
-                    '#87A0B2',
+                    '#007ed6',
+                    '#ff7300',
+                    '#9badf2',
                     ],
                     backgroundColor: [
-                    '#004AAD',
-                    '#EEB902',
-                    '#87A0B2',
+                    '#007ed6',
+                    '#ff7300',
+                    '#9badf2',
                     ],
                     hoverOffset: 4
                 }]

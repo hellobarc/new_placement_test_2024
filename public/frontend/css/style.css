@@ -484,9 +484,14 @@ body{
 }
 input[type=checkbox] {
   accent-color: #004AAD;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 17px;
     border: 1.5px solid #004AAD !important;
+}
+input[type=radio] {
+    accent-color: #004AAD;
+    width: 22px;
+    height: 17px;
 }
 input.check_box{
   width: 25px;
@@ -1138,7 +1143,7 @@ progress::-webkit-progress-bar {
   color: #F2F2F2;
 
   font-family: Roboto;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
 
@@ -1146,9 +1151,9 @@ progress::-webkit-progress-bar {
 }
 .course-benefit-title{
   color: #363535;
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin: 6rem 0 0.35rem 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 0 0 0 0;
 }
 .current-level-title{
   color: #363535;
@@ -1156,11 +1161,17 @@ progress::-webkit-progress-bar {
   font-weight: 600;
 }
 .course-benefit-icon{
-  font-size: 14px;
-  color: #cbcbcb;
+  font-size: 18px;
+    color: #cbcbcb;
+    margin-right: 4px;
+}
+.course-benefit-icon-active{
+  font-size: 18px;
+    color: #16b338;
+    margin-right: 4px;
 }
 .course-benefit-text{
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 .total-time {
   color: #535252;
@@ -1169,6 +1180,7 @@ progress::-webkit-progress-bar {
   background-color: #d4f4cf;
   margin-top: 2rem !important;
   padding: 10px 15px;
+  width: 70%;
 }
 
 .course-timeline {
@@ -1228,8 +1240,8 @@ progress::-webkit-progress-bar {
   background-color: transparent;
 }
 .course-content-arrow::after{
-  content: "................................";
-  font-size: 24px;
+  content: ".................";
+  font-size: 26px;
   color: #8fc3ee;
   display: inline-block;
   vertical-align: 3px;
@@ -1251,10 +1263,10 @@ progress::-webkit-progress-bar {
 
 .arrow {
   position: absolute;
-    rotate: 353deg;
+    rotate: 360deg;
     left: 15%;
-    top: 12%;
-    width: 29%;
+    top: -4%;
+    width: 33%;
 }
 
 .improved-score {
@@ -1270,8 +1282,8 @@ progress::-webkit-progress-bar {
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
-    left: 45%;
-    top: -7%;
+    left: 50%;
+    top: -3%;
 }
 /* hello start */
 
@@ -1368,7 +1380,7 @@ progress::-webkit-progress-bar {
 .inner_box_bottom{
   padding: 20px;
   background-color: #f1f1f1;
-  height: 198px;
+  height: 140px;
 }
 
 /* hello end */
