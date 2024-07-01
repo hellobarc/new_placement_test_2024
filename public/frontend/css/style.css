@@ -1526,6 +1526,21 @@ progress::-webkit-progress-bar {
   text-align: center;
   padding: 5px 0;
 }
+.result-card h5{
+  color: #535252;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1.625rem 0;
+}
+.result-card a{
+  background-color: #004AAD;
+  color: #f8f8f8;
+  font-weight: 600;
+  padding: 10px 35px;
+  font-size: 1.125rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
 /* result page css end */
 @media (max-width: 420px) {
   .sidebar.close .nav-links li .sub-menu{
