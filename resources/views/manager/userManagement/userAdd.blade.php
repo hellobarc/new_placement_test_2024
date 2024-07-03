@@ -13,12 +13,20 @@
                 <form action="{{ route('user.add.store') }}" method="POST" class="form-control">
                     @csrf
                     <div class="row my-2 mx-2">
-                        <label for="">Name</label>
+                        <label for="">Bangla Name</label>
                         <input type="text" name="name" class="form-control">    
                     </div>
                     <div class="row my-2 mx-2">
                         <label for="">Email</label>
                         <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="row my-2 mx-2">
+                        <label for="">Bangla Designation</label>
+                        <input type="text" name="designation" class="form-control">
+                    </div>
+                    <div class="row my-2 mx-2">
+                        <label for="">Official Phone Number</label>
+                        <input type="text" name="phone" class="form-control">
                     </div>
                     <div class="row my-2 mx-2">
                         <label for="">Password</label>

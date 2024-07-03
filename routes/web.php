@@ -28,6 +28,7 @@ use App\Http\Controllers\Advisor\{
     ExamController,
     StudentSearchController,
     VisitorFollowUpController,
+    ResultPDFController,
 };
 /*
 |--------------------------------------------------------------------------
@@ -214,6 +215,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/exam-submission', 'examSubmission')->name('student.exam.submission');
         Route::get('/exam-result/{student_id}', 'examResult')->name('student.exam.result');
         Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');
+        Route::get('/result-card-page/{student_id}', 'resultCardPage')->name('student.result.result.page');
     });
     Route::controller(StudentSearchController::class)->group(function(){
         Route::get('/visitor-search', 'search')->name('visitor.search');
@@ -227,6 +229,9 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
         Route::post('/student-followUp-list-search', 'followUpSearch')->name('visitor.followUp.Search');
         Route::post('/student/total-enrolled-course', 'studentTotalEnrolledCourse')->name('student.total.enrolled course');
+    });
+    Route::controller(ResultPDFController::class)->group(function(){
+        Route::get('/result-pdf', 'resultPDF')->name('student.result.card');
     });
 });
 

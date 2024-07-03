@@ -20,6 +20,14 @@
                         <input type="email" name="email" class="form-control" value="{{ $getUserData->email }}">
                     </div>
                     <div class="row my-2 mx-2">
+                        <label for="">Bangla Designation</label>
+                        <input type="text" name="designation" class="form-control" value="{{ $getUserData->designation }}">
+                    </div>
+                    <div class="row my-2 mx-2">
+                        <label for="">Official Phone Number</label>
+                        <input type="text" name="phone" class="form-control" value="{{ $getUserData->phone }}">
+                    </div>
+                    <div class="row my-2 mx-2">
                         <p>{{ $getUserData->password }}</p>
                         <label for="">New Password</label>
                         <input type="text" name="password" class="form-control" value="">

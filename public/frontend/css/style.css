@@ -1542,6 +1542,307 @@ progress::-webkit-progress-bar {
   border-radius: 4px;
 }
 /* result page css end */
+/* result card css start */
+.result-card-header{
+  background-color: #DFF5FF;
+  padding: 0 0 8px 0;
+  margin-top: 10px;
+}
+.result-card-header img{
+  width: 32%;
+  margin: 8px 0 0 0;
+}
+.result-card-header p{
+  text-align: end;
+  color: #414040;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.9375rem;
+  margin: 8px 13px 0 0;
+}
+.report-text .title{
+  color: #32327B;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.6875rem; /* 150% */
+  text-align: center;
+  margin: 8px 0 0 0;
+}
+.report-text .name{
+  color: #181818;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.125rem;
+  letter-spacing: 0.015rem;
+  margin: 18px 0 4px 0;
+}
+.report-text .text{
+  color: #2F2E2E;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+  letter-spacing: 0.015rem;
+  margin: 0 0 20px 0;
+}
+.report-text .text .level{
+  color: #2268D1;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    letter-spacing: 0.0175rem;
+}
+.course-score{
+  margin: 20px 0 0 0;
+}
+.course-score .result{
+  border: 1px solid #4689E2;
+  border-radius: 4px;
+}
+.course-score .result .header{
+  background: #4689E2;
+    color: #f8f8f8;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 0.93963rem;
+    letter-spacing: 0.015rem;
+    text-align: center;
+    padding: 8px 0;
+}
+.course-score .result .inner{
+  padding: 10px;
+}
+.course-score .result .inner h5{
+  color: #434242;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 0.93963rem;
+    letter-spacing: 0.01431rem;
+    margin: 10px 0 0 0;
+}
+.band-wise-course{
+  margin: 20px 0 0 0;
+}
+.band-wise-course h4{
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 0.93963rem;
+  margin: 0 0 20px 0;
+}
+.band-wise-course .title{
+  color: #403F3F;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
+}
+.band-wise-course .course-box{
+  border: 1px solid #004AAD;
+  border-radius: 4px;
+  padding: 5px 8px;
+}
+.iccon-disable{
+  color: #e62626;
+  font-size: 0.875rem;
+}
+.iccon-active{
+  color: #004AAD;
+  font-size: 0.875rem;
+}
+.band-wise-course .course-box .course-name{
+  color: #4D4B4B;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3125rem;
+}
+.advisor{
+  margin: 20px 0 0 0;
+}
+.advisor .advisor-info .course{
+  color: #222;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin-bottom: 5px;
+}
+.advisor .advisor-info .name{
+  color: #222;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin-bottom: 5px;
+}
+.advisor .advisor-info .designation{
+  color: #222;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin-bottom: 5px;
+}
+.advisor .advisor-info .phone{
+  color: #222;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin-bottom: 0;
+}
+.advisor .bar-code{
+  width: 35%;
+  margin: 9px 0 0 0;
+}
+.advisor .logo{
+  width: 55%;
+  margin: 20px 0 0 0;
+}
+.advisor .visit-day{
+  color: #ED1D24;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 0.8125rem;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+.footer{
+  background-color: #DFF5FF;
+  padding: 15px 0;
+}
+.footer .website{
+  color: #414040;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.9375rem; /* 125% */
+  margin: 0 0 5px 0;
+}
+.footer .email{
+  color: #414040;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.9375rem; /* 125% */
+  margin: 0 0 0 0;
+}
+.footer .uttara-ph{
+  color: #414040;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.9375rem; /* 125% */
+  margin: 0 0 5px 0;
+  text-align: right;
+}
+.footer .mirpur-ph{
+  color: #414040;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.9375rem; /* 125% */
+  margin: 0 0 0 0;
+  text-align: right;
+}
+
+.course-level .full_box{
+  /* background-color: #fff; */
+}
+.course-level .box_bind_class{
+  background-color: #fff;
+  text-align: center;
+  margin: 8px 0 0 0;
+}
+.course-level .box_header{
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.course-level .box_header h5{
+  font-size: 0.875rem;
+}
+.course-level .inner_box_top_1{
+  background-color: #284664;
+  padding: 20px;
+  height: 100px;
+  color:#fff
+}
+.course-level .inner_box_top_1_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 100px;
+  color: #000;
+}
+.course-level .inner_box_top_2_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 120px;
+  color: #000;
+}
+.course-level .inner_box_top_3_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 140px;
+  color: #000;
+}
+.course-level .inner_box_top_4_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 160px;
+  color: #000;
+}
+.course-level .inner_box_top_5_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 180px;
+  color: #000;
+}
+.course-level .inner_box_top_6_another{
+  background-color: #ffc107;
+  padding: 20px;
+  height: 200px;
+  color: #000;
+}
+.course-level .inner_box_top_2{
+  background-color: #284664;
+  padding: 20px;
+  height: 120px;
+  color: #fff;
+}
+.course-level .inner_box_top_3{
+  background-color: #284664;
+  padding: 20px;
+  height: 140px;
+  color: #fff;
+}
+.course-level .inner_box_top_4{
+  background-color: #284664;
+  padding: 20px;
+  height: 160px;
+  color: #fff;
+}
+.course-level .inner_box_top_5{
+  background-color: #284664;
+  padding: 20px;
+  height: 180px;
+  color: #fff;
+}
+.course-level .inner_box_top_6{
+  background-color: #284664;
+  padding: 20px;
+  height: 200px;
+  color: #fff;
+}
+.course-level .inner_box_middle{
+  padding: 20px;
+  background-color: #f1f1f1;
+  height: 325px;
+}
+.course-level .inner_box_bottom{
+  padding: 20px;
+  background-color: #f1f1f1;
+  height: 140px;
+}
+/* result card css end */
 @media (max-width: 420px) {
   .sidebar.close .nav-links li .sub-menu{
     display: none;

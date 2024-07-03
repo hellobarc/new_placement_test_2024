@@ -27,6 +27,8 @@ Class RoleManagementController extends Controller{
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|string|max:50',
+            'designation' => 'required|string|max:50',
+            'phone' => 'required|',
             'password' => 'required|integer',
             'type' => 'required|integer|max:20',
         ]);
@@ -34,6 +36,8 @@ Class RoleManagementController extends Controller{
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'designation' => $request->designation,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'type' => $request->type,
             'status' => $request->status,
@@ -54,6 +58,8 @@ Class RoleManagementController extends Controller{
                 ->update([
                     'name' => $request->name,
                     'email' => $request->email,
+                    'designation' => $request->designation,
+                    'phone' => $request->phone,
                     'status' => $request->status,
                     'password' => Hash::make($request->password)
                 ]);

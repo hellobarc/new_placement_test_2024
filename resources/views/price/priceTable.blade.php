@@ -1232,7 +1232,10 @@
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="card-background p-4 result-card">
                                     <h5>Print Result Card</h5>
-                                    <a href="#">Print</a>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{route('student.result.card')}}">Print</a>
+                                        <a href="{{route('student.result.result.page', $studentId)}}">Print Result</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

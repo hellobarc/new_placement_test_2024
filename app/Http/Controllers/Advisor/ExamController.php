@@ -551,6 +551,18 @@ class ExamController extends Controller
         'count_writing_question',
         'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info', 'priviliged_price'));
     }
+    public function resultCardPage($student_id)
+    {
+        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
+        $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
+        $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
+        $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
+        $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'sum_writing_module', 'student_info'));
+    }
     private function count_test_question($test_id, $module_id)
     {
         $findModule = ManageTestSection::where('test_id', $test_id)->where('module_id', $module_id)->get();
