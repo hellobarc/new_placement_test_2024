@@ -56,7 +56,7 @@
                     
                 </div>
                 @include('flash-message')
-                <table class="table table-striped table-bordered" style="margin-top:32px">
+                <table class="table table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
                         <th style="background: #DBEBF5; font-size:15px">SL No</th>
                         <th style="background: #DBEBF5; font-size:15px">Full Name</th>
@@ -86,22 +86,22 @@
                                     @else
                                     @endif
                                 </td>
-                                <td class="d-flex justify-content-between" style="font-size:14px;">
+                                <td class="d-flex justify-content-start" style="font-size:14px;">
                                     @if($item->status == 'approved')
                                         @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                             @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
-                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn text-white fw-bold" style="background-color: #ba131a">Start Assessment  <i class="fa-solid fa-arrow-up-right-from-square"></i></button></a>
+                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn text-white fw-bold py-1" style="background-color: #ba131a">Start Assessment</button></a>
                                             @else
-                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn btn-success">View Result <i class="fa-solid fa-chart-line"></i></button></a>
+                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">View Result</button></a>
                                             @endif
                                         @endif
-                                        <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-secondary px-4">Details <i class="fa-solid fa-circle-info"></i></button></a>
+                                        <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-4">Details</button></a>
                                         @if (Helper::followUpStatus($item->id) == 'admitted')
                                             <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
                                             <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
                                         @else
-                                            <a href="{{route('visitor.follow-up', $item->id)}}" class="btn btn-warning">FollowUp <i class="fa-solid fa-user-plus"></i></a>
+                                            <a href="{{route('visitor.follow-up', $item->id)}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
                                         @endif
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">

@@ -100,7 +100,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::get('manage-question', 'manageQuestionTest')->name('admin.manage-question.test');
         Route::get('edit-question/{id}', 'editQuestionTest')->name('admin.edit-question.test');
         Route::post('update-question/{id}', 'updateQuestionTest')->name('admin.update-question.test');
-        Route::post('delete-question/{id}', 'deleteQuestionTest')->name('admin.delete-question.test');
+        Route::get('delete-question/{id}', 'deleteQuestionTest')->name('admin.delete-question.test');
     });
     Route::controller(ManageTestAddQuestionController::class)->group(function () {
         Route::get('/insert-question/{questionId}/{questionType}', 'insertQuestion')->name('admin.insert-question.test');

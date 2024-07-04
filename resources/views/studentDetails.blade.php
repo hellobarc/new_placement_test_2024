@@ -165,7 +165,7 @@
                         @if ($getDetails->studentInfo->purpose_of_visit =='mock' || $getDetails->studentInfo->purpose_of_visit =='ielts_certificate')
                         @else
                         <div class="row mt-3">
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="email" class="fw-bold"> IELTS taken before?</label>
                                     <select name="ielts_taken" id="" class="mb-1 py-2 px-2 fs-5 w-100" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;">
@@ -177,7 +177,13 @@
                             </div>
                             @if ($getDetails->studentInfo->purpose_of_visit =='ielts_registration')
                             @else
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="date_of_birth" class="fw-bold">Expected Score</label>
+                                        <p name="" id="" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">{{$getDetails->expected_score}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="email" class="fw-bold">Total Time in hand</label>
                                         <select name="ielts_enough_time" style="border: 1px solid #d9d9d9; border-radius: 5px; background:#fff;" class="mb-1 py-2 px-4 fs-5 w-100">

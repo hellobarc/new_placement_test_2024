@@ -69,6 +69,8 @@ Class RoleManagementController extends Controller{
                 ->update([
                     'name' => $request->name,
                     'email' => $request->email,
+                    'designation' => $request->designation,
+                    'phone' => $request->phone,
                     'status' => $request->status,
                 ]);
         }
