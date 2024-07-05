@@ -16,10 +16,10 @@
                             </div>
                             <p class="h3 px-4 pt-3 pb-1">Module Include:</p>
                             <ul class="mx-4">
-                                <li>Reading</li>
-                                <li>Grammar</li>
-                                <li>Vocabulary</li>
-                                <li>Listening</li>
+                                <li style="font-size: 1rem;">Reading</li>
+                                <li style="font-size: 1rem;">Grammar</li>
+                                <li style="font-size: 1rem;">Vocabulary</li>
+                                <li style="font-size: 1rem;">Listening</li>
                             </ul>
                             <p class="mx-4 h5">Each part have 15 question</p>
                             <p class="exam-time">Time: 15 + 8 + 8 + 10 = 40 Minutes</p>

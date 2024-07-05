@@ -56,7 +56,7 @@
                                     <div class="overall-score">
                                         <p>Equivalent Band Score: 
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                4.5
+                                                4.0
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
                                                 4.5 - 5.0
                                             @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
@@ -73,13 +73,13 @@
                                         @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                             <span style="color: #FFBB0D">Elementory</span>    
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                            <span style="color: #FFBB0D">Foundation</span>    
+                                            <span style="color: #FFBB0D">Pre-intermediate</span>    
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
                                             <span style="color: #FFBB0D">Intermediate</span> 
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
                                             <span style="color: #FFBB0D"> Upper Intermediate</span> 
                                         @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                            <span style="color: #FFBB0D">Advance</span> 
+                                            <span style="color: #FFBB0D">Advanced</span> 
                                         @else
                                         @endif   
                                     </p>
@@ -103,10 +103,10 @@
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR A1</li>
-                                                <li>IELTS 4.5</li>
+                                                <li>IELTS 4.0</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -117,13 +117,13 @@
                                     <div class="box_header">
                                         <div class="inner_box_top_2" id="activeClass2">
                                             <p class="fs-5 fw-bold">A2</p>
-                                            <h5 class="fw-bolder">Lower Intermediate</h5>
+                                            <h5 class="fw-bolder">Pre-intermediate</h5>
                                         </div>
                                     </div>
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR A2</li>
                                                 <li>IELTS 4.5 - 5.0</li>
@@ -143,7 +143,7 @@
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR B1</li>
                                                 <li>IELTS 5.0 - 5.5</li>
@@ -157,13 +157,13 @@
                                     <div class="box_header">
                                         <div class="inner_box_top_4" id="activeClass4">
                                             <p class="fs-5 fw-bold">B2</p>
-                                            <h5 class="fw-bolder">Advance Intermediate</h5>
+                                            <h5 class="fw-bolder">Upper Intermediate</h5>
                                         </div>
                                     </div>
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR B1</li>
                                                 <li>IELTS 6.0 - 6.5</li>
@@ -177,13 +177,13 @@
                                     <div class="box_header">
                                         <div class="inner_box_top_5" id="activeClass5">
                                             <p class="fs-5 fw-bold">C1</p>
-                                            <h5 class="fw-bolder">Advance</h5>
+                                            <h5 class="fw-bolder">Advanced</h5>
                                         </div>
                                     </div>
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR C1</li>
                                                 <li>IELTS 7.0 - 7.5</li>
@@ -197,13 +197,13 @@
                                     <div class="box_header">
                                         <div class="inner_box_top_6" id="activeClass6">
                                             <p class="fs-5 fw-bold">C2</p>
-                                            <h5 class="fw-bolder">Proficiency</h5>
+                                            <h5 class="fw-bolder">Proficient</h5>
                                         </div>
                                     </div>
                                     <div class="box_bind_class">
                                         <hr>
                                         <div class="inner_box_bottom">
-                                            <p class="fw-bold">Exam levels</p>
+                                            <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
                                                 <li>CEFR C2</li>
                                                 <li>IELTS 8.0+</li>
@@ -265,79 +265,126 @@
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
                 </section>
                 <section class="mark-analysis_correct-answer">
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                             <div class="correct-answer p-4 card-background">
-                                <p class="card-titles">Details Result</p>
+                                <p class="card-titles">Detailed Results</p>
                                 <table class="table table-striped">
                                     <tr>
-                                        <th>Module</th>
-                                        <th>Right</th>
-                                        <th style="color:#fd1818;">Wrong</th>
-                                        <th>Action</th>
+                                        <th style="padding-left:20px;">Module</th>
+                                        <th style="padding-left:20px;">Right</th>
+                                        <th style="color:#fd1818; padding-left:20px;">Wrong</th>
+                                        <th style="">Action</th>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">
-                                            <img src="{{asset('frontend/images/others/books.png')}}" alt="" class="image-correct-answer-inside-table">
+                                        <td class="fw-bold" style="padding: 14px 10px;">
+                                            <i class="fa-solid fa-book-open"></i>
                                             Reading
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_reading_module}}</span>
+                                        <td style="padding: 14px 10;">
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">
+                                                @if (strlen($sum_reading_module) == 1)
+                                                    0{{$sum_reading_module}}
+                                                @else
+                                                    {{$sum_reading_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_reading_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">
+                                                @if (strlen(15-$sum_reading_module) == 1)
+                                                    0{{15-$sum_reading_module}}
+                                                @else
+                                                    {{15-$sum_reading_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
+                                        <td style="padding: 14px 10px;">
                                             <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">
-                                            <img src="{{asset('frontend/images/others/grammer.png')}}" alt="" class="image-correct-answer-inside-table">
+                                        <td class="fw-bold" style="padding: 14px 10px;">
+                                            <i class="fa-solid fa-spell-check"></i>
                                             Grammar
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_grammar_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">
+                                                @if (strlen($sum_grammar_module) == 1)
+                                                    0{{$sum_grammar_module}}
+                                                @else
+                                                    {{$sum_grammar_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_grammar_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">
+                                                @if (strlen(15-$sum_grammar_module) == 1)
+                                                    0{{15-$sum_grammar_module}}
+                                                @else
+                                                    {{15-$sum_grammar_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        <td style="padding: 14px 10px;">
+                                            <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">
-                                            <img src="{{asset('frontend/images/others/vocabulary.png')}}" alt="" class="image-correct-answer-inside-table">
+                                        <td class="fw-bold" style="padding: 14px 10px;">
+                                            <i class="fa-solid fa-book"></i>
                                             Vocabulary
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_vocabulary_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">
+                                                @if (strlen($sum_vocabulary_module) == 1)
+                                                    0{{$sum_vocabulary_module}}
+                                                @else
+                                                    {{$sum_vocabulary_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_vocabulary_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">
+                                                @if (strlen(15-$sum_vocabulary_module) == 1)
+                                                    0{{15-$sum_vocabulary_module}}
+                                                @else
+                                                    {{15-$sum_vocabulary_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        <td style="padding: 14px 10px;">
+                                            <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">
-                                            <img src="{{asset('frontend/images/others/listening.png')}}" alt="" class="image-correct-answer-inside-table">
+                                        <td class="fw-bold" style="padding: 14px 10px;">
+                                            <i class="fa-solid fa-headphones-simple"></i>
                                             Listening
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">{{$sum_listening_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #282828; padding: 5px 21px; border-radius: 4px;">
+                                                @if (strlen($sum_listening_module) == 1)
+                                                    0{{$sum_listening_module}}
+                                                @else
+                                                    {{$sum_listening_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">{{15-$sum_listening_module}}</span>
+                                        <td style="padding: 14px 10px;">
+                                            <span style="border: 1px solid #fd1818; padding: 5px 21px; border-radius: 4px; color:#fd1818;">
+                                                @if (strlen(15-$sum_listening_module) == 1)
+                                                    0{{15-$sum_listening_module}}
+                                                @else
+                                                    {{15-$sum_listening_module}}
+                                                @endif
+                                            </span>
                                         </td>
-                                        <td>
-                                            <a href="" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                        <td style="padding: 14px 10px;">
+                                            <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -345,7 +392,7 @@
                         </div>
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                             <div class="mark-analysis card-background">
-                                <p class="card-titles">Mark Analytics</p>
+                                <p class="card-titles">Correct Answer Propotion</p>
                                 <div class="chart-score">
                                     <div class="mark-analytics-pie-chart-container">
                                         <canvas id="answersQuestion"></canvas>
@@ -379,13 +426,13 @@
                                         <span class="text-secondary fw-bold">Vocabulary</span>
                                     </div>
                                 </div> --}}
-                                <p class="card-titles"><img src="{{asset('frontend/images/icons/module_wise_marks.png')}}" alt="" style="width: 7%;"> Your current condition</p>
+                                <p class="card-titles"><img src="{{asset('frontend/images/icons/module_wise_marks.png')}}" alt="" style="width: 7%;"> Your Current Condition</p>
                                 <canvas id="mark-analytics-pie-chart"></canvas>
                             </div>
                         </div>
                         <div class="col-xxl-6 col-xl-6 lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="result_explanation card-background p-4">
-                                <p class="card-titles mb-4"><img src="{{asset('frontend/images/icons/result_explanation.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Result Explanation</p>
+                                <p class="card-titles mb-4"><i class="fa-regular fa-lightbulb"></i> Result Explanation</p>
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
                                       <h2 class="accordion-header">
@@ -529,7 +576,7 @@
                     <div class="row mt-4 mb-4">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="int-abroad-country card-background px-3 pt-3 pb-5">
-                                <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Desired and Target Score</p>
+                                <p class="card-titles mb-0"><img src="{{asset('frontend/images/icons/speedometer.png')}}" alt="" style="width: 2.125rem;height: 2.125rem;"> Current and Desired Score</p>
                                 <table class="table table-bordered mt-3">
                                     <thead>
                                         <th class="text-center">Current Score</th>
@@ -549,7 +596,7 @@
                                         <tr>
                                             <td style="background-color: transparent; font-size:1rem; text-align:center;">
                                                 @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                    4.5
+                                                    4.0
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
                                                     4.5 - 5.0
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
@@ -621,31 +668,19 @@
                     </div>
                     <div class="row my-4">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="sugg-target-score p-4 card-background">
-                                <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested course for targeted band score</p>
+                            <div class="sugg-target-score px-4 py-5 card-background">
+                                <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested Courses For Your Targeted Band Score</p>
                                 <div class="row">
-                                    <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <div class="band-score-tiles-list">
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
-                                                Band: 6
+                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
+                                                Band: 6.0 - Band: 6.5
                                             </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_6" onclick="expected_band_score_func(6.5)">
-                                                Band: 6.5
+                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
+                                                Band: 7.0 - Band: 7.5
                                             </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
-                                                Band: 7
-                                            </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_7" onclick="expected_band_score_func(7.5)">
-                                                Band: 7.5
-                                            </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
-                                                Band: 8
-                                            </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_more_than_8" onclick="expected_band_score_func(8.5)">
-                                                Band: 8.5
-                                            </button>
-                                            <button style="background-color: transparent; border:none; font-size:1.25rem; font-weight: 700; color:#625F5F" id="targeted_band_score_9" onclick="expected_band_score_func(9)">
-                                                Band: 9
+                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
+                                                Band: 8.0 - Band: 8.5
                                             </button>
                                         </div>
                                     </div>
@@ -660,54 +695,33 @@
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div style="margin: 2rem 0 0 0">
                                     <div class="position-relative">
-                                        <div class="improved-score"><i class="fa-solid fa-medal" style="color: #E89B05;"></i> Achieve <span id="achive_band_score"></span></div>
-                                        <img src="{{asset('frontend/images/icons/arrow.png')}}" alt="" class="arrow"> 
+                                        {{-- <img src="{{asset('frontend/images/icons/arrow.png')}}" alt="" class="arrow">  --}}
                                         <div class="row">
-                                            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                                <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                    <div class="your-score">
-                                                        <span class="icon"><i class="fa-solid fa-triangle-exclamation me-2"></i></span>
-                                                        Your Score 
-                                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                            4.0 - 4.5
-                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                            4.5 - 5.0
-                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                            5.0 - 5.5
-                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                            6.0 - 6.5
-                                                        @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                            7.0
-                                                        @else
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                                 <div class="d-flex justify-content-between">
-                                                    <div id="a1_course_duration">
+                                                    <div>
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 50px; background-color:#1baa2f;padding:0 2.25rem;"></div>
+                                                            <div id="a1_course_duration" style="height: 50px; background-color:rgb(237 237 237 / 39%);padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
-                                                    <div id="a2_course_duration">
+                                                    <div>
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 100px; background-color:#52d726;padding:0 2.25rem;"></div>
+                                                            <div id="a2_course_duration" style="height: 100px; background-color:rgb(237 237 237 / 39%);padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
-                                                    <div id="b1_course_duration">
+                                                    <div>
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 150px; background-color:#b9d20d;padding:0 2.25rem;"></div>
+                                                            <div id="b1_course_duration" style="height: 150px; background-color:rgb(237 237 237 / 39%);padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
-                                                    <div id="b2_course_duration">
+                                                    <div>
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 200px; background-color:#ebdb13;padding:0 2.25rem;"></div>
+                                                            <div id="b2_course_duration" style="height: 200px; background-color:rgb(237 237 237 / 39%);padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
-                                                    <div id="c1_course_duration">
+                                                    <div>
                                                         <div style="height: 300px; display: flex; justify-content: flex-start; align-items: flex-end;">
-                                                            <div style="height: 250px; background-color:#ffaf00;padding:0 2.25rem;"></div>
+                                                            <div id="c1_course_duration" style="height: 250px; background-color:rgb(237 237 237 / 39%);padding:0 2.25rem;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -715,8 +729,8 @@
                                                     <div id="a1_course_benefit_icon">
                                                         <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" onclick="courseBenefitRadio('a1')"></span> A1</div>
                                                     </div>
-                                                    <div id="a2_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
+                                                    <div>
+                                                        <div id="a2_course_benefit_icon" style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
                                                     </div>
                                                     <div id="b1_course_benefit_icon">
                                                         <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b1')"></span> B1</div>
@@ -751,7 +765,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">B2</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Main IELTS</td>
+                                                        <td style="font-size: 1rem; background-color:transparent;">Express IELTS</td>
                                                         <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
                                                     </tr>
                                                     <tr>
@@ -1294,7 +1308,7 @@
         const data = {
                 labels: [
                     'Correct',
-                    'InCorrect',
+                    'Incorrect',
                     'Unanswered'
                 ],
                 datasets: [{
@@ -1354,10 +1368,10 @@
         var xValues = ["Reading", "Grammar", "Vocabulary", "Listening"];
         var yValues = [reading_value, grammar_value, vocabulary_value, listening_value];
         var barColors = [
-            "#FFA84A",
-            "#9B88ED",
-            "#FB67CA",
-            "#04BFDA",
+            "#4CAF50",
+            "#FF5733",
+            "#FFC300",
+            "#3498DB",
         ];
     
         new Chart("mark-analytics-pie-chart", {

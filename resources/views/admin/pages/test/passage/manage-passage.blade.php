@@ -13,7 +13,7 @@
 							<th>Sl No</th>
 							<th>Test Name</th>
 							<th>Section Name</th>
-							<th>Passage</th>
+							
 							<th>Action</th>
 						</thead>
 						<tbody>
@@ -22,7 +22,7 @@
 									<td>{{$loop->index+1}}</td>
 									<td>{{$rows->manageTest->title}}</td>
 									<td>{{$rows->manageTestSection->name}}</td>
-									<td>{!!substr($rows->passage, 0,75)!!}</td>
+									
 									<td>
 										<a href="{{route('admin.edit.passage.test', $rows->id)}}" class="btn btn-primary btn-sm">Edit</a>
 										<a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal_{{$rows->id}}">Delete</a>

@@ -11,7 +11,7 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="{{route('visitor.follow-up.list')}}" class="nav-link align-middle px-0 text-white fs-6">
-                            <i class="fa-regular fa-calendar-days"></i> <span class="ms-1 d-none d-sm-inline">Follow Up List</span>
+                            <i class="fa-regular fa-calendar-days"></i> <span class="ms-1 d-none d-sm-inline">Exam Feedback</span>
                         </a>
                     </li>
                 </ul>
@@ -58,14 +58,14 @@
                 @include('flash-message')
                 <table class="table table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
-                        <th style="background: #DBEBF5; font-size:15px">SL No</th>
-                        <th style="background: #DBEBF5; font-size:15px">Full Name</th>
-                        <th style="background: #DBEBF5; font-size:15px">Email</th>
-                        <th style="background: #DBEBF5; font-size:15px">Mobile</th>
-                        <th style="background: #DBEBF5; font-size:15px">Purpose of Visit</th>
-                        <th style="background: #DBEBF5; font-size:15px">Enrolled Course</th>
-                        <th style="background: #DBEBF5; font-size:15px">Status</th>
-                        <th style="background: #DBEBF5; font-size:15px">Action</th>
+                        <th class="adviserDasHomeTh">SL No</th>
+                        <th class="adviserDasHomeTh">Full Name</th>
+                        <th class="adviserDasHomeTh">Email</th>
+                        <th class="adviserDasHomeTh">Mobile</th>
+                        <th class="adviserDasHomeTh">Purpose of Visit</th>
+                        <th class="adviserDasHomeTh">Enrolled Course</th>
+                        <th class="adviserDasHomeTh">Status</th>
+                        <th class="adviserDasHomeTh">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($getData as $item)
@@ -90,9 +90,9 @@
                                     @if($item->status == 'approved')
                                         @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                             @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
-                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="btn text-white fw-bold py-1" style="background-color: #ba131a">Start Assessment</button></a>
+                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
                                             @else
-                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">View Result</button></a>
+                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
                                             @endif
                                         @endif
                                         <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-4">Details</button></a>

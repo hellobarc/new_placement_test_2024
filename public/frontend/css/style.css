@@ -51,7 +51,6 @@ body{
   font-size: 18px;
   font-weight: 500;
   margin: 28px 19px;
-  text-align: center;
 }
 .question-set-card .button_exam{
   text-decoration: none;
@@ -468,14 +467,14 @@ body{
   width: 50%;
   padding: 2px 2px 8px 20px;
   border-radius: 5px;
-  background-color: #d9d9d9;
+  background-color: #d9d9d950;
 }
 .fill_blanks{
   position: relative;
 }
 .fill_blanks input{
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px dotted #585555;
   background-color: transparent;
   /* width: 100%; */
 }
@@ -507,7 +506,7 @@ input.check_box{
   font-weight: 400;
 }
 .mltiple_choice_option{
-  background-color: #D9D9D9;
+  background-color: #d9d9d950;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -583,7 +582,7 @@ input.check_box{
   background: #FFF;
   box-shadow: 0px 0px 14px 0px rgba(99, 95, 95, 0.10);
   padding: 15px 12px;
-  margin-top: 4.375rem;
+  margin-top: 4.2rem;
 }
 .continue-part-div .reading{
   background-color: #d9d9d9;
@@ -599,12 +598,13 @@ input.check_box{
   background: #FBFBFB !important
 }
 .continue-part-div-listening-active{
-  background-color: #13be24;
+  background-color: #198754;
   margin-bottom: 5px;
   padding: 10px 32px;
   border-radius: 3px;
   font-size: 1.2rem;
   font-weight: 700;
+  color: #f8f8f8;
 }
 .display-hidden{
   display: none;
@@ -620,6 +620,13 @@ input.check_box{
   border-radius: 4px;
   overflow: auto;
   height: 30rem;
+}
+.assessment-test-question tr{
+  border: 1px solid #181818;
+}
+.assessment-test-question td{
+  border: 1px solid #181818;
+  padding: 5px 5px;
 }
 .assessment-test-passage{
   background: #FFF;
@@ -924,19 +931,19 @@ progress::-webkit-progress-bar {
 }
 
 .progress-bar-reading::-webkit-progress-value {
-  background-color: #FFA84A;
+  background-color: #4CAF50;
 }
 
 .progress-bar-grammar::-webkit-progress-value {
-  background-color: #FB67CA;
+  background-color: #FF5733;
 }
 
 .progress-bar-vocabulary::-webkit-progress-value {
-  background-color: #04BFDA;
+  background-color: #FFC300;
 }
 
 .progress-bar-listening::-webkit-progress-value {
-  background-color: #9B88ED;
+  background-color: #3498DB;
 }
 
 /* Firefox specific styles */
@@ -1071,8 +1078,9 @@ progress::-webkit-progress-bar {
   margin: 0 0 0 0;
 }
 .outline-for-score-small-sections-active {
-  color: #ba131a !important;
-  border-bottom: 2px solid #ba131a !important;
+  background-color: #035388 !important;
+  color: #f8f8f8 !important;
+  border: 1px solid #035388 !important;
 }
 .outline-for-score-small-sections-active p{
   margin: 0 0 0 0;
@@ -1843,6 +1851,54 @@ progress::-webkit-progress-bar {
   height: 140px;
 }
 /* result card css end */
+.adviserDasHomeTh{
+  background: #DBEBF5 !important; 
+  font-size:14px !important;
+}
+.start-test-btn{
+  background-color: #035388;
+  color: #f8f8f8;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.exam-continue-icon{
+  font-size: 12px; 
+  padding: 0 0 0 5.313rem !important;
+  color: #f8f8f8;
+}
+.exam-progress-bar{
+  position: relative;
+}
+.a1_course_bar{
+  background-color:#1baa2f !important;
+}
+.a2_course_bar{
+  background-color:#52d726 !important;
+}
+.b1_course_bar{
+  background-color:#b9d20d !important;
+}
+.b2_course_bar{
+  background-color:#ebdb13 !important;
+}
+.c1_course_bar{
+  background-color:#ffaf00 !important;
+}
+.desired_btn_active{
+  background-color: #035388 !important;
+  color: #f8f8f8 !important;
+}
+@media screen and (max-width: 1366px) {
+  .start-test-btn{
+    font-size: 14px !important;
+  }
+  .exam-continue-icon{
+    padding: 0 0 0 2rem !important;
+  }
+}
+
 @media (max-width: 420px) {
   .sidebar.close .nav-links li .sub-menu{
     display: none;

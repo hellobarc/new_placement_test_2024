@@ -32,7 +32,7 @@
                             @if ($module_id == $rows->id)
                                 <div class="d-flex justify-content-between continue-part-div-listening-active">
                                     <p class="mb-0">{{$rows->name}}</p>
-                                    <p style="font-size: 12px; padding: 0 0 0 5.313rem !important;" class="mb-0 mt-3"><i class="fas fa-edit"></i> Continue</p>
+                                    <p class="mb-0 mt-3 exam-continue-icon"><i class="fas fa-edit"></i> Continue</p>
                                 </div>
                             @else
                                 <p class="reading">{{$rows->name}}</p>
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <!--Finished Progress bar -->
-                    <div class="mt-3 mb-5">
-                        <progress style="accent-color: #004AAD;" id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}">50%  </progress>
+                    <div class="mt-4 mb-4 exam-progress-bar">
+                        <progress style="accent-color: #004AAD !important; height:18px !important;" id="file" value="{{$segment_id*10}}" max="{{$total_segment*10}}">{{$segment_id*10}}%  </progress>
                     </div>
                     <!-- Question template -->
                     <div>
@@ -93,19 +93,21 @@
                             @else
                             @endif
                             <!-- audio Show -->
-                            @if ($testAudio != NULL)
-                                <div class="col-md-6">
-                                    <div class="assessment-test-audio">
+                            
+                            <!-- question show -->
+                            @if ($module_id == 2 || $module_id == 3 || $module_id == 4)
+                                <div class="col-md-12">
+                            @else
+                                <div class="col-md-6 mx-auto">
+                            @endif
+                                <div class="assessment-test-question">
+                                    @if ($testAudio != NULL)
+                                        <h4 class="fw-bold pt-2 pb-2">Part {{$segment_id}}</h4>
                                         <audio controls>
                                             <source src="{{asset('admin/files/uploads/test-audio/'. $testAudio->audio)}}" type="audio/mpeg">
                                         </audio>
-                                    </div>
-                                </div>
-                            @else
-                            @endif
-                            <!-- question show -->
-                            <div class="col-md-6 mx-auto">
-                                <div class="assessment-test-question">
+                                    @else
+                                    @endif
                                     <form action="{{ route('student.exam.submission') }}" id="questionForm" method="POST">
                                         @csrf
                                         <input type="hidden" name="minute" id="time_value_minute">
@@ -175,12 +177,12 @@
                                                                     @endphp 
                                                                     @foreach($array_maker as $iteration)
                                                                         @php
-                                                                            $replace_content = "<input type='text' onchange='effect($continute_sl)' name='fillBlank_sub_ques_ans_{$items['question_id']}[]'>";
+                                                                            $replace_content = "<input type='text' name='fillBlank_sub_ques_ans_{$items['question_id']}[]'>";
                                                                         @endphp
-                                                                            <p class="main-text"> {!!str_replace('##blan', $replace_content , $iteration)!!}</p>
+                                                                            <span class="main-text"> {!!str_replace('##blan', $replace_content , $iteration)!!}</span>
                                                                     @endforeach
                                                                 </div>
-                                                                <br>
+                                                                
                                                             @endforeach
                                                         @endif
                                                     </div>

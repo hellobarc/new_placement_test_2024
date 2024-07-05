@@ -538,8 +538,8 @@ class ExamController extends Controller
         $count_grammar_question = $this->count_test_question($log_id->test_id, 2);
         $count_listening_question = $this->count_test_question($log_id->test_id, 3);
         $count_writing_question = $count_grammar_question+$count_listening_question;
-        $correct_answer = $this->correctAnswer($log_id->id);
-        $in_correct_answer = $this->inCorrectAnswer($log_id->id);
+        $correct_answer = $all_module_marks;
+        $in_correct_answer = (15-$sum_reading_module)+(15-$sum_listening_module)+(15-$sum_grammar_module)+(15-$sum_vocabulary_module);
         $unAnswer = 60 -($correct_answer+$in_correct_answer);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',
         'sum_listening_module', 
@@ -648,25 +648,6 @@ class ExamController extends Controller
         $sum_valve = 0;
         foreach($activeLog as $rows){
             $sum_valve += TestSubmission::where('activity_log_id', $rows->id)->sum('obtained_mark');
-        }
-        return $sum_valve;
-    }
-    private function correctAnswer($log_id)
-    {
-        $activeLog = TestSubmissionActivityLog::where('submission_log_id', $log_id)->get();
-        $sum_valve = 0;
-        foreach($activeLog as $rows){
-            $sum_valve += TestSubmission::where('activity_log_id', $rows->id)->sum('obtained_mark', '!=', 0);
-        }
-        return $sum_valve;
-    }
-    private function inCorrectAnswer($log_id)
-    {
-        $activeLog = TestSubmissionActivityLog::where('submission_log_id', $log_id)->get();
-        $sum_valve = 0;
-        foreach($activeLog as $rows){
-            $data = TestSubmission::where('activity_log_id', $rows->id)->where('obtained_mark', '=', 0)->get();
-             $sum_valve += count($data);
         }
         return $sum_valve;
     }

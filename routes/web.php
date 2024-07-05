@@ -92,7 +92,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::post('store-section', 'storeSectionTest')->name('admin.store.section.test');
         Route::get('edit-section/{id}', 'editSectionTest')->name('admin.edit.section.test');
         Route::post('update-section/{id}', 'updateSectionTest')->name('admin.update.section.test');
-        Route::post('delete-section/{id}', 'deleteSectionTest')->name('admin.delete.section.test');
+        Route::get('delete-section/{id}', 'deleteSectionTest')->name('admin.delete.section.test');
     });
     Route::controller(ManageTestQuestionController::class)->group(function () {
         Route::get('add-question/{test_id}/{section_id}', 'addQuestionTest')->name('admin.add-question.test');
