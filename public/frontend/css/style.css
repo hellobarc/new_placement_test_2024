@@ -1094,7 +1094,7 @@ progress::-webkit-progress-bar {
   justify-content: space-between;
 }
 .achieved-course-section{
-  margin: 2rem;
+  margin: 0 2rem;
 }
 .achieved-course-section .your-score .icon{
   background-color: #F3AE2E;
@@ -1161,7 +1161,7 @@ progress::-webkit-progress-bar {
   color: #363535;
   font-size: 1.375rem;
   font-weight: 600;
-  margin: 0 0 0 0;
+  margin: 2rem 0 0 0;
 }
 .current-level-title{
   color: #363535;
@@ -1234,10 +1234,13 @@ progress::-webkit-progress-bar {
 
 .details-border {
   border-radius: 50%;
-  background-color:  #004AAD;
+  background-color:  #e8e9e9;
   color: #f8f8f8;
   width: 45px;
   height: 45px;
+}
+.details-border-active {
+  background-color:  #004AAD;
 }
 .details-border button{
   color: #f8f8f8;
@@ -1677,7 +1680,7 @@ progress::-webkit-progress-bar {
 .advisor .advisor-info .name{
   color: #222;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.125rem;
   margin-bottom: 5px;
 }
@@ -1889,6 +1892,15 @@ progress::-webkit-progress-bar {
 .desired_btn_active{
   background-color: #035388 !important;
   color: #f8f8f8 !important;
+}
+.class-schdule input[type=checkbox] {
+  accent-color: #004AAD;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #004AAD !important;
+}
+.class-schdule span{
+  
 }
 @media screen and (max-width: 1366px) {
   .start-test-btn{

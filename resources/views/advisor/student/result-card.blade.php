@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Result Card</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
@@ -37,7 +37,7 @@
                <h3 class="title">Placement Test Report</h3>
                <p class="name">Minar Ahmed,</p>
                <p class="text">
-                আপনি ব্রিটিশ আমেরিকান রিসোর্স সেন্টারে এসে ইংরেজি ভাষা দক্ষতা পরিমাপের জন্য ৫০ মিনিটের একটি পরীক্ষা দিয়েছেন | 
+                আপনি ব্রিটিশ আমেরিকান রিসোর্স সেন্টারে এসে ইংরেজি ভাষা দক্ষতা পরিমাপের জন্য ৪০ মিনিটের একটি পরীক্ষা দিয়েছেন | 
                 এবং আপনার অবস্থান <span class="level">{{Helper::overall_rubricks($all_module_marks)}} level</span> এ.
                </p>
             </div>
@@ -49,85 +49,81 @@
         <div class="row">
             <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
                 <div class="row">
-                    <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 mx-auto">
-                        <div class="row">
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_1" id="resultActiveClass1">
-                                            <p class="fs-5 fw-bold">A1</p>
-                                            <h5 class="fw-bolder">Elementary</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                        <h5 class="fw-bold">4.5</h5>
-                                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_1" id="resultActiveClass1">
+                                    <p class="fs-5 fw-bold">A1</p>
+                                    <h5 class="fw-bolder">Elementary</h5>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_2" id="resultActiveClass2">
-                                            <p class="fs-5 fw-bold">A2</p>
-                                            <h5 class="fw-bolder">Lower Intermediate</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                    <h5 class="fw-bold">4.5 - 5.0</h5>
-                                    </div>
+                            <div class="box_bind_class">
+                                <h5 class="fw-bold">4.0</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_2" id="resultActiveClass2">
+                                    <p class="fs-5 fw-bold">A2</p>
+                                    <h5 class="fw-bolder">Pre-intermediate</h5>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_3" id="resultActiveClass3">
-                                            <p class="fs-5 fw-bold">B1</p>
-                                            <h5 class="fw-bolder">Intermediate</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                        <h5 class="fw-bold">5.0 - 5.5</h5>
-                                    </div>
+                            <div class="box_bind_class">
+                            <h5 class="fw-bold">4.5 - 5.0</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_3" id="resultActiveClass3">
+                                    <p class="fs-5 fw-bold">B1</p>
+                                    <h5 class="fw-bolder">Intermediate</h5>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_4" id="resultActiveClass4">
-                                            <p class="fs-5 fw-bold">B2</p>
-                                            <h5 class="fw-bolder">Advance Intermediate</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                        <h5 class="fw-bold">6.0 - 6.5</h5>
-                                    </div>
+                            <div class="box_bind_class">
+                                <h5 class="fw-bold">5.0 - 5.5</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_4" id="resultActiveClass4">
+                                    <p class="fs-5 fw-bold">B2</p>
+                                    <h5 class="fw-bolder">Upper Intermediate</h5>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_5" id="resultActiveClass5">
-                                            <p class="fs-5 fw-bold">C1</p>
-                                            <h5 class="fw-bolder">Advance</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                        <h5 class="fw-bold">7.0 - 7.5</h5>
-                                    </div>
+                            <div class="box_bind_class">
+                                <h5 class="fw-bold">6.0 - 6.5</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_5" id="resultActiveClass5">
+                                    <p class="fs-5 fw-bold">C1</p>
+                                    <h5 class="fw-bolder">Advanced</h5>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="full_box">
-                                    <div class="box_header">
-                                        <div class="inner_box_top_6" id="resultActiveClass6">
-                                            <p class="fs-5 fw-bold">C2</p>
-                                            <h5 class="fw-bolder">Proficiency</h5>
-                                        </div>
-                                    </div>
-                                    <div class="box_bind_class">
-                                        <h5 class="fw-bold">8.0+</h5>
-                                    </div>
+                            <div class="box_bind_class">
+                                <h5 class="fw-bold">7.0 - 7.5</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <div class="full_box">
+                            <div class="box_header">
+                                <div class="inner_box_top_6" id="resultActiveClass6">
+                                    <p class="fs-5 fw-bold">C2</p>
+                                    <h5 class="fw-bolder">Proficient</h5>
                                 </div>
+                            </div>
+                            <div class="box_bind_class">
+                                <h5 class="fw-bold">8.0+</h5>
                             </div>
                         </div>
                     </div>
@@ -183,7 +179,7 @@
                         <div class="band-wise-course">
                             <h4>Band 
                                 @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                    4.5
+                                    4.0
                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
                                     4.5 - 5.0
                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
@@ -199,34 +195,196 @@
                                 এ যেতে যে কোর্সগুলো করতে হবে
                             </h4>
                             <div class="d-flex justify-content-between">
-                                <div class="course-box">
-                                    @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && $student_info->expected_score<=7)
+                                    <div class="course-box">
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
-                                    @else
-                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
-                                    @endif
-                                    <span class="course-name">A1 Level</span>
-                                </div>
-                                <div class="course-box">
-                                    <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
-                                    <span class="course-name">A2 Level</span>
-                                </div>
-                                <div class="course-box">
-                                    <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
-                                    <span class="course-name">B1 Level</span>
-                                </div>
-                                <div class="course-box">
-                                    <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
-                                    <span class="course-name">B2 Level</span>
-                                </div>
-                                <div class="course-box">
-                                    @if ($student_info->expected_score>= 7)
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
-                                    @else
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
                                         <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
-                                    @endif
-                                    <span class="course-name">C1 Level</span>
-                                </div>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A1' && $student_info->expected_score>=7)
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && $student_info->expected_score<=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && $student_info->expected_score>=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && $student_info->expected_score<=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && $student_info->expected_score>=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && $student_info->expected_score<=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && $student_info->expected_score>=7)
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'C1')
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">A2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">B1 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
+                                        <span class="course-name">B2 Level</span>
+                                    </div>
+                                    <div class="course-box">
+                                        <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
+                                        <span class="course-name">C1 Level</span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -326,7 +484,7 @@
                             <p class="course">কোর্স বিষয়ে যে কোন তথ্য বা সহায়তা পেতে যোগাযোগ করুনঃ</p>
                             <p class="name"> {{ Auth::user()->name }}</p>
                             <p class="designation"> {{ Auth::user()->designation }}</p>
-                            <p class="phone">ব্রিটিশ আমেরিকান রিসোর্স সেন্টার, {{ Auth::user()->phone }}</p>
+                            <p class="phone">ব্রিটিশ আমেরিকান রিসোর্স সেন্টার, <span class="fs-5">{{ Auth::user()->phone }}</span></p>
                         </div>
                     </div>
                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -418,17 +576,30 @@
     });
 </script>
 <script>
-    let desired_level = "{{Helper::overall_rubricks($all_module_marks)}}";
+    var desired_level = "{{Helper::overall_rubricks($all_module_marks)}}";
     if(desired_level == 'A1'){
-        document.getElementById("resultActiveClass1").classList.add("inner_box_top_1_another");
-    }else if(desired_level == 'A2'){
+        document.getElementById("resultActiveClass2").classList.remove("inner_box_top_1");
         document.getElementById("resultActiveClass2").classList.add("inner_box_top_1_another");
-    }else if(desired_level == 'B1'){
-        document.getElementById("resultActiveClass3").classList.add("inner_box_top_1_another");
-    }else if(desired_level == 'B2'){
-        document.getElementById("resultActiveClass4").classList.add("inner_box_top_1_another");
-    }else if(desired_level == 'C1'){
-        document.getElementById("resultActiveClass5").classList.add("inner_box_top_1_another");
+    }
+    if(desired_level == 'A2'){
+        document.getElementById("resultActiveClass2").classList.remove("inner_box_top_2");
+        document.getElementById("resultActiveClass2").classList.add("inner_box_top_2_another");
+    }
+    if(desired_level == 'B1'){
+        document.getElementById("resultActiveClass3").classList.remove("inner_box_top_3");
+        document.getElementById("resultActiveClass3").classList.add("inner_box_top_3_another");
+    }
+    if(desired_level == 'B2'){
+        document.getElementById("resultActiveClass4").classList.remove("inner_box_top_4");
+        document.getElementById("resultActiveClass4").classList.add("inner_box_top_4_another");
+    }
+    if(desired_level == 'C1'){
+        document.getElementById("resultActiveClass5").classList.remove("inner_box_top_5");
+        document.getElementById("resultActiveClass5").classList.add("inner_box_top_5_another");
+    }
+    if(desired_level == 'C2'){
+        document.getElementById("resultActiveClass6").classList.remove("inner_box_top_6");
+        document.getElementById("resultActiveClass6").classList.add("inner_box_top_6_another");
     }
 </script>
   </body>

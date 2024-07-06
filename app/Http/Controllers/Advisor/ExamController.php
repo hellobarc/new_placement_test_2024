@@ -34,6 +34,8 @@ use App\Models\{
     CoursePrice,
     Course,
 };
+use Mail;
+use App\Mail\StudentResultEmailNotification;
 class ExamController extends Controller
 {
     public function examSet($student_id)
@@ -665,5 +667,16 @@ class ExamController extends Controller
             ]);
             $deleteSession = session()->forget('test_session');
         return view('advisor.student.exam.exam-completed');
+    }
+    public function studentEmail($student_id)
+    {
+        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $stu_email = $student_info->studentInfo->email;
+        $stu_result = [
+            'level' => 'A2'
+        ];
+        //return view('mail.student-result-mail-notification');
+        Mail::to($stu_email)->send(new StudentResultEmailNotification($stu_result, "BARC New Visitor Info"));
+        return redirect()->back();
     }
 }

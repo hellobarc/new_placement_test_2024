@@ -666,36 +666,30 @@
 
                         </div>
                     </div>
-                    <div class="row my-4">
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="sugg-target-score px-4 py-5 card-background">
-                                <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested Courses For Your Targeted Band Score</p>
-                                <div class="row">
-                                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="band-score-tiles-list">
-                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
-                                                Band: 6.0 - Band: 6.5
-                                            </button>
-                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
-                                                Band: 7.0 - Band: 7.5
-                                            </button>
-                                            <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
-                                                Band: 8.0 - Band: 8.5
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </section>
                 <section class="achieved-course-section" id="course-related-info">
                     <div class="p-5 card-background">
                         <div class="row">
                             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div style="margin: 2rem 0 0 0">
+                                <div style="">
                                     <div class="position-relative">
                                         {{-- <img src="{{asset('frontend/images/icons/arrow.png')}}" alt="" class="arrow">  --}}
+                                        <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested Courses For Your Targeted Band Score</p>
+                                        <div class="row">
+                                            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                <div class="band-score-tiles-list">
+                                                    <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
+                                                        Band: 6.0 - Band: 6.5
+                                                    </button>
+                                                    <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_7" onclick="expected_band_score_func(7)">
+                                                        Band: 7.0 - Band: 7.5
+                                                    </button>
+                                                    <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_8" onclick="expected_band_score_func(8)">
+                                                        Band: 8.0 - Band: 8.5
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                                 <div class="d-flex justify-content-between">
@@ -729,8 +723,8 @@
                                                     <div id="a1_course_benefit_icon">
                                                         <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" onclick="courseBenefitRadio('a1')"></span> A1</div>
                                                     </div>
-                                                    <div>
-                                                        <div id="a2_course_benefit_icon" style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
+                                                    <div id="a2_course_benefit_icon">
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
                                                     </div>
                                                     <div id="b1_course_benefit_icon">
                                                         <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b1')"></span> B1</div>
@@ -742,61 +736,71 @@
                                                         <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('c1')"></span> C1</div>
                                                     </div>
                                                 </div>
-                                                <table class="table table-bordered mt-5">
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Course</td>
-                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Level</td>
-                                                        <td style="font-size: 1rem; font-weight:600; background-color:#ecf1f9">Duration</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">A1</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Elementory</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">A2</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Basic English</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">B1</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Pre - IELTS</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">B2</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Express IELTS</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 1rem; font-weight: 600; margin: 0 2px 0 6px; background-color:transparent;">C1</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">Advance IELTS</td>
-                                                        <td style="font-size: 1rem; background-color:transparent;">1 Month+</td>
-                                                    </tr>
+                                                <table class="table table-bordered mt-5 mb-0">
+                                                    <thead>
+                                                        <th style="background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Enrolled Course</th>
+                                                        <th style="background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Course Level</th>
+                                                        <th style="float: right; background-color:transparent; border:none; font-size: 1.125rem; font-weight:600; color:#004AAD;">Duration</th>
+                                                    </thead>
                                                 </table>
+                                                <div id="a1_course_level_duration">
+                                                    <div class="d-flex justify-content-between"  style="border-bottom: 1px solid #DEDCDC; padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> A1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Elementory</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="a2_course_level_duration">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> A2</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Basic English</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="b1_course_level_duration">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> B1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Pre- Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="b2_course_level_duration">
+                                                    <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> B2</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Express Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
+                                                <div id="c1_course_level_duration">
+                                                    <div class="d-flex justify-content-between" style=" padding: 8px 0;">
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> C1</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Advanced Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
+                                                    </div>
+                                                </div>
                                                 <p class="total-time">Total Course Duration: <span id="course_completed_time"></span> Months +</p>
                                             </div>
                                             <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
                                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                 <p class="course-benefit-title"><i class="fa-solid fa-list-check me-1"></i> Course Benefit</p>
-                                               <div class="my-2">
-                                                    <span class="course-benefit-icon" id="a1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                               <div class="my-2" id="a1_course_benefit">
+                                                    <span class="course-benefit-icon" id="a1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
                                                     <span class="course-benefit-text">A1 Benefit</span>
                                                </div>
-                                               <div class="my-2">
-                                                    <span class="course-benefit-icon" id="a2_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                               <div class="my-2" id="a2_course_benefit">
+                                                    <span class="course-benefit-icon" id="a2_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
                                                     <span class="course-benefit-text">A2 Benefit</span>
                                                </div>
-                                               <div class="my-2">
-                                                    <span class="course-benefit-icon" id="b1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                               <div class="my-2" id="b1_course_benefit">
+                                                    <span class="course-benefit-icon" id="b1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
                                                     <span class="course-benefit-text">B1 Benefit</span>
                                                </div>
-                                               <div class="my-2">
-                                                    <span class="course-benefit-icon" id="b2_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                               <div class="my-2" id="b2_course_benefit">
+                                                    <span class="course-benefit-icon" id="b2_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
                                                     <span class="course-benefit-text">B2 Benefit</span>
                                                </div>
-                                               <div class="my-2">
-                                                    <span class="course-benefit-icon" id="c1_course_benefit"><i class="fa-solid fa-circle-check"></i></span>
+                                               <div class="my-2" id="c1_course_benefit">
+                                                    <span class="course-benefit-icon" id="c1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
                                                     <span class="course-benefit-text">C1 Benefit</span>
                                                </div>
                                             </div>
@@ -809,32 +813,32 @@
                                         <div class="row">
                                             <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                                 <div class="d-flex justify-content-between">
-                                                    <div id="a1-course-description" class="d-flex justify-content-start">
-                                                        <div class="details-border"> 
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="details-border" id="a1-course-description"> 
                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">A1</button>
                                                         </div>
                                                         <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div id="a2-course-description" class="d-flex justify-content-start">
-                                                        <div class="details-border"> 
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="details-border" id="a2-course-description"> 
                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">A2</button>
                                                         </div>
                                                         <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div id="b1-course-description" class="d-flex justify-content-start">
-                                                        <div class="details-border"> 
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="details-border" id="b1-course-description"> 
                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">B1</button>
                                                         </div>
                                                         <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div id="b2-course-description" class="d-flex justify-content-start">
-                                                        <div class="details-border"> 
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="details-border" id="b2-course-description"> 
                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">B2</button>
                                                         </div>
                                                         <div class="course-content-arrow"></div>
                                                     </div>
-                                                    <div id="c1-course-description">
-                                                        <div class="details-border"> 
+                                                    <div>
+                                                        <div class="details-border" id="c1-course-description"> 
                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">C1</button>
                                                         </div>
                                                     </div>
@@ -933,13 +937,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-4">
+                                <div class="mt-5">
                                     <p class="card-titles mt-4 mb-1"><i class="fa-regular fa-calendar-days"></i> Class Schdule</p>
+                                    <div class="class-schdule">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('regular')">
+                                            <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Regular Batch</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('weekly')">
+                                            <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Weekend Batch</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('online')">
+                                            <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Online Batch</label>
+                                        </div>
+                                    </div>
                                     <div style="border: 1.5px solid #7c7c7c; width:40%; border-radius: 4px; margin-top: 20px; padding: 20px 10px;">
                                         <ul class="mb-0">
-                                            <li class="fs-5"><span class="fw-bold">Regular Batch:</span> Weekly Two or Three days</li>
-                                            <li class="fs-5"><span class="fw-bold">Weekend Batch:</span> Friday</li>
-                                            <li class="fs-5 mb-0"><span class="fw-bold">Language Club:</span> Saturday</li>
+                                            <li class="fw-bold" id="regular-batch-day">Weekly Two Or Three Days </li>
+                                            <li class="fw-bold" id="weekend-batch-day">Friday</li>
+                                            <li class="mb-0"><span class="fw-bold">Language Club:</span> Saturday</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -957,7 +975,7 @@
                                         <tr>
                                             <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Courses</td>
                                             <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
-                                            <td style="background-color: #5A639C;" class="td-total text-white pt-3">Discount <p>Package</p></td>
+                                            <td style="background-color: #5A639C;" class="td-total text-white pt-3">After Discount</td>
                                         </tr>
                                         <tr id="a1_course_price_row">
                                             <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
@@ -1063,7 +1081,7 @@
                                             <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
                                             <td style="background-color: #fff;" class="td-price" colspan="2">
                                                 <div id="coursePrivileged">
-                                                    {{number_format($priviliged_price->priviliged_price)}}/-
+                                                    - {{number_format($priviliged_price->priviliged_price)}}/-
                                                 </div>
                                                 <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="{{$priviliged_price->priviliged_price}}">
                                             </td>
@@ -1119,20 +1137,20 @@
                                                 <div id="b2CourseOverview">
                                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #DEDCDC;  padding: 8px 0;">
                                                         <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> B2</p>
-                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Main Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Express Ielts</p>
                                                         <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
                                                     </div>
                                                 </div>
                                                 <div id="c1CourseOverview">
                                                     <div class="d-flex justify-content-between" style=" padding: 8px 0;">
                                                         <p class="mb-0" style="font-size:1.125rem; font-weight:400;"><span style="color: #004AAD;"><i class="fa-solid fa-circle-check"></i></span> C1</p>
-                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Advance Ielts</p>
+                                                        <p class="mb-0" style="font-size:1.125rem; font-weight:400;">Advanced Ielts</p>
                                                         <p class="mb-0" style="font-size:1.125rem; font-weight:400;">1 month</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="totaled-month-duration">
-                                                <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months</p>
+                                                <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months +</p>
                                             </div>
                                             <div class="course-achievement">
                                                 <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Course Achievement</p>
@@ -1145,14 +1163,15 @@
                                                             B2
                                                         @endif
                                                     </p>
-                                                    <p class="status">Course Level:  IELTS
+                                                    <p class="status"><span class="fw-bold fs-5">Course Level:</span> 
                                                         @if ($student_info->expected_score >= 7)
-                                                            Advance
+                                                            Advanced
                                                         @elseif($student_info->expected_score <= 6.5)
-                                                            Main
+                                                            Express
                                                         @endif
+                                                         IELTS
                                                     </p>
-                                                    <p class="status">Achieve Band Score:  
+                                                    <p class="status"><span class="fw-bold fs-5">Achieve Band Score:</span>  
                                                         @if ($student_info->expected_score >= 7)
                                                             7
                                                         @elseif($student_info->expected_score <= 6.5)
@@ -1160,11 +1179,23 @@
                                                         @endif
                                                         Plus
                                                     </p>
-                                                    <p class="status">Status: 
+                                                    <p class="status"><span class="fw-bold fs-5">Status:</span> 
+                                                        @if (Helper::overall_rubricks($all_module_marks) == 'A1')
+                                                            Elementory
+                                                        @elseif (Helper::overall_rubricks($all_module_marks) == 'A2')
+                                                            Pre Intermediate
+                                                        @elseif (Helper::overall_rubricks($all_module_marks) == 'B1')
+                                                            Intermediate
+                                                        @elseif (Helper::overall_rubricks($all_module_marks) == 'B2')
+                                                            Upper Intermediate
+                                                        @elseif (Helper::overall_rubricks($all_module_marks) == 'C1')
+                                                            Advanced
+                                                        @endif
+                                                        To 
                                                         @if ($student_info->expected_score >= 7)
-                                                            Beginner To Advance
+                                                            Advanced
                                                         @elseif($student_info->expected_score <= 6.5)
-                                                            Beginner To Advance Intermediate
+                                                            Upper Intermediate
                                                         @endif
                                                     </p>
                                                 </div>
@@ -1180,7 +1211,7 @@
                                                         <p class="mb-0" id="courseOverviewRegularPrice">0</p>
                                                     </div>
                                                     <div class="discount-price">
-                                                        <p class="mb-1">Discount price</p>
+                                                        <p class="mb-1">Discount amount</p>
                                                         <p class="mb-1" id="courseOverviewDiscountPrice">0</p>
                                                     </div>
                                                     <div class="discounted-price">
@@ -1191,7 +1222,7 @@
                                                         <p class="mb-1">Visit Day Offer</p>
                                                         <p class="mb-1" id="courseOverviewPrivileged">0</p>
                                                     </div>
-                                                    <div class="privileged-price">
+                                                    <div class="privileged-price" style="display: none">
                                                         <p class="mb-2">Privileged Price</p>
                                                         <p class="mb-2" id="courseOverviewTotalPrivileged">0</p>
                                                     </div>
@@ -1248,6 +1279,7 @@
                                     <h5>Print Result Card</h5>
                                     <div class="d-flex justify-content-between">
                                         <a href="{{route('student.result.card')}}">Print</a>
+                                        <a href="{{route('student.email', ['student_id'=>$studentId])}}">Send Mail</a>
                                         <a href="{{route('student.result.result.page', $studentId)}}">Print Result</a>
                                     </div>
                                 </div>
