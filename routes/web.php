@@ -217,6 +217,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/exam-completed', 'examCompleted')->name('student.exam.completed');
         Route::get('/result-card-page/{student_id}', 'resultCardPage')->name('student.result.result.page');
         Route::get('/student/email/{student_id}', 'studentEmail')->name('student.email');
+        Route::get('/congratulation/{student_id}', 'congratulation')->name('student.exam.finish');
     });
     Route::controller(StudentSearchController::class)->group(function(){
         Route::get('/visitor-search', 'search')->name('visitor.search');

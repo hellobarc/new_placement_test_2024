@@ -257,7 +257,7 @@
                                                                 @foreach($options as $key=>$option)
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" id="chechbox_{{$question->id}}_{{$key}}" name="user_multi_selector_{{$question->assessment_test_question_id}}[]" value="{{$key}}">
-                                                                        <label class="form-check-label mt-1" for="chechbox_{{$question->id}}_{{$key}}">{{$option}}</label>
+                                                                        <label class="form-check-label mt-1 ms-2" for="chechbox_{{$question->id}}_{{$key}}">{{$option}}</label>
                                                                     </div>
                                                                 @endforeach                                                            
                                                             </div>

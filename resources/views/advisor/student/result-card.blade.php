@@ -15,12 +15,12 @@
 <section class="result-card-header">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <img src="{{asset('frontend/images/full_logo.png')}}" alt="">
                     </div>
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <p class="mb-0">6th Floor, House: 34 Garib-E-Newaz Avenue, Sector: 11, Uttara, Dhaka 1230 <i class="fa-solid fa-location-dot"></i></p>
                         <p class="mb-0">Plot#23, Main road Section: 11, Pallabi Mirpur, Dhaka 1216 <i class="fa-solid fa-location-dot"></i></p>
                     </div>
@@ -33,7 +33,7 @@
 <section class="report-text">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
                <h3 class="title">Placement Test Report</h3>
                <p class="name">Minar Ahmed,</p>
                <p class="text">
@@ -47,7 +47,7 @@
 <section class="course-level">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
                 <div class="row">
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                         <div class="full_box">
@@ -135,7 +135,7 @@
 <section class="course-score">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="row">
@@ -190,12 +190,12 @@
                                     7.0
                                 @else
                                 @endif
-                                থেকে band 
+                                থেকে Band 
                                 {{$student_info->expected_score}}
                                 এ যেতে যে কোর্সগুলো করতে হবে
                             </h4>
                             <div class="d-flex justify-content-between">
-                                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && $student_info->expected_score<=7)
+                                @if (Helper::overall_rubricks($all_module_marks) == 'A1' && $student_info->expected_score<7)
                                     <div class="course-box">
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
                                         <span class="course-name">A1 Level</span>
@@ -237,7 +237,7 @@
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
                                         <span class="course-name">C1 Level</span>
                                     </div>
-                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && $student_info->expected_score<=7)
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'A2' && $student_info->expected_score<7)
                                     <div class="course-box">
                                         <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
                                         <span class="course-name">A1 Level</span>
@@ -279,7 +279,7 @@
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
                                         <span class="course-name">C1 Level</span>
                                     </div>
-                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && $student_info->expected_score<=7)
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B1' && $student_info->expected_score<7)
                                     <div class="course-box">
                                         <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
                                         <span class="course-name">A1 Level</span>
@@ -321,7 +321,7 @@
                                         <span class="iccon-active"><i class="fa-solid fa-circle-check"></i></span>
                                         <span class="course-name">C1 Level</span>
                                     </div>
-                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && $student_info->expected_score<=7)
+                                @elseif (Helper::overall_rubricks($all_module_marks) == 'B2' && $student_info->expected_score<7)
                                     <div class="course-box">
                                         <span class="iccon-disable"><i class="fa-solid fa-circle-xmark"></i></span>
                                         <span class="course-name">A1 Level</span>
@@ -477,7 +477,7 @@
 <section class="advisor">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
                         <div class="advisor-info">
@@ -506,7 +506,7 @@
 <section class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <p class="website"><i class="fa-solid fa-globe"></i> www.hellobarc.com</p>
@@ -527,11 +527,11 @@
     var level = "{{Helper::overall_rubricks($all_module_marks)}}";
     let target_level = "{{$student_info->expected_score}}";
     if(level == 'A1'){
-        var current_level = 4.5;
+        var current_level = 4;
     }else if(level == 'A2'){
         var current_level = 5;
     }else if(level == 'B1'){
-        var current_level = 5.5;
+        var current_level = 6;
     }else if(level == 'B2'){
         var current_level = 6.5;
     }else if(level == 'C1'){
@@ -540,8 +540,8 @@
     var xValues = ["বর্তমান অবস্থা", "টার্গেট স্কোর"];
     var yValues = [current_level, target_level];
     var barColors = [
-        "#FFA84A",
-        "#9B88ED",
+        "#36a0ed",
+        "#EE6123",
     ];
     new Chart("total-mark-chart", {
         type: "bar",

@@ -244,21 +244,22 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="modules">
                                             <div>
-                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span>
+                                                {{-- <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span> --}}
+                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing (Grammar)</span>
                                             </div>
-                                            <p class="fw-bold mb-0 mt-2">Grammar</p>
                                             <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-grammar mt-0" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
-                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
+                                                <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
                                             </div>
                                         </div>
                                         <div class="modules mt-4">
                                             <div>
-                                                <span class="fw-bold mb-0">Vocabulary</span>
+                                                {{-- <span class="fw-bold mb-0">Vocabulary</span> --}}
+                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing (Vocabulary)</span>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-vocabulary mt-0" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
-                                                <span style="margin: -5px 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
+                                                <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
+                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +278,7 @@
                                         <th style="padding-left:20px;">Module</th>
                                         <th style="padding-left:20px;">Right</th>
                                         <th style="color:#fd1818; padding-left:20px;">Wrong</th>
-                                        <th style="">Action</th>
+                                        {{-- <th style="">Action</th> --}}
                                     </tr>
                                     <tr>
                                         <td class="fw-bold" style="padding: 14px 10px;">
@@ -302,9 +303,9 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td style="padding: 14px 10px;">
+                                        {{-- <td style="padding: 14px 10px;">
                                             <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     <tr>
                                         <td class="fw-bold" style="padding: 14px 10px;">
@@ -329,9 +330,9 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td style="padding: 14px 10px;">
+                                        {{-- <td style="padding: 14px 10px;">
                                             <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     <tr>
                                         <td class="fw-bold" style="padding: 14px 10px;">
@@ -356,9 +357,9 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td style="padding: 14px 10px;">
+                                        {{-- <td style="padding: 14px 10px;">
                                             <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     <tr>
                                         <td class="fw-bold" style="padding: 14px 10px;">
@@ -383,9 +384,9 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td style="padding: 14px 10px;">
+                                        {{-- <td style="padding: 14px 10px;">
                                             <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 </table>
                             </div>
@@ -676,7 +677,7 @@
                                         {{-- <img src="{{asset('frontend/images/icons/arrow.png')}}" alt="" class="arrow">  --}}
                                         <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Suggested Courses For Your Targeted Band Score</p>
                                         <div class="row">
-                                            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                                                 <div class="band-score-tiles-list">
                                                     <button style="background-color: transparent; border:none; padding: 8px 8px; border-radius:4px; font-size:1.25rem; font-weight: 700; color:#625F5F; border:1px solid #035388;" id="targeted_band_score_6" onclick="expected_band_score_func(6)">
                                                         Band: 6.0 - Band: 6.5
@@ -721,19 +722,19 @@
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <div id="a1_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" onclick="courseBenefitRadio('a1')"></span> A1</div>
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="a1_course_benefit_radio" onclick="courseBenefitRadio('a1')"></span> A1</div>
                                                     </div>
                                                     <div id="a2_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('a2')"></span> A2</div>
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="a2_course_benefit_radio" onclick="courseBenefitRadio('a2')"></span> A2</div>
                                                     </div>
                                                     <div id="b1_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b1')"></span> B1</div>
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="b1_course_benefit_radio" onclick="courseBenefitRadio('b1')"></span> B1</div>
                                                     </div>
                                                     <div id="b2_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('b2')"></span> B2</div>
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="b2_course_benefit_radio" onclick="courseBenefitRadio('b2')"></span> B2</div>
                                                     </div>
                                                     <div id="c1_course_benefit_icon">
-                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="" onclick="courseBenefitRadio('c1')"></span> C1</div>
+                                                        <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="c1_course_benefit_radio" onclick="courseBenefitRadio('c1')"></span> C1</div>
                                                     </div>
                                                 </div>
                                                 <table class="table table-bordered mt-5 mb-0">
@@ -784,24 +785,106 @@
                                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                 <p class="course-benefit-title"><i class="fa-solid fa-list-check me-1"></i> Course Benefit</p>
                                                <div class="my-2" id="a1_course_benefit">
-                                                    <span class="course-benefit-icon" id="a1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">A1 Benefit</span>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="a1_course_benefit_active_1"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">ইংরেজি ভাষার fundamental elements সম্পর্কে ধারণা পাবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="a1_course_benefit_active_2"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Basic vocabulary শিখবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="a1_course_benefit_active_3"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Simple sentence structure শিখবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="a1_course_benefit_active_4"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Basic English conversation practice করার মাধ্যমে confident হবেন</span>
+                                                    </div>
                                                </div>
                                                <div class="my-2" id="a2_course_benefit">
-                                                    <span class="course-benefit-icon" id="a2_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">A2 Benefit</span>
+                                                    <div class="d-flex justify-content">
+                                                        <span class="course-benefit-icon" id="a2_course_benefit_active_1"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Basic grammar structure গুলো শিখতে পারবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content">
+                                                        <span class="course-benefit-icon" id="a2_course_benefit_active_2"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Context ভিত্তিক vocabulary শিখতে পারবেন </span>
+                                                    </div>
+                                                    <div class="d-flex justify-content">
+                                                        <span class="course-benefit-icon" id="a2_course_benefit_active_3"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Writing এবং speaking এর জন্য Idea generation শেখানো হবে</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content">
+                                                        <span class="course-benefit-icon" id="a2_course_benefit_active_4"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Familiar topic এ ইংরেজিতে কথা বলার ability তৈরী হবে</span>
+                                                    </div>
                                                </div>
                                                <div class="my-2" id="b1_course_benefit">
-                                                    <span class="course-benefit-icon" id="b1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">B1 Benefit</span>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="b1_course_benefit_active_1"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">IELTS different question pattern এর সাথে পরিচিত হবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="b1_course_benefit_active_2"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Complex sentence structure এবং advanced grammar application শিখতে পারবেন</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="b1_course_benefit_active_3"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Talk about speaking 2 minutes in a row kotha bolte parbe, 30 cue card ekhane shikhbe</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <span class="course-benefit-icon" id="b1_course_benefit_active_4"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Reading, Writing, Listening এবং Speaking এই ৪ টি module practice করানো হবে</span>
+                                                    </div>
                                                </div>
                                                <div class="my-2" id="b2_course_benefit">
-                                                    <span class="course-benefit-icon" id="b2_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">B2 Benefit</span>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="b2_course_benefit_active_1"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">IELTS test দেয়ার জন্য প্রস্তুত হবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="b2_course_benefit_active_2"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">বিভিন্ন context বোঝা বা তৈরী করার জন্য প্রয়জনীয় advanced grammar strecture এবং vocabulary শিখবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="b2_course_benefit_active_3"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Practice এর মাধ্যমে Speaking এর fluency বৃদ্ধি পাবে</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="b2_course_benefit_active_4"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Reading এর different question type এর সঠিক উত্তর দেয়ার জন্য deciceve ability, analytical ability এবং critical thinking ability enhanced তৈরী হবে</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="b2_course_benefit_active_5"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Writing task 2 তে Argumentative essay লেখার দক্ষতা অর্জন করবেন</span>
+                                                    </div>
                                                </div>
                                                <div class="my-2" id="c1_course_benefit">
-                                                    <span class="course-benefit-icon" id="c1_course_benefit_active"><i class="fa-solid fa-circle-check"></i></span>
-                                                    <span class="course-benefit-text">C1 Benefit</span>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_1"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">7+ স্কোর করার জন্য প্রস্তুত হবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_2"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">IELTS এ ভালো করার advance method শিখতে পারবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_3"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">High-level academic এবং professional writing বোঝার skill develop হবে</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_4"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Idiomatic expression এবং sophisticated vocabulary শিখতে পারবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_5"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Reading এ থাকা argumentative এবং discursive essays বুঝে answer করতে পারবেন</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="course-benefit-icon" id="c1_course_benefit_active_6"><i class="fa-solid fa-circle-check"></i></span>
+                                                        <span class="course-benefit-text">Highly cohesive and coherent writing ability তৈরী হবে</span>
+                                                    </div>
                                                </div>
                                             </div>
                                         </div>
@@ -989,7 +1072,6 @@
                                                 <div id="courseA1TdPrice2">
                                                     @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
-                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
                                                     @endif
@@ -1009,7 +1091,6 @@
                                                 <div id="courseA2TdPrice2">
                                                     @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
-                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('a2')['discount_price'])}}/-
                                                     @endif
@@ -1029,7 +1110,6 @@
                                                 <div id="courseB1TdPrice2">
                                                     @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
-                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('b1')['discount_price'])}}/-
                                                     @endif
@@ -1049,7 +1129,6 @@
                                                 <div id="courseB2TdPrice2">
                                                     @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
-                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('b2')['discount_price'])}}/-
                                                     @endif
@@ -1069,7 +1148,6 @@
                                                 <div id="courseC1TdPrice2">
                                                     @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
                                                         {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
-                                                        <span class="fs-6 text-danger mx-3">N/A</span>
                                                     @else
                                                         {{number_format(Helper::coursePrice('c1')['discount_price'])}}/-
                                                     @endif
@@ -1079,7 +1157,8 @@
                                         </tr>
                                         <tr id="priviliged_price_row">
                                             <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
-                                            <td style="background-color: #fff;" class="td-price" colspan="2">
+                                            <td style="background-color: #fff;" class="td-price"></td>
+                                            <td style="background-color: #fff;" class="td-price">
                                                 <div id="coursePrivileged">
                                                     - {{number_format($priviliged_price->priviliged_price)}}/-
                                                 </div>
@@ -1234,38 +1313,18 @@
                                                         <p class="mb-0">VAT Included (govt.)</p>
                                                         <p class="mb-0">5%</p>
                                                     </div>
-                                                    <button type="submit">Confirm Purchase</button>
+                                                    <form action="{{route('student.total.enrolled course')}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="student_id" id="" value="{{$studentId}}">
+                                                        <div id="enrolled_course_stu">
+
+                                                        </div>
+                                                        <button type="submit">Confirm Purchase</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <form action="{{route('student.total.enrolled course')}}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="student_id" value="{{$student_info->visitor_log_id}}">
-                                        <div class="form-group">
-                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="A1" aria-label="Checkbox for following text input">
-                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">A1</label>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="A2" aria-label="Checkbox for following text input">
-                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">A2</label>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="B1" aria-label="Checkbox for following text input">
-                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">B1</label>
-                                        </div> 
-                                        <div class="form-group mt-2">
-                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="B2" aria-label="Checkbox for following text input">
-                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">B2</label>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input class="form-check-input mt-0" name="total_enrolled_course[]" type="checkbox" value="C1" aria-label="Checkbox for following text input">
-                                            <label for="" style="margin-left: 8px; font-size: 20px; font-weight:700">C1</label>
-                                        </div>
-                                        <div class="pt-4">
-                                            <button type="submit" class="btn btn-sm text-light fs-5 fw-bold px-3 py-1" style="background-color: #004AAD; ">Submit</button>
-                                        </div>
-                                    </form> --}}
                                 </div>
                             </div>
                         </div>
@@ -1278,7 +1337,7 @@
                                 <div class="card-background p-4 result-card">
                                     <h5>Print Result Card</h5>
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{route('student.result.card')}}">Print</a>
+                                        {{-- <a href="{{route('student.result.card')}}">Print</a> --}}
                                         <a href="{{route('student.email', ['student_id'=>$studentId])}}">Send Mail</a>
                                         <a href="{{route('student.result.result.page', $studentId)}}">Print Result</a>
                                     </div>
@@ -1382,9 +1441,9 @@
                         color: 'black',
                     },
                     position: 'left'
-                },
-                
-            }
+                }, 
+            },
+            maintainAspectRatio: false,
         }
         };
         const myChart = new Chart(

@@ -76,7 +76,8 @@ class ExamController extends Controller
                     'status'         =>'completed',
                 ]);
             $deleteSession = session()->forget('test_session');
-            return view('advisor.student.exam.exam-completed');
+            return redirect()->route('student.exam.finish', ['student_id'=>$student_id]);
+            //return view('advisor.student.exam.exam-completed');
         }else{
             $allModule = Module::where('name','!=','Speaking')->get();
             $exerciseDB = ManageTestSection::where('test_id', $exam_id)->where('module_id', $module_id)->get();
@@ -435,7 +436,8 @@ class ExamController extends Controller
                             'status'         =>'completed',
                         ]);
                     $deleteSession = session()->forget('test_session');
-                    return view('advisor.student.exam.exam-completed');
+                    //return view('advisor.student.exam.exam-completed');
+                    return redirect()->route('student.exam.finish', ['student_id'=>$student_id]);
                 }else{
                     $current_segment = 1;
                     $current_module_id  = $module_id + 1;
@@ -465,7 +467,7 @@ class ExamController extends Controller
             echo 'Over ... segment finshied';
         }
     }
-   private function testCreate($array, $segment_id, $student_id)
+    private function testCreate($array, $segment_id, $student_id)
     {
         $current_time = time();
         $getSession         = Session::get('test_session');
@@ -563,6 +565,7 @@ class ExamController extends Controller
         $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
         $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
         $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        
         return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'sum_writing_module', 'student_info'));
     }
     private function count_test_question($test_id, $module_id)
@@ -672,11 +675,44 @@ class ExamController extends Controller
     {
         $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
         $stu_email = $student_info->studentInfo->email;
+        $stu_name = $student_info->studentInfo->full_name;
+        $target_score = $student_info->expected_score;
+        $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
+        $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
+        $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
+        $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
+        $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        $level = Helpers::overall_rubricks($all_module_marks);
         $stu_result = [
-            'level' => 'A2'
+            'name' => $stu_name,
+            'level' => $level,
+            'listening' => $sum_listening_module,
+            'reading' => $sum_reading_module,
+            'writing' => $sum_writing_module,
+            'grammar' => $sum_grammar_module,
+            'vocabulary' => $sum_vocabulary_module,
+            'target_score' => $target_score,
         ];
-        //return view('mail.student-result-mail-notification');
-        Mail::to($stu_email)->send(new StudentResultEmailNotification($stu_result, "BARC New Visitor Info"));
-        return redirect()->back();
+        return view('mail.student-result-mail-notification', compact('stu_result'));
+        // Mail::to($stu_email)->send(new StudentResultEmailNotification($stu_result, "BARC Placement Test Result"));
+        // return redirect()->back();
+    }
+    public function congratulation($student_id)
+    {
+        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $stu_email = $student_info->studentInfo->email;
+        $stu_name = $student_info->studentInfo->full_name;
+        $target_score = $student_info->expected_score;
+        $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
+        $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
+        $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
+        $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
+        $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        $level = Helpers::overall_rubricks($all_module_marks);
+        return view('advisor.student.exam.exam-completed', compact('level', 'stu_name'));
     }
 }

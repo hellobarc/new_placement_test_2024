@@ -113,7 +113,7 @@ class VisitorFollowUpController extends Controller
     }
     public function studentTotalEnrolledCourse(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $enrolled_course = $request->total_enrolled_course;
         $student_id = $request->student_id;
         VisitorInfo::updateOrCreate([
@@ -122,6 +122,6 @@ class VisitorFollowUpController extends Controller
             [
                 'total_enroll_course' => json_encode($enrolled_course),
             ]);
-            return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
+        return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
     }
 }
