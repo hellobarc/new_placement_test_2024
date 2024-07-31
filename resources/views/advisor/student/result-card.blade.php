@@ -578,8 +578,8 @@
 <script>
     var desired_level = "{{Helper::overall_rubricks($all_module_marks)}}";
     if(desired_level == 'A1'){
-        document.getElementById("resultActiveClass2").classList.remove("inner_box_top_1");
-        document.getElementById("resultActiveClass2").classList.add("inner_box_top_1_another");
+        document.getElementById("resultActiveClass1").classList.remove("inner_box_top_1");
+        document.getElementById("resultActiveClass1").classList.add("inner_box_top_1_another");
     }
     if(desired_level == 'A2'){
         document.getElementById("resultActiveClass2").classList.remove("inner_box_top_2");
