@@ -542,11 +542,11 @@
                                                 <li style="font-size: 16px !important;">
                                                     @if (Helper::module_rubricks($sum_listening_module) == 'A-')
                                                         <span>
-                                                            
+                                                            Familiar situation-এ basic dialogueবুঝতে পারেন না।
                                                         </span>
                                                     @elseif (Helper::module_rubricks($sum_listening_module) == 'A1')
                                                         <span>
-                                                            Familiar situation-এ basic dialogueবুঝতে পারেন।
+                                                            Familiar situation-এ basic dialogueবুঝতে পারেন না।
                                                         </span>
                                                     @elseif(Helper::module_rubricks($sum_listening_module) == 'A2')
                                                         <span>

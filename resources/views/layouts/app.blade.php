@@ -163,17 +163,7 @@
                     if(data.find_data != null){
                         $("#full_name").val(data.find_data.full_name);
                         $("#email").val(data.find_data.email);
-                        $("#howtoknow").val(data.find_data.user_info.how_you_know);
-                        $("#purpose_of_ielts").val(data.find_data.user_info.purpose_of_ielts);
-                        $("#occupation").val(data.find_data.user_info.occupation);
-                        $("#location").val(data.find_data.user_info.location);
-                        $("#address").val(data.find_data.user_info.address);
-                        $("#organization").val(data.find_data.user_info.organization);
-                        $("#date_of_birth").val(data.find_data.user_info.date_of_birth);
-                        $("#education").val(data.find_data.user_info.education);
-                        $("#expected_country").val(data.find_data.user_info.expected_country);
-                        $("#expected_score").val(data.find_data.user_info.expected_score);
-                        $("#expected_score").val(data.find_data.user_info.expected_score);
+                        $("#purpose_of_visit").val(data.find_data.purpose_of_visit);
                         $("#assign_advisor").val(data.find_data.assign_advisor);
                     }
                 },

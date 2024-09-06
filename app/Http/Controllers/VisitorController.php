@@ -24,101 +24,18 @@ class VisitorController extends Controller
         $request->validate([
             'full_name'             => 'required|string|max:50',
             'contact_number'        => 'required|string|max:50',
-            'email'                 => 'required|email|max:50',
             'purpose_of_visit'      => 'required|string|max:50',
             'assign_advisor'        => 'required|int|max:50'
         ]);
         $purpose_of_visit   = $request->input('purpose_of_visit');
         $fullName           = $request->input('full_name');
         $contact_number     = $request->input('contact_number');
-        $email              = $request->input('email');
         $assign_advisor     = $request->input('assign_advisor');
         $form_input_time    = time();
-        $how_you_know       = $request->input('how_you_know');
-        if($how_you_know == 'student_reference'){
-            $refer_stu_name     = $request->input('refer_stu_name');
-            $refer_phone_number = $request->input('refer_phone_number');
-            $refer_batch_name   = $request->input('refer_batch_name');
+        if($request->input('email')){
+            $email              = $request->input('email');
         }else{
-            $refer_stu_name     = NULL;
-            $refer_phone_number = NULL;
-            $refer_batch_name   = NULL;
-        }
-        if($purpose_of_visit == 'basic_english'||$purpose_of_visit == 'spoken'||$purpose_of_visit == 'ielts_courses'||$purpose_of_visit == 'online_courses'||$purpose_of_visit == 'others'){
-            $occupation         = $request->input('occupation');
-            $address            = $request->input('address');
-            $location            = $request->input('location');
-            $organization       = $request->input('organization');
-            $date_of_birth      = $request->input('date_of_birth');
-            $education          = $request->input('education');
-            $expected_country   = json_encode($request->input('expected_country'));
-            $expected_score     = $request->input('expected_score');
-            $purpose_of_ielts   = $request->input('purpose_of_ielts');
-            //others
-             $ielts_test_center     = NULL;
-             $ielts_exam_type       = NULL;
-             $category_of_ielts     = NULL;
-             $ielts_can_id          = NULL;
-             $ielts_exam_date       = NULL;
-             $comments_from_student = NULL;
-             $feedback_from_advisor = NULL;
-             $ielts_taken   = NULL;
-        }elseif($purpose_of_visit == 'mock'){
-            $occupation         = $request->input('occupation');
-            $address            = $request->input('address');
-            $location            = $request->input('location');
-            $organization       = NULL;
-            $date_of_birth      = NULL;
-            $education          = NULL;
-            $expected_country   = NULL;
-            $expected_score     = NULL;
-            $purpose_of_ielts   = $request->input('purpose_of_ielts');
-            //others
-            $ielts_taken   = NULL;
-             $ielts_test_center     = NULL;
-             $ielts_exam_type       = NULL;
-             $category_of_ielts     = NULL;
-             $ielts_can_id          = NULL;
-             $ielts_exam_date       = NULL;
-             $comments_from_student = NULL;
-             $feedback_from_advisor = NULL;
-        }elseif($purpose_of_visit == 'ielts_registration'){
-            $occupation         = NULL;
-            $address            = NULL;
-            $location           = NULL;
-            $organization       = NULL;
-            $date_of_birth      = NULL;
-            $education          = NULL;
-            $expected_country   = json_encode($request->input('expected_country'));;
-            $expected_score     = NULL;
-            $purpose_of_ielts   = $request->input('purpose_of_ielts');
-            $ielts_taken   = $request->input('ielts_taken');
-            //others
-             $ielts_test_center     = $request->input('ielts_test_center');
-             $ielts_exam_type       = $request->input('ielts_exam_type');
-             $category_of_ielts     = $request->input('category_of_ielts');
-             $ielts_can_id          = NULL;
-             $ielts_exam_date       = NULL;
-             $comments_from_student = NULL;
-             $feedback_from_advisor = NULL;
-        }elseif($purpose_of_visit == 'ielts_certificate'){
-            $occupation         = NULL;
-            $address            = NULL;
-            $location           = NULL;
-            $organization       = NULL;
-            $date_of_birth      = NULL;
-            $education          = NULL;
-            $expected_country   = NULL;
-            $expected_score     = NULL;
-            $purpose_of_ielts   = NULL;
-            //others
-             $ielts_test_center     = NULL;
-             $ielts_exam_type       = NULL;
-             $category_of_ielts     = NULL;
-             $ielts_can_id          = $request->input('ielts_can_id');
-             $ielts_exam_date       = $request->input('ielts_exam_date');
-             $comments_from_student = NULL;
-             $feedback_from_advisor = NULL;
+            $email = NULL;
         }
         $visitorLog = VisitorLog::create([
             'assign_advisor'            => $assign_advisor,
@@ -132,31 +49,33 @@ class VisitorController extends Controller
             'status'                    => 'unapproved',
             'time_log'                  => $form_input_time
         ]);
-                
         VisitorInfo::create([
             'visitor_log_id'            => $visitorLog->id,
-            'occupation'                => $occupation,
-            'address'                   => $address,
-            'location'                  => $location,
-            'organization'              => $organization,
-            'date_of_birth'             => $date_of_birth,
-            'education'                 => $education,
-            'expected_country'          => $expected_country,
-            'expected_score'            => $expected_score,
-            'purpose_of_ielts'          => $purpose_of_ielts,
-            'refer_stu_name'            => $refer_stu_name,
-            'refer_phone_number'        => $refer_phone_number,
-            'refer_batch_name'          => $refer_batch_name,
-            'ielts_test_center'         => $ielts_test_center,
-            'ielts_exam_type'           => $ielts_exam_type,
-            'category_of_ielts'         => $category_of_ielts,
-            'ielts_can_id'              => $ielts_can_id,
-            'ielts_exam_date'           => $ielts_exam_date,
-            'comments_from_student'     => $comments_from_student,
-            'feedback_from_advisor'     => $feedback_from_advisor,
-            'how_you_know'              => $how_you_know,
-            'ielts_taken'              => $ielts_taken,
-        ]);
+         ]);
+        // VisitorInfo::create([
+        //     'visitor_log_id'            => $visitorLog->id,
+        //     'occupation'                => $occupation,
+        //     'address'                   => $address,
+        //     'location'                  => $location,
+        //     'organization'              => $organization,
+        //     'date_of_birth'             => $date_of_birth,
+        //     'education'                 => $education,
+        //     'expected_country'          => $expected_country,
+        //     'expected_score'            => $expected_score,
+        //     'purpose_of_ielts'          => $purpose_of_ielts,
+        //     'refer_stu_name'            => $refer_stu_name,
+        //     'refer_phone_number'        => $refer_phone_number,
+        //     'refer_batch_name'          => $refer_batch_name,
+        //     'ielts_test_center'         => $ielts_test_center,
+        //     'ielts_exam_type'           => $ielts_exam_type,
+        //     'category_of_ielts'         => $category_of_ielts,
+        //     'ielts_can_id'              => $ielts_can_id,
+        //     'ielts_exam_date'           => $ielts_exam_date,
+        //     'comments_from_student'     => $comments_from_student,
+        //     'feedback_from_advisor'     => $feedback_from_advisor,
+        //     'how_you_know'              => $how_you_know,
+        //     'ielts_taken'              => $ielts_taken,
+        // ]);
 
         $advisorID = $request->assign_advisor;
         // Helpers::AdvisorEventPushNotification($advisorID);
@@ -179,7 +98,7 @@ class VisitorController extends Controller
         $expected_country_arr = json_decode($getDetails->expected_country);
         $school_goes_arr = json_decode($getDetails->school_goes);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
-        return view('studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr'));
+        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr'));
     }
     
     public function studentDetailsUpdate(Request $request,$id)

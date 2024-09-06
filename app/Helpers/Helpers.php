@@ -94,22 +94,19 @@ class Helpers {
             case ($score > 0 && $score < 8):
                 return "A-";
             break;
-            case ($score < 8 && $score > 0):
-                return "A-";
-            break;
-            case ($score >=8 && $score < 16):
+            case ($score >= 8 && $score < 16):
                 return "A1";
             break;
-            case ($score >=16 && $score < 25):
+            case ($score >= 16 && $score <= 30):
                 return "A2";
             break;
-            case ($score >=25 && $score < 37):
+            case ($score > 30 && $score <= 42):
                 return "B1";
             break;
-            case ($score >=37 && $score < 45):
+            case ($score > 42 && $score <= 54):
                 return "B2";
             break;
-            case ($score >=45 ):
+            case ($score > 54 ):
                 return "C1";
             break;
             default:

@@ -152,7 +152,6 @@
                                                     <p>{!!$items['question_instruction']!!}</p>
                                                     <div class="fill_blanks main-text">
                                                         @if($items['sub-q'] != NULL)
-                                                            
                                                             @foreach ($items['sub-q'] as $question)
                                                                 <input type="hidden" name="fillBlank_sub_ques_id[]" value="{{$question->id}}">
                                                                 @if($question->is_show == 'yes')

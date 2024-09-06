@@ -88,7 +88,7 @@
                                 </td>
                                 <td class="d-flex justify-content-start" style="font-size:14px;">
                                     @if($item->status == 'approved')
-                                        @if ($item->purpose_of_visit =='ielts_courses'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
+                                        @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                             @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
                                                 <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
                                             @else
