@@ -93,62 +93,72 @@ class VisitorController extends Controller
     } 
 
 
-    public function studentDetails($id){
-        $getDetails = VisitorInfo::where('visitor_log_id', $id)->with('studentInfo')->first();
+    public function studentDetails($student_id, $step){
+        $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $expected_country_arr = json_decode($getDetails->expected_country);
         $school_goes_arr = json_decode($getDetails->school_goes);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
-        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr'));
+        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'step'));
     }
     
     public function studentDetailsUpdate(Request $request,$id)
     {
         //dd($request->all());
-        $ielts_enough_time = $request->ielts_enough_time;
-        $ielts_taken = $request->ielts_taken;
-        $expected_score_reading = $request->expected_score_reading;
-        $expected_score_listening = $request->expected_score_listening;
-        $expected_score_writing = $request->expected_score_writing;
-        $expected_score_speaking = $request->expected_score_speaking;
-        $nid_passport_number = $request->nid_passport_number;
-        $emergency_number = $request->emergency_number;
-        $blood_group = $request->blood_group;
-        $education = $request->education;
-        
-        $date_of_birth = $request->date_of_birth;
-        $organization = $request->organization;
-        $expected_country = json_encode($request->expected_country);
-        $school_goes = json_encode($request->school_goes);
-        
-        $suggested_course = $request->suggested_course;
-        $total_enroll_course = json_encode($request->total_enroll_course_details);
-        $comments_from_student = $request->comments_from_student;
-        $feedback_from_advisor = $request->feedback_from_advisor;
-        VisitorInfo::updateOrCreate([
+        $step = $request->step;
+        if($step == 'step-1'){
+            $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
+                'full_name'                 => $request->full_name,
+                'email'                     => $request->email,
+                'mobile'                    => $request->contact_number,
+                'purpose_of_visit'          => $request->purpose_of_visit,
+            ]);
+        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-2']);
+        }elseif($step == 'step-2'){
+            if($request->how_you_know == 'student_reference'){
+                $refer_stu_name = $request->refer_stu_name;
+                $refer_phone_number = $request->refer_phone_number;
+                $refer_batch_name = $request->refer_batch_name;
+            }else{
+                $refer_stu_name = NULL;
+                $refer_phone_number = NULL;
+                $refer_batch_name = NULL;
+            }
+            VisitorInfo::updateOrCreate([
                 'id' => $id,
                 'visitor_log_id' =>$request->student_id,
-            ],
-            [
-                'education' =>$education,
-                'organization' =>$organization,
-                'date_of_birth' =>$date_of_birth,
-                'expected_country' =>$expected_country,
-                'school_goes' =>$school_goes,
-                'ielts_enough_time'=> $ielts_enough_time,
-                'ielts_taken'=> $ielts_taken,
-                'reading_expected_module'=> $expected_score_reading,
-                'listening_expected_module'=> $expected_score_listening,
-                'writing_expected_module'=> $expected_score_writing,
-                'speaking_expected_module'=> $expected_score_speaking,
-                'nid_passport_number'=> $nid_passport_number,
-                'blood_group'=> $blood_group,
-                'emergency_number'=> $emergency_number,
-                'suggested_course'=> $suggested_course,
-                'total_enroll_course'=> $total_enroll_course,
-                'comments_from_student' => $comments_from_student,
-                'feedback_from_advisor' => $feedback_from_advisor
+            ],[
+                'how_you_know' => $request->how_you_know,
+                'refer_stu_name' => $refer_stu_name,
+                'refer_phone_number' => $refer_phone_number,
+                'refer_batch_name' => $refer_batch_name,
+                'specific_course' => $request->type_course,
             ]);
-        return redirect()->route('student.Details', $request->student_id);
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-3']);
+        }elseif($step == 'step-3'){
+            VisitorInfo::updateOrCreate([
+                'id' => $id,
+                'visitor_log_id' =>$request->student_id,
+            ],[
+                'purpose_of_ielts' => $request->purpose_of_ielts,
+                'ielts_taken' => $request->ielts_taken,
+                'expected_score' => $request->expected_score,
+                'expected_country' => json_encode($request->expected_country),
+                'ielts_enough_time' => $request->ielts_enough_time,
+                'topics_improvement' => json_encode($request->topics_improvement),
+                'topics_strengths' => json_encode($request->topics_strengths),
+                'your_current_level' => $request->your_current_level,
+            ]);
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-4']);
+        }elseif($step == 'step-4'){
+            VisitorInfo::updateOrCreate([
+                'id' => $id,
+                'visitor_log_id' =>$request->student_id,
+            ],[
+                
+            ]);
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-4']);
+        }
+       
     }
     public function statusChanged(Request $request, $id){
         $changedStatus = $request->input('status');

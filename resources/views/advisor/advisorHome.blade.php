@@ -95,7 +95,7 @@
                                                 <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
                                             @endif
                                         @endif
-                                        <a href="{{ route('student.Details', $item->id )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-4">Details</button></a>
+                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>'step-1'] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-4">Details</button></a>
                                         @if (Helper::followUpStatus($item->id) == 'admitted')
                                             <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')

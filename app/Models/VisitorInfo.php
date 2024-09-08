@@ -11,6 +11,7 @@ class VisitorInfo extends Model
 
     protected $fillable = [
         'visitor_log_id',
+        'specific_course',
         'occupation',
         'address',
         'location',
@@ -33,9 +34,9 @@ class VisitorInfo extends Model
         
         'ielts_enough_time',
         'ielts_taken',
-        'reading_expected_module',
-        'listening_expected_module',
-        'writing_expected_module',
+        'topics_improvement',
+        'topics_strengths',
+        'first_current_level',
         'speaking_expected_module',
         'nid_passport_number',
         'blood_group',

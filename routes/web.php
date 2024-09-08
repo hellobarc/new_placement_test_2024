@@ -206,7 +206,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
         Route::post('/studen-status-update',  'adivserUpdateStudentStatus')->name('status.update.adviser');
         Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
-        Route::get('/student-Info/{id}', 'studentDetails')->name('student.Details');
+        Route::get('/student-Info/{student_id}/{step}', 'studentDetails')->name('student.Details');
         Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('advisor.student.Details.update');
     });
     Route::controller(ExamController::class)->group(function () {

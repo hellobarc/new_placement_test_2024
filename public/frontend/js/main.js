@@ -1,4 +1,10 @@
-
+function handleKnow(event){
+  if(event.target.value == 'student_reference'){
+    document.getElementById("reference_id").style.display = "block";
+  }else{
+    document.getElementById("reference_id").style.display = "none";
+  }
+}
 var course_info = document.getElementById("course-related-info").style.display = "block";
 document.getElementById("total_enrolled_course_section").style.display = "block";
 
