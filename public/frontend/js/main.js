@@ -786,3 +786,4 @@ if(desired_level == 'C2'){
   $("#activeClass6").removeClass('inner_box_top_6');
   $("#activeClass6").addClass('inner_box_top_6_another');
 }
+

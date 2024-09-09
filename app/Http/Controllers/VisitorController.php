@@ -97,23 +97,34 @@ class VisitorController extends Controller
         $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $expected_country_arr = json_decode($getDetails->expected_country);
         $school_goes_arr = json_decode($getDetails->school_goes);
+        $area_of_improve = json_decode($getDetails->topics_improvement);
+        $area_of_strength = json_decode($getDetails->topics_strengths);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
-        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'step'));
+        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'step', 'area_of_improve', 'area_of_strength'));
+    }
+    public function studentAllDetails($student_id){
+        $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
+        $expected_country_arr = json_decode($getDetails->expected_country);
+        $school_goes_arr = json_decode($getDetails->school_goes);
+        $area_of_improve = json_decode($getDetails->topics_improvement);
+        $area_of_strength = json_decode($getDetails->topics_strengths);
+        $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
+        return view('advisor.student.student-all-details', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'area_of_improve', 'area_of_strength'))->with('message', 'Student all information uploaded successfully');
     }
     
     public function studentDetailsUpdate(Request $request,$id)
     {
         //dd($request->all());
         $step = $request->step;
-        if($step == 'step-1'){
+        if($step == 1){
             $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
                 'full_name'                 => $request->full_name,
                 'email'                     => $request->email,
                 'mobile'                    => $request->contact_number,
                 'purpose_of_visit'          => $request->purpose_of_visit,
             ]);
-        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-2']);
-        }elseif($step == 'step-2'){
+        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>2]);
+        }elseif($step == 2){
             if($request->how_you_know == 'student_reference'){
                 $refer_stu_name = $request->refer_stu_name;
                 $refer_phone_number = $request->refer_phone_number;
@@ -133,8 +144,8 @@ class VisitorController extends Controller
                 'refer_batch_name' => $refer_batch_name,
                 'specific_course' => $request->type_course,
             ]);
-            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-3']);
-        }elseif($step == 'step-3'){
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>3]);
+        }elseif($step == 3){
             VisitorInfo::updateOrCreate([
                 'id' => $id,
                 'visitor_log_id' =>$request->student_id,
@@ -146,17 +157,27 @@ class VisitorController extends Controller
                 'ielts_enough_time' => $request->ielts_enough_time,
                 'topics_improvement' => json_encode($request->topics_improvement),
                 'topics_strengths' => json_encode($request->topics_strengths),
-                'your_current_level' => $request->your_current_level,
+                'first_current_level' => $request->your_current_level,
             ]);
-            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-4']);
-        }elseif($step == 'step-4'){
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>4]);
+        }elseif($step == 4){
             VisitorInfo::updateOrCreate([
                 'id' => $id,
                 'visitor_log_id' =>$request->student_id,
             ],[
-                
+                'occupation' =>$request->occupation,
+                'education' =>$request->education,
+                'organization' =>$request->organization,
+                'date_of_birth' =>$request->date_of_birth,
+                'location' =>$request->location,
+                'address' =>$request->address,
+                'blood_group'=> $request->blood_group,
+                'emergency_number'=> $request->emergency_number,
+                'nid_passport_number'=> $request->nid_passport_number,
+                'comments_from_student' => $request->comments_from_student,
+                'feedback_from_advisor' => $request->feedback_from_advisor
             ]);
-            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>'step-4']);
+            return redirect()->route('student.all.Details', ['student_id'=>$request->student_id])->with('message', 'Student all information uploaded successfully');
         }
        
     }

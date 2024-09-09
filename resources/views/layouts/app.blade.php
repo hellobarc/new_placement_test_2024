@@ -105,6 +105,7 @@
         });
     });
 </script>
+@yield('student-details-informatin-js')
 
 <script>
     $.ajaxSetup({

@@ -1961,6 +1961,9 @@ progress::-webkit-progress-bar{
   .login-full-div .form-div{
     margin-top: 5rem;
   }
+  .student-info-step{
+    width: 18%;
+  }
 }
 
 @media (max-width: 420px) {

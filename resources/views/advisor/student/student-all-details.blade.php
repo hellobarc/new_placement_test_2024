@@ -21,62 +21,18 @@
                     <p style="font-size:1.125rem; text-align:center;">Please fill out this form with the required information</p>
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
-                            <div class="d-flex justify-content-start mt-3">
-                                <div class="text-center">
-                                    @if ($step == 4)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 3)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 2)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 1)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-regular fa-circle-dot"></i></p>
-                                    @endif
-                                    <p style="font-size: 1.125rem;">Step 1</p>
-                                </div>
-                                <div class="student-info-step"></div>
-                                <div class="text-center">
-                                    @if ($step == 4)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 3)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 2)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-regular fa-circle-dot"></i></p>
-                                    @elseif ($step == 1)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#d9d9d9; margin:0 0 0 0;"><i class="fa-regular fa-circle"></i></p>
-                                    @endif
-                                    <p style="font-size: 1.125rem;">Step 2</p>
-                                </div>
-                                <div class="student-info-step"></div>
-                                <div class="text-center">
-                                    @if ($step == 4)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-solid fa-circle-check"></i></p>
-                                    @elseif ($step == 3)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-regular fa-circle-dot"></i></p>
-                                    @elseif ($step == 2)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#d9d9d9; margin:0 0 0 0;"><i class="fa-regular fa-circle"></i></p>
-                                    @elseif ($step == 1)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#d9d9d9; margin:0 0 0 0;"><i class="fa-regular fa-circle"></i></p>
-                                    @endif
-                                    <p style="font-size: 1.125rem;">Step 3</p>
-                                </div>
-                                <div class="student-info-step"></div>
-                                <div class="text-center">
-                                    @if ($step == 4)
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#589E67;margin:0 0 0 0;"><i class="fa-regular fa-circle-dot"></i></p>
-                                    @else
-                                        <p style="font-size: 1.5rem; cursor: pointer; text-decoration:none; color:#d9d9d9; margin:0 0 0 0;"><i class="fa-regular fa-circle"></i></p>
-                                    @endif
-                                    <p style="font-size: 1.125rem;">Step 4</p>
-                                </div>
-                            </div>
+                            
                             <div class="mt-3">
-                                <form action="{{ route('advisor.student.Details.update', $getDetails->id )}}" method="POST">
-                                    @csrf
-                                    @include('flash-message')
+                                {{-- <form action="{{ route('advisor.student.Details.update', $getDetails->id )}}" method="POST">
+                                    @csrf --}}
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('message') }}
+                                        </div>
+                                    @endif
                                     <input type="hidden" name="student_id" id="" value="{{$getDetails->visitor_log_id}}">
-                                    <input type="hidden" name="step" id="" value="{{$step}}">
-                                    @if ($step == 1)
+                                    
+                                   
                                         <!-- purpose of ielts -->
                                         <div class="form-group mt-3">
                                             <label for="email"> Purpose of Visiting BARC <span class="text-danger fw-bold">*</span></label><br>
@@ -102,7 +58,7 @@
                                             <label for="email">Email <span class="text-danger fw-bold">*</span></label>
                                             <input name="email" id="email" value="{{$getDetails->studentInfo->email == NULL ? 'N/A': $getDetails->studentInfo->email}}" type="email" placeholder="Email" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                    @elseif ($step == 2)
+                                   
                                         <div class="form-group mt-3">
                                             <label for="email"> How to know about us? <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="howtoknow" name="how_you_know" onchange="handleKnow(event)" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -149,7 +105,7 @@
                                             </div>
                                             {{-- <input name="full_name" type="text" placeholder="Full Name" id="full_name" value="{{$getDetails->studentInfo->full_name == NULL ? 'N/A': $getDetails->studentInfo->full_name}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
                                         </div>
-                                    @elseif ($step == 3)
+                                    
                                         <div class="form-group mt-3">
                                             <label for="full-name">Purpose of IELTS<span class="text-danger fw-bold">*</span></label><br>
                                             <input type="hidden" id="front_purpose_of_ielts" value="{{$getDetails->purpose_of_ielts}}">
@@ -290,7 +246,7 @@
                                                 <option value="upper-advance" {{$getDetails->first_current_level == 'upper-advance' ? 'selected': ' '}}>Upper Advance</option>
                                             </select>
                                         </div>
-                                    @elseif ($step == 4)
+                                   
                                         <div class="form-group mt-3">
                                             <label for="email"> Profession <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="occupation" name="occupation" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -372,17 +328,13 @@
                                             <label for="feedback_from_advisor"> Adviser Comment <span class="text-danger fw-bold">*</span></label><br>
                                             <textarea name="feedback_from_advisor" required type="text" placeholder="Adviser Comment" id="feedback_from_advisor" cols="30" rows="5" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">{{$getDetails->feedback_from_advisor == NULL ? 'N/A': $getDetails->feedback_from_advisor}}</textarea>
                                         </div>
-                                    @endif
+                                   
                                     <!-- button -->
                                     <div class="d-flex justify-content-center mt-4">
-                                        @if ($step == 1)
-                                        <a href="{{route('advisor.home')}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
-                                        @else
-                                        <a href="{{route('student.Details', ['student_id'=>$getDetails->visitor_log_id, 'step'=>$step-1])}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Previous</a>
-                                        @endif
-                                        <button type="submit" class="btn text-white ms-2 px-4" style="background-color: #32327B; ">Next <i class="fa-solid fa-arrow-right-long"></i></button>
+                                        <a href="{{route('advisor.home')}}" style="text-decoration: none; color:#f8f8f8; background-color:#32327B; border:1px solid #32327B; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
+                                        {{-- <button type="submit" class="btn text-white ms-2 px-4" style="background-color: #32327B; ">Next <i class="fa-solid fa-arrow-right-long"></i></button> --}}
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                             </div>
                         </div>
                     </div>

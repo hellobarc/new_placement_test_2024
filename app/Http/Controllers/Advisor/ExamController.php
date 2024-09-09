@@ -212,7 +212,7 @@ class ExamController extends Controller
                         $obtainMarks    = 0;
                     }
                     if($answer == null){
-                        $m_user_ans = '99';
+                        $m_user_ans = 'not_answered';
                     }else{
                         $m_user_ans = $answer;
                     }

@@ -208,6 +208,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
         Route::get('/student-Info/{student_id}/{step}', 'studentDetails')->name('student.Details');
         Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('advisor.student.Details.update');
+        Route::get('/student/all-info/{student_id}', 'studentAllDetails')->name('student.all.Details');
     });
     Route::controller(ExamController::class)->group(function () {
         Route::get('/exam-set/{student_id}', 'examSet')->name('student.exam.set');
