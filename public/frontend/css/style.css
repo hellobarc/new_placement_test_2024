@@ -1964,6 +1964,21 @@ progress::-webkit-progress-bar{
   .student-info-step{
     width: 18%;
   }
+  .inner_box_top_1_another{
+    padding: 10px;
+  }
+  .inner_box_top_2{
+    padding: 10px 0 0 5px;
+  }
+  .inner_box_top_3{
+    padding: 28px 0 0 5px;
+  }
+  .inner_box_top_4 {
+    padding: 28px 0 0 5px;
+  }
+  .inner_box_top_5{
+    padding: 25px 0 0 15px;
+  }
 }
 
 @media (max-width: 420px) {

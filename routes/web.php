@@ -23,6 +23,7 @@ use App\Http\Controllers\Manager\{
     CoursePriceController,
     RoleManagementController,
     CourseController,
+    ManageVistorController,
 };
 use App\Http\Controllers\Advisor\{
     ExamController,
@@ -185,6 +186,10 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/edit-course/{id}', 'editCourse')->name('manager.course.edit');
         Route::post('/update-course/{id}', 'updateCourse')->name('manager.course.update');
         Route::get('/delete-course/{id}', 'deleteCourse')->name('manager.course.delete');
+    });
+    Route::controller(ManageVistorController::class)->group(function(){
+        Route::get('/day-wise/visitor-list', 'dayWiseVisitorList')->name('manager.day-wise.visitor-list');
+        Route::store('/store/day-wise/visitor-list', 'storeDayWiseVisitorList')->name('manager.store.day-wise.visitor-list');
     });
 });
 /*------------------------------------------

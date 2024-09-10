@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto">
                <h3 class="title">Placement Test Report</h3>
-               <p class="name">Minar Ahmed,</p>
+               <p class="name">{{$student_info->studentInfo->full_name}},</p>
                <p class="text">
                 আপনি ব্রিটিশ আমেরিকান রিসোর্স সেন্টারে এসে ইংরেজি ভাষা দক্ষতা পরিমাপের জন্য ৪০ মিনিটের একটি পরীক্ষা দিয়েছেন | 
                 এবং আপনার অবস্থান <span class="level">{{Helper::overall_rubricks($all_module_marks)}} level</span> এ.
@@ -498,7 +498,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="visit-day">Visit day discount পেতে এই পেপারটি সংরক্ষন করুন</p>
+                <p class="visit-day">ওফারটি পেতে এই পেপারটি সংরক্ষন করুন</p>
             </div>
         </div>
     </div>

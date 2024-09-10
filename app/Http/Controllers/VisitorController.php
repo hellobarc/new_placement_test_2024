@@ -21,12 +21,15 @@ class VisitorController extends Controller
 
     public function storeVisitorInfo(Request $request){
         //dd($request->all());
-        $request->validate([
+        $validate = $request->validate([
             'full_name'             => 'required|string|max:50',
-            'contact_number'        => 'required|string|max:50',
+            'contact_number'        => 'required|string|max:50|unique:visitor_logs,mobile',
             'purpose_of_visit'      => 'required|string|max:50',
             'assign_advisor'        => 'required|int|max:50'
         ]);
+        if($validate->fail()){
+            return redirect()->back()->withErrors($validate);
+        }
         $purpose_of_visit   = $request->input('purpose_of_visit');
         $fullName           = $request->input('full_name');
         $contact_number     = $request->input('contact_number');
@@ -35,7 +38,7 @@ class VisitorController extends Controller
         if($request->input('email')){
             $email              = $request->input('email');
         }else{
-            $email = NULL;
+            $email = 'hellobarc@gmail.com';
         }
         $visitorLog = VisitorLog::create([
             'assign_advisor'            => $assign_advisor,
@@ -52,30 +55,7 @@ class VisitorController extends Controller
         VisitorInfo::create([
             'visitor_log_id'            => $visitorLog->id,
          ]);
-        // VisitorInfo::create([
-        //     'visitor_log_id'            => $visitorLog->id,
-        //     'occupation'                => $occupation,
-        //     'address'                   => $address,
-        //     'location'                  => $location,
-        //     'organization'              => $organization,
-        //     'date_of_birth'             => $date_of_birth,
-        //     'education'                 => $education,
-        //     'expected_country'          => $expected_country,
-        //     'expected_score'            => $expected_score,
-        //     'purpose_of_ielts'          => $purpose_of_ielts,
-        //     'refer_stu_name'            => $refer_stu_name,
-        //     'refer_phone_number'        => $refer_phone_number,
-        //     'refer_batch_name'          => $refer_batch_name,
-        //     'ielts_test_center'         => $ielts_test_center,
-        //     'ielts_exam_type'           => $ielts_exam_type,
-        //     'category_of_ielts'         => $category_of_ielts,
-        //     'ielts_can_id'              => $ielts_can_id,
-        //     'ielts_exam_date'           => $ielts_exam_date,
-        //     'comments_from_student'     => $comments_from_student,
-        //     'feedback_from_advisor'     => $feedback_from_advisor,
-        //     'how_you_know'              => $how_you_know,
-        //     'ielts_taken'              => $ielts_taken,
-        // ]);
+        
 
         $advisorID = $request->assign_advisor;
         // Helpers::AdvisorEventPushNotification($advisorID);
@@ -287,7 +267,7 @@ class VisitorController extends Controller
     public function getUserInfoByUserContact(Request $request){
         $data = $request->all();
         $contact_number = $data['contact_number'];
-        $getData = VisitorLog::where('mobile', $contact_number)->with('userInfo')->first();
+        $getData = VisitorLog::where('mobile', $contact_number)->first();
         return response()->json(['find_data'=>$getData, 200]);
     }
 }

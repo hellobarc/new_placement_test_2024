@@ -106,7 +106,7 @@
     });
 </script>
 @yield('student-details-informatin-js')
-
+@yield('auto-logout')
 <script>
     $.ajaxSetup({
         headers: {
@@ -160,7 +160,7 @@
                     "Accept": "application/json"
                 },
                 success: function(data){		
-                    console.log(data.find_data.user_info);
+                    console.log(data.find_data);
                     if(data.find_data != null){
                         $("#full_name").val(data.find_data.full_name);
                         $("#email").val(data.find_data.email);

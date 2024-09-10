@@ -15,3 +15,10 @@
     </div>
 </div>
 @endsection
+@section('auto-logout')
+<script>
+    setTimeout(function() {
+        document.getElementById('logout-form').submit();
+    }, 10000);
+</script>
+@endsection

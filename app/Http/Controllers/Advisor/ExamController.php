@@ -543,8 +543,14 @@ class ExamController extends Controller
         $count_listening_question = $this->count_test_question($log_id->test_id, 3);
         $count_writing_question = $count_grammar_question+$count_listening_question;
         $correct_answer = $all_module_marks;
-        $in_correct_answer = (15-$sum_reading_module)+(15-$sum_listening_module)+(15-$sum_grammar_module)+(15-$sum_vocabulary_module);
-        $unAnswer = 60 -($correct_answer+$in_correct_answer);
+        
+        $radioMultipleUnAnswer = $this->unAnsweredRaidoMultiple($log_id->id);
+        $dropDownUnAnswer = $this->unAnsweredDropDown($log_id->id);
+        $fillBlankUnAnswer = $this->unAnsweredFillBlank($log_id->id);
+        $multiSelectorUnAnswer = $this->unAnsweredMultiSelector($log_id->id);
+        $unAnswer = $radioMultipleUnAnswer+$dropDownUnAnswer+$fillBlankUnAnswer+$multiSelectorUnAnswer;
+        $in_correct_answer = 60-($all_module_marks+$unAnswer);
+        //dd($unAnswer);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',
         'sum_listening_module', 
         'sum_grammar_module', 
@@ -557,7 +563,7 @@ class ExamController extends Controller
     }
     public function resultCardPage($student_id)
     {
-        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $student_info = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
         $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
         $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
@@ -656,6 +662,68 @@ class ExamController extends Controller
         }
         return $sum_valve;
     }
+    private function unAnsweredRaidoMultiple($log_id)
+    {
+        $count = TestSubmission::join('test_submission_activity_logs', 'test_submissions.activity_log_id', '=', 'test_submission_activity_logs.id')
+        ->where('test_submission_activity_logs.submission_log_id', $log_id)
+        ->whereIn('test_submissions.question_type', ['radio', 'multiple-choice'])
+        ->where('test_submissions.submitted_ans', 'not_answered')
+        ->count();
+
+        return $count;
+    }
+    private function unAnsweredDropDown($log_id)
+    {
+        $activeLogIds = TestSubmissionActivityLog::where('submission_log_id', $log_id)
+                                         ->pluck('id');  // Fetch only the IDs instead of full objects
+        $count = TestSubmission::whereIn('activity_log_id', $activeLogIds) // Use whereIn to query all IDs at once
+                                ->where('question_type', 'drop-down')
+                                ->where('submitted_ans', '"0"')
+                                ->count();  // Directly count the results
+
+        return $count;
+    }
+    private function unAnsweredFillBlank($log_id)
+    {
+        $activeLogs = TestSubmissionActivityLog::where('submission_log_id', $log_id)->pluck('id');
+
+        $sum_value = TestSubmission::whereIn('activity_log_id', $activeLogs)
+            ->where('question_type', 'fill-blank')
+            ->pluck('answered_text')
+            ->map(function ($answered_text) {
+                $decodedArray = json_decode($answered_text, true); // Decode the JSON as an associative array
+                return count(array_keys($decodedArray, null)); // Count the number of null values
+            })
+            ->sum();
+
+        return $sum_value;
+        //dd($sum_value);
+    }
+    private function unAnsweredMultiSelector($log_id)
+    {
+        $activeLog = TestSubmissionActivityLog::where('submission_log_id', $log_id)->get();
+        $sum_value = 0;
+        foreach($activeLog as $rows){
+            $data = TestSubmission::where('activity_log_id', $rows->id)->where('question_type', '=', 'multi-selector')->get();
+            foreach($data as $text){
+                $question_id = $text->question_id;
+                $sub_question_id = $text->sub_question_id;
+                $question = TestMultiSelector::where('id', $sub_question_id)->where('test_question_id', $question_id)->first();
+                $count_is_correct = count(json_decode($question->is_correct));
+                $sub_count_ans = count(json_decode($text->submitted_ans));
+                if($count_is_correct == $sub_count_ans){
+                    $sum_value += 0;
+                }elseif($count_is_correct < $sub_count_ans){
+                    $sum_value += 0;
+                }else{
+                    $sum_value += $count_is_correct - $sub_count_ans;
+                }
+
+            }
+        }
+        return $sum_value;
+    }
+    
     public function examCompleted($student_id)
     {
         TestSubmissionLog::updateOrCreate(
@@ -701,7 +769,7 @@ class ExamController extends Controller
     }
     public function congratulation($student_id)
     {
-        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $student_info = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $stu_email = $student_info->studentInfo->email;
         $stu_name = $student_info->studentInfo->full_name;
         $target_score = $student_info->expected_score;

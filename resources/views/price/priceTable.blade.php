@@ -1024,15 +1024,15 @@
                                     <p class="card-titles mt-4 mb-1"><i class="fa-regular fa-calendar-days"></i> Class Schdule</p>
                                     <div class="class-schdule">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('regular')">
+                                            <input type="radio" id="flexRadioDefault1" value="" onclick="classSchdule('regular')">
                                             <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Regular Batch</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('weekly')">
+                                            <input type="radio" value="" id="flexRadioDefault2" onclick="classSchdule('weekly')">
                                             <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Weekend Batch</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" onclick="classSchdule('online')">
+                                            <input type="radio" value="" id="flexRadioDefault3" onclick="classSchdule('online')">
                                             <label class="form-check-label mt-1 mx-2 fs-5" for="flexCheckDefault">Online Batch</label>
                                         </div>
                                     </div>
@@ -1338,7 +1338,7 @@
                                     <h5>Print Result Card</h5>
                                     <div class="d-flex justify-content-between">
                                         {{-- <a href="{{route('student.result.card')}}">Print</a> --}}
-                                        <a href="{{route('student.email', ['student_id'=>$studentId])}}">Send Mail</a>
+                                        {{-- <a href="{{route('student.email', ['student_id'=>$studentId])}}">Send Mail</a> --}}
                                         <a href="{{route('student.result.result.page', $studentId)}}">Print Result</a>
                                     </div>
                                 </div>
@@ -1399,7 +1399,7 @@
         const data = {
                 labels: [
                     'Correct',
-                    'Incorrect',
+                    'Given-Incorrect',
                     'Unanswered'
                 ],
                 datasets: [{
