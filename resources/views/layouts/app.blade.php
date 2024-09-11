@@ -107,6 +107,7 @@
 </script>
 @yield('student-details-informatin-js')
 @yield('auto-logout')
+@yield('student-result-details-js')
 <script>
     $.ajaxSetup({
         headers: {

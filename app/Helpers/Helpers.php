@@ -11,6 +11,7 @@ use App\Models\{
     VisitorLog,
     Course,
     CoursePrice,
+    CourseBundle,
     FollowUp,
 };
 
@@ -190,6 +191,16 @@ class Helpers {
         $arr = [
             'regular_price'=>$data->regular_price,
             'discount_price'=>$data->discount_price,
+        ];
+        return $arr;
+    }
+    public static function courseBundlePrice($name)
+    {
+        $data = CourseBundle::where('course_bundle', $name)->first();
+        $arr = [
+            'regular_price'     =>$data->price,
+            'discount_price'    =>$data->discount_price,
+            'priviliged_price'  =>$data->priviliged_price,
         ];
         return $arr;
     }

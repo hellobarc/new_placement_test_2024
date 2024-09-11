@@ -1934,6 +1934,11 @@ progress::-webkit-progress-bar{
 .login-full-div .form-div{
   margin-top: 10rem;
 }
+.price-package-active{
+  color: #004AAD;
+  font-weight: 600;
+  border-bottom: 2px solid #004AAD;
+}
 @media screen and (max-width: 1366px) {
   .start-test-btn{
     font-size: 14px !important;

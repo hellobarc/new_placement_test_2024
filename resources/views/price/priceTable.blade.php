@@ -1053,124 +1053,315 @@
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="p-5 card-background">
                                 <p class="card-titles"><span style="rotate: 180deg"><i class="fa-solid fa-tags"></i></span> Course Price</p>
+                                <div>
+                                    <ul style="border-bottom: 1px solid #d5d5d5; padding:0">
+                                        <li id="regular-course-pirce-id" onclick="priceSegment('regular')" style="list-style: none; display:inline-block; margin:0 0 0 0; font-size:1.125rem; cursor: pointer;">Regular Price</li>
+                                        <li id="packages-course-pirce-id" onclick="priceSegment('packages')" style="list-style: none; display:inline-block; margin:0 0 0 8px; font-size:1.125rem; cursor: pointer;">Packages Price</li>
+                                    </ul>
+                                </div>
                                 <div class="mx-5 px-5">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Courses</td>
-                                            <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
-                                            <td style="background-color: #5A639C;" class="td-total text-white pt-3">After Discount</td>
-                                        </tr>
-                                        <tr id="a1_course_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseA1TdPrice1">
-                                                   {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="courseA1TdPrice1Input" value="{{Helper::coursePrice('a1')['regular_price']}}">
-                                            </td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseA1TdPrice2">
-                                                    @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
-                                                        {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
-                                                    @else
-                                                        {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
-                                                    @endif
-                                                </div>
-                                                <input type="hidden" name="" id="courseA1TdDiscountPrice1Input" value="{{Helper::coursePrice('a1')['discount_price'] == 'N/A'? Helper::coursePrice('a1')['regular_price'] : Helper::coursePrice('a1')['discount_price']}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="a2_course_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseA2TdPrice1">
-                                                    {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="courseA2TdPrice1Input" value="{{Helper::coursePrice('a2')['regular_price']}}">
-                                            </td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseA2TdPrice2">
-                                                    @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
+                                    <div id="regular-course-price-section">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Courses</td>
+                                                <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
+                                                <td style="background-color: #5A639C;" class="td-total text-white pt-3">After Discount</td>
+                                            </tr>
+                                            <tr id="a1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1CoursePriceBtn" onclick="coursetdlist('a1')">A1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1TdPrice1">
+                                                    {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1TdPrice1Input" value="{{Helper::coursePrice('a1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1TdPrice2">
+                                                        @if (Helper::coursePrice('a1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::coursePrice('a1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::coursePrice('a1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1TdDiscountPrice1Input" value="{{Helper::coursePrice('a1')['discount_price'] == 'N/A'? Helper::coursePrice('a1')['regular_price'] : Helper::coursePrice('a1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="a2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2CoursePriceBtn" onclick="coursetdlist('a2')">A2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2TdPrice1">
                                                         {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
-                                                    @else
-                                                        {{number_format(Helper::coursePrice('a2')['discount_price'])}}/-
-                                                    @endif
-                                                </div>
-                                                <input type="hidden" name="" id="courseA2TdDiscountPrice1Input" value="{{Helper::coursePrice('a2')['discount_price'] == 'N/A'? Helper::coursePrice('a2')['regular_price'] : Helper::coursePrice('a2')['discount_price']}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="b1_course_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseB1TdPrice1">
-                                                    {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="courseB1TdPrice1Input" value="{{Helper::coursePrice('b1')['regular_price']}}">
-                                            </td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseB1TdPrice2">
-                                                    @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2TdPrice1Input" value="{{Helper::coursePrice('a2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2TdPrice2">
+                                                        @if (Helper::coursePrice('a2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::coursePrice('a2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::coursePrice('a2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2TdDiscountPrice1Input" value="{{Helper::coursePrice('a2')['discount_price'] == 'N/A'? Helper::coursePrice('a2')['regular_price'] : Helper::coursePrice('a2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="b1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b1CoursePriceBtn" onclick="coursetdlist('b1')">B1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1TdPrice1">
                                                         {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
-                                                    @else
-                                                        {{number_format(Helper::coursePrice('b1')['discount_price'])}}/-
-                                                    @endif
-                                                </div>
-                                                <input type="hidden" name="" id="courseB1TdDiscountPrice1Input" value="{{Helper::coursePrice('b1')['discount_price'] == 'N/A'? Helper::coursePrice('b1')['regular_price'] : Helper::coursePrice('b1')['discount_price']}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="b2_course_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseB2TdPrice1">
-                                                    {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="courseB2TdPrice1Input" value="{{Helper::coursePrice('b2')['regular_price']}}">
-                                            </td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseB2TdPrice2">
-                                                    @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1TdPrice1Input" value="{{Helper::coursePrice('b1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1TdPrice2">
+                                                        @if (Helper::coursePrice('b1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::coursePrice('b1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::coursePrice('b1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1TdDiscountPrice1Input" value="{{Helper::coursePrice('b1')['discount_price'] == 'N/A'? Helper::coursePrice('b1')['regular_price'] : Helper::coursePrice('b1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="b2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b2CoursePriceBtn" onclick="coursetdlist('b2')">B2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB2TdPrice1">
                                                         {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
-                                                    @else
-                                                        {{number_format(Helper::coursePrice('b2')['discount_price'])}}/-
-                                                    @endif
-                                                </div>
-                                                <input type="hidden" name="" id="courseB2TdDiscountPrice1Input" value="{{Helper::coursePrice('b2')['discount_price'] == 'N/A'? Helper::coursePrice('b2')['regular_price'] : Helper::coursePrice('b2')['discount_price']}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="c1_course_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseC1TdPrice1">
-                                                    {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="courseC1TdPrice1Input" value="{{Helper::coursePrice('c1')['regular_price']}}">
-                                            </td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="courseC1TdPrice2">
-                                                    @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB2TdPrice1Input" value="{{Helper::coursePrice('b2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB2TdPrice2">
+                                                        @if (Helper::coursePrice('b2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::coursePrice('b2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::coursePrice('b2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB2TdDiscountPrice1Input" value="{{Helper::coursePrice('b2')['discount_price'] == 'N/A'? Helper::coursePrice('b2')['regular_price'] : Helper::coursePrice('b2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="c1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="c1CoursePriceBtn" onclick="coursetdlist('c1')">C1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseC1TdPrice1">
                                                         {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
-                                                    @else
-                                                        {{number_format(Helper::coursePrice('c1')['discount_price'])}}/-
-                                                    @endif
-                                                </div>
-                                                <input type="hidden" name="" id="courseC1TdDiscountPrice1Input" value="{{Helper::coursePrice('c1')['discount_price'] == 'N/A'? Helper::coursePrice('c1')['regular_price'] : Helper::coursePrice('c1')['discount_price']}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="priviliged_price_row">
-                                            <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
-                                            <td style="background-color: #fff;" class="td-price"></td>
-                                            <td style="background-color: #fff;" class="td-price">
-                                                <div id="coursePrivileged">
-                                                    - {{number_format($priviliged_price->priviliged_price)}}/-
-                                                </div>
-                                                <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="{{$priviliged_price->priviliged_price}}">
-                                            </td>
-                                        </tr>
-                                        <tr id="total_course_price_row">
-                                            <td style="background: #5d5071;" class="td-total text-white py-3">Total</td>
-                                            <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseRegularPrice"></td>
-                                            <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseDiscountPrice"></td>
-                                        </tr>
-                                    </table>
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseC1TdPrice1Input" value="{{Helper::coursePrice('c1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseC1TdPrice2">
+                                                        @if (Helper::coursePrice('c1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::coursePrice('c1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::coursePrice('c1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseC1TdDiscountPrice1Input" value="{{Helper::coursePrice('c1')['discount_price'] == 'N/A'? Helper::coursePrice('c1')['regular_price'] : Helper::coursePrice('c1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="priviliged_price_row" style="display: none !important;">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedCoursePriceBtn" onclick="coursetdlist('privileged')">Privileged</td>
+                                                <td style="background-color: #fff;" class="td-price"></td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="coursePrivileged">
+                                                        - {{number_format($priviliged_price->priviliged_price)}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="coursePriviligedTdPrice1Input" value="{{$priviliged_price->priviliged_price}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="total_course_price_row" style="display: none !important;">
+                                                <td style="background: #5d5071;" class="td-total text-white py-3">Total</td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseRegularPrice"></td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalCourseDiscountPrice"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="packages-course-price-section">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Packages</td>
+                                                <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
+                                                <td style="background-color: #5A639C;" class="td-total text-white pt-3">After Discount</td>
+                                            </tr>
+                                            <tr id="a1_a2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1a2CoursePriceBtn" onclick="coursePackageTdPrice('a1-a2')">A1 - A2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1A2TdPrice1">
+                                                    {{number_format(Helper::courseBundlePrice('A1-A2')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1A2TdPrice1Input" value="{{Helper::courseBundlePrice('A1-A2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1A2TdPrice2">
+                                                        @if (Helper::courseBundlePrice('A1-A2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('A1-A2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('A1-A2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1A2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A1-A2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A1-A2')['regular_price'] : Helper::courseBundlePrice('A1-A2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="a1_b2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1b2CoursePriceBtn" onclick="coursePackageTdPrice('a1-b2')">A1 - B2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1B2TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('A1-B2')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1B2TdPrice1Input" value="{{Helper::courseBundlePrice('A1-B2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA1B2TdPrice2">
+                                                        @if (Helper::courseBundlePrice('A1-B2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('A1-B2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('A1-B2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA1B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A1-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A1-B2')['regular_price'] : Helper::courseBundlePrice('A1-B2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="a2_b2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2b2CoursePriceBtn" onclick="coursePackageTdPrice('a2-b2')">A2 - B2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2B2TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2B2TdPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2B2TdPrice2">
+                                                        @if (Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('A2-B2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="a2_c1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2c1CoursePriceBtn" onclick="coursePackageTdPrice('a2-c1')">A2 - C1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2C1TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('A2-C1')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2C1TdPrice1Input" value="{{Helper::courseBundlePrice('A2-C1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2C1TdPrice2">
+                                                        @if (Helper::courseBundlePrice('A2-C1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('A2-C1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('A2-C1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-C1')['regular_price'] : Helper::courseBundlePrice('A2-C1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="b1_b2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b1b2CoursePriceBtn" onclick="coursePackageTdPrice('b1-b2')">B1 - B2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1B2TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('B1-B2')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1B2TdPrice1Input" value="{{Helper::courseBundlePrice('B1-B2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1B2TdPrice2">
+                                                        @if (Helper::courseBundlePrice('B1-B2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('B1-B2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('B1-B2')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B1-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B1-B2')['regular_price'] : Helper::courseBundlePrice('B1-B2')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="b1_c1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b1c1CoursePriceBtn" onclick="coursePackageTdPrice('b1-c1')">B1 - C1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1C1TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('B1-C1')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1C1TdPrice1Input" value="{{Helper::courseBundlePrice('B1-C1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB1C1TdPrice2">
+                                                        @if (Helper::courseBundlePrice('B1-C1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('B1-C1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('B1-C1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB1C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B1-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B1-C1')['regular_price'] : Helper::courseBundlePrice('B1-C1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="b2_c1_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="b2c1CoursePriceBtn" onclick="coursePackageTdPrice('b2-c1')">B2 - C1</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB2C1TdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('B2-C1')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB2C1TdPrice1Input" value="{{Helper::courseBundlePrice('B2-C1')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseB2C1TdPrice2">
+                                                        @if (Helper::courseBundlePrice('B2-C1')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('B2-C1')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format(Helper::courseBundlePrice('B2-C1')['discount_price'])}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseB2C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B2-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B2-C1')['regular_price'] : Helper::courseBundlePrice('B2-C1')['discount_price']}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="priviliged_packages_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="privilegedPackagesCoursePriceBtn" onclick="coursePackageTdPriviligedPrice()">Privileged</td>
+                                                <td style="background-color: #fff;" class="td-price"></td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="">
+                                                        <div id="previliged_package_a1_a2">
+                                                            -  {{number_format(Helper::courseBundlePrice('A1-A2')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_a1_b2">
+                                                            -  {{number_format(Helper::courseBundlePrice('A1-B2')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_a2_b2">
+                                                            -  {{number_format(Helper::courseBundlePrice('A2-B2')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_a2_c1">
+                                                            -  {{number_format(Helper::courseBundlePrice('A2-C1')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_b1_b2">
+                                                            -  {{number_format(Helper::courseBundlePrice('B1-B2')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_b1_c1">
+                                                            -  {{number_format(Helper::courseBundlePrice('B1-C1')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <div id="previliged_package_b2_c1">
+                                                            -  {{number_format(Helper::courseBundlePrice('B2-C1')['priviliged_price'])}}/-
+                                                        </div>
+                                                        <input type="hidden" name="" id="courseA1A2PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('A1-A2')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseA1B2PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('A1-B2')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseA2B2PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseA2C1PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('A2-C1')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseB1B2PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('B1-B2')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseB1C1PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('B1-C1')['priviliged_price']}}">
+                                                        <input type="hidden" name="" id="courseB2C1PackagePriviligedTdPrice1Input" value="{{Helper::courseBundlePrice('B2-C1')['priviliged_price']}}">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr id="total_course_price_row">
+                                                <td style="background: #5d5071;" class="td-total text-white py-3">Total</td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalPackageCourseRegularPrice"></td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalPackageCourseDiscountPrice"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1496,6 +1687,25 @@
         });
     </script>
     
+@endsection
+@section('student-result-details-js')
+<script>
+    document.getElementById('regular-course-pirce-id').classList.add("price-package-active") ;
+    document.getElementById('packages-course-price-section').style.display = 'none';
+    function priceSegment(ev){
+        if(ev == 'regular'){
+            document.getElementById('regular-course-pirce-id').classList.add("price-package-active");
+            document.getElementById('packages-course-pirce-id').classList.remove("price-package-active");
+            document.getElementById('regular-course-price-section').style.display = 'block';
+            document.getElementById('packages-course-price-section').style.display = 'none';
+        }else if(ev == 'packages'){
+            document.getElementById('regular-course-pirce-id').classList.remove("price-package-active");
+            document.getElementById('packages-course-pirce-id').classList.add("price-package-active");
+            document.getElementById('regular-course-price-section').style.display = 'none';
+            document.getElementById('packages-course-price-section').style.display = 'block';
+        }
+    }
+</script>
 @endsection
 <script>
     var expected_band_score = "{{$student_info->expected_score}}";

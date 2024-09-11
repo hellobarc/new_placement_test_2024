@@ -189,7 +189,7 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
     });
     Route::controller(ManageVistorController::class)->group(function(){
         Route::get('/day-wise/visitor-list', 'dayWiseVisitorList')->name('manager.day-wise.visitor-list');
-        Route::store('/store/day-wise/visitor-list', 'storeDayWiseVisitorList')->name('manager.store.day-wise.visitor-list');
+        Route::post('/store/day-wise/visitor-list', 'storeDayWiseVisitorList')->name('manager.store.day-wise.visitor-list');
     });
 });
 /*------------------------------------------

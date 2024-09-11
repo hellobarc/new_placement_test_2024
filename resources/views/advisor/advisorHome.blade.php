@@ -60,11 +60,11 @@
                     <thead class="text-center fw-bold">
                         <th class="adviserDasHomeTh">SL No</th>
                         <th class="adviserDasHomeTh">Full Name</th>
-                        <th class="adviserDasHomeTh">Email</th>
                         <th class="adviserDasHomeTh">Mobile</th>
                         <th class="adviserDasHomeTh">Purpose of Visit</th>
                         <th class="adviserDasHomeTh">Enrolled Course</th>
                         <th class="adviserDasHomeTh">Status</th>
+                        <th class="adviserDasHomeTh">Visit Date</th>
                         <th class="adviserDasHomeTh">Action</th>
                     </thead>
                     <tbody>
@@ -72,7 +72,6 @@
                             <tr id="cf-data-container">
                                 <td style="font-size:14px;">{{ $loop->index+1}}</td>
                                 <td style="font-size:14px;">{{ $item->full_name }}</td>
-                                <td style="font-size:14px;">{{ $item->email }}</td>
                                 <td style="font-size:14px;">{{ $item->mobile }}</td>
                                 <td style="font-size:14px;">{{ ($item->purpose_of_visit) }}</td>
                                 <td style="font-size:14px;">Pending</td>
@@ -86,6 +85,7 @@
                                     @else
                                     @endif
                                 </td>
+                                <td style="font-size:14px;">{{date('d-m-Y', strtotime($item->created_at))}}</td>
                                 <td class="d-flex justify-content-start" style="font-size:14px;">
                                     @if($item->status == 'approved')
                                         @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
@@ -95,7 +95,7 @@
                                                 <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
                                             @endif
                                         @endif
-                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-4">Details</button></a>
+                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
                                         @if (Helper::followUpStatus($item->id) == 'admitted')
                                             <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
@@ -121,7 +121,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-3">
                     {!! $getData->links() !!}
                 </div>
             </div>

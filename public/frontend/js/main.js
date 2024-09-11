@@ -754,13 +754,6 @@ function coursetdlist(ev){
   
   document.getElementById('totalCourseRegularPrice').innerHTML = total.toLocaleString() + '/-';
   document.getElementById('totalCourseDiscountPrice').innerHTML = discountTotalPrice.toLocaleString() + '/-';
-  
-  
-  
-  
-  
-  
-  
 }
 if(desired_level == 'A1'){
   $("#activeClass1").removeClass('inner_box_top_1');
@@ -785,5 +778,332 @@ if(desired_level == 'C1'){
 if(desired_level == 'C2'){
   $("#activeClass6").removeClass('inner_box_top_6');
   $("#activeClass6").addClass('inner_box_top_6_another');
+}
+
+//pacakge cours price
+document.getElementById("courseA1A2TdPrice1").style.display = "none";
+document.getElementById("courseA1A2TdPrice2").style.display = "none";
+document.getElementById("courseA1B2TdPrice1").style.display = "none";
+document.getElementById("courseA1B2TdPrice2").style.display = "none";
+document.getElementById("courseA2B2TdPrice1").style.display = "none";
+document.getElementById("courseA2B2TdPrice2").style.display = "none";
+document.getElementById("courseA2C1TdPrice1").style.display = "none";
+document.getElementById("courseA2C1TdPrice2").style.display = "none";
+document.getElementById("courseB1B2TdPrice1").style.display = "none";
+document.getElementById("courseB1B2TdPrice2").style.display = "none";
+document.getElementById("courseB1C1TdPrice1").style.display = "none";
+document.getElementById("courseB1C1TdPrice2").style.display = "none";
+document.getElementById("courseB2C1TdPrice1").style.display = "none";
+document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+document.getElementById("previliged_package_a1_a2").style.display = "none";
+document.getElementById("previliged_package_a1_b2").style.display = "none";
+document.getElementById("previliged_package_a2_b2").style.display = "none";
+document.getElementById("previliged_package_a2_c1").style.display = "none";
+document.getElementById("previliged_package_b1_b2").style.display = "none";
+document.getElementById("previliged_package_b1_c1").style.display = "none";
+document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+var clickPackagesCoure = " ";
+var totalPackagePrice = 0;
+var totalPackageDiscountPrice = 0;
+function coursePackageTdPrice(ev){
+  clickPackagesCoure = ev;
+  totalPackagePrice = 0;
+  totalPackageDiscountPrice = 0;
+  if(ev == 'a1-a2'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "block";
+    document.getElementById("courseA1A2TdPrice2").style.display = "block";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    
+    var a1a2totalValue = document.getElementById('courseA1A2TdPrice1Input').value;
+    totalPackagePrice += parseInt (a1a2totalValue);
+
+    var a1a2totalDiscountValue = document.getElementById('courseA1A2TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (a1a2totalDiscountValue);
+
+  }else if(ev == 'a1-b2'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "block";
+    document.getElementById("courseA1B2TdPrice2").style.display = "block";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+
+    var a1b2totalValue = document.getElementById('courseA1B2TdPrice1Input').value;
+    totalPackagePrice += parseInt (a1b2totalValue);
+
+    var a1b2totalDiscountValue = document.getElementById('courseA1B2TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (a1b2totalDiscountValue);
+  }else if(ev == 'a2-b2'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "block";
+    document.getElementById("courseA2B2TdPrice2").style.display = "block";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+
+    var a2b2totalValue = document.getElementById('courseA2B2TdPrice1Input').value;
+    totalPackagePrice += parseInt (a2b2totalValue);
+
+    var a2b2totalDiscountValue = document.getElementById('courseA2B2TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (a2b2totalDiscountValue);
+  }else if(ev == 'a2-c1'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "block";
+    document.getElementById("courseA2C1TdPrice2").style.display = "block";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+
+    var a2c1totalValue = document.getElementById('courseA2C1TdPrice1Input').value;
+    totalPackagePrice += parseInt (a2c1totalValue);
+
+    var a2c1totalDiscountValue = document.getElementById('courseA2C1TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (a2c1totalDiscountValue);
+  }else if(ev == 'b1-b2'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "block";
+    document.getElementById("courseB1B2TdPrice2").style.display = "block";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+
+    var b1b2totalValue = document.getElementById('courseB1B2TdPrice1Input').value;
+    totalPackagePrice += parseInt (b1b2totalValue);
+
+    var b1b2totalDiscountValue = document.getElementById('courseB1B2TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (b1b2totalDiscountValue);
+  }else if(ev == 'b1-c1'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "block";
+    document.getElementById("courseB1C1TdPrice2").style.display = "block";
+    document.getElementById("courseB2C1TdPrice1").style.display = "none";
+    document.getElementById("courseB2C1TdPrice2").style.display = "none";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+
+    var b1c1totalValue = document.getElementById('courseB1C1TdPrice1Input').value;
+    totalPackagePrice += parseInt (b1c1totalValue);
+
+    var b1c1totalDiscountValue = document.getElementById('courseB1C1TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (b1c1totalDiscountValue);
+  }else if(ev == 'b2-c1'){
+    document.getElementById("courseA1A2TdPrice1").style.display = "none";
+    document.getElementById("courseA1A2TdPrice2").style.display = "none";
+    document.getElementById("courseA1B2TdPrice1").style.display = "none";
+    document.getElementById("courseA1B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2B2TdPrice1").style.display = "none";
+    document.getElementById("courseA2B2TdPrice2").style.display = "none";
+    document.getElementById("courseA2C1TdPrice1").style.display = "none";
+    document.getElementById("courseA2C1TdPrice2").style.display = "none";
+    document.getElementById("courseB1B2TdPrice1").style.display = "none";
+    document.getElementById("courseB1B2TdPrice2").style.display = "none";
+    document.getElementById("courseB1C1TdPrice1").style.display = "none";
+    document.getElementById("courseB1C1TdPrice2").style.display = "none";
+    document.getElementById("courseB2C1TdPrice1").style.display = "block";
+    document.getElementById("courseB2C1TdPrice2").style.display = "block";
+
+    document.getElementById("a1a2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("a2c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById("b2c1CoursePriceBtn").classList.add("onlclik_price_active");
+    var b2c1totalValue = document.getElementById('courseB2C1TdPrice1Input').value;
+    totalPackagePrice += parseInt (b2c1totalValue);
+
+    var b2c1totalDiscountValue = document.getElementById('courseB2C1TdDiscountPrice1Input').value;
+    totalPackageDiscountPrice += parseInt (b2c1totalDiscountValue);
+  }
+  document.getElementById('totalPackageCourseRegularPrice').innerHTML = totalPackagePrice.toLocaleString() + '/-';
+  document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+}
+function coursePackageTdPriviligedPrice(){
+  document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+  if(clickPackagesCoure == 'a1-a2'){
+    document.getElementById("previliged_package_a1_a2").style.display = "block";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+    var a1a2priviligedValue = document.getElementById('courseA1A2PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (a1a2priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'a1-b2'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "block";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+    var a1b2priviligedValue = document.getElementById('courseA1B2PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (a1b2priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'a2-b2'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "block";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+    var a2b2priviligedValue = document.getElementById('courseA2B2PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (a2b2priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'a2-c1'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "block";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+    var a2c1priviligedValue = document.getElementById('courseA2C1PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (a2c1priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'b1-b2'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "block";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+    var b1b2priviligedValue = document.getElementById('courseB1B2PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (b1b2priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'b1-c1'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "block";
+    document.getElementById("previliged_package_b2_c1").style.display = "none";
+
+    var b1c1priviligedValue = document.getElementById('courseB1C1PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (b1c1priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }else if(clickPackagesCoure == 'b2-c1'){
+    document.getElementById("previliged_package_a1_a2").style.display = "none";
+    document.getElementById("previliged_package_a1_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_b2").style.display = "none";
+    document.getElementById("previliged_package_a2_c1").style.display = "none";
+    document.getElementById("previliged_package_b1_b2").style.display = "none";
+    document.getElementById("previliged_package_b1_c1").style.display = "none";
+    document.getElementById("previliged_package_b2_c1").style.display = "block";
+
+    var b2c1priviligedValue = document.getElementById('courseB2C1PackagePriviligedTdPrice1Input').value;
+    totalPackageDiscountPrice -= parseInt (b2c1priviligedValue);
+    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  }
+  
 }
 

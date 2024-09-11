@@ -32,4 +32,7 @@ class VisitorLog extends Model
     public function userInfo(){
         return $this->belongsTo(VisitorInfo::class, 'id', 'visitor_log_id');
     }
+    public function followUp(){
+        return $this->belongsTo(FollowUp::class, 'id', 'student_id');
+    }
 }
