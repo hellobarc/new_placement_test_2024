@@ -529,7 +529,7 @@ class ExamController extends Controller
                     ->where('adviser_id', $adviserId)
                     ->get();
         $priviliged_price = CourseBundle::where('course_bundle', 'Priviliged Price')->first();
-        $student_info = VisitorInfo::where('id', $student_id)->with('studentInfo')->first();
+        $student_info = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $log_id  = TestSubmissionLog::where('student_id', $student_id)->first();
         $sum_reading_module = $this->sum_assessment_test($log_id->id, 1);
         $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
@@ -710,7 +710,8 @@ class ExamController extends Controller
                 $sub_question_id = $text->sub_question_id;
                 $question = TestMultiSelector::where('id', $sub_question_id)->where('test_question_id', $question_id)->first();
                 $count_is_correct = count(json_decode($question->is_correct));
-                $sub_count_ans = count(json_decode($text->submitted_ans));
+                $sub_count_ans = (json_decode($text->submitted_ans));
+                
                 if($count_is_correct == $sub_count_ans){
                     $sum_value += 0;
                 }elseif($count_is_correct < $sub_count_ans){

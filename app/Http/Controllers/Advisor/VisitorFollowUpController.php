@@ -115,13 +115,17 @@ class VisitorFollowUpController extends Controller
     {
         //dd($request->all());
         $enrolled_course = $request->total_enrolled_course;
-        $student_id = $request->student_id;
-        VisitorInfo::updateOrCreate([
-                'visitor_log_id' => $student_id,
-            ],
-            [
-                'total_enroll_course' => json_encode($enrolled_course),
-            ]);
-        return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
+        if($enrolled_course == null){
+            return redirect()->route('advisor.home')->withErrors('Courses are not selected ');
+        }else{
+            $student_id = $request->student_id;
+            VisitorInfo::updateOrCreate([
+                    'visitor_log_id' => $student_id,
+                ],
+                [
+                    'total_enroll_course' => json_encode($enrolled_course),
+                ]);
+            return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
+        }
     }
 }

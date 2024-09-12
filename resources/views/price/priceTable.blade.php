@@ -165,7 +165,7 @@
                                         <div class="inner_box_bottom">
                                             <p class="fw-bold">Equivalent Levels</p>
                                             <ul>
-                                                <li>CEFR B1</li>
+                                                <li>CEFR B2</li>
                                                 <li>IELTS 6.0 - 6.5</li>
                                             </ul>
                                         </div>
@@ -1056,10 +1056,11 @@
                                 <div>
                                     <ul style="border-bottom: 1px solid #d5d5d5; padding:0">
                                         <li id="regular-course-pirce-id" onclick="priceSegment('regular')" style="list-style: none; display:inline-block; margin:0 0 0 0; font-size:1.125rem; cursor: pointer;">Regular Price</li>
-                                        <li id="packages-course-pirce-id" onclick="priceSegment('packages')" style="list-style: none; display:inline-block; margin:0 0 0 8px; font-size:1.125rem; cursor: pointer;">Packages Price</li>
+                                        <li id="packages-course-pirce-id" onclick="priceSegment('packages')" style="list-style: none; display:inline-block; margin:0 0 0 16px; font-size:1.125rem; cursor: pointer;">Packages Price</li>
+                                        <li id="hsc-course-pirce-id" onclick="priceSegment('hsc')" style="list-style: none; display:inline-block; margin:0 0 0 16px; font-size:1.125rem; cursor: pointer;">HSC Course Price</li>
                                     </ul>
                                 </div>
-                                <div class="mx-5 px-5">
+                                <div class="mx-5 px-5 mt-5">
                                     <div id="regular-course-price-section">
                                         <table class="table table-bordered">
                                             <tr>
@@ -1362,6 +1363,39 @@
                                             </tr>
                                         </table>
                                     </div>
+                                    <div id="hsc-course-price-section">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td style="background-color: #7c6b97;" class="td-total text-white pt-3">Packages</td>
+                                                <td style="background-color: #7776B3;" class="td-total text-white pt-3">Regular <p>Fees</p></td>
+                                                <td style="background-color: #5A639C;" class="td-total text-white pt-3">After Discount</td>
+                                            </tr>
+                                            <tr id="a2_b2_course_price_row">
+                                                <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a2b2HSCCoursePriceBtn" onclick="courseHSCTdPrice()">A2 - B2</td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2B2HSCTdPrice1">
+                                                        {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2B2HSCTdPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['regular_price']}}">
+                                                </td>
+                                                <td style="background-color: #fff;" class="td-price">
+                                                    <div id="courseA2B2HSCTdPrice2">
+                                                        @if (Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A')
+                                                            {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
+                                                        @else
+                                                            {{number_format((Helper::courseBundlePrice('A2-B2')['discount_price'])-7798)}}/-
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" name="" id="courseA2B2HSCTdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']-7798}}">
+                                                </td>
+                                            </tr>
+                                            <tr id="total_course_price_row">
+                                                <td style="background: #5d5071;" class="td-total text-white py-3">Total</td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalPackageHSCCourseRegularPrice"></td>
+                                                <td style="background-color: #f1f1f1;" class="td-price py-3" id="totalPackageHSCCourseDiscountPrice"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1504,6 +1538,7 @@
                                                         <p class="mb-0">VAT Included (govt.)</p>
                                                         <p class="mb-0">5%</p>
                                                     </div>
+                                                    
                                                     <form action="{{route('student.total.enrolled course')}}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="student_id" id="" value="{{$studentId}}">
@@ -1692,17 +1727,29 @@
 <script>
     document.getElementById('regular-course-pirce-id').classList.add("price-package-active") ;
     document.getElementById('packages-course-price-section').style.display = 'none';
+    document.getElementById('hsc-course-price-section').style.display = 'none';
     function priceSegment(ev){
         if(ev == 'regular'){
             document.getElementById('regular-course-pirce-id').classList.add("price-package-active");
             document.getElementById('packages-course-pirce-id').classList.remove("price-package-active");
+            document.getElementById('hsc-course-pirce-id').classList.remove("price-package-active");
             document.getElementById('regular-course-price-section').style.display = 'block';
             document.getElementById('packages-course-price-section').style.display = 'none';
+            document.getElementById('hsc-course-price-section').style.display = 'none';
         }else if(ev == 'packages'){
             document.getElementById('regular-course-pirce-id').classList.remove("price-package-active");
             document.getElementById('packages-course-pirce-id').classList.add("price-package-active");
+            document.getElementById('hsc-course-pirce-id').classList.remove("price-package-active");
             document.getElementById('regular-course-price-section').style.display = 'none';
             document.getElementById('packages-course-price-section').style.display = 'block';
+            document.getElementById('hsc-course-price-section').style.display = 'none';
+        }else if(ev == 'hsc'){
+            document.getElementById('regular-course-pirce-id').classList.remove("price-package-active");
+            document.getElementById('packages-course-pirce-id').classList.remove("price-package-active");
+            document.getElementById('hsc-course-pirce-id').classList.add("price-package-active");
+            document.getElementById('regular-course-price-section').style.display = 'none';
+            document.getElementById('packages-course-price-section').style.display = 'none';
+            document.getElementById('hsc-course-price-section').style.display = 'block';
         }
     }
 </script>

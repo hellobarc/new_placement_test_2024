@@ -41,9 +41,8 @@ class HomeController extends Controller
     }
     
     public function frontStudentList(){
-        $getDeclinedStudents = VisitorLog::where('status', 'declined')
-        ->paginate(10);
-
+        $getDeclinedStudents = VisitorLog::where('status', 'declined')->with('totalUser')->paginate(10);
+        //dd($getDeclinedStudents);
         $getAdvisorList = User::where('type', 3)->get();
 
         $frontID = Auth::user()->id;

@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-10">
                 <div class="card p-3">
-                    <h1 class="pb-2">{{date('d-m-Y', strtotime($date))}} visitor list</h1>
+                    <h1 class="pb-2">All visitor list</h1>
                     <table class="table table-bordered">
                         <thead>
                             <th>SL No</th>

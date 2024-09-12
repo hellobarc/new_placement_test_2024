@@ -415,10 +415,10 @@
             document.getElementById("purpose_of_ielts_general_training").checked = true;
         }
     });
-    var $areaofimproveReading = "{{in_array("reading", $area_of_improve)}}";
-    var $areaofimproveListening = "{{in_array("listening", $area_of_improve)}}";
-    var $areaofimproveSpeaking = "{{in_array("speaking", $area_of_improve)}}";
-    var $areaofimproveWriting = "{{in_array("writing", $area_of_improve)}}";
+    var $areaofimproveReading = "{{$area_of_improve == null?'':in_array("reading", $area_of_improve)}}";
+    var $areaofimproveListening = "{{$area_of_improve == null?'':in_array("listening", $area_of_improve)}}";
+    var $areaofimproveSpeaking = "{{$area_of_improve == null?'':in_array("speaking", $area_of_improve)}}";
+    var $areaofimproveWriting = "{{$area_of_improve == null?'':in_array("writing", $area_of_improve)}}";
     if($areaofimproveReading == 1){
         document.getElementById("area_of_improve_reading").checked = true;
     }
@@ -431,12 +431,12 @@
     if($areaofimproveSpeaking == 1){
         document.getElementById("area_of_improve_speaking").checked = true;
     }
-    var $areaofStrenghtReading = "{{in_array("reading", $area_of_strength)}}";
-    var $areaofStrenghtListening = "{{in_array("listening", $area_of_strength)}}";
-    var $areaofStrenghtSpeaking = "{{in_array("speaking", $area_of_strength)}}";
-    var $areaofStrenghtWriting = "{{in_array("writing", $area_of_strength)}}";
-    var $areaofStrenghtGrammar = "{{in_array("grammar", $area_of_strength)}}";
-    var $areaofStrenghtVocabulary = "{{in_array("vocabulary", $area_of_strength)}}";
+    var $areaofStrenghtReading = "{{$area_of_strength == null?'':in_array("reading", $area_of_strength)}}";
+    var $areaofStrenghtListening = "{{$area_of_strength == null?'':in_array("listening", $area_of_strength)}}";
+    var $areaofStrenghtSpeaking = "{{$area_of_strength == null?'':in_array("speaking", $area_of_strength)}}";
+    var $areaofStrenghtWriting = "{{$area_of_strength == null?'':in_array("writing", $area_of_strength)}}";
+    var $areaofStrenghtGrammar = "{{$area_of_strength == null?'':in_array("grammar", $area_of_strength)}}";
+    var $areaofStrenghtVocabulary = "{{$area_of_strength == null?'':in_array("vocabulary", $area_of_strength)}}";
     if($areaofStrenghtReading == 1){
         document.getElementById("area_of_strenght_reading").checked = true;
     }

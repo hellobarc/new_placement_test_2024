@@ -80,6 +80,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- branch list --> 
+                                    <div class="row mt-3">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                            <div class="form-group">
+                                                <label for="full-name">Which Branch are you?  <span class="text-danger fw-bold">*</span></label>
+                                                <select name="visit_branch" id="visit_branch" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                                    <option value="">Select a branch</option>
+                                                    <option value="Uttara">Uttara</option>
+                                                    <option value="Mirpur">Mirpur</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- submit button -->
                                     <div class="row mt-5">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">

@@ -14,6 +14,7 @@ class VisitorLog extends Model
         'email',
         'mobile',
         'purpose_of_visit',
+        'visit_branch',
         'status',
         'assign_advisor',
         'time_log',

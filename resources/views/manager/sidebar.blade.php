@@ -55,7 +55,7 @@
                 </a>
                 <ul class="collapse nav flex-column ms-2" id="submenu4" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="#" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> All Visitor</span></a>
+                        <a href="{{route('manager.all.visitor-list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> All Visitor</span></a>
                         <a href="{{route('manager.day-wise.visitor-list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Day Wise list</span></a>
                     </li>
                 </ul>

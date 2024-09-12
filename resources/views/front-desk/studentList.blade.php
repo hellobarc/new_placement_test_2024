@@ -21,21 +21,21 @@
                         <thead class="text-center">
                             <th>SL No</th>
                             <th>Full Name</th>
-                            <th>Email</th>
                             <th>Mobile</th>
                             <th>Purpose of Visit</th>
+                            <th>Decline Assessor</th>
                             <th>Status</th>
                             <th>Action</th>
                         </thead>
                     
                         <tbody>
-                            @foreach ($getDeclinedStudents as $item)
+                            @foreach ($getDeclinedStudents as $key=>$item)
                                 <tr id="cf-data-container">
                                     <td>{{ $loop->index+1}}</td>
                                     <td>{{ $item->full_name }}</td>
-                                    <td>{{ $item->email }}</td>
                                     <td>{{ $item->mobile }}</td>
                                     <td>{{ $item->purpose_of_visit }}</td>
+                                    <td>{{ $item->totalUser[$key]->name }}</td>
                                     <td>
                                         @if($item->status == 'approved')
                                         <p class="badge badge-success bg-success">Approved</p>

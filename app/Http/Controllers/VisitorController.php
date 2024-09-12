@@ -16,60 +16,69 @@ use Auth;
 use DB;
 use Mail;
 use App\Mail\AdvisorEmailNotification;
+use Validator;
 class VisitorController extends Controller
 {
 
     public function storeVisitorInfo(Request $request){
         //dd($request->all());
-        $validate = $request->validate([
+        $validator = Validator::make($request->all(),[
             'full_name'             => 'required|string|max:50',
             'contact_number'        => 'required|string|max:50|unique:visitor_logs,mobile',
             'purpose_of_visit'      => 'required|string|max:50',
-            'assign_advisor'        => 'required|int|max:50'
+            'assign_advisor'        => 'required|int|max:50',
+            'visit_branch'          => 'required'
         ]);
-        if($validate->fail()){
-            return redirect()->back()->withErrors($validate);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
         }
         $purpose_of_visit   = $request->input('purpose_of_visit');
         $fullName           = $request->input('full_name');
         $contact_number     = $request->input('contact_number');
         $assign_advisor     = $request->input('assign_advisor');
+        $visit_branch     = $request->input('visit_branch');
         $form_input_time    = time();
         if($request->input('email')){
             $email              = $request->input('email');
         }else{
             $email = 'hellobarc@gmail.com';
         }
-        $visitorLog = VisitorLog::create([
-            'assign_advisor'            => $assign_advisor,
-            'full_name'                 => $fullName,
-            'email'                     => $email,
-            'mobile'                    => $contact_number,
-            'purpose_of_visit'          => $purpose_of_visit,
-            'status'                    => 'unapproved',
-            'adviser_notification'      => 'not_seen',
-            'front_desk_notification'   => 'not_seen',
-            'status'                    => 'unapproved',
-            'time_log'                  => $form_input_time
-        ]);
-        VisitorInfo::create([
-            'visitor_log_id'            => $visitorLog->id,
-         ]);
-        
+        if($purpose_of_visit == 'mock' || $purpose_of_visit == 'ielts_registration' && $assign_advisor !=6){
+            return redirect()->back()->withErrors('Please select IELTS Department');
+        }elseif($purpose_of_visit == 'course' || $purpose_of_visit == 'others' && $assign_advisor !=6){
+            return redirect()->back()->withErrors('Please select a advisor');
+        }else{
+            $visitorLog = VisitorLog::create([
+                'assign_advisor'            => $assign_advisor,
+                'full_name'                 => $fullName,
+                'email'                     => $email,
+                'mobile'                    => $contact_number,
+                'purpose_of_visit'          => $purpose_of_visit,
+                'visit_branch'          => $visit_branch,
+                'status'                    => 'unapproved',
+                'adviser_notification'      => 'not_seen',
+                'front_desk_notification'   => 'not_seen',
+                'status'                    => 'unapproved',
+                'time_log'                  => $form_input_time
+            ]);
+            VisitorInfo::create([
+                'visitor_log_id'            => $visitorLog->id,
+            ]);
+            
+            $advisorID = $request->assign_advisor;
+            // Helpers::AdvisorEventPushNotification($advisorID);
+            $advisor = User::find($assign_advisor);
+            $email_visitor_info = [
+                'full_name'                 => $fullName,
+                'email'                     => $email,
+                'mobile'                    => $contact_number,
+                'purpose_of_visit'          => $purpose_of_visit,
+            ];
+            
+            // Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
 
-        $advisorID = $request->assign_advisor;
-        // Helpers::AdvisorEventPushNotification($advisorID);
-        $advisor = User::find($assign_advisor);
-        $email_visitor_info = [
-            'full_name'                 => $fullName,
-            'email'                     => $email,
-            'mobile'                    => $contact_number,
-            'purpose_of_visit'          => $purpose_of_visit,
-        ];
-        
-        // Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
-
-        return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
+            return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
+        }
     } 
 
 

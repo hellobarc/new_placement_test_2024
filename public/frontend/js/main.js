@@ -713,19 +713,10 @@ function coursetdlist(ev){
       courseOverviewTime += 1;
       inputHTML = `<input type="hidden" id="clickCourseBtn_${ev}" name="total_enrolled_course[]" value="${ev}">`;
     }
-  }
-  
+  } 
   document.getElementById('enrolled_course_stu').insertAdjacentHTML("beforeend", inputHTML);
-  
   //price
-  let totalOnlyDiscountPrice = parseInt(total)-parseInt(totalOnlyDiscountedPrice);
-  document.getElementById('courseOverviewRegularPrice').innerHTML = total.toLocaleString() + '/-';
-  document.getElementById('courseOverviewDiscountPrice').innerHTML = '- '+ totalOnlyDiscountPrice.toLocaleString() + '/-';
-  document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
-
-  document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
   document.getElementById('courseOverviewTime').innerHTML = courseOverviewTime;
-
   if(ev == 'privileged'){
     clickCountPriviliged++
     var priviligedTotalPrice = document.getElementById('coursePriviligedTdPrice1Input').value;
@@ -733,25 +724,16 @@ function coursetdlist(ev){
       document.getElementById("coursePrivileged").style.display = "none";
       document.getElementById("privilegedCoursePriceBtn").classList.remove("onlclik_price_active");
       discountTotalPrice +=  parseInt(priviligedTotalPrice);
-
-      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
       document.getElementById('courseOverviewTotalPrivileged').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
-
-      document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyDiscountedPrice.toLocaleString() + '/-';
     }else{
       document.getElementById("coursePrivileged").style.display = "block";
       discountTotalPrice -= parseInt(priviligedTotalPrice);
       document.getElementById("privilegedCoursePriceBtn").classList.add("onlclik_price_active");
       
-      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + priviligedTotalPrice.toLocaleString() + '/-';
       let totalOnlyPriviligedPrice = parseInt(totalOnlyDiscountedPrice)-parseInt(priviligedTotalPrice);
       document.getElementById('courseOverviewTotalPrivileged').innerHTML = totalOnlyPriviligedPrice.toLocaleString() + '/-';
-
-    document.getElementById('courseOverviewTotalPrice').innerHTML = totalOnlyPriviligedPrice.toLocaleString() + '/-';
-
     }
   }
-  
   document.getElementById('totalCourseRegularPrice').innerHTML = total.toLocaleString() + '/-';
   document.getElementById('totalCourseDiscountPrice').innerHTML = discountTotalPrice.toLocaleString() + '/-';
 }
@@ -1017,11 +999,19 @@ function coursePackageTdPrice(ev){
   }
   document.getElementById('totalPackageCourseRegularPrice').innerHTML = totalPackagePrice.toLocaleString() + '/-';
   document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  document.getElementById('courseOverviewRegularPrice').innerHTML = totalPackagePrice.toLocaleString() + '/-';
+  document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+  let totalOnlyDiscountPrice = parseInt(totalPackagePrice)-parseInt(totalPackageDiscountPrice);
+  
+  document.getElementById('courseOverviewDiscountPrice').innerHTML = '- '+ totalOnlyDiscountPrice.toLocaleString() + '/-';
+  document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
 }
+
 function coursePackageTdPriviligedPrice(){
-  document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+  clickCountPriviliged++
+  
   if(clickPackagesCoure == 'a1-a2'){
-    document.getElementById("previliged_package_a1_a2").style.display = "block";
+    
     document.getElementById("previliged_package_a1_b2").style.display = "none";
     document.getElementById("previliged_package_a2_b2").style.display = "none";
     document.getElementById("previliged_package_a2_c1").style.display = "none";
@@ -1029,11 +1019,27 @@ function coursePackageTdPriviligedPrice(){
     document.getElementById("previliged_package_b1_c1").style.display = "none";
     document.getElementById("previliged_package_b2_c1").style.display = "none";
     var a1a2priviligedValue = document.getElementById('courseA1A2PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (a1a2priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("previliged_package_a1_a2").style.display = "none";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      totalPackageDiscountPrice += parseInt (a1a2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("previliged_package_a1_a2").style.display = "block";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      totalPackageDiscountPrice -= parseInt (a1a2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a1a2priviligedValue).toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
   }else if(clickPackagesCoure == 'a1-b2'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
-    document.getElementById("previliged_package_a1_b2").style.display = "block";
+    
     document.getElementById("previliged_package_a2_b2").style.display = "none";
     document.getElementById("previliged_package_a2_c1").style.display = "none";
     document.getElementById("previliged_package_b1_b2").style.display = "none";
@@ -1041,56 +1047,132 @@ function coursePackageTdPriviligedPrice(){
     document.getElementById("previliged_package_b2_c1").style.display = "none";
 
     var a1b2priviligedValue = document.getElementById('courseA1B2PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (a1b2priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      document.getElementById("previliged_package_a1_b2").style.display = "none";
+      totalPackageDiscountPrice += parseInt (a1b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      document.getElementById("previliged_package_a1_b2").style.display = "block";
+      totalPackageDiscountPrice -= parseInt (a1b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a1b2priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
+   
   }else if(clickPackagesCoure == 'a2-b2'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
     document.getElementById("previliged_package_a1_b2").style.display = "none";
-    document.getElementById("previliged_package_a2_b2").style.display = "block";
+    
     document.getElementById("previliged_package_a2_c1").style.display = "none";
     document.getElementById("previliged_package_b1_b2").style.display = "none";
     document.getElementById("previliged_package_b1_c1").style.display = "none";
     document.getElementById("previliged_package_b2_c1").style.display = "none";
 
     var a2b2priviligedValue = document.getElementById('courseA2B2PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (a2b2priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      document.getElementById("previliged_package_a2_b2").style.display = "none";
+      totalPackageDiscountPrice += parseInt (a2b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      document.getElementById("previliged_package_a2_b2").style.display = "block";
+      totalPackageDiscountPrice -= parseInt (a2b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a2b2priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
   }else if(clickPackagesCoure == 'a2-c1'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
     document.getElementById("previliged_package_a1_b2").style.display = "none";
     document.getElementById("previliged_package_a2_b2").style.display = "none";
-    document.getElementById("previliged_package_a2_c1").style.display = "block";
+    
     document.getElementById("previliged_package_b1_b2").style.display = "none";
     document.getElementById("previliged_package_b1_c1").style.display = "none";
     document.getElementById("previliged_package_b2_c1").style.display = "none";
-
     var a2c1priviligedValue = document.getElementById('courseA2C1PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (a2c1priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("previliged_package_a2_c1").style.display = "none";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      totalPackageDiscountPrice += parseInt (a2c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("previliged_package_a2_c1").style.display = "block";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      totalPackageDiscountPrice -= parseInt (a2c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a2c1priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
+    
   }else if(clickPackagesCoure == 'b1-b2'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
     document.getElementById("previliged_package_a1_b2").style.display = "none";
     document.getElementById("previliged_package_a2_b2").style.display = "none";
     document.getElementById("previliged_package_a2_c1").style.display = "none";
-    document.getElementById("previliged_package_b1_b2").style.display = "block";
+    
     document.getElementById("previliged_package_b1_c1").style.display = "none";
     document.getElementById("previliged_package_b2_c1").style.display = "none";
 
     var b1b2priviligedValue = document.getElementById('courseB1B2PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (b1b2priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      document.getElementById("previliged_package_b1_b2").style.display = "none";
+      totalPackageDiscountPrice += parseInt (b1b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      document.getElementById("previliged_package_b1_b2").style.display = "block";
+      totalPackageDiscountPrice -= parseInt (b1b2priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(b1b2priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
   }else if(clickPackagesCoure == 'b1-c1'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
     document.getElementById("previliged_package_a1_b2").style.display = "none";
     document.getElementById("previliged_package_a2_b2").style.display = "none";
     document.getElementById("previliged_package_a2_c1").style.display = "none";
     document.getElementById("previliged_package_b1_b2").style.display = "none";
-    document.getElementById("previliged_package_b1_c1").style.display = "block";
+    
     document.getElementById("previliged_package_b2_c1").style.display = "none";
 
     var b1c1priviligedValue = document.getElementById('courseB1C1PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (b1c1priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      document.getElementById("previliged_package_b1_c1").style.display = "none";
+      totalPackageDiscountPrice += parseInt (b1c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      document.getElementById("previliged_package_b1_c1").style.display = "block";
+      totalPackageDiscountPrice -= parseInt (b1c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(b1c1priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
   }else if(clickPackagesCoure == 'b2-c1'){
     document.getElementById("previliged_package_a1_a2").style.display = "none";
     document.getElementById("previliged_package_a1_b2").style.display = "none";
@@ -1098,12 +1180,60 @@ function coursePackageTdPriviligedPrice(){
     document.getElementById("previliged_package_a2_c1").style.display = "none";
     document.getElementById("previliged_package_b1_b2").style.display = "none";
     document.getElementById("previliged_package_b1_c1").style.display = "none";
-    document.getElementById("previliged_package_b2_c1").style.display = "block";
+    
 
     var b2c1priviligedValue = document.getElementById('courseB2C1PackagePriviligedTdPrice1Input').value;
-    totalPackageDiscountPrice -= parseInt (b2c1priviligedValue);
-    document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    if(clickCountPriviliged%2 == 0){
+      document.getElementById("previliged_package_b2_c1").style.display = "none";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.remove("onlclik_price_active");
+      totalPackageDiscountPrice += parseInt (b2c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = 0 + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }else{
+      document.getElementById("previliged_package_b2_c1").style.display = "block";
+      document.getElementById("privilegedPackagesCoursePriceBtn").classList.add("onlclik_price_active");
+      totalPackageDiscountPrice -= parseInt (b2c1priviligedValue);
+      document.getElementById('totalPackageCourseDiscountPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+
+      document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(b2c1priviligedValue).toLocaleString() + '/-';
+      document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
+    }
   }
-  
+}
+document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
+document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
+function courseHSCTdPrice(){
+  clickCountPriviliged++
+ 
+  if(clickCountPriviliged%2 == 0){
+    document.getElementById("a2b2HSCCoursePriceBtn").classList.remove("onlclik_price_active");
+    document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
+    document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
+    var totalHSCPackageRegularPrice = parseInt(0);
+    document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+    document.getElementById('courseOverviewRegularPrice').innerHTML = 0 + '/-';
+    var totalHSCPackageDiscountPrice =parseInt(0);
+    document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+    document.getElementById('courseOverviewDiscountedPrice').innerHTML = 0 + '/-';
+    document.getElementById('courseOverviewDiscountPrice').innerHTML = 0 + '/-';
+  }else{
+    document.getElementById("a2b2HSCCoursePriceBtn").classList.add("onlclik_price_active");
+    document.getElementById('courseA2B2HSCTdPrice1').style.display = "block";
+    document.getElementById('courseA2B2HSCTdPrice2').style.display = "block";
+
+    var hscRegularCourseValue = document.getElementById('courseA2B2HSCTdPrice1Input').value;
+    var totalHSCPackageRegularPrice = parseInt (hscRegularCourseValue);
+    document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+    document.getElementById('courseOverviewRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+    
+    var hscDiscountCourseValue = document.getElementById('courseA2B2HSCTdDiscountPrice1Input').value;
+    var totalHSCPackageDiscountPrice = parseInt (hscDiscountCourseValue);
+    document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+    document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+    document.getElementById('courseOverviewDiscountPrice').innerHTML = (totalHSCPackageRegularPrice - totalHSCPackageDiscountPrice).toLocaleString() + '/-';
+    document.getElementById('courseOverviewTotalPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+  }
 }
 

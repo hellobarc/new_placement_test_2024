@@ -19,9 +19,14 @@ class ManageVistorController extends Controller
         $data = $request->all();
         
         $date = $data['date'];
-        $allData = VisitorLog::whereDate('created_at', $date)->with('userInfo', 'totalUser', 'followUp')->paginate(20);
+        $allData = VisitorLog::whereDate('created_at', $date)->with('userInfo', 'totalUser', 'followUp')->orderBy('id', 'desc')->paginate(20);
         $countData = count($allData);
         //dd($allData);
         return view('manager.day-wise-visitor-list', compact('allData', 'countData', 'date'));
+    }
+    public function allVisitorList()
+    {
+        $allData = VisitorLog::with('userInfo', 'totalUser', 'followUp')->orderBy('id', 'desc')->paginate(50);
+        return view('manager.all-visitor-list', compact('allData'));
     }
 }
