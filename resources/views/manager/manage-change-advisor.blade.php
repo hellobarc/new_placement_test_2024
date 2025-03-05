@@ -1,26 +1,23 @@
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    <div class="row">
-        <div style="background: #ebf6fc !important" class="p-5 mb-5">
-            <p class="fs-2 fw-bold mx-4 text-center" style="color:#284664">Declined Student List</p>
-            
-            <div class="">
-                @include('flash-message')
-                <table class="table table-bordered table-striped" style="border: 1px solid #000">
-                        <thead class="text-center">
+@extends('manager.managerHome')
+@section('manager-content')
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-10">
+                <div class="card p-3">
+                    <h1 class="pb-2">Student List</h1>
+                    <table class="table table-bordered">
+                        <thead>
                             <th>SL No</th>
                             <th>Full Name</th>
                             <th>Mobile</th>
                             <th>Purpose of Visit</th>
-                            <th>Decline Assessor</th>
+                            <th>Assign Assessor</th>
                             <th>Status</th>
                             <th>Action</th>
                         </thead>
-                    
                         <tbody>
-                            @foreach ($getDeclinedStudents as $key=>$item)
-                                <tr id="cf-data-container">
+                            @foreach ($getData as $key=>$item)
+                                <tr>
                                     <td>{{ $loop->index+1}}</td>
                                     <td>{{ ucfirst($item->full_name) }}</td>
                                     <td>{{ $item->mobile }}</td>
@@ -37,7 +34,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $item->id}}">Assign Advisor</a>
+                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $item->id}}">Change Advisor</a>
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel-{{$item->id}}" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -58,7 +55,7 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="row my-2 mx-2">
+                                                        <div class="row mt-3">
                                                             <div class="col-2 ">
                                                                 <input type="submit" name="" id="" value="Submit" class="btn btn-primary">
                                                             </div>
@@ -66,7 +63,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -76,23 +73,13 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                </table>
-            </div>
-            <div class="d-flex justify-content-end">
-                {!! $getDeclinedStudents->links() !!}
-            </div>
-            <div class="mt-4">
-                <a href="{{route('home')}}" class="btn btn-primary">Back to form</a>
+                    </table>
+                    <div>
+                        {!! $getData->links() !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
-<script>
-    function refreshPage(){
-    let url = "{{ route('fnotify.status.change')}}"
-    document.location.href = url;
-    // window.location.reload();
-}
-</script>
 

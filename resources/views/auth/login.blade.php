@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
   </head>
   <body>
-    <section class=" login-full-div">
+    <section class="login-full-div">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
                     <p class="login-quote">
                         Welcome to the first step of your dream journey! <br> You’ve made the perfect choice to be here!
                     </p>
-                    <img src="{{asset('frontend/images/login-img.png')}}" alt="" class="" style="width: 100%;">
+                    <img src="{{asset('frontend/images/login-img.png')}}" alt="" class="main-img">
                 </div>
                 <div class="col-md-4">
                     <div class="form-div">

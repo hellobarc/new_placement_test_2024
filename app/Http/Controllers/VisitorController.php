@@ -43,9 +43,11 @@ class VisitorController extends Controller
         }else{
             $email = 'hellobarc@gmail.com';
         }
-        if($purpose_of_visit == 'mock' || $purpose_of_visit == 'ielts_registration' && $assign_advisor !=6){
+        $getUser = User::where('id', $assign_advisor)->first();
+        //dd($getUser->type);
+        if(($purpose_of_visit == 'mock' || $purpose_of_visit == 'ielts_registration') && $getUser->type != 'mock'){
             return redirect()->back()->withErrors('Please select IELTS Department');
-        }elseif($purpose_of_visit == 'course' || $purpose_of_visit == 'others' && $assign_advisor !=6){
+        }elseif(($purpose_of_visit == 'course' || $purpose_of_visit == 'others') && $getUser->type != 'advisor'){
             return redirect()->back()->withErrors('Please select a advisor');
         }else{
             $visitorLog = VisitorLog::create([
@@ -99,8 +101,7 @@ class VisitorController extends Controller
         $area_of_strength = json_decode($getDetails->topics_strengths);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
         return view('advisor.student.student-all-details', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'area_of_improve', 'area_of_strength'))->with('message', 'Student all information uploaded successfully');
-    }
-    
+    } 
     public function studentDetailsUpdate(Request $request,$id)
     {
         //dd($request->all());
@@ -279,4 +280,5 @@ class VisitorController extends Controller
         $getData = VisitorLog::where('mobile', $contact_number)->first();
         return response()->json(['find_data'=>$getData, 200]);
     }
+    
 }

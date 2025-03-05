@@ -31,6 +31,7 @@ use App\Http\Controllers\Advisor\{
     VisitorFollowUpController,
     ResultPDFController,
 };
+use App\Http\Controllers\FrontPageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,10 +42,10 @@ use App\Http\Controllers\Advisor\{
 | contains the "web" middleware group. Now create something great!
 |
 */
-  
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontPageController::class, 'homePage']);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
   
 Auth::routes(['register' => false]);
   
@@ -191,6 +192,8 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/day-wise/visitor-list', 'dayWiseVisitorList')->name('manager.day-wise.visitor-list');
         Route::post('/store/day-wise/visitor-list', 'storeDayWiseVisitorList')->name('manager.store.day-wise.visitor-list');
         Route::get('/all-visitor-list', 'allVisitorList')->name('manager.all.visitor-list');
+        Route::get('/get-executive-employ-list', 'empolyFeedbackGet')->name('manager.all.get.executive-list');
+        Route::get('/manage-change-advisor', 'manageChangeAdvisor')->name('manager.manage-change.advisor');
 
     });
 });

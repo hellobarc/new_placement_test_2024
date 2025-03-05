@@ -23,6 +23,7 @@ use App\Models\ManageTest\{
     TestPassage,
     TestAudio,
 };
+
 use App\Models\TestSubmission\TestSubmissionLog;
 class Helpers {
     public static function find_module($module_id)
@@ -95,13 +96,13 @@ class Helpers {
             case ($score > 0 && $score < 8):
                 return "A-";
             break;
-            case ($score >= 8 && $score < 14):
+            case ($score >= 8 && $score <= 14):
                 return "A1";
             break;
             case ($score > 14 && $score <= 28):
                 return "A2";
             break;
-            case ($score > 30 && $score <= 42):
+            case ($score > 28 && $score <= 42):
                 return "B1";
             break;
             case ($score > 42 && $score <= 54):
@@ -204,5 +205,9 @@ class Helpers {
         ];
         return $arr;
     }
-    
+    public static function findAdvisor($id)
+    {
+        $data = User::find($id);
+        return $data;
+    }
 }

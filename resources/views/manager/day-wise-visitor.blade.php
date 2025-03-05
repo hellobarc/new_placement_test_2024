@@ -4,7 +4,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="card p-3">
-                    <h1 class="pb-2">Date wise visitor list</h1>
+                    <h1 class="pb-2">Student Exam List list</h1>
                     @include('flash-message')
                     <form action=" {{ route('manager.store.day-wise.visitor-list')}}" method="POST">
                         @csrf 
