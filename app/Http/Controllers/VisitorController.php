@@ -39,7 +39,7 @@ class VisitorController extends Controller
         $visit_branch     = $request->input('visit_branch');
         $form_input_time    = time();
         if($request->input('email')){
-            $email              = $request->input('email');
+            $email        = $request->input('email');
         }else{
             $email = 'hellobarc@gmail.com';
         }

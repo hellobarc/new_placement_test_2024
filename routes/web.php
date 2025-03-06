@@ -195,6 +195,8 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/get-executive-employ-list', 'empolyFeedbackGet')->name('manager.all.get.executive-list');
         Route::get('/manage-change-advisor', 'manageChangeAdvisor')->name('manager.manage-change.advisor');
 
+        Route::post('/manager-stud-log-change-advisor/{id}','changeAdvisor')->name('manager.change.advisor');
+
     });
 });
 /*------------------------------------------

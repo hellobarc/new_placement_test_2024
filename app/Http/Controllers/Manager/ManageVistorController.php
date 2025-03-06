@@ -11,6 +11,7 @@ use App\Models\{
 };
 use App\Models\TestSubmission\TestSubmissionLog;
 use DB;
+use App\Helpers\Helpers;
 class ManageVistorController extends Controller
 {
     public function dayWiseVisitorList()
@@ -52,5 +53,19 @@ class ManageVistorController extends Controller
         $getAdvisorList = User::where('type', 3)->get();
         return view('manager.manage-change-advisor', compact('getData', 'getAdvisorList'));
 
+    }
+    public function changeAdvisor(Request $request,$id){
+        //dd($request->all());
+        $advisorId = $request->assign_advisor;
+        VisitorLog::where('id',$id)
+        ->update([
+            'assign_advisor' => $advisorId,
+            'status' => 'unapproved',
+            'adviser_notification' => 'not_seen',
+            'front_desk_notification' => 'not_seen',
+        ]);
+
+        Helpers::AdvisorEventPushNotification($advisorId);
+        return redirect()->route('manager.manage-change.advisor')->with('success','Student Assigned To Adviser');
     }
 }
