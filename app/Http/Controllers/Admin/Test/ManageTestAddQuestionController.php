@@ -13,6 +13,7 @@ use App\Models\ManageTest\{
     TestDropDown,
     TestMultiSelector,
     TestFillBlank,
+    TestWritingQuestion,
 };
 class ManageTestAddQuestionController extends Controller
 {
@@ -40,55 +41,66 @@ class ManageTestAddQuestionController extends Controller
         }elseif($questionType == 'multi-selector'){
             $multiSelector = TestMultiSelector::where('test_question_id', $questionId)->with('testQuestion')->get();
             return view('admin.pages.test.question.add-question.multiple-choice', compact('questionType', 'questionId', 'multiSelector'));
+        }elseif($questionType == 'writing'){
+            $writingQuestion = TestWritingQuestion::where('test_question_id', $questionId)->with('testQuestion')->get();
+            return view('admin.pages.test.question.add-question.writing-question', compact('questionType', 'questionId', 'writingQuestion'));
         }
     }
     public function storeMultipleChoiceQuestion(Request $request) 
     {
         $input          = $request->input();
-        $question_id    = $input['question_id'];
-        $text           = $input['text'];
-        $blank_answer   = $input['blank_answer'];
-        $is_correct     = $input['is_correct'];
-        $marks          = $input['marks'];
+        if($input['question_type'] == 'writing'){
+            TestWritingQuestion::insert([
+                'test_question_id'   => $input['question_id'],
+                'question'           => $input['question'],
+                'marks'              => $input['marks'],
+            ]);
+        }else{
+            $question_id    = $input['question_id'];
+            $text           = $input['text'];
+            $blank_answer   = $input['blank_answer'];
+            $is_correct     = $input['is_correct'];
+            $marks          = $input['marks'];
 
-        if($input['question_type'] == 'multiple-choice')
-        {
-            TestMultipleChoice::insert([
-                'test_question_id'   => $question_id,
-                'text'               => $text,
-                'option_text'        => json_encode($blank_answer),
-                'is_correct'         => json_encode($is_correct),
-                'marks'              => $marks,
-            ]);
-        }elseif($input['question_type'] == 'radio'){
-            TestRadio::insert([
-                'test_question_id'   => $question_id,
-                'text'               => $text,
-                'option_text'        => json_encode($blank_answer),
-                'is_correct'         => json_encode($is_correct),
-                'marks'              => $marks,
-            ]);
-        }elseif($input['question_type'] == 'drop-down'){
-            TestDropDown::insert([
-                'test_question_id'   => $question_id,
-                'text'               => $text,
-                'option_text'        => json_encode($blank_answer),
-                'is_correct'         => json_encode($is_correct),
-                'marks'              => $marks,
-            ]);
-        }elseif($input['question_type'] == 'multi-selector'){
-            if($text == null){
-                $multiQuestion = NULL;
-            }else{
-                $multiQuestion = $text;
+            if($input['question_type'] == 'multiple-choice')
+            {
+                TestMultipleChoice::insert([
+                    'test_question_id'   => $question_id,
+                    'text'               => $text,
+                    'option_text'        => json_encode($blank_answer),
+                    'is_correct'         => json_encode($is_correct),
+                    'marks'              => $marks,
+                ]);
+            }elseif($input['question_type'] == 'radio'){
+                TestRadio::insert([
+                    'test_question_id'   => $question_id,
+                    'text'               => $text,
+                    'option_text'        => json_encode($blank_answer),
+                    'is_correct'         => json_encode($is_correct),
+                    'marks'              => $marks,
+                ]);
+            }elseif($input['question_type'] == 'drop-down'){
+                TestDropDown::insert([
+                    'test_question_id'   => $question_id,
+                    'text'               => $text,
+                    'option_text'        => json_encode($blank_answer),
+                    'is_correct'         => json_encode($is_correct),
+                    'marks'              => $marks,
+                ]);
+            }elseif($input['question_type'] == 'multi-selector'){
+                if($text == null){
+                    $multiQuestion = NULL;
+                }else{
+                    $multiQuestion = $text;
+                }
+                TestMultiSelector::insert([
+                    'test_question_id'   => $question_id,
+                    'text'               => $multiQuestion,
+                    'option_text'        => json_encode($blank_answer),
+                    'is_correct'         => json_encode($is_correct),
+                    'marks'              => $marks,
+                ]);
             }
-            TestMultiSelector::insert([
-                'test_question_id'   => $question_id,
-                'text'               => $multiQuestion,
-                'option_text'        => json_encode($blank_answer),
-                'is_correct'         => json_encode($is_correct),
-                'marks'              => $marks,
-            ]);
         }
         
         return redirect()->back()->with('success', 'Test Question Added Successfully.'); 
@@ -170,6 +182,14 @@ class ManageTestAddQuestionController extends Controller
         elseif($questionType == 'multi-selector')
         {
             $dropDown = TestMultiSelector::find($id);
+            if(!is_null($dropDown))
+            {
+                $dropDown->delete();
+            }
+        }
+        elseif($questionType == 'writing')
+        {
+            $dropDown = TestWritingQuestion::find($id);
             if(!is_null($dropDown))
             {
                 $dropDown->delete();

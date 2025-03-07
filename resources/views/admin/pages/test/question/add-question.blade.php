@@ -22,6 +22,7 @@
 						  {{-- <option value="heading-matching">Heading Matching</option>
 						  <option value="true-of-nice">True Of Nice</option> --}}
 						  <option value="multi-selector">Multi Selector</option>
+						  <option value="writing">Writing</option>
 						</select>
 					  </div>
 					  <div class="mb-3">
