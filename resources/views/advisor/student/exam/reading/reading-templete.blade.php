@@ -264,6 +264,20 @@
                                                     @endif
                                                 </div>
                                                 <!-- multiple selector section end -->
+                                            @elseif($items['question_type'] == 'writing')
+                                                <!-- writing question section start -->
+                                                <div class="question_set_3">
+                                                    <input type="hidden" name="writing_ques_id[]" value="{{$items['question_id']}}">
+                                                    <input type="hidden" name="writing_question_type" value="{{$items['question_type']}}">
+                                                    @if($items['sub-q'] != NULL)
+                                                        @foreach ($items['sub-q'] as $question)
+                                                            <input type="hidden" name="writing_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
+                                                            <p class="check_box_font">{!!$question->question!!}</p>
+                                                            <textarea name="wrting_question_{{$question->test_question_id}}[]" id="" rows="10" class="w-100"></textarea>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                <!-- writing question section end -->
                                             @else
                                                 <p>nothing</p>
                                             @endif

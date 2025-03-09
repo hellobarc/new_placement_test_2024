@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OutsideAppointment\{
     AppointmentController
 };
-
+use App\Http\Controllers\Advisor\ChatController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(AppointmentController::class)->group(function(){
     Route::post('/get-form-data', 'formData')->name('form.Data');
 });
+
+Route::post('/chat', [ChatController::class, 'chat']);

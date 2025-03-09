@@ -15,6 +15,7 @@ use App\Models\ManageTest\{
     TestMultiSelector,
     TestPassage,
     TestAudio,
+    TestWritingQuestion,
 };
 use Session;
 use App\Helpers\Helpers;
@@ -145,6 +146,9 @@ class ExamController extends Controller
                 }elseif($question_type == 'multi-selector'){
                     $subQ = TestMultiSelector::where('test_question_id',  $question_id)->get();
                     $countMultiSelector += count($subQ);
+                }elseif($question_type == 'writing'){
+                    $subQ = TestWritingQuestion::where('test_question_id',  $question_id)->get();
+                    $countWritingQuestion += count($subQ);
                 }
                 $totalQuestionCount +=   $countMultipleChoice+
                                         $countRadio+
@@ -153,6 +157,7 @@ class ExamController extends Controller
                                         $countFillBlank+
                                         $countHeadingMatchingTrueOfNice+
                                         $countMultiSelector;
+                                        $countWritingQuestion;
                 $data[] = array(
                     'question_type'=> $question_type,
                     'question_instruction'=> $question_instruction,
@@ -415,6 +420,31 @@ class ExamController extends Controller
                     'fillblankans'     =>NULL, 
                     'submitted_ans'    =>$sub_ques_ans, 
                     'question_type'    =>$data['multi_selector_question_type'], 
+                    'is_correct'       =>$fill_correct, 
+                    'obtained_marks'   =>$fill_correct
+                ];
+                $this->testCreate($array, $segment_id, $student_id);
+            }
+        } 
+        elseif(isset($data['writing_question_type'])){
+            $writing_ques_id          = $data['writing_ques_id'];
+            foreach($writing_ques_id as $question_id){
+                $sub_ques_ans = 'wrting_question_'.$question_id;
+                $sub_ques_id_name = 'writing_sub_ques_id_'.$question_id;
+                if(isset($data[$sub_ques_ans])){
+                    
+                }else{
+                    $sub_ques_ans = 'not_answered';
+                }
+                $array = [
+                    'test_id'          =>$test_id,
+                    'module_id'        =>$module_id, 
+                    'exercise_id'      =>$exercise_id, 
+                    'question_id'      =>$question_id, 
+                    'sub_question_id'  =>$data[$sub_ques_id_name][0],
+                    'fillblankans'     =>NULL, 
+                    'submitted_ans'    =>$sub_ques_ans, 
+                    'question_type'    =>$data['writing_question_type'], 
                     'is_correct'       =>$fill_correct, 
                     'obtained_marks'   =>$fill_correct
                 ];
