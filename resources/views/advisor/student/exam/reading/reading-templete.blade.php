@@ -266,18 +266,50 @@
                                                 <!-- multiple selector section end -->
                                             @elseif($items['question_type'] == 'writing')
                                                 <!-- writing question section start -->
-                                                <div class="question_set_3">
-                                                    <input type="hidden" name="writing_ques_id[]" value="{{$items['question_id']}}">
+                                                <div class="question_set_3 mb-3">
+                                                    <input type="hidden" name="writing_ques_id" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="writing_question_type" value="{{$items['question_type']}}">
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
-                                                            <input type="hidden" name="writing_sub_ques_id_{{$question->test_question_id}}[]" value="{{$question->id}}">
+                                                            <input type="hidden" name="writing_sub_ques_id" value="{{$question->id}}">
                                                             <p class="check_box_font">{!!$question->question!!}</p>
-                                                            <textarea name="wrting_question_{{$question->test_question_id}}[]" id="" rows="10" class="w-100"></textarea>
+                                                            <textarea name="writing_question" id="" cols="30" rows="10" style="visibility:hidden">{!!$question->question!!}</textarea>
+                                                            {{-- <input type="hidden" name="writing_question[]" value="{!!$question->question!!}"> --}}
+                                                            {{-- <textarea name="writing_answer" id="word" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" style="resize: none;width: 100%;height: 600px;border: 2px solid #000;" placeholder="Start writing from here..."></textarea> --}}
+                                                            {{-- <textarea name="wrting_question_{{$question->test_question_id}}[]" rows="10" class="w-100" id="writing_word_count" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea> --}}
+                                                            <textarea name="wrting_question" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
+                                                            <p class="word-count"><span id="wordCount">0</span>/5 words</p>
                                                         @endforeach
                                                     @endif
                                                 </div>
                                                 <!-- writing question section end -->
+                                                <!-- task limited word modal start -->
+                                                <div class="modal fade" id="limitedWord" tabindex="-1" aria-labelledby="limitedWordLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="limitedWordLabel">⚠️ Your have already written more than 
+                                                                    <span class="text-danger">
+                                                                        180 Words
+                                                                    </span>
+                                                                </h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <ul>
+                                                                    <li>Do you want to spend more time in this task?</li>
+                                                                    <li>
+                                                                        You may not get enough time for the remaining task
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- task limited word modal end -->
                                             @else
                                                 <p>nothing</p>
                                             @endif
@@ -310,7 +342,34 @@
     </div>
 </section>
 <!-- main section end -->
+<script>
+        const textArea = document.getElementById("textArea");
+        const wordCountDisplay = document.getElementById("wordCount");
+        const maxWords = 125;
+        let warningShown = false; // ✅ Prevents multiple alerts
 
+        textArea.addEventListener("input", function(event) {
+            let words = this.value.trim().split(/\s+/);
+            let wordCount = words.filter(word => word.length > 0).length;
+
+            if (wordCount > maxWords) {
+                event.preventDefault();
+                let trimmedText = words.slice(0, maxWords).join(" ");
+                this.value = trimmedText + " "; // Avoids merging words
+
+                // ✅ Show warning alert only once
+                if (!warningShown) {
+                    $('#limitedWord').modal('show');
+                    // alert("⚠️ You have reached the 180-word limit!");
+                    warningShown = true;
+                }
+            } else {
+                warningShown = false; // Reset warning flag when below limit
+            }
+
+            wordCountDisplay.textContent = Math.min(wordCount, maxWords);
+        });
+</script>
 @endsection
 <script>
     var get_time ="{{$exam_time}}"
@@ -321,7 +380,10 @@
         var startingMinutes = 8*60;
     }else if(module_id == 4){
         var startingMinutes = 10*60;
+    }else if(module_id == 5){
+        var startingMinutes = 50*60;
     }
+        
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="{{asset('frontend/js/question_js.js')}}"></script>

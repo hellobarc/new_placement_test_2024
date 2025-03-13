@@ -37,8 +37,15 @@ use App\Models\{
 };
 use Mail;
 use App\Mail\StudentResultEmailNotification;
+use App\Services\OpenAIService;
 class ExamController extends Controller
 {
+    protected $openAIService;
+
+    public function __construct(OpenAIService $openAIService)
+    {
+        $this->openAIService = $openAIService;
+    }
     public function examSet($student_id)
     {
         $allExamSet = ManageTest::where('status', 'active')->get();
@@ -65,7 +72,8 @@ class ExamController extends Controller
     }
     public function startExam($exam_id, $segment_id, $module_id, $student_id)
     {
-        if($module_id == 5){
+       
+        if($module_id == 6){
             TestSubmissionLog::updateOrCreate(
                 [
                     'student_id'       => $student_id,
@@ -82,6 +90,7 @@ class ExamController extends Controller
         }else{
             $allModule = Module::where('name','!=','Speaking')->get();
             $exerciseDB = ManageTestSection::where('test_id', $exam_id)->where('module_id', $module_id)->get();
+            //dd($module_id);
             $total_segment = count($exerciseDB);
             $countExercise = count($exerciseDB);
             $totalQuestionCount = 0;
@@ -91,8 +100,10 @@ class ExamController extends Controller
                 session()->forget('test_session');
             }
             $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', auth()->user()->id)->where('test_id', $exam_id)->where('status', 'started')->first();
+             
             if($notsubmittedLog){
                 $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->where('module_id', $module_id)->sum('spent_time');
+                
                 if($activityLog){
                     $exam_time = $activityLog;
                 }else{
@@ -127,6 +138,7 @@ class ExamController extends Controller
                 $countFillBlank                 = 0;
                 $countHeadingMatchingTrueOfNice = 0;
                 $countMultiSelector             = 0;
+                $countWritingQuestion           = 0;
     
                 $subQ = [];
                 if($question_type == 'fill-blank'){
@@ -164,6 +176,7 @@ class ExamController extends Controller
                     'question_id'=> $question_id,
                     'sub-q' => $subQ,
                 );
+                
             }
             if(strtolower($module_name) == 'reading'){
                 $examPassage = TestPassage::where('section_id', $exerciseId)->first();
@@ -175,6 +188,7 @@ class ExamController extends Controller
             }else{
                 $testAudio = NULL;
             }
+            //dd($data);
             return view('advisor.student.exam.reading.reading-templete', compact('examPassage','testAudio',
             'data', 'exerciseId', 
             'exam_id', 'module_id', 
@@ -427,12 +441,14 @@ class ExamController extends Controller
             }
         } 
         elseif(isset($data['writing_question_type'])){
+            
             $writing_ques_id          = $data['writing_ques_id'];
-            foreach($writing_ques_id as $question_id){
-                $sub_ques_ans = 'wrting_question_'.$question_id;
-                $sub_ques_id_name = 'writing_sub_ques_id_'.$question_id;
-                if(isset($data[$sub_ques_ans])){
-                    
+            // foreach($writing_ques_id as $question_id){
+                $sub_ques_ans = $data['wrting_question'];
+                $sub_ques_id_name = $data['writing_sub_ques_id'];
+                
+                if(isset($sub_ques_ans)){
+                    $response = $this->openAIService->chat("Evaluate the following essay out of 10, I do not want to explain just wants to just number". " ".$sub_ques_ans);
                 }else{
                     $sub_ques_ans = 'not_answered';
                 }
@@ -440,21 +456,22 @@ class ExamController extends Controller
                     'test_id'          =>$test_id,
                     'module_id'        =>$module_id, 
                     'exercise_id'      =>$exercise_id, 
-                    'question_id'      =>$question_id, 
-                    'sub_question_id'  =>$data[$sub_ques_id_name][0],
-                    'fillblankans'     =>NULL, 
+                    'question_id'      =>$writing_ques_id, 
+                    'sub_question_id'  =>$sub_ques_id_name,
+                    'fillblankans'     =>$response, 
                     'submitted_ans'    =>$sub_ques_ans, 
                     'question_type'    =>$data['writing_question_type'], 
-                    'is_correct'       =>$fill_correct, 
-                    'obtained_marks'   =>$fill_correct
+                    'is_correct'       =>'yes', 
+                    'obtained_marks'   =>0,
                 ];
+                dd($array);
                 $this->testCreate($array, $segment_id, $student_id);
-            }
+            // }
         }
         
         if($segment_id < $count_exercise){
             if($data['minute'] ==0 && $data['second'] ==1){
-                if($module_id == 4){
+                if($module_id == 6){
                     TestSubmissionLog::updateOrCreate(
                         [
                             'student_id'       => $student_id,
