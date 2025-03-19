@@ -448,7 +448,7 @@ class ExamController extends Controller
                 $sub_ques_id_name = $data['writing_sub_ques_id'];
                 
                 if(isset($sub_ques_ans)){
-                    $response = $this->openAIService->chat("Evaluate the following essay out of 10, I do not want to explain just wants to just number". " ".$sub_ques_ans);
+                    $response = $this->openAIService->chat("Evaluate the following essay based on grammar and vocabulary. Provide only a numeric score out of 10. No explanation". " ".$sub_ques_ans);
                 }else{
                     $sub_ques_ans = 'not_answered';
                 }
