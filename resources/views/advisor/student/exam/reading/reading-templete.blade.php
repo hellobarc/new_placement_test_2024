@@ -272,9 +272,8 @@
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
                                                             <input type="hidden" name="writing_sub_ques_id" value="{{$question->id}}">
-                                                            <p class="check_box_font">{!!$question->question!!}</p>
-                                                            <textarea name="writing_question" id="" cols="30" rows="10" style="visibility:hidden">{!!$question->question!!}</textarea>
-                                                            {{-- <input type="hidden" name="writing_question[]" value="{!!$question->question!!}"> --}}
+                                                            <p class="check_box_font">{{$question->question}}</p>
+                                                            <input type="hidden" name="writing_question" value="{{$question->question}}">
                                                             {{-- <textarea name="writing_answer" id="word" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" style="resize: none;width: 100%;height: 600px;border: 2px solid #000;" placeholder="Start writing from here..."></textarea> --}}
                                                             {{-- <textarea name="wrting_question_{{$question->test_question_id}}[]" rows="10" class="w-100" id="writing_word_count" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea> --}}
                                                             <textarea name="wrting_question" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
@@ -377,11 +376,11 @@
     if(module_id == 1){
         var startingMinutes = 15*60;
     }else if(module_id == 2 || module_id == 3){
-        var startingMinutes = 8*60;
+        var startingMinutes = 10*60;
     }else if(module_id == 4){
         var startingMinutes = 10*60;
     }else if(module_id == 5){
-        var startingMinutes = 50*60;
+        var startingMinutes = 20*60;
     }
         
 </script>

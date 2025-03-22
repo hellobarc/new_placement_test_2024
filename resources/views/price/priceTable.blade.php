@@ -50,7 +50,7 @@
                             <div class="result-overall-container">
                                 <div class="result-overall">
                                     <div class="div-1">
-                                        <p class="p-1">Assessment Score: {{$all_module_marks}} out of 60</p>
+                                        <p class="p-1">Assessment Score: {{$all_module_marks}} out of 75</p>
                                     </div>
                                     <p class="fs-1 fw-bolder mb-3" style="color: #FFBB0D">CEFR: {{Helper::overall_rubricks($all_module_marks)}}</p>
                                     <div class="overall-score">

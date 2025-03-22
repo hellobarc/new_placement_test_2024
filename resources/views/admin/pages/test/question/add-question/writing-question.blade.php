@@ -13,9 +13,13 @@
                             @csrf
                             <input type="hidden" name="question_id" value="{{$questionId}}">
                             <input type="hidden" name="question_type" value="{{$questionType}}">
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="name" class="mb-2">Question <span class="text-danger">*</span></label>
-                                <textarea name="question" id="ck" cols="30" rows="5" class="form-control" placeholder="Question like this: text ##blank## text" required></textarea>
+                                @if($questionType == 'writing')
+                                    <input type="text" name="question" class="form-control" placeholder="write your question here" required>
+                                @else
+                                    <textarea name="question_second" id="ck" cols="30" rows="5" class="form-control" placeholder="Question like this: text ##blank## text" required></textarea>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="name" class="mb-2">Question Marks <span class="text-danger">*</span></label>

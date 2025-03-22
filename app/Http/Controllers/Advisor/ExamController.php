@@ -446,9 +446,9 @@ class ExamController extends Controller
             // foreach($writing_ques_id as $question_id){
                 $sub_ques_ans = $data['wrting_question'];
                 $sub_ques_id_name = $data['writing_sub_ques_id'];
-                
+                $writing_question = $data['writing_question'];
                 if(isset($sub_ques_ans)){
-                    $response = $this->openAIService->chat("Evaluate the following essay based on grammar and vocabulary. Provide only a numeric score out of 10. No explanation". " ".$sub_ques_ans);
+                    $response = $this->openAIService->chat("Evaluate the following essay based on grammar and vocabulary. The topic is: " .$writing_question. " ". "Provide only a numeric score out of 10. No explanation.". " "."'".$sub_ques_ans."'");
                 }else{
                     $sub_ques_ans = 'not_answered';
                 }
@@ -464,7 +464,7 @@ class ExamController extends Controller
                     'is_correct'       =>'yes', 
                     'obtained_marks'   =>0,
                 ];
-                dd($array);
+                //dd($array);
                 $this->testCreate($array, $segment_id, $student_id);
             // }
         }
@@ -582,8 +582,9 @@ class ExamController extends Controller
         $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
         $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
         $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $writing_essay_module = $this->sum_assessment_test($log_id->id, 5);
         $sum_writing_module = $sum_grammar_module+ $sum_vocabulary_module;
-        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module+$writing_essay_module;
         $count_reading_question = $this->count_test_question($log_id->test_id, 1);
         $count_listening_question = $this->count_test_question($log_id->test_id, 4);
         $count_grammar_question = $this->count_test_question($log_id->test_id, 2);
