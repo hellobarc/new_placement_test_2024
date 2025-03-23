@@ -942,6 +942,12 @@ progress::-webkit-progress-bar {
   height: 12px;
   border-radius: 0px !important;
 }
+.progress-bar-writing {
+  margin-top: 0.625rem;
+  width: 100%;
+  height: 12px;
+  border-radius: 0px !important;
+}
 
 .progress-bar-reading::-webkit-progress-value {
   background-color: #4CAF50;
@@ -957,6 +963,9 @@ progress::-webkit-progress-bar {
 
 .progress-bar-listening::-webkit-progress-value {
   background-color: #ffa84a;
+}
+.progress-bar-writing::-webkit-progress-value {
+  background-color: #004AAD;
 }
 progress::-webkit-progress-bar{
   background-color: #cfcfcf;

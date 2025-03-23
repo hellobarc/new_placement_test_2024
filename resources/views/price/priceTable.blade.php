@@ -224,6 +224,37 @@
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="modules">
                                             <div>
+                                                <span class="modules-span"><i class="fa-solid fa-book-open"></i> Reading</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_reading_module*100)/15)}}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="modules mt-2">
+                                            <div>
+                                                {{-- <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span> --}}
+                                                <span class="modules-span"><i class="fa-solid fa-spell-check"></i> Grammar</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="modules mt-2">
+                                            <div>
+                                                {{-- <span class="fw-bold mb-0">Vocabulary</span> --}}
+                                                <span class="modules-span"><i class="fa-solid fa-book"></i> Vocabulary</span>
+                                            </div>
+                                            <div class="d-flex justify-content-start">
+                                                <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
+                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="modules">
+                                            <div>
                                                 <span class="modules-span"><i class="fa-solid fa-headphones-simple"></i> Listening</span>
                                             </div>
                                             <div class="d-flex justify-content-start">
@@ -233,33 +264,11 @@
                                         </div>
                                         <div class="modules mt-4">
                                             <div>
-                                                <span class="modules-span"><i class="fa-solid fa-book-open"></i> Reading</span>
+                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
-                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_reading_module*100)/15)}}%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="modules">
-                                            <div>
-                                                {{-- <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span> --}}
-                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing (Grammar)</span>
-                                            </div>
-                                            <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
-                                                <span style="margin: 9px 0 0 6px;">{{number_format(($sum_grammar_module*100)/15)}}%</span>
-                                            </div>
-                                        </div>
-                                        <div class="modules mt-4">
-                                            <div>
-                                                {{-- <span class="fw-bold mb-0">Vocabulary</span> --}}
-                                                <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing (Vocabulary)</span>
-                                            </div>
-                                            <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
-                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_vocabulary_module*100)/15)}}%</span>
+                                                <progress class="progress-bar-writing" value="{{number_format(($writing_essay_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 9px 0 0 6px;">{{number_format(($writing_essay_module*100)/15)}}%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1682,13 +1691,15 @@
         let grammar_value = "{{$sum_grammar_module}}"
         let vocabulary_value = "{{$sum_vocabulary_module}}"
         let listening_value = "{{$sum_listening_module}}"
-        var xValues = ["Reading", "Grammar", "Vocabulary", "Listening"];
-        var yValues = [reading_value, grammar_value, vocabulary_value, listening_value];
+        let writing_value = "{{$writing_essay_module}}"
+        var xValues = ["Reading", "Grammar", "Vocabulary", "Listening", "Writing"];
+        var yValues = [reading_value, grammar_value, vocabulary_value, listening_value, writing_value];
         var barColors = [
             "#4CAF50",
             "#FF5733",
             "#FFC300",
             "#3498DB",
+            "#004AAD",
         ];
     
         new Chart("mark-analytics-pie-chart", {

@@ -447,8 +447,19 @@ class ExamController extends Controller
                 $sub_ques_ans = $data['wrting_question'];
                 $sub_ques_id_name = $data['writing_sub_ques_id'];
                 $writing_question = $data['writing_question'];
+                $writing_question_mark = $data['writing_mark'];
+                
                 if(isset($sub_ques_ans)){
-                    $response = $this->openAIService->chat("Evaluate the following essay based on grammar and vocabulary. The topic is: " .$writing_question. " ". "Provide only a numeric score out of 10. No explanation.". " "."'".$sub_ques_ans."'");
+                    $response = $this->openAIService->chat(
+                        "Evaluate the following essay based on grammar and vocabulary. The topic is: " . $writing_question . 
+                        ". Return ONLY a single numeric score out of " . $writing_question_mark . 
+                        ". DO NOT provide any explanation, comment, or extra text outside the JSON. Strickly Output JSON format: { \"score\": number, \"explanation\": \"If you have any explanation write here\" }. If you have any explanation, please write it in the explanation key ONLY. The topic answer is: '" . $sub_ques_ans . "'."
+                    );       
+                    
+                    
+                    $response_score =$this->extractScore($response);
+                    
+
                 }else{
                     $sub_ques_ans = 'not_answered';
                 }
@@ -462,7 +473,7 @@ class ExamController extends Controller
                     'submitted_ans'    =>$sub_ques_ans, 
                     'question_type'    =>$data['writing_question_type'], 
                     'is_correct'       =>'yes', 
-                    'obtained_marks'   =>0,
+                    'obtained_marks'   =>$response_score,
                 ];
                 //dd($array);
                 $this->testCreate($array, $segment_id, $student_id);
@@ -513,6 +524,12 @@ class ExamController extends Controller
         }else{
             echo 'Over ... segment finshied';
         }
+    }
+    private function extractScore($response) {
+        // Clean up any Markdown formatting
+        $clean = preg_replace('/```json|```/', '', trim($response));
+        $data = json_decode($clean, true);
+        return isset($data['score']) ? $data['score'] : null;
     }
     private function testCreate($array, $segment_id, $student_id)
     {
@@ -604,6 +621,7 @@ class ExamController extends Controller
         'sum_grammar_module', 
         'sum_vocabulary_module', 
         'sum_writing_module',
+        'writing_essay_module',
         'all_module_marks',
         'count_reading_question',
         'count_writing_question',

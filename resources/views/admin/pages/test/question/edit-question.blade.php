@@ -38,6 +38,7 @@
 						  <option value="heading-matching" {{ $find_data->question_type == 'heading-matching' ? 'selected' : '' }}>Heading Matching</option>
 						  <option value="true-of-nice" {{ $find_data->question_type == 'true-of-nic' ? 'selected' : '' }}>True Of Nice</option>
 						  <option value="multi-selector" {{ $find_data->question_type == 'multi-selector' ? 'selected' : '' }}>Multi Selector</option>
+						  <option value="writing" {{ $find_data->question_type == 'writing' ? 'selected' : '' }}>Writing</option>
 						</select>
 					</div>
 					<div class="mb-3">
