@@ -661,10 +661,55 @@ input.check_box{
   border-bottom: 2px solid #004AAD;
 }
 /* result page css start */
-.section-result-overview{
-  margin: 2rem;
+.result-page-heading-title{
+  border-radius: 4px;
+  background: linear-gradient(90deg, #203D68 0%, rgba(63, 121, 206, 0.86) 100%),url(../images/result-heading.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 40px 0;
 }
-
+.result-page-heading-title h3{
+    color: #f8f8f8;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 54px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 70px; /* 129.63% */
+}
+.section-result-overview{
+  margin: 2rem 0 0 0;
+}
+.result-previous{
+  border-radius: 4px;
+  border: 1px solid #A69898;
+  background-color: #fff;
+  color: #A69898;
+  padding: 10px 8px;
+  font-size: 18px;
+  width: 10%;
+}
+.result-previous:hover{
+  background-color: #A69898;
+  color: #fff;
+  transition: 0.8s ease-in-out;
+}
+.result-next{
+  border-radius: 4px;
+  border: 1px solid #004AAD;
+  background-color: #004AAD;
+  color: #f8f8f8;
+  padding: 10px 8px;
+  font-size: 18px;
+  width: 10%;
+}
+.result-next:hover{
+  border: 1px solid #A69898;
+  background-color: #A69898;
+  color: #fff;
+  transition: 0.8s ease-in-out;
+}
 .cancel-default-padding-left {
   padding-left: 0;
 }
@@ -794,22 +839,22 @@ input.check_box{
 }
 .result-overall-container {
   border-radius: 4px;
-  background: #4B79B6;
+  background: #fff;
   box-shadow: 0px 2px 14px 0px rgba(123, 124, 138, 0.08);
   padding: 1.3125rem 2.5rem;
 }
 .progress-module-section{
-  margin: 2rem;
+  margin: 2rem 0 0 0;
 }
 .aboard_inquire_section{
-  margin: 2rem;
+  margin: 2rem 0 0 0;
 }
 .result-overall .div-1 {
   
 }
 
 .result-overall .div-1 .p-1 {
-  color: #FEFEFE;
+  color: #414141;
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 600;
@@ -820,17 +865,17 @@ input.check_box{
 }
 .overall-score {
   border-radius: var(--Border-Radius-4-px, 0.25rem);
-  border: 1px solid #FBFBFB;
+  border: 1px solid #929292;
   width: 60%;
 }
 .mark-analysis_correct-answer{
-  margin: 2rem;
+  margin: 2rem 0 0 0;
 }
 .mark-analysis{
   padding: 2rem 2rem;
 }
 .overall-score p {
-  color: #FBFBFB;
+  color: #5C5C5C;
 
   font-family: Roboto;
   font-size: 1.2rem;
@@ -1119,7 +1164,7 @@ progress::-webkit-progress-bar{
   justify-content: space-between;
 }
 .achieved-course-section{
-  margin: 0 2rem;
+  margin: 1rem 0 0 0;
 }
 .achieved-course-section .your-score .icon{
   background-color: #F3AE2E;
