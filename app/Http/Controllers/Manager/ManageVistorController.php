@@ -68,4 +68,12 @@ class ManageVistorController extends Controller
         Helpers::AdvisorEventPushNotification($advisorId);
         return redirect()->route('manager.manage-change.advisor')->with('success','Student Assigned To Adviser');
     }
+    public function search(Request $request)
+    {
+        //$allData = VisitorLog::with('userInfo', 'totalUser', 'followUp')->orderBy('id', 'desc')->paginate(50);
+        $search = $request->input('search');
+        
+        $allData = VisitorLog::where('mobile', 'like', "%$search%")->orWhere('email','like', "%$search%")->with('userInfo', 'totalUser', 'followUp')->orderBy('id', 'desc')->paginate(10);
+        return view('manager.search', compact('allData'));
+    }
 }

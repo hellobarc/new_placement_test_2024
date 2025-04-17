@@ -196,7 +196,7 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/manage-change-advisor', 'manageChangeAdvisor')->name('manager.manage-change.advisor');
 
         Route::post('/manager-stud-log-change-advisor/{id}','changeAdvisor')->name('manager.change.advisor');
-
+        Route::get('/manage-visitor-search', 'search')->name('manager.visitor.search');
     });
 });
 /*------------------------------------------

@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card-background p-3">
-                        <h1 class="pb-2 text-center">All visitor list</h1>
+                        <h1 class="pb-2 text-center">Search Visitor</h1>
                         <div class="d-flex justify-content-end mb-3">
                             <form action="{{route('manager.visitor.search')}}" method="GET">
                                 @csrf

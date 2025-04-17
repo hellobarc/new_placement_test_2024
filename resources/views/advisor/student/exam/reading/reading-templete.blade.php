@@ -269,7 +269,7 @@
                                                 <div class="question_set_3 mb-3">
                                                     <input type="hidden" name="writing_ques_id" value="{{$items['question_id']}}">
                                                     <input type="hidden" name="writing_question_type" value="{{$items['question_type']}}">
-                                                    <p class="main-text">{!!$items['question_instruction']!!}</p>
+                                                    <p class="main-text" style="color: #f02828 !important;">{!!$items['question_instruction']!!}</p>
                                                     @if($items['sub-q'] != NULL)
                                                         @foreach ($items['sub-q'] as $question)
                                                             <input type="hidden" name="writing_sub_ques_id" value="{{$question->id}}">
@@ -278,7 +278,7 @@
                                                             <input type="hidden" name="writing_mark" value="{{$question->marks}}">
                                                             {{-- <textarea name="writing_answer" id="word" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" style="resize: none;width: 100%;height: 600px;border: 2px solid #000;" placeholder="Start writing from here..."></textarea> --}}
                                                             {{-- <textarea name="wrting_question_{{$question->test_question_id}}[]" rows="10" class="w-100" id="writing_word_count" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea> --}}
-                                                            <textarea name="wrting_question" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
+                                                            <textarea name="wrting_question" id="textArea" rows="10" class="w-100" onpaste="return false;" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
                                                             <p class="word-count"><span id="wordCount">0</span>/
                                                                 @if ($question->marks == 7)
                                                                     70

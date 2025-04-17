@@ -43,15 +43,20 @@
                     </div>
                     <div id="result-page-1">
                         <div class="section-result-overview">
-                            <div class="row">
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="candidate-info card-background">
-                                        <p class="assessment-title">Assessment Results</p>
-                                        <p class="name">Hello, {{$student_info->studentInfo->full_name}}</p>
-                                        <p style="margin: 5px 0 0 0; font-size: 1rem;">You have completed your 40-minute IELTS assessment test.</p>
+                            <div class="card-background">
+                                <div class="row">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                        {{-- <p class="assessment-title">Assessment Results</p> --}}
+                                        <div class="candidate-info">
+                                            <p class="name">Hello, {{$student_info->studentInfo->full_name}}</p>
+                                            <p style="margin: 5px 0 0 0; font-size: 1rem;">You have completed your 40-minute IELTS assessment test.</p>
+                                            <div class="div-1">
+                                                <p class="p-1">Score: {{$all_module_marks}} out of 75</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                {{-- <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="result-overall-container">
                                         <div class="result-overall">
                                             <div class="div-1">
@@ -90,20 +95,20 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                     <div class="card-background mt-4 py-5" id="result-page-2">
                         <div class="container">
-                            <p class="current-level-title">Common European Framework of Reference for Languages</p>
+                            <p class="current-level-title">Common European Framework of Reference for Languages (CEFR)</p>
                             <div class="row">
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_1" id="activeClass1">
-                                                <p class="fs-5 fw-bold">A1</p>
-                                                <h5 class="fw-bolder">Elementary</h5>
+                                            <div class="inner_box_top_1 text-center" id="activeClass1">
+                                                <p class="fs-1 fw-bold m-0">A1</p>
+                                                <h5 class="fw-bolder fs-6">Elementary</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -111,7 +116,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR A1</li>
+                                                    <li>Basic</li>
                                                     <li>IELTS 4.0</li>
                                                 </ul>
                                             </div>
@@ -121,9 +126,9 @@
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_2" id="activeClass2">
-                                                <p class="fs-5 fw-bold">A2</p>
-                                                <h5 class="fw-bolder">Pre-intermediate</h5>
+                                            <div class="inner_box_top_2 text-center" id="activeClass2">
+                                                <p class="fs-1 fw-bold m-0">A2</p>
+                                                <h5 class="fw-bolder fs-6">Pre-intermediate</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -131,7 +136,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR A2</li>
+                                                    <li>Basic</li>
                                                     <li>IELTS 4.5 - 5.0</li>
                                                 </ul>
                                             </div>
@@ -141,9 +146,9 @@
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_3" id="activeClass3">
-                                                <p class="fs-5 fw-bold">B1</p>
-                                                <h5 class="fw-bolder">Intermediate</h5>
+                                            <div class="inner_box_top_3 text-center" id="activeClass3">
+                                                <p class="fs-1 fw-bold m-0">B1</p>
+                                                <h5 class="fw-bolder fs-6">Intermediate</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -151,7 +156,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR B1</li>
+                                                    <li>Pre-IELTS</li>
                                                     <li>IELTS 5.0 - 5.5</li>
                                                 </ul>
                                             </div>
@@ -161,9 +166,9 @@
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_4" id="activeClass4">
-                                                <p class="fs-5 fw-bold">B2</p>
-                                                <h5 class="fw-bolder">Upper Intermediate</h5>
+                                            <div class="inner_box_top_4 text-center" id="activeClass4">
+                                                <p class="fs-1 fw-bold m-0">B2</p>
+                                                <h5 class="fw-bolder fs-6">Upper Intermediate</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -171,7 +176,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR B2</li>
+                                                    <li>IELTS</li>
                                                     <li>IELTS 6.0 - 6.5</li>
                                                 </ul>
                                             </div>
@@ -181,9 +186,9 @@
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_5" id="activeClass5">
-                                                <p class="fs-5 fw-bold">C1</p>
-                                                <h5 class="fw-bolder">Advanced</h5>
+                                            <div class="inner_box_top_5 text-center" id="activeClass5">
+                                                <p class="fs-1 fw-bold m-0">C1</p>
+                                                <h5 class="fw-bolder fs-6">Advanced</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -191,7 +196,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR C1</li>
+                                                    <li>Advanced</li>
                                                     <li>IELTS 7.0 - 7.5</li>
                                                 </ul>
                                             </div>
@@ -201,9 +206,9 @@
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                     <div class="full_box">
                                         <div class="box_header">
-                                            <div class="inner_box_top_6" id="activeClass6">
-                                                <p class="fs-5 fw-bold">C2</p>
-                                                <h5 class="fw-bolder">Proficient</h5>
+                                            <div class="inner_box_top_6 text-center" id="activeClass6">
+                                                <p class="fs-1 fw-bold m-0">C2</p>
+                                                <h5 class="fw-bolder fs-6">Proficient</h5>
                                             </div>
                                         </div>
                                         <div class="box_bind_class">
@@ -211,7 +216,7 @@
                                             <div class="inner_box_bottom">
                                                 <p class="fw-bold">Equivalent Levels</p>
                                                 <ul>
-                                                    <li>CEFR C2</li>
+                                                    <li>Advanced</li>
                                                     <li>IELTS 8.0+</li>
                                                 </ul>
                                             </div>
@@ -230,7 +235,7 @@
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="modules">
                                                 <div>
-                                                    <span class="modules-span"><i class="fa-solid fa-book-open"></i> Reading</span>
+                                                    <span class="modules-span">Reading</span>
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <progress class="progress-bar-reading" id="file" value="{{number_format(($sum_reading_module*100)/15)}}" max="100"></progress>
@@ -240,7 +245,7 @@
                                             <div class="modules mt-2">
                                                 <div>
                                                     {{-- <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span> --}}
-                                                    <span class="modules-span"><i class="fa-solid fa-spell-check"></i> Grammar</span>
+                                                    <span class="modules-span">Grammar</span>
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <progress class="progress-bar-grammar" id="file" value="{{number_format(($sum_grammar_module*100)/15)}}" max="100"></progress>
@@ -250,7 +255,7 @@
                                             <div class="modules mt-2">
                                                 <div>
                                                     {{-- <span class="fw-bold mb-0">Vocabulary</span> --}}
-                                                    <span class="modules-span"><i class="fa-solid fa-book"></i> Vocabulary</span>
+                                                    <span class="modules-span">Vocabulary</span>
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <progress class="progress-bar-vocabulary" id="file" value="{{number_format(($sum_vocabulary_module*100)/15)}}" max="100"> </progress>
@@ -261,7 +266,7 @@
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="modules">
                                                 <div>
-                                                    <span class="modules-span"><i class="fa-solid fa-headphones-simple"></i> Listening</span>
+                                                    <span class="modules-span">Listening</span>
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <progress class="progress-bar-listening" value="{{number_format(($sum_listening_module*100)/15)}}" max="100"></progress>
@@ -270,7 +275,7 @@
                                             </div>
                                             <div class="modules mt-4">
                                                 <div>
-                                                    <span class="modules-span"><i class="fa-solid fa-pen-to-square"></i> Writing</span>
+                                                    <span class="modules-span">Writing</span>
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <progress class="progress-bar-writing" value="{{number_format(($writing_essay_module*100)/15)}}" max="100"></progress>
@@ -291,7 +296,7 @@
                                     <table class="table table-bordered">
                                         <tr class="text-center">
                                             <th style="padding-left:20px;">Module</th>
-                                            <th style="padding-left:20px;">Right</th>
+                                            <th style="background-color: #9fff81; padding-left:20px;">Right</th>
                                             <th style="color:#fd1818; padding-left:20px;">Wrong</th>
                                             {{-- <th style="">Action</th> --}}
                                         </tr>
@@ -299,7 +304,7 @@
                                             <td class="fw-bold" style="padding: 14px 10px;">
                                                 Reading
                                             </td>
-                                            <td style="padding: 14px 10;">
+                                            <td style="padding: 14px 10; background-color: #9fff81;">
                                                 <span style="padding: 5px 21px; border-radius: 4px;">
                                                     @if (strlen($sum_reading_module) == 1)
                                                         0{{$sum_reading_module}}
@@ -325,7 +330,7 @@
                                             <td class="fw-bold" style="padding: 14px 10px;">
                                                 Grammar
                                             </td>
-                                            <td style="padding: 14px 10px;">
+                                            <td style="padding: 14px 10px; background-color: #9fff81;">
                                                 <span style="padding: 5px 21px; border-radius: 4px;">
                                                     @if (strlen($sum_grammar_module) == 1)
                                                         0{{$sum_grammar_module}}
@@ -351,7 +356,7 @@
                                             <td class="fw-bold" style="padding: 14px 10px;">
                                                 Vocabulary
                                             </td>
-                                            <td style="padding: 14px 10px;">
+                                            <td style="padding: 14px 10px; background-color: #9fff81;">
                                                 <span style="padding: 5px 21px; border-radius: 4px;">
                                                     @if (strlen($sum_vocabulary_module) == 1)
                                                         0{{$sum_vocabulary_module}}
@@ -374,10 +379,10 @@
                                             </td> --}}
                                         </tr>
                                         <tr class="text-center">
-                                            <td class="fw-bold" style="padding: 14px 10px;">
+                                            <td class="fw-bold" style="padding: 14px 10px; ">
                                                 Listening
                                             </td>
-                                            <td style="padding: 14px 10px;">
+                                            <td style="padding: 14px 10px; background-color: #9fff81;">
                                                 <span style="padding: 5px 21px; border-radius: 4px;">
                                                     @if (strlen($sum_listening_module) == 1)
                                                         0{{$sum_listening_module}}
@@ -450,7 +455,7 @@
                                         <div class="accordion-item">
                                           <h2 class="accordion-header">
                                             <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <i class="fa-solid fa-book-open"></i> <span class="mx-3">Reading</span>
+                                                <span class="mx-3">Reading</span>
                                             </button>
                                           </h2>
                                           <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -488,7 +493,7 @@
                                         <div class="accordion-item">
                                           <h2 class="accordion-header">
                                             <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <i class="fa-solid fa-pen-to-square"></i> <span class="mx-3">Writing</span>
+                                                <span class="mx-3">Grammar</span>
                                             </button>
                                           </h2>
                                           <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -517,38 +522,51 @@
                                                             </span>
                                                         @endif
                                                     </li>
-                                                    <li style="font-size: 16px !important;">
-                                                        @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
-                                                            <span>Cannot understand basice names and words.</span>
-                                                        @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
-                                                            <li>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Basic user</li>
-                                                        @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
-                                                            <span>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Pre-intermediate user.</span>
-                                                        @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
-                                                            <span>
-                                                                সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Intermediate user
-                                                            </span>
-                                                        @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
-                                                            <span>
-                                                                সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Upper intermediate user
-                                                            </span>
-                                                        @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
-                                                            <span>
-                                                                সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Advanced user
-                                                            </span>
-                                                        @endif
-                                                    </li>
                                                 </ul>
                                             </div>
                                           </div>
                                         </div>
                                         <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                              <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                  <span class="mx-3">Vocabulary</span>
+                                              </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                              <div class="accordion-body">
+                                                  <ul>
+                                                      <li style="font-size: 16px !important;">
+                                                          @if (Helper::module_rubricks($sum_vocabulary_module) == 'A-')
+                                                              <span>Cannot understand basice names and words.</span>
+                                                          @elseif (Helper::module_rubricks($sum_vocabulary_module) == 'A1')
+                                                              <li>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Basic user</li>
+                                                          @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'A2')
+                                                              <span>সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Pre-intermediate user.</span>
+                                                          @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B1')
+                                                              <span>
+                                                                  সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Intermediate user
+                                                              </span>
+                                                          @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'B2')
+                                                              <span>
+                                                                  সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Upper intermediate user
+                                                              </span>
+                                                          @elseif(Helper::module_rubricks($sum_vocabulary_module) == 'C1')
+                                                              <span>
+                                                                  সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Advanced user
+                                                              </span>
+                                                          @endif
+                                                      </li>
+                                                  </ul>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
                                           <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <i class="fa-solid fa-headphones-simple"></i> <span class="mx-3">Listening</span>
+                                            <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                <span class="mx-3">Listening</span>
                                             </button>
                                           </h2>
-                                          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <ul>
                                                     <li style="font-size: 16px !important;">
@@ -582,15 +600,27 @@
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                              <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                  <span class="mx-3">Writing</span>
+                                              </button>
+                                            </h2>
+                                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="aboard_inquire_section" id="result-page-6">
                         <div id="course-related-info">
-                            <div class="px-4 pt-3 pb-4 card-background">
-                                <table class="table table-bordered mt-3">
+                            <div class="px-4 pt-3 pb-5 card-background">
+                                {{-- <table class="table table-bordered mt-3 w-25">
                                     <thead>
                                         <th class="text-center">Current Score</th>
                                         <th class="text-center">Desired Score</th>
@@ -630,7 +660,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> --}}
                                 <div class="row">
                                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div style="">

@@ -853,9 +853,9 @@ input.check_box{
   
 }
 
-.result-overall .div-1 .p-1 {
-  color: #414141;
-  font-size: 1.2rem;
+.div-1 .p-1 {
+  color: #072f64;
+  font-size: 2.25rem;
   font-style: normal;
   font-weight: 600;
   margin-bottom: 0;
@@ -1085,12 +1085,11 @@ progress::-webkit-progress-bar{
 
 .candidate-info>.name {
   color: #272727;
-
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
-  margin: 0 0 0 0;
+  margin: 2rem 0 0 0;
 }
 
 .candidate-info>details {
@@ -1385,73 +1384,73 @@ progress::-webkit-progress-bar{
 
 .inner_box_top_1{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 100px;
   color:#fff
 }
 .inner_box_top_1_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 100px;
   color: #000;
 }
 .inner_box_top_2_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 120px;
   color: #000;
 }
 .inner_box_top_3_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 140px;
   color: #000;
 }
 .inner_box_top_4_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 160px;
   color: #000;
 }
 .inner_box_top_5_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 180px;
   color: #000;
 }
 .inner_box_top_6_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 200px;
   color: #000;
 }
 .inner_box_top_2{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 120px;
   color: #fff;
 }
 .inner_box_top_3{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 140px;
   color: #fff;
 }
 .inner_box_top_4{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 160px;
   color: #fff;
 }
 .inner_box_top_5{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 180px;
   color: #fff;
 }
 .inner_box_top_6{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 200px;
   color: #fff;
 }
@@ -1844,7 +1843,7 @@ progress::-webkit-progress-bar{
 }
 .course-level .inner_box_top_1{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 100px;
   color:#fff
 }
@@ -1856,61 +1855,61 @@ progress::-webkit-progress-bar{
 }
 .course-level .inner_box_top_2_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 120px;
   color: #000;
 }
 .course-level .inner_box_top_3_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 140px;
   color: #000;
 }
 .course-level .inner_box_top_4_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 160px;
   color: #000;
 }
 .course-level .inner_box_top_5_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 180px;
   color: #000;
 }
 .course-level .inner_box_top_6_another{
   background-color: #ffc107;
-  padding: 20px;
+  padding: 10px 20px;
   height: 200px;
   color: #000;
 }
 .course-level .inner_box_top_2{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 120px;
   color: #fff;
 }
 .course-level .inner_box_top_3{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 140px;
   color: #fff;
 }
 .course-level .inner_box_top_4{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 160px;
   color: #fff;
 }
 .course-level .inner_box_top_5{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 180px;
   color: #fff;
 }
 .course-level .inner_box_top_6{
   background-color: #284664;
-  padding: 20px;
+  padding: 10px 20px;
   height: 200px;
   color: #fff;
 }
