@@ -451,9 +451,12 @@ class ExamController extends Controller
                 
                 if(isset($sub_ques_ans)){
                     $response = $this->openAIService->chat(
-                        "Evaluate the following essay based on grammar and vocabulary. The topic is: " . $writing_question . 
-                        ". Return ONLY a single numeric score out of " . $writing_question_mark . 
-                        ". DO NOT provide any explanation, comment, or extra text outside the JSON. Strickly Output JSON format: { \"score\": number, \"explanation\": \"If you have any explanation write here\" }. If you have any explanation, please write it in the explanation key ONLY. The topic answer is: '" . $sub_ques_ans . "'."
+                        "Evaluate the following essay based on grammar, vocabulary, and relevance to the given topic. The topic is: '" . $writing_question . "
+                        '. Return ONLY a single numeric score out of " . $writing_question_mark . ". 
+                        Provide a brief, listed explanation covering grammar accuracy, vocabulary usage, and how well the essay relates to the topic. 
+                        Output must strictly follow JSON format: { \"score\": number, \"explanation\": \"explanation write here\" }. 
+                        Include the explanation ONLY inside the 'explanation' key. The essay to evaluate is: '" . $sub_ques_ans . "'."
+
                     );       
                     
                     
@@ -615,7 +618,8 @@ class ExamController extends Controller
         $multiSelectorUnAnswer = $this->unAnsweredMultiSelector($log_id->id);
         $unAnswer = $radioMultipleUnAnswer+$dropDownUnAnswer+$fillBlankUnAnswer+$multiSelectorUnAnswer;
         $in_correct_answer = 60-($all_module_marks+$unAnswer);
-        //dd($unAnswer);
+        $get_writing_ans = $this->writing_ans_explanation($log_id->id, 5);
+        //dd($get_writing_ans);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',
         'sum_listening_module', 
         'sum_grammar_module', 
@@ -625,7 +629,23 @@ class ExamController extends Controller
         'all_module_marks',
         'count_reading_question',
         'count_writing_question',
-        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info', 'priviliged_price'));
+        'count_listening_question','correct_answer', 'in_correct_answer', 'unAnswer', 'student_info', 'priviliged_price', 'get_writing_ans'));
+    }
+    private function writing_ans_explanation($log_id, $module_id)
+    {
+        $activeLog = TestSubmissionActivityLog::where('submission_log_id', $log_id)->where('module_id', $module_id)->get();
+        $sum_valve = [];
+        foreach($activeLog as $rows){
+            $sum_valve []= TestSubmission::where('activity_log_id', $rows->id)->first();
+        }
+        $main_value = [];
+        foreach($sum_valve as $items){
+            $clean = preg_replace('/```json|```/', '', trim($items->answered_text));
+            $data = json_decode($clean, true);
+            $main_value [] = $data['explanation'];
+            
+        }
+        return $main_value;
     }
     public function resultCardPage($student_id)
     {

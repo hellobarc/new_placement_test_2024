@@ -608,7 +608,10 @@
                                             </h2>
                                             <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    
+                                                   <ul>
+                                                        <li>{{$get_writing_ans[0]}}</li>
+                                                        <li>{{$get_writing_ans[1]}}</li>
+                                                   </ul>
                                                 </div>
                                             </div>
                                         </div>
