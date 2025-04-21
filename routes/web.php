@@ -221,6 +221,9 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/student-Info/{student_id}/{step}', 'studentDetails')->name('student.Details');
         Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('advisor.student.Details.update');
         Route::get('/student/all-info/{student_id}', 'studentAllDetails')->name('student.all.Details');
+        Route::post('/get-district-data', 'GetDistricts');
+        Route::post('/get-upazilla-data', 'GetUpazillas');
+        Route::post('/get-thana-data', 'GetThana');
     });
     Route::controller(ExamController::class)->group(function () {
         Route::get('/exam-set/{student_id}', 'examSet')->name('student.exam.set');

@@ -328,8 +328,8 @@
                                             <label for="date_of_birth">Date of Birth<span class="text-danger fw-bold">*</span></label>
                                             <input name="date_of_birth" placeholder="Full Name" id="date_of_birth" value="{{$getDetails->date_of_birth == NULL ? 'N/A': $getDetails->date_of_birth}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                        <div class="form-group mt-3">
-                                            <label for="email"> Location <span class="text-danger fw-bold">*</span></label><br>
+                                        {{-- <div class="form-group mt-3">
+                                            <label for="email"> Current Location <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="location" name="location" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
                                                 <option value="" selected="selected" disabled="disabled">-- select one --</option>
                                                 <option value="Uttara" {{$getDetails->location == 'Uttara' ? 'selected': ' '}}> Uttara</option>
@@ -347,11 +347,38 @@
                                                 <option value="Savar" {{$getDetails->location == 'Savar' ? 'selected': ' '}}>  Savar </option>
                                                 <option value="Other" {{$getDetails->location == 'Other' ? 'selected': ' '}}>  Other </option>
                                             </select>
+                                        </div> --}}
+                                        <div class="form-group mt-3">
+                                            <label for="address">Division<span class="text-danger fw-bold">*</span></label>
+                                            {{-- <input name="address" type="text" placeholder="Full Name" id="address" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
+                                            <select id="division" type="division" class="@error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="division" onchange="divisionSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">বিভাগ নির্বাচন করুন</option>
+                                                @foreach ($allDivisions as $item)
+                                                    <option value="{{$item->name}}">{{ $item->bn_name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <label for="address">Address<span class="text-danger fw-bold">*</span></label>
-                                            <input name="address" type="text" placeholder="Full Name" id="address" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <label for="address">District<span class="text-danger fw-bold">*</span></label>
+                                            <select id="district" type="district" class="@error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="district" onchange="districtSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">জেলা নির্বাচন করুন</option>
+                                            </select>
                                         </div>
+                                        <div class="form-group mt-3">
+                                            <label for="address">Upazilla<span class="text-danger fw-bold">*</span></label>
+                                            <select id="upazilla" type="upazilla" class="@error('upazilla') is-invalid @enderror" name="upazilla" value="{{ old('upazilla') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="upazilla" onchange="upazillaSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">উপজেলা নির্বাচন করুন</option>
+                                            </select>
+                                        </div>
+                                        <div id="upazilla_selected">
+                                            <div class="form-group mt-3">
+                                                <label for="address">Thana<span class="text-danger fw-bold">*</span></label>
+                                                <select id="thana" type="thana" class="@error('thana') is-invalid @enderror" name="thana" value="{{ old('thana') }}" placeholder="আপনার বর্তমান এডেন্স"  autocomplete="thana" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                    <option value="">থানা নির্বাচন করুন</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="form-group mt-3">
                                             <label for="blood_group"> Blood Group <span class="text-danger fw-bold">*</span></label><br>
                                             <input name="blood_group" type="text" placeholder="Blood group" id="blood_group" value="{{$getDetails->blood_group == NULL ? 'N/A': $getDetails->blood_group}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
@@ -455,5 +482,78 @@
     if($areaofStrenghtVocabulary == 1){
         document.getElementById("area_of_strenght_vocabulary").checked = true;
     }
+</script>
+<script>
+    window.onload = function(){
+        document.getElementById('upazilla_selected').style.display = "none";
+    }
+    var allMetroSadars = "{{ $allMetropolitanThanas }}";
+    allMetroSadars = JSON.parse(allMetroSadars.replace(/&quot;/g, '"'));
+
+    async function divisionSelected(){
+        let division = document.getElementById('division').value;
+        // console.log(division);
+
+        let resData = await axios.post('/get-district-data',{
+            params : {
+                divisionName : division
+            }
+        });
+        // console.log(resData.data.districts);
+        document.getElementById('district').innerHTML = ``;
+        document.getElementById('district').insertAdjacentHTML('beforeend', `<option value="">জেলা নির্বাচন করুন</option>`);
+        resData.data.districts.forEach(element => {
+            // console.log(element.name);
+            document.getElementById('district').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`);
+        });
+    }
+    async function districtSelected(){
+        let district = document.getElementById('district').value;
+        // console.log(district);
+
+        let resData = await axios.post('/get-upazilla-data',{
+            params : {
+                districtName : district
+            }
+        });
+
+        // console.log(resData.data.upazillas);
+        document.getElementById('upazilla').innerHTML = ``;
+        document.getElementById('upazilla').insertAdjacentHTML('beforeend', `<option value="">উপজেলা নির্বাচন করুন</option>`);
+        resData.data.upazillas.forEach(element => {
+            // console.log(element.name);
+            document.getElementById('upazilla').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`);
+        });
+    }
+    async function getThanas(upazilla){
+        let thanaData = await axios.post('/get-thana-data',{
+                    params : {
+                        upazillaName : upazilla
+                    }
+                });
+
+        document.getElementById('upazilla_selected').style.display = 'block';
+        document.getElementById('thana').innerHTML = ``;
+        document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="">থানা নির্বাচন করুন</option>`);
+        thanaData.data.thanas.forEach(element => {
+            document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`)
+        });
+    
+    }
+    function upazillaSelected(){
+        let upazilla = document.getElementById('upazilla').value;
+        console.log('hello thana', upazilla);
+
+        allMetroSadars.forEach(element => {        
+            if(element.upazilla.name == upazilla){
+                getThanas(upazilla);
+                console.log('list asche');
+            }
+            else{
+                document.getElementById('upazilla_selected').style.display = 'none';
+            }
+        });
+    }
+    
 </script>
 @endsection

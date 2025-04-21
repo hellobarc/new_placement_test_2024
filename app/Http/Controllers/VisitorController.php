@@ -10,7 +10,11 @@ use App\Models\{
     VisitorInfo,
     User,
     VisitorLog,
-    FollowUp
+    FollowUp,
+    Upazilla,
+    District,
+    Division,
+    MetropolitanAreaThana,
 };
 use Auth;
 use DB;
@@ -91,7 +95,49 @@ class VisitorController extends Controller
         $area_of_improve = json_decode($getDetails->topics_improvement);
         $area_of_strength = json_decode($getDetails->topics_strengths);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
-        return view('advisor.student.studentDetails', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'step', 'area_of_improve', 'area_of_strength'));
+        $allDivisions = Division::all();
+        $allDistricts = District::all();
+        $allUpazillas = Upazilla::all();
+        $allMetropolitanThanas = MetropolitanAreaThana::select('upazilla_id')->with('Upazilla')->distinct()->get();
+        return view('advisor.student.studentDetails', compact('getDetails', 
+        'expected_country_arr', 
+        'school_goes_arr', 
+        'total_enroll_course_arr', 
+        'step', 
+        'area_of_improve', 
+        'area_of_strength',
+        'allDivisions',
+        'allDistricts',
+        'allUpazillas',
+        'allMetropolitanThanas'));
+    }
+    public function GetDistricts(Request $request){
+        $divisionName = $request->params['divisionName'];
+        $divisionId = Division::where('name', $divisionName)->first();
+        $DistrictsUnderDivision = District::where('division_id', $divisionId->id)->get();
+
+        return response()->json([
+            'districts' => $DistrictsUnderDivision
+        ]);
+    }
+    public function GetUpazillas(Request $request){
+        $districtName = $request->params['districtName'];
+        $districtId = District::where('name', $districtName)->first();
+        $UpazillaUnderDistrict = Upazilla::where('district_id', $districtId->id)->get();
+
+        return response()->json([
+            'upazillas' => $UpazillaUnderDistrict
+        ]);
+    }
+    public function GetThana(Request $request){
+        // dd($request->input());
+        $upazillaName = $request->params['upazillaName'];
+        $upazillaId = Upazilla::where('name', $upazillaName)->first();
+        $thanasUnderUpazilla = MetropolitanAreaThana::where('upazilla_id', $upazillaId->id)->get();
+
+        return response()->json([
+            'thanas' => $thanasUnderUpazilla
+        ]);
     }
     public function studentAllDetails($student_id){
         $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
@@ -100,7 +146,20 @@ class VisitorController extends Controller
         $area_of_improve = json_decode($getDetails->topics_improvement);
         $area_of_strength = json_decode($getDetails->topics_strengths);
         $total_enroll_course_arr = json_decode($getDetails->total_enroll_course);
-        return view('advisor.student.student-all-details', compact('getDetails', 'expected_country_arr', 'school_goes_arr', 'total_enroll_course_arr', 'area_of_improve', 'area_of_strength'))->with('message', 'Student all information uploaded successfully');
+        $allDivisions = Division::all();
+        $allDistricts = District::all();
+        $allUpazillas = Upazilla::all();
+        $allMetropolitanThanas = MetropolitanAreaThana::get();
+        return view('advisor.student.student-all-details', compact('getDetails', 
+        'expected_country_arr', 
+        'school_goes_arr', 
+        'total_enroll_course_arr', 
+        'area_of_improve', 
+        'area_of_strength',
+        'allDivisions',
+        'allDistricts',
+        'allUpazillas',
+        'allMetropolitanThanas'))->with('message', 'Student all information uploaded successfully');
     } 
     public function studentDetailsUpdate(Request $request,$id)
     {
@@ -159,8 +218,11 @@ class VisitorController extends Controller
                 'education' =>$request->education,
                 'organization' =>$request->organization,
                 'date_of_birth' =>$request->date_of_birth,
-                'location' =>$request->location,
-                'address' =>$request->address,
+                'location' =>NULL,
+                'division' =>$request->division,
+                'district' =>$request->district,
+                'upazilla' =>$request->upazilla,
+                'thana' =>$request->thana,
                 'blood_group'=> $request->blood_group,
                 'emergency_number'=> $request->emergency_number,
                 'nid_passport_number'=> $request->nid_passport_number,

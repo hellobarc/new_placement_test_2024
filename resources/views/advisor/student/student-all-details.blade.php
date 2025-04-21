@@ -284,7 +284,7 @@
                                             <label for="date_of_birth">Date of Birth<span class="text-danger fw-bold">*</span></label>
                                             <input name="date_of_birth" placeholder="Full Name" id="date_of_birth" value="{{$getDetails->date_of_birth == NULL ? 'N/A': $getDetails->date_of_birth}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                        <div class="form-group mt-3">
+                                        {{-- <div class="form-group mt-3">
                                             <label for="email"> Location <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="location" name="location" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
                                                 <option value="" selected="selected" disabled="disabled">-- select one --</option>
@@ -303,10 +303,43 @@
                                                 <option value="Savar" {{$getDetails->location == 'Savar' ? 'selected': ' '}}>  Savar </option>
                                                 <option value="Other" {{$getDetails->location == 'Other' ? 'selected': ' '}}>  Other </option>
                                             </select>
+                                        </div> --}}
+                                        <div class="form-group mt-3">
+                                            <label for="address">Division<span class="text-danger fw-bold">*</span></label>
+                                            {{-- <input name="address" type="text" placeholder="Full Name" id="address" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
+                                            <select id="division" type="division" class="@error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="division" onchange="divisionSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">বিভাগ নির্বাচন করুন</option>
+                                                @foreach ($allDivisions as $item)
+                                                    <option value="" {{$item->name == $getDetails->division?'selected':''}}>{{ $item->bn_name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <label for="address">Address<span class="text-danger fw-bold">*</span></label>
-                                            <input name="address" type="text" placeholder="Full Name" id="address" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <label for="address">District<span class="text-danger fw-bold">*</span></label>
+                                            <select id="district" type="district" class="@error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="district" onchange="districtSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">জেলা নির্বাচন করুন</option>
+                                                @foreach ($allDistricts as $item)
+                                                    <option value="" {{$item->name == $getDetails->district?'selected':''}}>{{ $item->bn_name}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label for="address">Upazilla<span class="text-danger fw-bold">*</span></label>
+                                            <select id="upazilla" type="upazilla" class="@error('upazilla') is-invalid @enderror" name="upazilla" value="{{ old('upazilla') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="upazilla" onchange="upazillaSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">উপজেলা নির্বাচন করুন</option>
+                                                @foreach ($allUpazillas as $item)
+                                                    <option value="" {{$item->name == $getDetails->upazilla?'selected':''}}>{{ $item->bn_name}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label for="address">Thana<span class="text-danger fw-bold">*</span></label>
+                                                <select id="thana" type="thana" class="@error('thana') is-invalid @enderror" name="thana" value="{{ old('thana') }}" placeholder="আপনার বর্তমান এডেন্স"  autocomplete="thana" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="">থানা নির্বাচন করুন</option>
+                                                @foreach ($allMetropolitanThanas as $item)
+                                                    <option value="" {{$item->name == $getDetails->thana?'selected':''}}>{{ $item->bn_name}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="blood_group"> Blood Group <span class="text-danger fw-bold">*</span></label><br>
