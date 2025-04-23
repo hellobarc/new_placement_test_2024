@@ -37,7 +37,7 @@
             </div>
             {{-- <button onclick="openFullscreen();">Click Full Screen</button> --}}
             <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <div style="height: 80vh;">
+                <div style="height: 85vh;">
                     <div class="result-page-heading-title">
                         <h3 id="result-title-heading">Overall Result</h3>
                     </div>
@@ -404,6 +404,32 @@
                                                 <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
                                             </td> --}}
                                         </tr>
+                                        <tr class="text-center">
+                                            <td class="fw-bold" style="padding: 14px 10px; ">
+                                                Writing
+                                            </td>
+                                            <td style="padding: 14px 10px; background-color: #9fff81;">
+                                                <span style="padding: 5px 21px; border-radius: 4px;">
+                                                    @if (strlen($writing_essay_module) == 1)
+                                                        0{{$writing_essay_module}}
+                                                    @else
+                                                        {{$writing_essay_module}}
+                                                    @endif
+                                                </span>
+                                            </td>
+                                            <td style="padding: 14px 10px;">
+                                                <span style="padding: 5px 21px; border-radius: 4px; color:#fd1818;">
+                                                    @if (strlen(15-$writing_essay_module) == 1)
+                                                        0{{15-$writing_essay_module}}
+                                                    @else
+                                                        {{15-$writing_essay_module}}
+                                                    @endif
+                                                </span>
+                                            </td>
+                                            {{-- <td style="padding: 14px 10px;">
+                                                <a href="#" style="text-decoration: none; color:#004AAD; font-weight:700;">View</a>
+                                            </td> --}}
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -608,10 +634,36 @@
                                             </h2>
                                             <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                   <ul>
-                                                        <li>{{$get_writing_ans[0]}}</li>
-                                                        <li>{{$get_writing_ans[1]}}</li>
-                                                   </ul>
+                                                    <p class="fw-bold fs-4">First Writing</p>
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <th class="text-center">Criteria</th>
+                                                            <th class="text-center">Comments</th>
+                                                            <th class="text-center">Score</th>
+                                                        </thead>
+                                                        @foreach ($get_writing_ans[0] as $item)
+                                                            <tr>
+                                                                <td>{{$item['Criteria']}}</td>
+                                                                <td>{{$item['Comments']}}</td>
+                                                                <td>{{$item['Score']}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
+                                                    <p class="fw-bold fs-4">Second Writing</p>
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <th class="text-center">Criteria</th>
+                                                            <th class="text-center">Comments</th>
+                                                            <th class="text-center">Score</th>
+                                                        </thead>
+                                                        @foreach ($get_writing_ans[1] as $item)
+                                                            <tr>
+                                                                <td>{{$item['Criteria']}}</td>
+                                                                <td>{{$item['Comments']}}</td>
+                                                                <td>{{$item['Score']}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
@@ -1252,7 +1304,7 @@
                                                         <td style="background-color: #f5f3f8; cursor: pointer; color:#232323;" class="td-total" id="a1a2CoursePriceBtn" onclick="coursePackageTdPrice('a1-a2')">A1 - A2</td>
                                                         <td style="background-color: #fff;" class="td-price">
                                                             <div id="courseA1A2TdPrice1">
-                                                            {{number_format(Helper::courseBundlePrice('A1-A2')['regular_price'])}}/-
+                                                                {{number_format(Helper::courseBundlePrice('A1-A2')['regular_price'])}}/-
                                                             </div>
                                                             <input type="hidden" name="" id="courseA1A2TdPrice1Input" value="{{Helper::courseBundlePrice('A1-A2')['regular_price']}}">
                                                         </td>
@@ -1262,6 +1314,11 @@
                                                                     {{number_format(Helper::courseBundlePrice('A1-A2')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('A1-A2')['discount_price'])}}/-
+                                                                    @if(number_format(Helper::courseBundlePrice('A1-A2')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('A1-A2')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('A1-A2')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseA1A2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A1-A2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A1-A2')['regular_price'] : Helper::courseBundlePrice('A1-A2')['discount_price']}}">
@@ -1281,6 +1338,11 @@
                                                                     {{number_format(Helper::courseBundlePrice('A1-B2')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('A1-B2')['discount_price'])}}/-
+                                                                    @if(number_format(Helper::courseBundlePrice('A1-B2')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('A1-B2')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('A1-B2')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseA1B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A1-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A1-B2')['regular_price'] : Helper::courseBundlePrice('A1-B2')['discount_price']}}">
@@ -1300,6 +1362,12 @@
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['discount_price'])}}/-
+                                                                    
+                                                                    @if(number_format(Helper::courseBundlePrice('A2-B2')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('A2-B2')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('A2-B2')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseA2B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']}}">
@@ -1319,6 +1387,12 @@
                                                                     {{number_format(Helper::courseBundlePrice('A2-C1')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('A2-C1')['discount_price'])}}/-
+
+                                                                    @if(number_format(Helper::courseBundlePrice('A2-C1')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('A2-C1')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('A2-C1')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseA2C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-C1')['regular_price'] : Helper::courseBundlePrice('A2-C1')['discount_price']}}">
@@ -1338,6 +1412,12 @@
                                                                     {{number_format(Helper::courseBundlePrice('B1-B2')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('B1-B2')['discount_price'])}}/-
+
+                                                                    @if(number_format(Helper::courseBundlePrice('B1-B2')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('B1-B2')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('B1-B2')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseB1B2TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B1-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B1-B2')['regular_price'] : Helper::courseBundlePrice('B1-B2')['discount_price']}}">
@@ -1357,6 +1437,12 @@
                                                                     {{number_format(Helper::courseBundlePrice('B1-C1')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('B1-C1')['discount_price'])}}/-
+
+                                                                    @if(number_format(Helper::courseBundlePrice('B1-C1')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('B1-C1')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('B1-C1')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseB1C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B1-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B1-C1')['regular_price'] : Helper::courseBundlePrice('B1-C1')['discount_price']}}">
@@ -1376,6 +1462,12 @@
                                                                     {{number_format(Helper::courseBundlePrice('B2-C1')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('B2-C1')['discount_price'])}}/-
+
+                                                                    @if(number_format(Helper::courseBundlePrice('B2-C1')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('B2-C1')['discount_percentage']) == NULL)
+
+                                                                    @else
+                                                                        <span class="ms-4">({{number_format(Helper::courseBundlePrice('B2-C1')['discount_percentage'])}}%)</span>
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                             <input type="hidden" name="" id="courseB2C1TdDiscountPrice1Input" value="{{Helper::courseBundlePrice('B2-C1')['discount_price'] == 'N/A'? Helper::courseBundlePrice('B2-C1')['regular_price'] : Helper::courseBundlePrice('B2-C1')['discount_price']}}">
@@ -1557,6 +1649,7 @@
                                                         <form action="{{route('student.total.enrolled course')}}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="student_id" id="" value="{{$studentId}}">
+                                                            <input type="hidden" name="placement_test_score" id="" value="{{$all_module_marks}}">
                                                             <div id="enrolled_course_stu">
         
                                                             </div>
@@ -1565,6 +1658,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="p-4 result-card">
+                                        <div class="d-flex justify-content-between">
+                                            {{-- <a href="{{route('student.result.card')}}">Print</a> --}}
+                                            {{-- <a href="{{route('student.email', ['student_id'=>$studentId])}}">Send Mail</a> --}}
+                                            <a href="{{route('student.result.result.page', $studentId)}}">Print Result</a>
                                         </div>
                                     </div>
                                 </div>

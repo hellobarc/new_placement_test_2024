@@ -199,6 +199,7 @@ class Helpers {
             'regular_price'     =>$data->price,
             'discount_price'    =>$data->discount_price,
             'priviliged_price'  =>$data->priviliged_price,
+            'discount_percentage'  =>$data->discount_percentage,
         ];
         return $arr;
     }

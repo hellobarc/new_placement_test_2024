@@ -451,11 +451,37 @@ class ExamController extends Controller
                 
                 if(isset($sub_ques_ans)){
                     $response = $this->openAIService->chat(
-                        "Evaluate the following essay based on grammar, vocabulary, and relevance to the given topic. The topic is: '" . $writing_question . "
-                        '. Return ONLY a single numeric score out of " . $writing_question_mark . ". 
-                        Provide Segmented explanation covering (Grammar, Vocabulary, coherence and cohesions) and how well the essay relates to the topic. 
-                        Output must strictly follow JSON format: { \"score\": number, \"explanation\": \"explanation write here\" }. 
-                        Include the explanation ONLY inside the 'explanation' key. The essay to evaluate is: '" . $sub_ques_ans . "'."
+                        "Evaluate the following essay based on the following criteria: Grammar & Sentence Structure, Vocabulary, Coherence & Cohesion, and Topic Relevance. 
+                        The topic is: '" . $writing_question . "'. Return ONLY a single numeric score out of " . $writing_question_mark . ". 
+                        Provide a segmented explanation in JSON table format, using this exact structure for each criterion:
+
+                        [
+                            {
+                                \"Criteria\": \"Grammar & Sentence Structure\",
+                                \"Comments\": \"Your comment here\",
+                                \"Score\": \"x/10\"
+                            },
+                            {
+                                \"Criteria\": \"Vocabulary\",
+                                \"Comments\": \"Your comment here\",
+                                \"Score\": \"x/10\"
+                            },
+                            {
+                                \"Criteria\": \"Coherence & Cohesion\",
+                                \"Comments\": \"Your comment here\",
+                                \"Score\": \"x/10\"
+                            },
+                            {
+                                \"Criteria\": \"Topic Relevance\",
+                                \"Comments\": \"Your comment here\",
+                                \"Score\": \"x/10\"
+                            }
+                        ]
+
+                        Wrap the entire output in this strict JSON format:
+                        { \"score\": number, \"explanation\": explanation_table_array }
+
+                        Only include the segmented table inside the 'explanation' key. The essay to evaluate is: '" . $sub_ques_ans . "'."
 
                     );       
                     

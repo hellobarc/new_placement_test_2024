@@ -86,11 +86,11 @@ body{
     /* width: 10px; */
     /* width: 21px; */
     border-radius: 500%;
-    padding: 0px 6px;
+    padding: 2px 9px;
     position: absolute;
     font-size: 13px;
-    top: 10%;
-    right: 1.5%;
+    top: 5%;
+    right: 3.5%;
 }
 /* Price card */
 .background{
@@ -1615,8 +1615,8 @@ progress::-webkit-progress-bar{
   margin: 0 0 1.625rem 0;
 }
 .result-card a{
-  background-color: #004AAD;
-  color: #f8f8f8;
+  border: 1px solid #004AAD;
+  color: #004AAD;
   font-weight: 600;
   padding: 10px 35px;
   font-size: 1.125rem;

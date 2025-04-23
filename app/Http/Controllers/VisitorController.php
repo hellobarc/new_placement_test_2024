@@ -88,7 +88,7 @@ class VisitorController extends Controller
     } 
 
 
-    public function studentDetails($student_id, $step){
+    public function studentDetails($student_id, $step, $pagination_page){
         $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $expected_country_arr = json_decode($getDetails->expected_country);
         $school_goes_arr = json_decode($getDetails->school_goes);
@@ -109,7 +109,7 @@ class VisitorController extends Controller
         'allDivisions',
         'allDistricts',
         'allUpazillas',
-        'allMetropolitanThanas'));
+        'allMetropolitanThanas', 'pagination_page'));
     }
     public function GetDistricts(Request $request){
         $divisionName = $request->params['divisionName'];

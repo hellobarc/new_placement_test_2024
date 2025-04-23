@@ -403,7 +403,7 @@
                                     <!-- button -->
                                     <div class="d-flex justify-content-center mt-4">
                                         @if ($step == 1)
-                                        <a href="{{route('advisor.home')}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
+                                        <a href="{{route('advisor.home?page='.$pagination_page)}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
                                         @else
                                         <a href="{{route('student.Details', ['student_id'=>$getDetails->visitor_log_id, 'step'=>$step-1])}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Previous</a>
                                         @endif

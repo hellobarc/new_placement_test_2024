@@ -83,7 +83,7 @@ class HomeController extends Controller
         ->whereNot('purpose_of_visit','ielts_registration')
         ->whereNot('status', 'declined')
         ->orderBy('id', 'desc')
-        ->paginate(10);
+        ->paginate(25);
 
         $notificationCount = Helpers::AdvisorNotification($advisorID);
         return view('advisor.advisorHome', compact('getData','notificationCount'));

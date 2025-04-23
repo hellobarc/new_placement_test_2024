@@ -198,6 +198,9 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::post('/manager-stud-log-change-advisor/{id}','changeAdvisor')->name('manager.change.advisor');
         Route::get('/manage-visitor-search', 'search')->name('manager.visitor.search');
     });
+    Route::controller(ExamController::class)->group(function () {
+        Route::get('manager-get/student/exam-result/{student_id}', 'examResult')->name('manager-get.student.exam.result');
+    });
 });
 /*------------------------------------------
 --------------------------------------------
@@ -206,7 +209,7 @@ All Advisor Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/advisor/home', 'advisorHome')->name('advisor.home');
+        Route::get('/advisor/home?page='.$number, 'advisorHome')->name('advisor.home');
         Route::get('/student-data', 'getStudentData')->name('student.data');
         Route::get('/price-list/{id}', 'priceList')->name('price.List');
         Route::get('/student-followup-edit-view/{id}', 'followUpEditView')->name('followUPEdit.View');
@@ -218,7 +221,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
         Route::post('/studen-status-update',  'adivserUpdateStudentStatus')->name('status.update.adviser');
         Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
-        Route::get('/student-Info/{student_id}/{step}', 'studentDetails')->name('student.Details');
+        Route::get('/student-Info/{student_id}/{step}/{pagination_page}', 'studentDetails')->name('student.Details');
         Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('advisor.student.Details.update');
         Route::get('/student/all-info/{student_id}', 'studentAllDetails')->name('student.all.Details');
         Route::post('/get-district-data', 'GetDistricts');

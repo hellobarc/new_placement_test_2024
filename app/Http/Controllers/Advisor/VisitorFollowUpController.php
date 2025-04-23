@@ -12,8 +12,21 @@ use App\Models\{
     CourseBundle,
     VisitorInfo,
 };
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Log;
+
 class VisitorFollowUpController extends Controller
 {
+    private $api_cros_url;
+    private Client $client;
+    
+    public function __construct()
+    {
+        $this->api_cros_url = env('API_CROS_URL', 'http://barcportal.com/api');
+        $this->client = new Client();
+    }
     public function followup($studentId){
         $advisorID = Auth::user()->id;
 
@@ -38,8 +51,8 @@ class VisitorFollowUpController extends Controller
         $admission_status = $request->input('admission_status');
         $currentFollowUpDate = date('Y-m-d');
         $nextFollowUpDate = $request->input('next_follow_up_date');
-
-        FollowUp::create([
+    
+        FollowUp::updateOrCreate(['student_id' => $studentId],[
             'student_id' => $studentId,
             'adviser_id' => $adviserID,
             'remarks' => $remarks,
@@ -51,8 +64,6 @@ class VisitorFollowUpController extends Controller
         return redirect()->route('advisor.home')->with('success', 'Data Saved Successfully');
 
     }
-
-
     public function followUpEditView($id){
         $data = FollowUp::find($id);
         return view('advisor.student.follow-up-edit', compact('data'));
@@ -92,7 +103,12 @@ class VisitorFollowUpController extends Controller
         $currentFollowUpDate = date('Y-m-d');
         $nextFollowUpDate = $request->input('next_follow_up_date');
         $adviserID = Auth::user()->id;
-        FollowUp::updateOrCreate(['id'=>$id],[
+        //dd($request->student_id);
+        FollowUp::updateOrCreate(
+            [
+                'student_id'=>$request->student_id
+            ],
+            [
             'student_id' => $request->student_id,
             'adviser_id' => $adviserID,
             'remarks' => $remarks,
@@ -115,17 +131,50 @@ class VisitorFollowUpController extends Controller
     {
         //dd($request->all());
         $enrolled_course = $request->total_enrolled_course;
+        
         if($enrolled_course == null){
-            return redirect()->route('advisor.home')->withErrors('Courses are not selected ');
+            return redirect()->route('advisor.home')->withErrors('Courses are not selected');
         }else{
-            $student_id = $request->student_id;
-            VisitorInfo::updateOrCreate([
-                    'visitor_log_id' => $student_id,
-                ],
-                [
-                    'total_enroll_course' => json_encode($enrolled_course),
+            try{
+                $student_id = $request->student_id;
+                
+    
+                VisitorInfo::updateOrCreate([
+                        'visitor_log_id' => $student_id,
+                    ],
+                    [
+                        'total_enroll_course' => json_encode($enrolled_course),
+                    ]);
+
+                $student_info = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
+
+                $response = $this->client->post("{$this->api_cros_url}/store/student/placement-test",[
+                    'json' => [
+                        "full_name"=>$student_info->studentInfo->full_name,
+                        "email"=>$student_info->studentInfo->email,
+                        "date_of_birth"=>$student_info->date_of_birth,
+                        "desired_score"=>$student_info->expected_score,
+                        "placement_test_score"=>$request->placement_test_score,
+                        "contact_number"=>$student_info->studentInfo->mobile,
+                        "emergency_contact"=>$student_info->emergency_number,
+                        "address"=>$student_info->division." ".$student_info->district." ".$student_info->upazilla." ".$student_info->thana,
+                        "parent_name"=>NULL,
+                        "parent_phone"=>$student_info->studentInfo->mobile,
+                        "parent_type"=>'Gardian',
+                        "current_registered_course"=>$enrolled_course[0],
+                        "total_enrolled_course"=>json_encode($enrolled_course),
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                    ]
                 ]);
-            return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
+
+                return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
+            }catch (GuzzleException $e) {
+                Log::error("bKash Token Error: " . $e->getMessage());
+                return null;
+            }
         }
     }
 }

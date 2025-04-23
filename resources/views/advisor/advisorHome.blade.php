@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #f8f8f8;">
     <div class="row">
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 px-sm-2 px-0" style="background: #072F64">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">
-            <div class="card p-4 shadow-sm border-none" style="margin: 20px 20px !important;">
+            <div class="card-background p-4 shadow-sm border-none" style="margin: 0 0 0 0 !important;">
                 <div class="d-flex justify-content-between">
                     <div class="">
                         <form action="{{route('visitor.search')}}" method="GET">
@@ -56,6 +56,7 @@
                     
                 </div>
                 @include('flash-message')
+                {{"pagination page number" . $getData->currentPage()}}
                 <table class="table table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
                         <th class="adviserDasHomeTh">SL No</th>
@@ -64,7 +65,7 @@
                         <th class="adviserDasHomeTh">Purpose of Visit</th>
                         <th class="adviserDasHomeTh">Enrolled Course</th>
                         <th class="adviserDasHomeTh">Status</th>
-                        <th class="adviserDasHomeTh">Visit Date</th>
+                        <th class="adviserDasHomeTh">Visit Day</th>
                         <th class="adviserDasHomeTh">Visit Branch</th>
                         <th class="adviserDasHomeTh">Action</th>
                     </thead>
@@ -97,7 +98,7 @@
                                                 <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
                                             @endif
                                         @endif
-                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
+                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
                                         @if (Helper::followUpStatus($item->id) == 'admitted')
                                             <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
