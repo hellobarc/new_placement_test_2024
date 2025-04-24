@@ -27,7 +27,7 @@ class VisitorFollowUpController extends Controller
         $this->api_cros_url = env('API_CROS_URL', 'http://barcportal.com/api');
         $this->client = new Client();
     }
-    public function followup($studentId){
+    public function followup($studentId,$pagination_page){
         $advisorID = Auth::user()->id;
 
         $getData = VisitorLog::where('assign_advisor', $advisorID)
@@ -36,7 +36,7 @@ class VisitorFollowUpController extends Controller
         ->whereNot('status', 'declined')
         ->orderBy('id', 'desc')
         ->paginate(10);
-        return view('advisor.student.follow-up', compact('getData', 'studentId'));
+        return view('advisor.student.follow-up', compact('getData', 'studentId','pagination_page'));
     }
     public function storeFollowUp(Request $request,$student_id){
         // dd($request);
@@ -61,7 +61,7 @@ class VisitorFollowUpController extends Controller
             'next_follow_up_date' => $nextFollowUpDate
         ]);
 
-        return redirect()->route('advisor.home')->with('success', 'Data Saved Successfully');
+        return redirect()->route('advisor.home',['page' => request('page', $request->pagination_page)])->with('success', 'Data Saved Successfully');
 
     }
     public function followUpEditView($id){
@@ -130,7 +130,25 @@ class VisitorFollowUpController extends Controller
     public function studentTotalEnrolledCourse(Request $request)
     {
         //dd($request->all());
-        $enrolled_course = $request->total_enrolled_course;
+        
+        if($request->total_enrolled_course){
+            $enrolled_course = $request->total_enrolled_course;
+        }else{
+            $package_course = $request->total_enrolled_package_course;
+            if($package_course == 'a1-b2'){
+                $enrolled_course = ['a1','a2','b1','b2'];
+            }elseif($package_course == 'a2-b2'){
+                $enrolled_course = ['a2','b1','b2'];
+            }elseif($package_course == 'a2-c1'){
+                $enrolled_course = ['a2','b1','b2','c1'];
+            }elseif($package_course == 'b1-b2'){
+                $enrolled_course = ['b1','b2'];
+            }elseif($package_course == 'b1-c1'){
+                $enrolled_course = ['b1','b2','c1'];
+            }elseif($package_course == 'b2-c1'){
+                $enrolled_course = ['b2','c1'];
+            }
+        }
         
         if($enrolled_course == null){
             return redirect()->route('advisor.home')->withErrors('Courses are not selected');
@@ -169,11 +187,13 @@ class VisitorFollowUpController extends Controller
                         'Content-Type' => 'application/json',
                     ]
                 ]);
-
+                
                 return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
             }catch (GuzzleException $e) {
+                dd($e->getMessage());
                 Log::error("bKash Token Error: " . $e->getMessage());
                 return null;
+
             }
         }
     }

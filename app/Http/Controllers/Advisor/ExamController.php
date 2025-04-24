@@ -488,7 +488,12 @@ class ExamController extends Controller
                     
                     $response_score =$this->extractScore($response);
                     
-
+                    if($response_score == null){
+                        $response_score_final = 0;
+                    }else{
+                        $response_score_final =$this->extractScore($response);
+                    }
+                    
                 }else{
                     $sub_ques_ans = 'not_answered';
                 }
@@ -502,7 +507,7 @@ class ExamController extends Controller
                     'submitted_ans'    =>$sub_ques_ans, 
                     'question_type'    =>$data['writing_question_type'], 
                     'is_correct'       =>'yes', 
-                    'obtained_marks'   =>$response_score,
+                    'obtained_marks'   =>$response_score_final,
                 ];
                 //dd($array);
                 $this->testCreate($array, $segment_id, $student_id);

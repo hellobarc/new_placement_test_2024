@@ -54,6 +54,7 @@
                         @include('flash-message')
                         <form action="{{ route('store.followUP', $studentId ) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="pagination_page" value="{{$pagination_page}}">
                             <div class="form-group">
                                 <label for="addmission" class="fw-bold">Admission Status</label>
                                 <select name="admission_status" id="admission" class="form-control" required>

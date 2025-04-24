@@ -165,6 +165,7 @@ class VisitorController extends Controller
     {
         //dd($request->all());
         $step = $request->step;
+        $pagination_page = $request->pagination_page;
         if($step == 1){
             $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
                 'full_name'                 => $request->full_name,
@@ -172,7 +173,7 @@ class VisitorController extends Controller
                 'mobile'                    => $request->contact_number,
                 'purpose_of_visit'          => $request->purpose_of_visit,
             ]);
-        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>2]);
+        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>2, 'pagination_page'=>$pagination_page]);
         }elseif($step == 2){
             if($request->how_you_know == 'student_reference'){
                 $refer_stu_name = $request->refer_stu_name;
@@ -193,7 +194,7 @@ class VisitorController extends Controller
                 'refer_batch_name' => $refer_batch_name,
                 'specific_course' => $request->type_course,
             ]);
-            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>3]);
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>3, 'pagination_page'=>$pagination_page]);
         }elseif($step == 3){
             VisitorInfo::updateOrCreate([
                 'id' => $id,
@@ -208,7 +209,7 @@ class VisitorController extends Controller
                 'topics_strengths' => json_encode($request->topics_strengths),
                 'first_current_level' => $request->your_current_level,
             ]);
-            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>4]);
+            return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>4, 'pagination_page'=>$pagination_page]);
         }elseif($step == 4){
             VisitorInfo::updateOrCreate([
                 'id' => $id,

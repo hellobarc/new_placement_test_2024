@@ -10,10 +10,10 @@
                             <a href="{{route('advisor.home')}}" class="text-decoration-none text-dark">Dashboard</a>
                         </span>
                         <span style="font-size: 12px;"><i class="fa-solid fa-angle-right"></i></span>
-                        <span>Visitor Information</span>
+                        <span>Visitor Information </span>
                     </div>
                     <div>
-                        <a href="{{route('advisor.home')}}" class="text-decoration-none text-dark"><i class="fa-solid fa-arrow-left"></i> Previous Page</a>
+                        <a href="{{route('advisor.home', ['page' => request('page', $pagination_page)])}}" class="text-decoration-none text-dark"><i class="fa-solid fa-arrow-left"></i> Previous Page</a>
                     </div>
                 </div>
                 <div style="" class="mb-5">
@@ -76,6 +76,7 @@
                                     @include('flash-message')
                                     <input type="hidden" name="student_id" id="" value="{{$getDetails->visitor_log_id}}">
                                     <input type="hidden" name="step" id="" value="{{$step}}">
+                                    <input type="hidden" name="pagination_page" value="{{$pagination_page}}">
                                     @if ($step == 1)
                                         <!-- purpose of ielts -->
                                         <div class="form-group mt-3">
@@ -403,9 +404,12 @@
                                     <!-- button -->
                                     <div class="d-flex justify-content-center mt-4">
                                         @if ($step == 1)
-                                        <a href="{{route('advisor.home?page='.$pagination_page)}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
+                                        <a href="{{ route('advisor.home', ['page' => request('page', $pagination_page)]) }}"
+                                            style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;">
+                                            <i class="fa-solid fa-arrow-left-long"></i> Back Home
+                                         </a>
                                         @else
-                                        <a href="{{route('student.Details', ['student_id'=>$getDetails->visitor_log_id, 'step'=>$step-1])}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Previous</a>
+                                        <a href="{{route('student.Details', ['student_id'=>$getDetails->visitor_log_id, 'step'=>$step-1, 'pagination_page'=>$pagination_page])}}" style="text-decoration: none; color:#A1A1A1; border:1px solid #B6B6B6; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Previous</a>
                                         @endif
                                         <button type="submit" class="btn text-white ms-2 px-4" style="background-color: #32327B; ">Next <i class="fa-solid fa-arrow-right-long"></i></button>
                                     </div>

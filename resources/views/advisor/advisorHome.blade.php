@@ -104,7 +104,7 @@
                                         @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
                                             <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
                                         @else
-                                            <a href="{{route('visitor.follow-up', $item->id)}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
+                                            <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
                                         @endif
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">

@@ -209,7 +209,7 @@ All Advisor Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:advisor'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/advisor/home?page='.$number, 'advisorHome')->name('advisor.home');
+        Route::get('/advisor/home', 'advisorHome')->name('advisor.home');
         Route::get('/student-data', 'getStudentData')->name('student.data');
         Route::get('/price-list/{id}', 'priceList')->name('price.List');
         Route::get('/student-followup-edit-view/{id}', 'followUpEditView')->name('followUPEdit.View');
@@ -242,7 +242,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/visitor-search', 'search')->name('visitor.search');
     });
     Route::controller(VisitorFollowUpController::class)->group(function(){
-        Route::get('/follow-up/{studentId}', 'followup')->name('visitor.follow-up');
+        Route::get('/follow-up/{studentId}/{pagination_page}', 'followup')->name('visitor.follow-up');
         Route::post('/student-follow-up/{id}',  'storeFollowUp')->name('store.followUP');
         Route::get('/follow-up-list', 'followuplist')->name('visitor.follow-up.list');
         Route::get('/follow-up-edit/{id}', 'followUpEditView')->name('visitor.follow-up.edit');

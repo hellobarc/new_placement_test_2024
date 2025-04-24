@@ -20,9 +20,10 @@
                                 <li style="font-size: 1rem;">Grammar</li>
                                 <li style="font-size: 1rem;">Vocabulary</li>
                                 <li style="font-size: 1rem;">Listening</li>
+                                <li style="font-size: 1rem;">Writing</li>
                             </ul>
                             <p class="mx-4 h5">Each part have 15 question</p>
-                            <p class="exam-time">Time: 15 + 8 + 8 + 10 = 40 Minutes</p>
+                            <p class="exam-time">Time: <br>15 + 10 + 10 + 10 + 20 = 65 Minutes</p>
                             <div class="text-center px-3">
                                 @if (Helper::testStatus($student_id, Auth::user()->id, $exam->id) != NULL)
                                     @if (Helper::testStatus($student_id, Auth::user()->id, $exam->id)->status == 'completed')
