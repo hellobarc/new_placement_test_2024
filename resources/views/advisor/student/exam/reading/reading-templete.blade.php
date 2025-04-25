@@ -382,7 +382,7 @@
     var get_time ="{{$exam_time}}"
     let module_id = "{{$module_id}}"
     if(module_id == 1){
-        var startingMinutes = 15*60;
+        var startingMinutes = 10*60;
     }else if(module_id == 2 || module_id == 3){
         var startingMinutes = 10*60;
     }else if(module_id == 4){

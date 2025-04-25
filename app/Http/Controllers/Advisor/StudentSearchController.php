@@ -14,7 +14,7 @@ class StudentSearchController extends Controller
         $search = $request->input('search');
         $advisorID = Auth::user()->id;
         $notificationCount = Helpers::AdvisorNotification($advisorID);
-        $searchData = VisitorLog::where('assign_advisor', $advisorID)->where('mobile', 'like', "%$search%")->orWhere('email','like', "%$search%")->get();
+        $searchData = VisitorLog::where('assign_advisor', $advisorID)->where('mobile', 'like', "%$search%")->orWhere('email','like', "%$search%")->paginate(10);
         return view('advisor.student.search', compact('searchData', 'notificationCount'));
     }
 }

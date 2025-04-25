@@ -23,7 +23,7 @@
                                 <li style="font-size: 1rem;">Writing</li>
                             </ul>
                             <p class="mx-4 h5">Each part have 15 question</p>
-                            <p class="exam-time">Time: <br>15 + 10 + 10 + 10 + 20 = 65 Minutes</p>
+                            <p class="exam-time">Time: <br>10 + 10 + 10 + 10 + 20 = 60 Minutes</p>
                             <div class="text-center px-3">
                                 @if (Helper::testStatus($student_id, Auth::user()->id, $exam->id) != NULL)
                                     @if (Helper::testStatus($student_id, Auth::user()->id, $exam->id)->status == 'completed')

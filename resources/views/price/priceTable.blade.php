@@ -634,36 +634,40 @@
                                             </h2>
                                             <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    <p class="fw-bold fs-4">First Writing</p>
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <th class="text-center">Criteria</th>
-                                                            <th class="text-center">Comments</th>
-                                                            <th class="text-center">Score</th>
-                                                        </thead>
-                                                        @foreach ($get_writing_ans[0] as $item)
-                                                            <tr>
-                                                                <td>{{$item['Criteria']}}</td>
-                                                                <td>{{$item['Comments']}}</td>
-                                                                <td>{{$item['Score']}}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </table>
-                                                    <p class="fw-bold fs-4">Second Writing</p>
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <th class="text-center">Criteria</th>
-                                                            <th class="text-center">Comments</th>
-                                                            <th class="text-center">Score</th>
-                                                        </thead>
-                                                        @foreach ($get_writing_ans[1] as $item)
-                                                            <tr>
-                                                                <td>{{$item['Criteria']}}</td>
-                                                                <td>{{$item['Comments']}}</td>
-                                                                <td>{{$item['Score']}}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </table>
+                                                    @if($get_writing_ans == 'nothing')
+                                                        <p class="fw-bold text- danger fs-4">Not answered the writing</p>
+                                                    @else
+                                                        <p class="fw-bold fs-4">First Writing</p>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <th class="text-center">Criteria</th>
+                                                                <th class="text-center">Comments</th>
+                                                                <th class="text-center">Score</th>
+                                                            </thead>
+                                                            @foreach ($get_writing_ans[0] as $item)
+                                                                <tr>
+                                                                    <td>{{$item['Criteria']}}</td>
+                                                                    <td>{{$item['Comments']}}</td>
+                                                                    <td>{{$item['Score']}}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                        <p class="fw-bold fs-4">Second Writing</p>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <th class="text-center">Criteria</th>
+                                                                <th class="text-center">Comments</th>
+                                                                <th class="text-center">Score</th>
+                                                            </thead>
+                                                            @foreach ($get_writing_ans[1] as $item)
+                                                                <tr>
+                                                                    <td>{{$item['Criteria']}}</td>
+                                                                    <td>{{$item['Comments']}}</td>
+                                                                    <td>{{$item['Score']}}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
