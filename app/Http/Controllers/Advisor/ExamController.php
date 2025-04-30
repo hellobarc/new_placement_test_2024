@@ -444,12 +444,12 @@ class ExamController extends Controller
             
             $writing_ques_id          = $data['writing_ques_id'];
             // foreach($writing_ques_id as $question_id){
-                $sub_ques_ans = $data['wrting_question'];
-                $sub_ques_id_name = $data['writing_sub_ques_id'];
                 $writing_question = $data['writing_question'];
+                $sub_ques_id_name = $data['writing_sub_ques_id'];
+                $writing_answer = $data['wrting_answer'];
                 $writing_question_mark = $data['writing_mark'];
                 
-                if(isset($sub_ques_ans)){
+                if($writing_answer != NULL){
                     $response = $this->openAIService->chat(
                         "Evaluate the following essay based on the following criteria: Grammar & Sentence Structure, Vocabulary, Coherence & Cohesion, and Topic Relevance. 
                         The topic is: '" . $writing_question . "'. Return ONLY a single numeric score out of " . $writing_question_mark . ". 
@@ -481,7 +481,7 @@ class ExamController extends Controller
                         Wrap the entire output in this strict JSON format:
                         { \"score\": number, \"explanation\": explanation_table_array }
 
-                        Only include the segmented table inside the 'explanation' key. The essay to evaluate is: '" . $sub_ques_ans . "'."
+                        Only include the segmented table inside the 'explanation' key. The essay to evaluate is: '" . $writing_answer . "'."
 
                     );       
                     
@@ -495,8 +495,11 @@ class ExamController extends Controller
                     }
                     
                 }else{
-                    $sub_ques_ans = 'not_answered';
+                    $response = "Not Answered";
+                    $writing_answer = 'not_answered';
+                    $response_score_final = 0;
                 }
+                //dd($writing_question);
                 $array = [
                     'test_id'          =>$test_id,
                     'module_id'        =>$module_id, 
@@ -504,7 +507,7 @@ class ExamController extends Controller
                     'question_id'      =>$writing_ques_id, 
                     'sub_question_id'  =>$sub_ques_id_name,
                     'fillblankans'     =>$response, 
-                    'submitted_ans'    =>$sub_ques_ans, 
+                    'submitted_ans'    =>$writing_answer, 
                     'question_type'    =>$data['writing_question_type'], 
                     'is_correct'       =>'yes', 
                     'obtained_marks'   =>$response_score_final,
@@ -671,9 +674,14 @@ class ExamController extends Controller
         }
         $main_value = [];
         foreach($sum_valve as $items){
-            $clean = preg_replace('/```json|```/', '', trim($items->answered_text));
-            $data = json_decode($clean, true);
-            $main_value [] = $data['explanation'];
+            if($items->answered_text == 'Not Answered'){
+                $main_value [] = 'Not Answered';
+            }else{
+                $clean = preg_replace('/```json|```/', '', trim($items->answered_text));
+                $data = json_decode($clean, true);
+                $main_value [] = $data['explanation'];
+            }
+          
             
         }
         return $main_value;
@@ -686,8 +694,9 @@ class ExamController extends Controller
         $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
         $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
         $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $writing_essay_module = $this->sum_assessment_test($log_id->id, 5);
         $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
-        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module+$writing_essay_module;
         
         return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'sum_writing_module', 'student_info'));
     }
@@ -896,8 +905,9 @@ class ExamController extends Controller
         $sum_listening_module = $this->sum_assessment_test($log_id->id, 4);
         $sum_grammar_module = $this->sum_assessment_test($log_id->id, 2);
         $sum_vocabulary_module = $this->sum_assessment_test($log_id->id, 3);
+        $writing_essay_module = $this->sum_assessment_test($log_id->id, 5);
         $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
-        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module;
+        $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module+$writing_essay_module;
         $level = Helpers::overall_rubricks($all_module_marks);
         return view('advisor.student.exam.exam-completed', compact('level', 'stu_name'));
     }

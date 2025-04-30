@@ -56,7 +56,6 @@
                     
                 </div>
                 @include('flash-message')
-                {{"pagination page number" . $getData->currentPage()}}
                 <table class="table table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
                         <th class="adviserDasHomeTh">SL No</th>

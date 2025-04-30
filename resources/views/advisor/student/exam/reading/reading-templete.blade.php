@@ -104,7 +104,8 @@
                                     @if ($testAudio != NULL)
                                         <h4 class="fw-bold pt-2 pb-2">Part {{$segment_id}}</h4>
                                         <audio controls>
-                                            <source src="{{asset('admin/files/uploads/test-audio/'. $testAudio->audio)}}" type="audio/mpeg">
+                                            {{-- <source src="{{asset('admin/files/uploads/test-audio/'. $testAudio->audio)}}" type="audio/mpeg"> --}}
+                                            <source src="{{$testAudio->audio}}" type="audio/mpeg">
                                         </audio>
                                     @else
                                     @endif
@@ -278,7 +279,7 @@
                                                             <input type="hidden" name="writing_mark" value="{{$question->marks}}">
                                                             {{-- <textarea name="writing_answer" id="word" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" style="resize: none;width: 100%;height: 600px;border: 2px solid #000;" placeholder="Start writing from here..."></textarea> --}}
                                                             {{-- <textarea name="wrting_question_{{$question->test_question_id}}[]" rows="10" class="w-100" id="writing_word_count" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea> --}}
-                                                            <textarea name="wrting_question" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
+                                                            <textarea name="wrting_answer" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
                                                             <p class="word-count"><span id="wordCount">0</span>/
                                                                 @if ($question->marks == 7)
                                                                     70
@@ -297,7 +298,7 @@
                                                             <div class="modal-header">
                                                                 <h1 class="modal-title fs-5" id="limitedWordLabel">⚠️ Your have already written more than 
                                                                     <span class="text-danger">
-                                                                        180 Words
+                                                                        80 Words
                                                                     </span>
                                                                 </h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
