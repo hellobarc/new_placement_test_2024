@@ -8,7 +8,7 @@
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mt-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-house"></i> Dashboard</span>
-                        
+
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
@@ -64,7 +64,7 @@
                                             </div>
                                             <p class="fs-1 fw-bolder mb-3" style="color: #6CD414">CEFR: {{Helper::overall_rubricks($all_module_marks)}}</p>
                                             <div class="overall-score">
-                                                <p>Equivalent Band Score: 
+                                                <p>Equivalent Band Score:
                                                     @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                                         4.0
                                                     @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -81,17 +81,17 @@
                                             </div>
                                             <p class="mt-3 fs-5 text-light mb-1">
                                                 @if (Helper::overall_rubricks($all_module_marks) == 'A1')
-                                                    <span style="color: #DB1B24">Elementory</span>    
+                                                    <span style="color: #DB1B24">Elementory</span>
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
-                                                    <span style="color: #DB1B24">Pre-intermediate</span>    
+                                                    <span style="color: #DB1B24">Pre-intermediate</span>
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'B1')
-                                                    <span style="color: #DB1B24">Intermediate</span> 
+                                                    <span style="color: #DB1B24">Intermediate</span>
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'B2')
-                                                    <span style="color: #DB1B24"> Upper Intermediate</span> 
+                                                    <span style="color: #DB1B24"> Upper Intermediate</span>
                                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'C1')
-                                                    <span style="color: #DB1B24">Advanced</span> 
+                                                    <span style="color: #DB1B24">Advanced</span>
                                                 @else
-                                                @endif   
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -496,7 +496,7 @@
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_reading_module) == 'A2')
                                                             <span>
-                                                                Complex sentence বুঝতে পারলেও overall idea বুঝতে অসুবিধা হচ্ছে। Synonym বা paraphrase এর কেবল সীমিত ধারনা আছে। 
+                                                                Complex sentence বুঝতে পারলেও overall idea বুঝতে অসুবিধা হচ্ছে। Synonym বা paraphrase এর কেবল সীমিত ধারনা আছে।
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_reading_module) == 'B1')
                                                             <span>
@@ -504,7 +504,7 @@
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_reading_module) == 'B2')
                                                             <span>
-                                                                Passage এ থাকা কয়েকটি advanced situation এর context বুঝতে পারেন নি। Passage পড়ে মাঝে মধ্যে context বোঝার ক্ষেত্রে inaccuracy এবং misunderstanding এর মত সমস্যা face করেছেন। 
+                                                                Passage এ থাকা কয়েকটি advanced situation এর context বুঝতে পারেন নি। Passage পড়ে মাঝে মধ্যে context বোঝার ক্ষেত্রে inaccuracy এবং misunderstanding এর মত সমস্যা face করেছেন।
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_reading_module) == 'C1')
                                                             <span>
@@ -536,15 +536,15 @@
                                                             <p class="mb-0">তবে complex sentence অন্যান্য grammar item এ ভুল করেছেন।</p>
                                                         @elseif(Helper::module_rubricks($sum_grammar_module) == 'B1')
                                                             <span>
-                                                                একি passage এ simple এবং complex sentence এর ব্যবহার থাকলে আপনি সমস্যা face করেছেন। তার পাশাপাশি advanced grammar task ভুল করেছেন। 
+                                                                একি passage এ simple এবং complex sentence এর ব্যবহার থাকলে আপনি সমস্যা face করেছেন। তার পাশাপাশি advanced grammar task ভুল করেছেন।
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_grammar_module) == 'B2')
                                                             <span>
-                                                                Advanced grammatical item এ অল্প পরিমানে ভুল করেছেন। 
+                                                                Advanced grammatical item এ অল্প পরিমানে ভুল করেছেন।
                                                             </span>
                                                         @elseif(Helper::module_rubricks($sum_grammar_module) == 'C1')
                                                             <span>
-                                                                Grammatical এবং lexical item গুলো skillfully ব্যাবহার করতে পেরেছেন। তবে আপনি শতভাগ নির্ভুল নন। Occasional ভুল কমিয়ে আনতে অনেক বেশী practice করতে হবে। 
+                                                                Grammatical এবং lexical item গুলো skillfully ব্যাবহার করতে পেরেছেন। তবে আপনি শতভাগ নির্ভুল নন। Occasional ভুল কমিয়ে আনতে অনেক বেশী practice করতে হবে।
                                                             </span>
                                                         @endif
                                                     </li>
@@ -640,6 +640,8 @@
                                                         <p class="fw-bold fs-4">First Writing</p>
                                                         @if($get_writing_ans[0] == 'Not Answered')
                                                             <p class="badge bg-danger text-light fs-5">Not answered the writing</p>
+                                                        @elseif(is_string($get_writing_ans[0]))
+                                                            <p class="badge bg-danger text-light fs-5">Not answered the writing</p>
                                                         @else
                                                             <table class="table table-bordered">
                                                                 <thead>
@@ -658,6 +660,8 @@
                                                         @endif
                                                         <p class="fw-bold fs-4">Second Writing</p>
                                                         @if($get_writing_ans[1] == 'Not Answered')
+                                                            <p class="badge bg-danger text-light fs-5">Not answered the writing</p>
+                                                        @elseif(is_string($get_writing_ans[1]))
                                                             <p class="badge bg-danger text-light fs-5">Not answered the writing</p>
                                                         @else
                                                             <table class="table table-bordered">
@@ -795,7 +799,7 @@
                                                                 <div style="font-size: 1.25rem; font-weight:600"><span><input type="radio" name="" id="c1_course_benefit_radio" onclick="courseBenefitRadio('c1')"></span> C1</div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                     <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
                                                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -919,31 +923,31 @@
                                     <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12 mx-auto">
                                         <div class="d-flex justify-content-between">
                                             <div class="d-flex justify-content-start">
-                                                <div class="details-border" id="a1-course-description"> 
+                                                <div class="details-border" id="a1-course-description">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA1">A1</button>
                                                 </div>
                                                 <div class="course-content-arrow"></div>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <div class="details-border" id="a2-course-description"> 
+                                                <div class="details-border" id="a2-course-description">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentA2">A2</button>
                                                 </div>
                                                 <div class="course-content-arrow"></div>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <div class="details-border" id="b1-course-description"> 
+                                                <div class="details-border" id="b1-course-description">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB1">B1</button>
                                                 </div>
                                                 <div class="course-content-arrow"></div>
                                             </div>
                                             <div class="d-flex justify-content-start">
-                                                <div class="details-border" id="b2-course-description"> 
+                                                <div class="details-border" id="b2-course-description">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentB2">B2</button>
                                                 </div>
                                                 <div class="course-content-arrow"></div>
                                             </div>
                                             <div>
-                                                <div class="details-border" id="c1-course-description"> 
+                                                <div class="details-border" id="c1-course-description">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#courseContentC1">C1</button>
                                                 </div>
                                             </div>
@@ -1124,15 +1128,15 @@
                                 <div class="course-achievement">
                                     {{-- <p class="card-titles"><i class="fa-solid fa-book-bookmark"></i> Course Achievement</p> --}}
                                     <div class="course-achievement-box">
-                                        <p class="course fs-3 fw-bold" ><span style="color:#004AAD;"><i class="fa-solid fa-trophy"></i></span> 
-                                            {{Helper::overall_rubricks($all_module_marks)}} - 
+                                        <p class="course fs-3 fw-bold" ><span style="color:#004AAD;"><i class="fa-solid fa-trophy"></i></span>
+                                            {{Helper::overall_rubricks($all_module_marks)}} -
                                             @if ($student_info->expected_score >= 7)
                                                 C1
                                             @elseif($student_info->expected_score <= 6.5)
                                                 B2
                                             @endif
                                         </p>
-                                        <p class="status"><span class="fw-bold fs-5">Course Level:</span> 
+                                        <p class="status"><span class="fw-bold fs-5">Course Level:</span>
                                             @if ($student_info->expected_score >= 7)
                                                 Advanced
                                             @elseif($student_info->expected_score <= 6.5)
@@ -1140,7 +1144,7 @@
                                             @endif
                                              IELTS
                                         </p>
-                                        <p class="status"><span class="fw-bold fs-5">Achieve Band Score:</span>  
+                                        <p class="status"><span class="fw-bold fs-5">Achieve Band Score:</span>
                                             @if ($student_info->expected_score >= 7)
                                                 7
                                             @elseif($student_info->expected_score <= 6.5)
@@ -1148,7 +1152,7 @@
                                             @endif
                                             Plus
                                         </p>
-                                        <p class="status"><span class="fw-bold fs-5">Status:</span> 
+                                        <p class="status"><span class="fw-bold fs-5">Status:</span>
                                             @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                                 Elementory
                                             @elseif (Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -1160,7 +1164,7 @@
                                             @elseif (Helper::overall_rubricks($all_module_marks) == 'C1')
                                                 Advanced
                                             @endif
-                                            To 
+                                            To
                                             @if ($student_info->expected_score >= 7)
                                                 Advanced
                                             @elseif($student_info->expected_score <= 6.5)
@@ -1374,7 +1378,7 @@
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
                                                                 @else
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['discount_price'])}}/-
-                                                                    
+
                                                                     @if(number_format(Helper::courseBundlePrice('A2-B2')['discount_percentage']) == 0 || number_format(Helper::courseBundlePrice('A2-B2')['discount_percentage']) == NULL)
 
                                                                     @else
@@ -1622,7 +1626,7 @@
                                                 <div class="totaled-month-duration">
                                                     <p class="mb-0 py-2 px-3">Total Duration: <span id="courseOverviewTime">0</span> Months +</p>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                                 <div class="price-box">
@@ -1657,7 +1661,7 @@
                                                             <p class="mb-0">VAT Included (govt.)</p>
                                                             <p class="mb-0">5%</p>
                                                         </div>
-                                                        
+
                                                         <form action="{{route('student.total.enrolled course')}}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="student_id" id="" value="{{$studentId}}">
@@ -1777,7 +1781,7 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: {
-                
+
             },
             plugins: {
                 tooltip: {
@@ -1788,7 +1792,7 @@
                         color: 'black',
                     },
                     position: 'left'
-                }, 
+                },
             },
             maintainAspectRatio: false,
         }
@@ -1813,7 +1817,7 @@
             "#3498DB",
             "#004AAD",
         ];
-    
+
         new Chart("mark-analytics-pie-chart", {
             type: "bar",
             data: {
@@ -1844,7 +1848,7 @@
             }
         });
     </script>
-    
+
 @endsection
 @section('student-result-details-js')
 <!-- band score -->
@@ -1918,7 +1922,7 @@
             document.getElementById("b2_course_benefit_icon").style.visibility = "visible";
             document.getElementById("c1_course_benefit_icon").style.visibility = "hidden";
 
-            
+
 
             document.getElementById("a1_course_level_duration").style.display = "block";
             document.getElementById("a2_course_level_duration").style.display = "block";
@@ -2277,7 +2281,7 @@
 </script>
 <!-- price table -->
 <script>
-    
+
     document.getElementById('regular-course-pirce-id').classList.add("price-package-active") ;
     document.getElementById('packages-course-price-section').style.display = 'none';
     document.getElementById('hsc-course-price-section').style.display = 'none';
@@ -2472,8 +2476,8 @@
             courseOverviewTime += 1;
             inputHTML = `<input type="hidden" id="clickCourseBtn_${ev}" name="total_enrolled_course[]" value="${ev}">`;
             }
-        } 
-        
+        }
+
         document.getElementById('enrolled_course_stu').insertAdjacentHTML("beforeend", inputHTML);
         //price
         document.getElementById('courseOverviewTime').innerHTML = courseOverviewTime;
@@ -2489,7 +2493,7 @@
             document.getElementById("coursePrivileged").style.display = "block";
             discountTotalPrice -= parseInt(priviligedTotalPrice);
             document.getElementById("privilegedCoursePriceBtn").classList.add("onlclik_price_active");
-            
+
             let totalOnlyPriviligedPrice = parseInt(totalOnlyDiscountedPrice)-parseInt(priviligedTotalPrice);
             document.getElementById('courseOverviewTotalPrivileged').innerHTML = totalOnlyPriviligedPrice.toLocaleString() + '/-';
             }
@@ -2552,7 +2556,7 @@
             document.getElementById("b1b2CoursePriceBtn").classList.remove("onlclik_price_active");
             document.getElementById("b1c1CoursePriceBtn").classList.remove("onlclik_price_active");
             document.getElementById("b2c1CoursePriceBtn").classList.remove("onlclik_price_active");
-            
+
             var a1a2totalValue = document.getElementById('courseA1A2TdPrice1Input').value;
             totalPackagePrice += parseInt (a1a2totalValue);
 
@@ -2738,7 +2742,7 @@
         document.getElementById('courseOverviewRegularPrice').innerHTML = totalPackagePrice.toLocaleString() + '/-';
         document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
         let totalOnlyDiscountPrice = parseInt(totalPackagePrice)-parseInt(totalPackageDiscountPrice);
-        
+
         document.getElementById('courseOverviewDiscountPrice').innerHTML = '- '+ totalOnlyDiscountPrice.toLocaleString() + '/-';
         document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
 
@@ -2748,9 +2752,9 @@
 
     function coursePackageTdPriviligedPrice(){
     clickCountPriviliged++
-    
+
     if(clickPackagesCoure == 'a1-a2'){
-        
+
         document.getElementById("previliged_package_a1_b2").style.display = "none";
         document.getElementById("previliged_package_a2_b2").style.display = "none";
         document.getElementById("previliged_package_a2_c1").style.display = "none";
@@ -2778,7 +2782,7 @@
         }
     }else if(clickPackagesCoure == 'a1-b2'){
         document.getElementById("previliged_package_a1_a2").style.display = "none";
-        
+
         document.getElementById("previliged_package_a2_b2").style.display = "none";
         document.getElementById("previliged_package_a2_c1").style.display = "none";
         document.getElementById("previliged_package_b1_b2").style.display = "none";
@@ -2803,11 +2807,11 @@
         document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a1b2priviligedValue).toLocaleString() + '/-';
         document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
         }
-    
+
     }else if(clickPackagesCoure == 'a2-b2'){
         document.getElementById("previliged_package_a1_a2").style.display = "none";
         document.getElementById("previliged_package_a1_b2").style.display = "none";
-        
+
         document.getElementById("previliged_package_a2_c1").style.display = "none";
         document.getElementById("previliged_package_b1_b2").style.display = "none";
         document.getElementById("previliged_package_b1_c1").style.display = "none";
@@ -2835,7 +2839,7 @@
         document.getElementById("previliged_package_a1_a2").style.display = "none";
         document.getElementById("previliged_package_a1_b2").style.display = "none";
         document.getElementById("previliged_package_a2_b2").style.display = "none";
-        
+
         document.getElementById("previliged_package_b1_b2").style.display = "none";
         document.getElementById("previliged_package_b1_c1").style.display = "none";
         document.getElementById("previliged_package_b2_c1").style.display = "none";
@@ -2857,13 +2861,13 @@
         document.getElementById('courseOverviewPrivileged').innerHTML = '- ' + parseInt(a2c1priviligedValue).toLocaleString() + '/-';
         document.getElementById('courseOverviewTotalPrice').innerHTML = totalPackageDiscountPrice.toLocaleString() + '/-';
         }
-        
+
     }else if(clickPackagesCoure == 'b1-b2'){
         document.getElementById("previliged_package_a1_a2").style.display = "none";
         document.getElementById("previliged_package_a1_b2").style.display = "none";
         document.getElementById("previliged_package_a2_b2").style.display = "none";
         document.getElementById("previliged_package_a2_c1").style.display = "none";
-        
+
         document.getElementById("previliged_package_b1_c1").style.display = "none";
         document.getElementById("previliged_package_b2_c1").style.display = "none";
 
@@ -2891,7 +2895,7 @@
         document.getElementById("previliged_package_a2_b2").style.display = "none";
         document.getElementById("previliged_package_a2_c1").style.display = "none";
         document.getElementById("previliged_package_b1_b2").style.display = "none";
-        
+
         document.getElementById("previliged_package_b2_c1").style.display = "none";
 
         var b1c1priviligedValue = document.getElementById('courseB1C1PackagePriviligedTdPrice1Input').value;
@@ -2919,7 +2923,7 @@
         document.getElementById("previliged_package_a2_c1").style.display = "none";
         document.getElementById("previliged_package_b1_b2").style.display = "none";
         document.getElementById("previliged_package_b1_c1").style.display = "none";
-        
+
 
         var b2c1priviligedValue = document.getElementById('courseB2C1PackagePriviligedTdPrice1Input').value;
         if(clickCountPriviliged%2 == 0){
@@ -2945,7 +2949,7 @@
     document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
     function courseHSCTdPrice(){
     clickCountPriviliged++
-    
+
     if(clickCountPriviliged%2 == 0){
         document.getElementById("a2b2HSCCoursePriceBtn").classList.remove("onlclik_price_active");
         document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
@@ -2966,7 +2970,7 @@
         var totalHSCPackageRegularPrice = parseInt (hscRegularCourseValue);
         document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
         document.getElementById('courseOverviewRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
-        
+
         var hscDiscountCourseValue = document.getElementById('courseA2B2HSCTdDiscountPrice1Input').value;
         var totalHSCPackageDiscountPrice = parseInt (hscDiscountCourseValue);
         document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
@@ -3018,7 +3022,7 @@
                 //console.log('previous value', i)
             }
             console.log('next button', val);
-          
+
             if(val == 1){
                 document.getElementById("result-title-heading").textContent = "Overall Result";
             }else if(val == 2){
@@ -3084,7 +3088,7 @@
 <script>
     var expected_band_score = "{{$student_info->expected_score}}";
     var desired_level = "{{Helper::overall_rubricks($all_module_marks)}}";
-    
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -3097,7 +3101,7 @@
     $(document).ready(function(){
       $('#A1-A2').click(function(){
         $('.A1-A2').hide();
-      });  
+      });
     })
 </script> --}}
 

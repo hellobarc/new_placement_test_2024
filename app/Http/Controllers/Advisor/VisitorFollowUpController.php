@@ -13,18 +13,19 @@ use App\Models\{
     VisitorInfo,
 };
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
-use Illuminate\Support\Facades\Log;
 
 class VisitorFollowUpController extends Controller
 {
     private $api_cros_url;
     private Client $client;
-    
+
     public function __construct()
     {
-        $this->api_cros_url = env('API_CROS_URL', 'http://barcportal.com/api');
+        $this->api_cros_url = env('API_CROS_URL', 'https://barcportal.com/api');
         $this->client = new Client();
     }
     public function followup($studentId,$pagination_page){
@@ -51,7 +52,7 @@ class VisitorFollowUpController extends Controller
         $admission_status = $request->input('admission_status');
         $currentFollowUpDate = date('Y-m-d');
         $nextFollowUpDate = $request->input('next_follow_up_date');
-    
+
         FollowUp::updateOrCreate(['student_id' => $studentId],[
             'student_id' => $studentId,
             'adviser_id' => $adviserID,
@@ -82,7 +83,7 @@ class VisitorFollowUpController extends Controller
             'remarks' => $remarks,
             'next_follow_up_date' => $nextFollowUpDate
         ]);
-            
+
         return redirect()->back()->with('success', 'Follow Up Edited Successfully');
     }
 
@@ -129,72 +130,142 @@ class VisitorFollowUpController extends Controller
     }
     public function studentTotalEnrolledCourse(Request $request)
     {
-        //dd($request->all());
-        
-        if($request->total_enrolled_course){
-            $enrolled_course = $request->total_enrolled_course;
-        }else{
+        // Step 1: Validate incoming request fields
+        $request->validate([
+            'student_id' => 'required|exists:visitor_infos,visitor_log_id',
+            'placement_test_score' => 'nullable|numeric|min:0|max:100',
+            'total_enrolled_course' => 'nullable|array',
+            'total_enrolled_course.*' => 'in:a1,a2,b1,b2,c1',
+            'total_enrolled_package_course' => 'nullable|string|in:a1-b2,a2-b2,a2-c1,b1-b2,b1-c1,b2-c1',
+        ]);
+
+        // Step 2: Determine enrolled course(s)
+        $enrolled_course = $request->total_enrolled_course;
+
+        if (!$enrolled_course) {
             $package_course = $request->total_enrolled_package_course;
-            if($package_course == 'a1-b2'){
-                $enrolled_course = ['a1','a2','b1','b2'];
-            }elseif($package_course == 'a2-b2'){
-                $enrolled_course = ['a2','b1','b2'];
-            }elseif($package_course == 'a2-c1'){
-                $enrolled_course = ['a2','b1','b2','c1'];
-            }elseif($package_course == 'b1-b2'){
-                $enrolled_course = ['b1','b2'];
-            }elseif($package_course == 'b1-c1'){
-                $enrolled_course = ['b1','b2','c1'];
-            }elseif($package_course == 'b2-c1'){
-                $enrolled_course = ['b2','c1'];
-            }
+            $course_map = [
+                'a1-b2' => ['a1', 'a2', 'b1', 'b2'],
+                'a2-b2' => ['a2', 'b1', 'b2'],
+                'a2-c1' => ['a2', 'b1', 'b2', 'c1'],
+                'b1-b2' => ['b1', 'b2'],
+                'b1-c1' => ['b1', 'b2', 'c1'],
+                'b2-c1' => ['b2', 'c1'],
+            ];
+            $enrolled_course = $course_map[$package_course] ?? null;
         }
-        
-        if($enrolled_course == null){
-            return redirect()->route('advisor.home')->withErrors('Courses are not selected');
-        }else{
-            try{
-                $student_id = $request->student_id;
-                
-    
-                VisitorInfo::updateOrCreate([
-                        'visitor_log_id' => $student_id,
-                    ],
-                    [
-                        'total_enroll_course' => json_encode($enrolled_course),
-                    ]);
 
-                $student_info = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
+        if (!$enrolled_course || empty($enrolled_course)) {
+            return redirect()->route('advisor.home')->withErrors('Courses are not selected.');
+        }
 
-                $response = $this->client->post("{$this->api_cros_url}/store/student/placement-test",[
-                    'json' => [
-                        "full_name"=>$student_info->studentInfo->full_name,
-                        "email"=>$student_info->studentInfo->email,
-                        "date_of_birth"=>$student_info->date_of_birth,
-                        "desired_score"=>$student_info->expected_score,
-                        "placement_test_score"=>$request->placement_test_score,
-                        "contact_number"=>$student_info->studentInfo->mobile,
-                        "emergency_contact"=>$student_info->emergency_number,
-                        "address"=>$student_info->division." ".$student_info->district." ".$student_info->upazilla." ".$student_info->thana,
-                        "parent_name"=>NULL,
-                        "parent_phone"=>$student_info->studentInfo->mobile,
-                        "parent_type"=>'Gardian',
-                        "current_registered_course"=>$enrolled_course[0],
-                        "total_enrolled_course"=>json_encode($enrolled_course),
-                    ],
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                    ]
-                ]);
-                
-                return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded');
-            }catch (GuzzleException $e) {
-                dd($e->getMessage());
-                Log::error("bKash Token Error: " . $e->getMessage());
-                return null;
+        try {
+            $student_id = $request->student_id;
 
+            // Step 3: Save to local DB
+            VisitorInfo::updateOrCreate(
+                ['visitor_log_id' => $student_id],
+                ['total_enroll_course' => json_encode($enrolled_course)]
+            );
+
+            $student_info = VisitorInfo::where('visitor_log_id', $student_id)
+                ->with('studentInfo')
+                ->firstOrFail();
+
+            // Step 4: Validate API Payload
+            $validationData = [
+                'full_name' => $student_info->studentInfo->full_name,
+                'email' => $student_info->studentInfo->email,
+                'date_of_birth' => $student_info->date_of_birth,
+                'desired_score' => $student_info->expected_score,
+                'placement_test_score' => $request->placement_test_score,
+                'contact_number' => $student_info->studentInfo->mobile,
+                'emergency_contact' => $contact_number = $student_info->emergency_number ?? $student_info->studentInfo->mobile,
+                'address' => trim("{$student_info->division} {$student_info->district} {$student_info->upazilla} {$student_info->thana}"),
+                'parent_name' => null,
+                'parent_phone' => $student_info->studentInfo->mobile,
+                'parent_type' => 'Gardian',
+                'current_registered_course' => $enrolled_course[0],
+                'total_enrolled_course' => $enrolled_course,
+            ];
+
+            $validator = Validator::make($validationData, [
+                'full_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'date_of_birth' => 'required|date|before:today',
+                'desired_score' => 'nullable|numeric|min:0|max:9',
+                'placement_test_score' => 'nullable|numeric|min:0|max:100',
+                'contact_number' => 'required|string|min:8|max:20',
+                'emergency_contact' => 'nullable|string|min:8|max:20',
+                'address' => 'required|string|max:500',
+                'parent_name' => 'nullable|string|max:255',
+                'parent_phone' => 'required|string|min:8|max:20',
+                'parent_type' => 'required|in:Gardian,Father,Mother,Relative,Other',
+                'current_registered_course' => 'required|in:a1,a2,b1,b2,c1',
+                'total_enrolled_course' => 'required|array|min:1',
+                'total_enrolled_course.*' => 'in:a1,a2,b1,b2,c1',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('advisor.home')->withErrors($validator->errors());
             }
+
+            // Step 5: Send data to remote API
+            $response = $this->client->post("{$this->api_cros_url}/store/student/placement-test", [
+                'json' => array_merge($validationData, [
+                    'total_enrolled_course' => json_encode($enrolled_course),
+                ]),
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ]
+            ]);
+
+            if ($response->getStatusCode() === 201) {
+                return redirect()->route('advisor.home')->with('success', 'Student total enrolled course uploaded.');
+            }
+
+            // If API returns non-201
+            $errorBody = json_decode($response->getBody()->getContents(), true);
+            $errorMessage = $errorBody['message'] ?? 'Student info not sent to portal! Try again.';
+
+            Log::error('API Error', [
+                'status' => $response->getStatusCode(),
+                'response' => $errorBody
+            ]);
+
+            return redirect()->route('advisor.home')->withErrors($errorMessage);
+
+        } catch (GuzzleException $e) {
+            $errorResponse = 'No response available';
+            $errorJson = null;
+            $errorMessage = $e->getMessage();
+
+            if ($e instanceof RequestException && $e->hasResponse()) {
+                $response = $e->getResponse();
+                $errorResponse = (string) $response->getBody();
+
+                if (strpos($response->getHeaderLine('Content-Type'), 'application/json') !== false) {
+                    $errorJson = json_decode($errorResponse, true);
+
+                    if (isset($errorJson['message'])) {
+                        $errorMessage = $errorJson['message'];
+                    } elseif (isset($errorJson['error']) && is_string($errorJson['error'])) {
+                        $errorMessage = $errorJson['error'];
+                    } elseif (isset($errorJson['error']['message'])) {
+                        $errorMessage = $errorJson['error']['message'];
+                    } else {
+                        $errorMessage = json_encode($errorJson);
+                    }
+                }
+            }
+
+            Log::error('API request failed', [
+                'exception_message' => $e->getMessage(),
+                'response_body' => $errorResponse,
+            ]);
+
+            return redirect()->route('advisor.home')->withErrors('Remote API failed: ' . $errorMessage);
         }
     }
 }

@@ -60,7 +60,7 @@ class ExamController extends Controller
 
             if($total_segment == $current_segement_id){
                 $segment_id = 1;
-                $current_module_id = $module_id + 1; 
+                $current_module_id = $module_id + 1;
             }else{
                 $segment_id = $current_segement_id + 1;
                 $current_module_id = $module_id;
@@ -72,7 +72,7 @@ class ExamController extends Controller
     }
     public function startExam($exam_id, $segment_id, $module_id, $student_id)
     {
-       
+
         if($module_id == 6){
             TestSubmissionLog::updateOrCreate(
                 [
@@ -94,16 +94,16 @@ class ExamController extends Controller
             $total_segment = count($exerciseDB);
             $countExercise = count($exerciseDB);
             $totalQuestionCount = 0;
-            
+
             $getSession = Session::get('test_session');
             if($getSession){
                 session()->forget('test_session');
             }
             $notsubmittedLog = TestSubmissionLog::where('student_id', $student_id)->where('advisor_id', auth()->user()->id)->where('test_id', $exam_id)->where('status', 'started')->first();
-             
+
             if($notsubmittedLog){
                 $activityLog = TestSubmissionActivityLog::where('submission_log_id', $notsubmittedLog->id)->where('module_id', $module_id)->sum('spent_time');
-                
+
                 if($activityLog){
                     $exam_time = $activityLog;
                 }else{
@@ -114,12 +114,12 @@ class ExamController extends Controller
             }
 
             $current_time = time();
-            
+
             if(!(Session::has('test_session'))){
                 $value = $current_time.'.'.rand(1000, 9999);
                 Session::put('test_session', $value);
             }
-        
+
             if($segment_id <= $countExercise){
             $exerciseId = $exerciseDB[$segment_id-1]->id;
             $module_id = $exerciseDB[$segment_id-1]->module_id;
@@ -129,7 +129,7 @@ class ExamController extends Controller
                 $question_type              = $question->question_type;
                 $question_instruction       = $question->instruction;
                 $question_id                = $question->id;
-    
+
                 $countMultipleChoice            = 0;
                 $countRadio                     = 0;
                 $countDropDown                  = 0;
@@ -139,7 +139,7 @@ class ExamController extends Controller
                 $countHeadingMatchingTrueOfNice = 0;
                 $countMultiSelector             = 0;
                 $countWritingQuestion           = 0;
-    
+
                 $subQ = [];
                 if($question_type == 'fill-blank'){
                     $subQ = TestFillBlank::where('test_question_id',  $question_id)->get();
@@ -176,7 +176,7 @@ class ExamController extends Controller
                     'question_id'=> $question_id,
                     'sub-q' => $subQ,
                 );
-                
+
             }
             if(strtolower($module_name) == 'reading'){
                 $examPassage = TestPassage::where('section_id', $exerciseId)->first();
@@ -190,10 +190,10 @@ class ExamController extends Controller
             }
             //dd($data);
             return view('advisor.student.exam.reading.reading-templete', compact('examPassage','testAudio',
-            'data', 'exerciseId', 
-            'exam_id', 'module_id', 
+            'data', 'exerciseId',
+            'exam_id', 'module_id',
             'segment_id', 'total_segment',
-            'countExercise', 
+            'countExercise',
             'totalQuestionCount', 'exam_time','student_id', 'allModule'));
             }
         }
@@ -211,7 +211,7 @@ class ExamController extends Controller
 
         if(isset($data['multiple_question_type'])){
             $multiple_ques_id          = $data['multiple_ques_id'];
-            
+
             foreach($multiple_ques_id as $question_id){
                 $sub_ques_id_name       = 'exam_multiple_sub_ques_id_'.$question_id;
                 $sub_ques_id_arr        = $data[$sub_ques_id_name];
@@ -237,14 +237,14 @@ class ExamController extends Controller
                     }
                     $array = [
                         'test_id'          =>$test_id,
-                        'module_id'        =>$module_id, 
-                        'exercise_id'      =>$exercise_id, 
-                        'question_id'      =>$question_id, 
+                        'module_id'        =>$module_id,
+                        'exercise_id'      =>$exercise_id,
+                        'question_id'      =>$question_id,
                         'sub_question_id'  =>$sub_question_id,
-                        'fillblankans'     =>NULL, 
-                        'submitted_ans'    =>$m_user_ans, 
-                        'question_type'    =>$data['multiple_question_type'], 
-                        'is_correct'       =>$iscorrect, 
+                        'fillblankans'     =>NULL,
+                        'submitted_ans'    =>$m_user_ans,
+                        'question_type'    =>$data['multiple_question_type'],
+                        'is_correct'       =>$iscorrect,
                         'obtained_marks'   =>$obtainMarks
                     ];
                     $this->testCreate($array, $segment_id, $student_id);
@@ -266,7 +266,7 @@ class ExamController extends Controller
                             $radio_db                   = TestRadio::find($sub_ques_id);
                             $is_correct_arr             = json_decode($radio_db->is_correct);
                             $question_marks             = $radio_db->marks;
-                            
+
                             if(in_array($submitted_ans_index, $is_correct_arr)){
                                 $is_correct = "yes";
                                 $obtainMarks = $question_marks;
@@ -281,14 +281,14 @@ class ExamController extends Controller
                         }
                         $array = [
                             'test_id'          =>$test_id,
-                            'module_id'        =>$module_id, 
-                            'exercise_id'      =>$exercise_id, 
-                            'question_id'      =>$question_id, 
+                            'module_id'        =>$module_id,
+                            'exercise_id'      =>$exercise_id,
+                            'question_id'      =>$question_id,
                             'sub_question_id'  =>$sub_ques_id,
-                            'fillblankans'     =>NULL, 
-                            'submitted_ans'    =>$submitted_ans_index, 
-                            'question_type'    =>$data['radio_question_type'], 
-                            'is_correct'       =>$is_correct, 
+                            'fillblankans'     =>NULL,
+                            'submitted_ans'    =>$submitted_ans_index,
+                            'question_type'    =>$data['radio_question_type'],
+                            'is_correct'       =>$is_correct,
                             'obtained_marks'   =>$obtainMarks
                         ];
                         $this->testCreate($array, $segment_id, $student_id);
@@ -300,14 +300,14 @@ class ExamController extends Controller
                         $obtainMarks = 0;
                         $array = [
                             'test_id'          =>$test_id,
-                            'module_id'        =>$module_id, 
-                            'exercise_id'      =>$exercise_id, 
-                            'question_id'      =>$question_id, 
+                            'module_id'        =>$module_id,
+                            'exercise_id'      =>$exercise_id,
+                            'question_id'      =>$question_id,
                             'sub_question_id'  =>$sub_ques_id,
-                            'fillblankans'     =>NULL, 
-                            'submitted_ans'    =>$submitted_ans_index, 
-                            'question_type'    =>$data['radio_question_type'], 
-                            'is_correct'       =>$is_correct, 
+                            'fillblankans'     =>NULL,
+                            'submitted_ans'    =>$submitted_ans_index,
+                            'question_type'    =>$data['radio_question_type'],
+                            'is_correct'       =>$is_correct,
                             'obtained_marks'   =>$obtainMarks
                         ];
                         $this->testCreate($array, $segment_id, $student_id);
@@ -336,14 +336,14 @@ class ExamController extends Controller
                     }
                     $array = [
                         'test_id'               =>$test_id,
-                        'module_id'             =>$module_id, 
-                        'exercise_id'           =>$exercise_id, 
-                        'question_id'           =>$question_id, 
+                        'module_id'             =>$module_id,
+                        'exercise_id'           =>$exercise_id,
+                        'question_id'           =>$question_id,
                         'sub_question_id'       =>$sub_question_id,
-                        'fillblankans'          =>NULL, 
-                        'submitted_ans'         =>$answer, 
-                        'question_type'         =>$data['drop_down_question_type'], 
-                        'is_correct'            =>$iscorrect, 
+                        'fillblankans'          =>NULL,
+                        'submitted_ans'         =>$answer,
+                        'question_type'         =>$data['drop_down_question_type'],
+                        'is_correct'            =>$iscorrect,
                         'obtained_marks'        =>$obtainMarks
                     ];
                     $this->testCreate($array, $segment_id, $student_id);
@@ -361,7 +361,7 @@ class ExamController extends Controller
                 $fillBlank_sub_ques_ans         = $data[$ans_name]; //submitted ans
                 $fillblankJson                   = json_encode($data[$ans_name]); //store submitted ans
                 $fill_correct = 0;
-                
+
                 foreach($correct_ans_array as $key=>$value){
                     // $submitted_ans = strtolower($fillBlank_sub_ques_ans[$key]);
                     $correct_ans = strtolower($value);
@@ -389,17 +389,17 @@ class ExamController extends Controller
                 }
                 $array = [
                     'test_id'         =>$test_id,
-                    'module_id'       =>$module_id, 
-                    'exercise_id'     =>$exercise_id, 
-                    'question_id'     =>$question_id, 
+                    'module_id'       =>$module_id,
+                    'exercise_id'     =>$exercise_id,
+                    'question_id'     =>$question_id,
                     'sub_question_id' =>$sub_ques_id[$question_index],
-                    'fillblankans'    =>$fillblankJson, 
-                    'submitted_ans'  =>NULL, 
-                    'question_type'  =>$data['fillBlank_question_type'], 
-                    'is_correct'     =>$fill_correct, 
+                    'fillblankans'    =>$fillblankJson,
+                    'submitted_ans'  =>NULL,
+                    'question_type'  =>$data['fillBlank_question_type'],
+                    'is_correct'     =>$fill_correct,
                     'obtained_marks' =>$fill_correct
                 ];
-                
+
                 $this->testCreate($array, $segment_id, $student_id);
             }
         }
@@ -424,35 +424,35 @@ class ExamController extends Controller
                 }else{
                     $sub_ques_ans = 'not_answered';
                     $fill_correct = 0;
-                }                                                                    
+                }
                 $array = [
                     'test_id'          =>$test_id,
-                    'module_id'        =>$module_id, 
-                    'exercise_id'      =>$exercise_id, 
-                    'question_id'      =>$question_id, 
+                    'module_id'        =>$module_id,
+                    'exercise_id'      =>$exercise_id,
+                    'question_id'      =>$question_id,
                     'sub_question_id'  =>$data[$sub_ques_id_name][0],
-                    'fillblankans'     =>NULL, 
-                    'submitted_ans'    =>$sub_ques_ans, 
-                    'question_type'    =>$data['multi_selector_question_type'], 
-                    'is_correct'       =>$fill_correct, 
+                    'fillblankans'     =>NULL,
+                    'submitted_ans'    =>$sub_ques_ans,
+                    'question_type'    =>$data['multi_selector_question_type'],
+                    'is_correct'       =>$fill_correct,
                     'obtained_marks'   =>$fill_correct
                 ];
                 $this->testCreate($array, $segment_id, $student_id);
             }
-        } 
+        }
         elseif(isset($data['writing_question_type'])){
-            
+
             $writing_ques_id          = $data['writing_ques_id'];
             // foreach($writing_ques_id as $question_id){
                 $writing_question = $data['writing_question'];
                 $sub_ques_id_name = $data['writing_sub_ques_id'];
                 $writing_answer = $data['wrting_answer'];
                 $writing_question_mark = $data['writing_mark'];
-                
+
                 if($writing_answer != NULL){
                     $response = $this->openAIService->chat(
-                        "Evaluate the following essay based on the following criteria: Grammar & Sentence Structure, Vocabulary, Coherence & Cohesion, and Topic Relevance. 
-                        The topic is: '" . $writing_question . "'. Return ONLY a single numeric score out of " . $writing_question_mark . ". 
+                        "Evaluate the following essay based on the following criteria: Grammar & Sentence Structure, Vocabulary, Coherence & Cohesion, and Topic Relevance.
+                        The topic is: '" . $writing_question . "'. Return ONLY a single numeric score out of " . $writing_question_mark . ".
                         Provide a segmented explanation in JSON table format, using this exact structure for each criterion:
 
                         [
@@ -483,17 +483,17 @@ class ExamController extends Controller
 
                         Only include the segmented table inside the 'explanation' key. The essay to evaluate is: '" . $writing_answer . "'."
 
-                    );       
-                    
-                    
+                    );
+
+
                     $response_score =$this->extractScore($response);
-                    
+
                     if($response_score == null){
                         $response_score_final = 0;
                     }else{
                         $response_score_final =$this->extractScore($response);
                     }
-                    
+
                 }else{
                     $response = "Not Answered";
                     $writing_answer = 'not_answered';
@@ -502,21 +502,21 @@ class ExamController extends Controller
                 //dd($writing_question);
                 $array = [
                     'test_id'          =>$test_id,
-                    'module_id'        =>$module_id, 
-                    'exercise_id'      =>$exercise_id, 
-                    'question_id'      =>$writing_ques_id, 
+                    'module_id'        =>$module_id,
+                    'exercise_id'      =>$exercise_id,
+                    'question_id'      =>$writing_ques_id,
                     'sub_question_id'  =>$sub_ques_id_name,
-                    'fillblankans'     =>$response, 
-                    'submitted_ans'    =>$writing_answer, 
-                    'question_type'    =>$data['writing_question_type'], 
-                    'is_correct'       =>'yes', 
+                    'fillblankans'     =>$response,
+                    'submitted_ans'    =>$writing_answer,
+                    'question_type'    =>$data['writing_question_type'],
+                    'is_correct'       =>'yes',
                     'obtained_marks'   =>$response_score_final,
                 ];
                 //dd($array);
                 $this->testCreate($array, $segment_id, $student_id);
             // }
         }
-        
+
         if($segment_id < $count_exercise){
             if($data['minute'] ==0 && $data['second'] ==1){
                 if($module_id == 6){
@@ -541,10 +541,10 @@ class ExamController extends Controller
             }else{
                 return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> $segment_id+1, 'module_id'=>$module_id, 'student_id'=> $student_id]);
             }
-            
+
         }elseif($segment_id == $count_exercise){
             // $time = time();
-        
+
             // $examLog = TestSubmissionLog::UpdateOrCreate(
             //     [
             //         'student_id'    => $student_id,
@@ -554,7 +554,7 @@ class ExamController extends Controller
             //         'status'     => 'completed',
             //         'test_end'   => $time,
             //     ]);
-    
+
             //     $deleteSession = session()->forget('test_session');
                 // return view('advisor.student.exam.exam-completed');
             return redirect()->route('student.exam.start', ['exam_id'=>$test_id,'segment_id'=> 1, 'module_id'=>$module_id+1, 'student_id'=> $student_id]);
@@ -585,7 +585,7 @@ class ExamController extends Controller
                 'status'         =>'started',
             ]);
             $session_time = explode('.', $getSession);
-            
+
             $spent_time = $current_time -  $session_time[0];
          $activityLog = TestSubmissionActivityLog::firstOrCreate(
             [
@@ -645,7 +645,7 @@ class ExamController extends Controller
         $count_listening_question = $this->count_test_question($log_id->test_id, 3);
         $count_writing_question = $count_grammar_question+$count_listening_question;
         $correct_answer = $all_module_marks;
-        
+
         $radioMultipleUnAnswer = $this->unAnsweredRaidoMultiple($log_id->id);
         $dropDownUnAnswer = $this->unAnsweredDropDown($log_id->id);
         $fillBlankUnAnswer = $this->unAnsweredFillBlank($log_id->id);
@@ -655,9 +655,9 @@ class ExamController extends Controller
         $get_writing_ans = $this->writing_ans_explanation($log_id->id, 5)==null?'nothing':$this->writing_ans_explanation($log_id->id, 5);
         //dd($get_writing_ans);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',
-        'sum_listening_module', 
-        'sum_grammar_module', 
-        'sum_vocabulary_module', 
+        'sum_listening_module',
+        'sum_grammar_module',
+        'sum_vocabulary_module',
         'sum_writing_module',
         'writing_essay_module',
         'all_module_marks',
@@ -677,12 +677,14 @@ class ExamController extends Controller
             if($items->answered_text == 'Not Answered'){
                 $main_value [] = 'Not Answered';
             }else{
-                $clean = preg_replace('/```json|```/', '', trim($items->answered_text));
-                $data = json_decode($clean, true);
-                $main_value [] = $data['explanation'];
+                if(strpos($items->answered_text, 'json')){
+                    $clean = preg_replace('/```json|```/', '', trim($items->answered_text));
+                    $data = json_decode($clean, true);
+                    $main_value [] = $data['explanation'];
+                }else{
+                    $main_value [] = $items->answered_text;
+                }
             }
-          
-            
         }
         return $main_value;
     }
@@ -697,7 +699,7 @@ class ExamController extends Controller
         $writing_essay_module = $this->sum_assessment_test($log_id->id, 5);
         $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
         $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module+$writing_essay_module;
-        
+
         return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'sum_writing_module', 'student_info'));
     }
     private function count_test_question($test_id, $module_id)
@@ -718,7 +720,7 @@ class ExamController extends Controller
             foreach($questions as $question){
                 $questionType = $question->question_type;
                 $questionId = $question->id;
-            
+
                 $countMultipleChoice            = 0;
                 $countRadio                     = 0;
                 $countDropDown                  = 0;
@@ -730,19 +732,19 @@ class ExamController extends Controller
                     $multipleChoiceDB       = TestMultipleChoice::where('test_question_id', $questionId)->get();
                     $countMultipleChoice    += count($multipleChoiceDB);
                     $multipleChoice_marks   += $multipleChoiceDB->sum('marks');
-                    
+
                 }
                 elseif($questionType == 'radio'){
                     $radioDB        = TestRadio::where('test_question_id', $questionId)->get();
                     $countRadio     += count($radioDB);
                     $radio_marks    += $radioDB->sum('marks');
-                    
+
                 }
                 elseif($questionType == 'drop-down'){
                     $dropDownDB         = TestDropDown::where('test_question_id', $questionId)->get();
                     $countDropDown      += count($dropDownDB);
                     $dropDown_marks     += $dropDownDB->sum('marks');
-                    
+
                 }
                 elseif($questionType == 'fill-blank'){
                     $fillBlankQuestionDB = TestFillBlank::where('test_question_id', $questionId)->get();
@@ -760,13 +762,13 @@ class ExamController extends Controller
                         $multi_selector_marks   += $multiSelectorDB->sum('marks');
                     }
                 }
-                
+
                 $totalQuestionCount += $countMultipleChoice
                 +$countRadio+$countDropDown
                 +$countHeadingMatchingQuestion
                 +$countFillBlank
                 +$countMultiSelector;
-                
+
             }
             $marksCount = $multipleChoice_marks
             +$radio_marks
@@ -837,7 +839,7 @@ class ExamController extends Controller
                 $question = TestMultiSelector::where('id', $sub_question_id)->where('test_question_id', $question_id)->first();
                 $count_is_correct = count(json_decode($question->is_correct));
                 $sub_count_ans = (json_decode($text->submitted_ans));
-                
+
                 if($count_is_correct == $sub_count_ans){
                     $sum_value += 0;
                 }elseif($count_is_correct < $sub_count_ans){
@@ -850,7 +852,7 @@ class ExamController extends Controller
         }
         return $sum_value;
     }
-    
+
     public function examCompleted($student_id)
     {
         TestSubmissionLog::updateOrCreate(
