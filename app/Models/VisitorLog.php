@@ -26,7 +26,7 @@ class VisitorLog extends Model
         'front_desk_notification' => 'not_seen',
         'adviser_notification' => 'not_seen'
     ];
-    
+
     public function totalUser(){
         return $this->belongsTo(User::class, 'assign_advisor');
     }
@@ -35,5 +35,8 @@ class VisitorLog extends Model
     }
     public function followUp(){
         return $this->belongsTo(FollowUp::class, 'id', 'student_id');
+    }
+    public function surveyLog(){
+        return $this->belongsTo(SurveyLog::class, 'id', 'student_id');
     }
 }

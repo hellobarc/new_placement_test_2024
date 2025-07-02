@@ -6,7 +6,7 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="{{route('advisor.home')}}" class="d-flex align-items-center pb-3 mt-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-house"></i> Dashboard</span>
-                    
+
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -40,7 +40,7 @@
                         <form action="{{route('visitor.search')}}" method="GET">
                             @csrf
                             <div class="">
-                                <div class="d-flex justify-content-between" style="border: 1px solid #000;border-radius: 4px;"> 
+                                <div class="d-flex justify-content-between" style="border: 1px solid #000;border-radius: 4px;">
                                     <input type="text" name="search" class="px-2 py-2" style="border: none;" placeholder="Search phone or email number" required>
                                     <button type="submit" class="btn btn-dark py-2 px-4 rounded-0"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
@@ -53,9 +53,10 @@
                             <span id="notification_count" class="notification-number">{{ $notificationCount }}</span>
                         </button>
                     </div>
-                    
+
                 </div>
                 @include('flash-message')
+
                 <table class="table table-bordered" style="margin-top:32px">
                     <thead class="text-center fw-bold">
                         <th class="adviserDasHomeTh">SL No</th>
@@ -90,20 +91,44 @@
                                 <td style="font-size:14px;">{{ $item->visit_branch }}</td>
                                 <td class="d-flex justify-content-start" style="font-size:14px;">
                                     @if($item->status == 'approved')
-                                        @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
-                                            @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
-                                                <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
+                                        @if ($item->surveyLog)
+                                            @if( $item->surveyLog->status == 'completed')
+
+
+                                                @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
+                                                    @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
+                                                        <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
+                                                    @else
+                                                        <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
+                                                    @endif
+                                                @endif
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
+                                                @if (Helper::followUpStatus($item->id) == 'admitted')
+                                                    <p class="mb-0 badge badge-success bg-success">Admitted</p>
+                                                @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
+                                                    <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
+                                                @else
+                                                    <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
+                                                @endif
                                             @else
-                                                <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
+                                                <span>survey</span>
                                             @endif
-                                        @endif
-                                        <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
-                                        @if (Helper::followUpStatus($item->id) == 'admitted')
-                                            <p class="mb-0 badge badge-success bg-success">Admitted</p>
-                                        @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
-                                            <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
                                         @else
-                                            <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
+                                                @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
+                                                    @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
+                                                        <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
+                                                    @else
+                                                        <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
+                                                    @endif
+                                                @endif
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
+                                                @if (Helper::followUpStatus($item->id) == 'admitted')
+                                                    <p class="mb-0 badge badge-success bg-success">Admitted</p>
+                                                @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
+                                                    <p class="mb-0 badge badge-danger bg-danger">Not Admitted</p>
+                                                @else
+                                                    <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
+                                                @endif
                                         @endif
                                     @elseif($item->status == 'unapproved')
                                         <form action="{{ route('status.update.adviser') }}" method="POST">
@@ -139,7 +164,7 @@
     function refreshPage(){
     let url = "{{ route('advnotify.status.change')}}"
     document.location.href=url;
-} 
+}
 
 //auto decline
 (function () {
@@ -155,7 +180,7 @@
             url: '/unapproved-students-change',
             data: {"data":"check"},
             success: function(){
-                    console.log('status updated to decline');            
+                    console.log('status updated to decline');
                 }
         });
     }
@@ -173,7 +198,7 @@
             url: '/advisor/notification-count',
             data: {"data":"check"},
             success: function(data){
-                    document.getElementById('notification_count').innerHTML = data;                
+                    document.getElementById('notification_count').innerHTML = data;
                 }
         });
     }

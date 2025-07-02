@@ -15,6 +15,7 @@ use App\Models\{
     District,
     Division,
     MetropolitanAreaThana,
+    SurveyLog,
 };
 use Auth;
 use DB;
@@ -60,7 +61,7 @@ class VisitorController extends Controller
                 'email'                     => $email,
                 'mobile'                    => $contact_number,
                 'purpose_of_visit'          => $purpose_of_visit,
-                'visit_branch'          => $visit_branch,
+                'visit_branch'              => $visit_branch,
                 'status'                    => 'unapproved',
                 'adviser_notification'      => 'not_seen',
                 'front_desk_notification'   => 'not_seen',
@@ -70,7 +71,11 @@ class VisitorController extends Controller
             VisitorInfo::create([
                 'visitor_log_id'            => $visitorLog->id,
             ]);
-            
+            SurveyLog::create([
+                'student_id' => $visitorLog->id,
+                'completed_part' => 1,
+                'status' => 'pending',
+            ]);
             $advisorID = $request->assign_advisor;
             // Helpers::AdvisorEventPushNotification($advisorID);
             $advisor = User::find($assign_advisor);
@@ -80,12 +85,12 @@ class VisitorController extends Controller
                 'mobile'                    => $contact_number,
                 'purpose_of_visit'          => $purpose_of_visit,
             ];
-            
+
             // Mail::to($advisor->email)->send(new AdvisorEmailNotification($email_visitor_info, "BARC New Visitor Info"));
 
             return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
         }
-    } 
+    }
 
 
     public function studentDetails($student_id, $step, $pagination_page){
@@ -99,12 +104,12 @@ class VisitorController extends Controller
         $allDistricts = District::all();
         $allUpazillas = Upazilla::all();
         $allMetropolitanThanas = MetropolitanAreaThana::select('upazilla_id')->with('Upazilla')->distinct()->get();
-        return view('advisor.student.studentDetails', compact('getDetails', 
-        'expected_country_arr', 
-        'school_goes_arr', 
-        'total_enroll_course_arr', 
-        'step', 
-        'area_of_improve', 
+        return view('advisor.student.studentDetails', compact('getDetails',
+        'expected_country_arr',
+        'school_goes_arr',
+        'total_enroll_course_arr',
+        'step',
+        'area_of_improve',
         'area_of_strength',
         'allDivisions',
         'allDistricts',
@@ -150,17 +155,17 @@ class VisitorController extends Controller
         $allDistricts = District::all();
         $allUpazillas = Upazilla::all();
         $allMetropolitanThanas = MetropolitanAreaThana::get();
-        return view('advisor.student.student-all-details', compact('getDetails', 
-        'expected_country_arr', 
-        'school_goes_arr', 
-        'total_enroll_course_arr', 
-        'area_of_improve', 
+        return view('advisor.student.student-all-details', compact('getDetails',
+        'expected_country_arr',
+        'school_goes_arr',
+        'total_enroll_course_arr',
+        'area_of_improve',
         'area_of_strength',
         'allDivisions',
         'allDistricts',
         'allUpazillas',
         'allMetropolitanThanas'))->with('message', 'Student all information uploaded successfully');
-    } 
+    }
     public function studentDetailsUpdate(Request $request,$id)
     {
         //dd($request->all());
@@ -232,11 +237,11 @@ class VisitorController extends Controller
             ]);
             return redirect()->route('student.all.Details', ['student_id'=>$request->student_id])->with('message', 'Student all information uploaded successfully');
         }
-       
+
     }
     public function statusChanged(Request $request, $id){
         $changedStatus = $request->input('status');
-        
+
         VisitorLog::where('id', $id)
         ->update([
             'status' => $changedStatus
@@ -259,7 +264,7 @@ class VisitorController extends Controller
         ->update([
             'status' => $status
         ]);
-        
+
         // Helpers::FrontEventPushNotification();
         return redirect('/advisor/home');
     }
@@ -272,7 +277,7 @@ class VisitorController extends Controller
         ->update([
             'status' => $status
         ]);
-        
+
         return redirect('/mock-student-list');
     }
     public function DeclineStudentAssign($studentId){
@@ -343,5 +348,5 @@ class VisitorController extends Controller
         $getData = VisitorLog::where('mobile', $contact_number)->first();
         return response()->json(['find_data'=>$getData, 200]);
     }
-    
+
 }

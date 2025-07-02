@@ -1,7 +1,7 @@
 <?php
-  
+
 namespace App\Http\Controllers;
- 
+
 Use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Models\{
@@ -13,7 +13,7 @@ use App\Models\{
 use DB;
 use Auth;
 
-  
+
 class HomeController extends Controller
 {
     /**
@@ -25,21 +25,21 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $data = User::where('type', 3)
                 ->orWhere('type', 4)->where('status', 'active')
                 ->get();
         $notificationCount = Helpers::FrontNotification();
         return view('front-desk.student-info', compact('data', 'notificationCount'));
     }
-    
+
     public function frontStudentList(){
         $getDeclinedStudents = VisitorLog::where('status', 'declined')->with('totalUser')->paginate(10);
         //dd($getDeclinedStudents);
@@ -53,7 +53,7 @@ class HomeController extends Controller
         $notificationCount = Helpers::FrontNotification();
         return view('front-desk.studentList', compact('getDeclinedStudents','notificationCount','getAdvisorList'));
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -63,7 +63,7 @@ class HomeController extends Controller
     {
         return view('admin.adminHome');
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -82,9 +82,10 @@ class HomeController extends Controller
         ->whereNot('purpose_of_visit','mock')
         ->whereNot('purpose_of_visit','ielts_registration')
         ->whereNot('status', 'declined')
+        ->with('surveyLog')
         ->orderBy('id', 'desc')
         ->paginate(25);
-
+        //dd($getData);
         $notificationCount = Helpers::AdvisorNotification($advisorID);
         return view('advisor.advisorHome', compact('getData','notificationCount'));
     }
