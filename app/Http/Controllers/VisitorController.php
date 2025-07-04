@@ -91,8 +91,6 @@ class VisitorController extends Controller
             return redirect()->back()->with('success', 'Student Information Submitted to the Selected Advisor');
         }
     }
-
-
     public function studentDetails($student_id, $step, $pagination_page){
         $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
         $expected_country_arr = json_decode($getDetails->expected_country);
@@ -199,6 +197,9 @@ class VisitorController extends Controller
                 'refer_batch_name' => $refer_batch_name,
                 'specific_course' => $request->type_course,
             ]);
+            SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
+                'completed_part' => 2,
+            ]);
             return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>3, 'pagination_page'=>$pagination_page]);
         }elseif($step == 3){
             VisitorInfo::updateOrCreate([
@@ -213,6 +214,9 @@ class VisitorController extends Controller
                 'topics_improvement' => json_encode($request->topics_improvement),
                 'topics_strengths' => json_encode($request->topics_strengths),
                 'first_current_level' => $request->your_current_level,
+            ]);
+            SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
+                'completed_part' => 3,
             ]);
             return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>4, 'pagination_page'=>$pagination_page]);
         }elseif($step == 4){
@@ -234,6 +238,10 @@ class VisitorController extends Controller
                 'nid_passport_number'=> $request->nid_passport_number,
                 'comments_from_student' => $request->comments_from_student,
                 'feedback_from_advisor' => $request->feedback_from_advisor
+            ]);
+            SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
+                'completed_part' => 4,
+                'status' => 'completed',
             ]);
             return redirect()->route('student.all.Details', ['student_id'=>$request->student_id])->with('message', 'Student all information uploaded successfully');
         }

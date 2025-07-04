@@ -93,8 +93,6 @@
                                     @if($item->status == 'approved')
                                         @if ($item->surveyLog)
                                             @if( $item->surveyLog->status == 'completed')
-
-
                                                 @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                                     @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
                                                         <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
@@ -111,7 +109,7 @@
                                                     <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
                                                 @endif
                                             @else
-                                                <span>survey</span>
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button></a>
                                             @endif
                                         @else
                                                 @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')

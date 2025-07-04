@@ -14,6 +14,7 @@ class CourseBundle extends Model
         'price',
         'discount_price',
         'priviliged_price',
+        'discount_percentage',
     ];
 
     public function CoursePrice()

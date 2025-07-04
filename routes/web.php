@@ -1,7 +1,7 @@
 <?php
-  
+
 use Illuminate\Support\Facades\Route;
-  
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\FrontDeskController;
@@ -46,9 +46,9 @@ Route::get('/', [FrontPageController::class, 'homePage']);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-  
+
 Auth::routes(['register' => false]);
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Normal Users Routes List
@@ -61,7 +61,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     });
     Route::post('/student-change-advisor/{id}',[FrontDeskController::class, 'changeAdvisor'])->name('front.change.advisor');
     Route::controller(VisitorController::class)->group(function () {
-        //Visitor Info 
+        //Visitor Info
         Route::post('/store-visitorInfo', 'storeVisitorInfo')->name('store.VisitorInfo');
         Route::post('/change-status/{id}', 'statusChanged')->name('change.status');
         //Notification
@@ -70,16 +70,16 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::post('/get-visitor/info', 'getUserInfoByUserContact')->name('frontend.get.user.info.by.contact.number');
     });
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
-  
+
     Route::get('/home', [HomeController::class, 'adminHome'])->name('admin.home');
-    
+
     Route::controller(ManageTestController::class)->group(function () {
         Route::get('/manage-test', 'index')->name('admin.manage.test');
         Route::get('/create-test', 'create')->name('admin.create.test');
@@ -146,14 +146,14 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::get('/manager-edit/delete/{id}', 'managerDelete')->name('manager.delete.store');
     });
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-  
+
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 
     Route::controller(CoursePriceController::class)->group(function(){
@@ -166,9 +166,10 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/priviliged-price', 'priviligedPrice')->name('course.priviliged.price');
         Route::post('/submit/priviliged-price', 'storePriviligedPrice')->name('course.submit.priviliged.price');
     });
-    
+
     Route::controller(CourseBundleController::class)->group(function(){
-        Route::get('/course-bundle-form', 'CourseBundleForm')->name('course.bundle.form');
+        Route::get('/manage-course-bundle', 'CourseBundle')->name('manage.course.bundle');
+        Route::get('/edit-course-bundle/{id}', 'editCourseBundle')->name('edit.course.bundle');
         Route::post('/store-bundle-list', 'storeBundlesPrices')->name('store.bundle.price');
     });
 
@@ -250,7 +251,7 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::get('/student-followUp-delete/{id}', 'followUpDelete')->name('followUp.Delete');
         Route::post('/student-followUp-list-search', 'followUpSearch')->name('visitor.followUp.Search');
         Route::post('/student/total-enrolled-course', 'studentTotalEnrolledCourse')->name('student.total.enrolled course');
-       
+
     });
     Route::controller(ResultPDFController::class)->group(function(){
         Route::get('/result-pdf', 'resultPDF')->name('student.result.card');

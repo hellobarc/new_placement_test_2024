@@ -2,7 +2,7 @@
     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline text-center fs-4">Dashboard</span>
-            
+
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
@@ -12,11 +12,14 @@
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Manage Course Price<i class="fa-solid fa-angle-down"></i></span> 
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">Manage Course Price<i class="fa-solid fa-angle-down"></i></span>
                 </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{route('course.prices.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price List </span></a>
+                        <a href="{{route('course.prices.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Individual Price List </span></a>
+                    </li>
+                    <li class="w-100">
+                        <a href="{{route('manage.course.bundle')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Combo Price List</span></a>
                     </li>
                     <li class="w-100">
                         <a href="{{route('course.prices.form')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Price Set </span></a>
@@ -40,7 +43,7 @@
             </li>
             <li>
                 <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Course Content<i class="fa-solid fa-angle-down"></i></span> 
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Course Content<i class="fa-solid fa-angle-down"></i></span>
                 </a>
                 <ul class="collapse nav flex-column ms-2" id="submenu3" data-bs-parent="#menu">
                     <li class="w-100">
@@ -51,7 +54,7 @@
             </li>
             <li>
                 <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Visitor Info<i class="fa-solid fa-angle-down"></i></span> 
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Visitor Info<i class="fa-solid fa-angle-down"></i></span>
                 </a>
                 <ul class="collapse nav flex-column ms-2" id="submenu4" data-bs-parent="#menu">
                     <li class="w-100">
@@ -63,7 +66,7 @@
             </li>
             <li>
                 <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Executive<i class="fa-solid fa-angle-down"></i></span> 
+                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Executive<i class="fa-solid fa-angle-down"></i></span>
                 </a>
                 <ul class="collapse nav flex-column ms-2" id="submenu5" data-bs-parent="#menu">
                     <li class="w-100">

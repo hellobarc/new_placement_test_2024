@@ -1,5 +1,5 @@
 @extends('layouts.app')
-  
+
 @section('content')
 <section>
     <div class="container-fluid">
@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- name --> 
+                                    <!-- name -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- phone name --> 
+                                    <!-- phone name -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
@@ -57,7 +57,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- email --> 
+                                    <!-- email -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- advisor list --> 
+                                    <!-- advisor list -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
@@ -80,15 +80,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- branch list --> 
+                                    <!-- branch list -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <div class="form-group">
                                                 <label for="full-name">Which Branch are you?  <span class="text-danger fw-bold">*</span></label>
                                                 <select name="visit_branch" id="visit_branch" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
-                                                    <option value="">Select a branch</option>
-                                                    <option value="Uttara">Uttara</option>
-                                                    <option value="Mirpur">Mirpur</option>
+                                                    <option value="Uttara">Head-Office</option>
+                                                    <option value="Mirpur">Mirpur-Office</option>
+                                                    <option value="Corporate">Corporate-Office</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
                                             <input  type="submit" class="text-center w-100 btn py-2 text-white fw-bold" value="Submit" style="background-color:#32327B; border-radius:4px;">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
 @endsection
 
 <script>
-    
+
 (function () {
     console.log('self-function');
     setInterval(notificationNewStudents, 10000);
@@ -125,7 +125,7 @@
             url: '/front/notification-count',
             data: {"data":"check"},
             success: function(data){
-                    document.getElementById('front_notification_count').innerHTML = data;                
+                    document.getElementById('front_notification_count').innerHTML = data;
                 }
         });
     }
