@@ -21,7 +21,7 @@
                     <p style="font-size:1.125rem; text-align:center;">Please fill out this form with the required information</p>
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
-                            
+
                             <div class="mt-3">
                                 {{-- <form action="{{ route('advisor.student.Details.update', $getDetails->id )}}" method="POST">
                                     @csrf --}}
@@ -31,8 +31,8 @@
                                         </div>
                                     @endif
                                     <input type="hidden" name="student_id" id="" value="{{$getDetails->visitor_log_id}}">
-                                    
-                                   
+
+
                                         <!-- purpose of ielts -->
                                         <div class="form-group mt-3">
                                             <label for="email"> Purpose of Visiting BARC <span class="text-danger fw-bold">*</span></label><br>
@@ -58,7 +58,7 @@
                                             <label for="email">Email <span class="text-danger fw-bold">*</span></label>
                                             <input name="email" id="email" value="{{$getDetails->studentInfo->email == NULL ? 'N/A': $getDetails->studentInfo->email}}" type="email" placeholder="Email" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                   
+
                                         <div class="form-group mt-3">
                                             <label for="email"> How to know about us? <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="howtoknow" name="how_you_know" onchange="handleKnow(event)" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -72,7 +72,7 @@
                                                 <option value="Others" {{$getDetails->how_you_know == 'Others' ? 'selected': ' '}}> Others </option>
                                             </select>
                                         </div>
-                                        <!-- student reference--> 
+                                        <!-- student reference-->
                                         <div id="reference_id" style="display: none;">
                                             <div class="form-group mt-3">
                                                 <label for="refer_stu_name">Reference Student Name<span class="text-danger fw-bold">*</span></label>
@@ -105,7 +105,7 @@
                                             </div>
                                             {{-- <input name="full_name" type="text" placeholder="Full Name" id="full_name" value="{{$getDetails->studentInfo->full_name == NULL ? 'N/A': $getDetails->studentInfo->full_name}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
                                         </div>
-                                    
+
                                         <div class="form-group mt-3">
                                             <label for="full-name">Purpose of IELTS<span class="text-danger fw-bold">*</span></label><br>
                                             <input type="hidden" id="front_purpose_of_ielts" value="{{$getDetails->purpose_of_ielts}}">
@@ -246,7 +246,7 @@
                                                 <option value="upper-advance" {{$getDetails->first_current_level == 'upper-advance' ? 'selected': ' '}}>Upper Advance</option>
                                             </select>
                                         </div>
-                                   
+
                                         <div class="form-group mt-3">
                                             <label for="email"> Profession <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="occupation" name="occupation" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -361,17 +361,18 @@
                                             <label for="feedback_from_advisor"> Adviser Comment <span class="text-danger fw-bold">*</span></label><br>
                                             <textarea name="feedback_from_advisor" required type="text" placeholder="Adviser Comment" id="feedback_from_advisor" cols="30" rows="5" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">{{$getDetails->feedback_from_advisor == NULL ? 'N/A': $getDetails->feedback_from_advisor}}</textarea>
                                         </div>
-                                   
+
                                     <!-- button -->
-                                    <div class="d-flex justify-content-center mt-4">
+                                    <div class="d-flex justify-content-center mt-4 gap-4">
                                         <a href="{{route('advisor.home')}}" style="text-decoration: none; color:#f8f8f8; background-color:#32327B; border:1px solid #32327B; padding:8px 12px; font-size:1rem; border-radius:4px;"><i class="fa-solid fa-arrow-left-long"></i> Back Home</a>
+                                        <a href="{{route('student.Details', ['student_id'=>$getDetails->visitor_log_id,'step'=>1,'pagination_page'=>1])}}" style="text-decoration: none; color:#f8f8f8; background-color:#4965ea; border:1px solid #4965ea; padding:8px 12px; font-size:1rem; border-radius:4px;">Edit Again <i class="fa-solid fa-arrow-right"></i></a>
                                         {{-- <button type="submit" class="btn text-white ms-2 px-4" style="background-color: #32327B; ">Next <i class="fa-solid fa-arrow-right-long"></i></button> --}}
                                     </div>
                                 {{-- </form> --}}
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

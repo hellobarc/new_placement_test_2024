@@ -117,7 +117,7 @@
                                                 <option value="Others" {{$getDetails->how_you_know == 'Others' ? 'selected': ' '}}> Others </option>
                                             </select>
                                         </div>
-                                        <!-- student reference--> 
+                                        <!-- student reference-->
                                         <div id="reference_id" style="display: none;">
                                             <div class="form-group mt-3">
                                                 <label for="refer_stu_name">Reference Student Name<span class="text-danger fw-bold">*</span></label>
@@ -355,7 +355,7 @@
                                             <select id="division" type="division" class="@error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="division" onchange="divisionSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
                                                 <option value="">বিভাগ নির্বাচন করুন</option>
                                                 @foreach ($allDivisions as $item)
-                                                    <option value="{{$item->name}}">{{ $item->bn_name}} </option>
+                                                    <option value="{{$item->name}}" >{{ $item->bn_name}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -379,7 +379,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group mt-3">
                                             <label for="blood_group"> Blood Group <span class="text-danger fw-bold">*</span></label><br>
                                             <input name="blood_group" type="text" placeholder="Blood group" id="blood_group" value="{{$getDetails->blood_group == NULL ? 'N/A': $getDetails->blood_group}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
@@ -417,7 +417,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -542,13 +542,13 @@
         thanaData.data.thanas.forEach(element => {
             document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`)
         });
-    
+
     }
     function upazillaSelected(){
         let upazilla = document.getElementById('upazilla').value;
         console.log('hello thana', upazilla);
 
-        allMetroSadars.forEach(element => {        
+        allMetroSadars.forEach(element => {
             if(element.upazilla.name == upazilla){
                 getThanas(upazilla);
                 console.log('list asche');
@@ -558,6 +558,6 @@
             }
         });
     }
-    
+
 </script>
 @endsection
