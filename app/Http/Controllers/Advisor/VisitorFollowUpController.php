@@ -132,25 +132,25 @@ class VisitorFollowUpController extends Controller
     {
         // Step 1: Validate incoming request fields
         $request->validate([
-            'student_id' => 'required|exists:visitor_infos,visitor_log_id',
-            'placement_test_score' => 'nullable|numeric|min:0|max:100',
-            'total_enrolled_course' => 'nullable|array',
-            'total_enrolled_course.*' => 'in:a1,a2,b1,b2,c1',
-            'total_enrolled_package_course' => 'nullable|string|in:a1-b2,a2-b2,a2-c1,b1-b2,b1-c1,b2-c1',
+            'student_id'                        => 'required|exists:visitor_infos,visitor_log_id',
+            'placement_test_score'              => 'nullable|numeric|min:0|max:100',
+            'total_enrolled_course'             => 'nullable|array',
+            'total_enrolled_course.*'           => 'in:a1,a2,b1,b2,c1',
+            'total_enrolled_package_course'     => 'nullable|string|in:a1-b2,a2-b2,a2-c1,b1-b2,b1-c1,b2-c1',
         ]);
 
         // Step 2: Determine enrolled course(s)
-        $enrolled_course = $request->total_enrolled_course;
+        $enrolled_course        = $request->total_enrolled_course;
 
         if (!$enrolled_course) {
-            $package_course = $request->total_enrolled_package_course;
+            $package_course     = $request->total_enrolled_package_course;
             $course_map = [
-                'a1-b2' => ['a1', 'a2', 'b1', 'b2'],
-                'a2-b2' => ['a2', 'b1', 'b2'],
-                'a2-c1' => ['a2', 'b1', 'b2', 'c1'],
-                'b1-b2' => ['b1', 'b2'],
-                'b1-c1' => ['b1', 'b2', 'c1'],
-                'b2-c1' => ['b2', 'c1'],
+                'a1-b2'         => ['a1', 'a2', 'b1', 'b2'],
+                'a2-b2'         => ['a2', 'b1', 'b2'],
+                'a2-c1'         => ['a2', 'b1', 'b2', 'c1'],
+                'b1-b2'         => ['b1', 'b2'],
+                'b1-c1'         => ['b1', 'b2', 'c1'],
+                'b2-c1'         => ['b2', 'c1'],
             ];
             $enrolled_course = $course_map[$package_course] ?? null;
         }
@@ -164,46 +164,46 @@ class VisitorFollowUpController extends Controller
 
             // Step 3: Save to local DB
             VisitorInfo::updateOrCreate(
-                ['visitor_log_id' => $student_id],
-                ['total_enroll_course' => json_encode($enrolled_course)]
+                ['visitor_log_id'       => $student_id],
+                ['total_enroll_course'  => json_encode($enrolled_course)]
             );
 
-            $student_info = VisitorInfo::where('visitor_log_id', $student_id)
-                ->with('studentInfo')
-                ->firstOrFail();
+            $student_info               = VisitorInfo::where('visitor_log_id', $student_id)
+                                        ->with('studentInfo')
+                                        ->firstOrFail();
 
             // Step 4: Validate API Payload
             $validationData = [
-                'full_name' => $student_info->studentInfo->full_name,
-                'email' => $student_info->studentInfo->email,
-                'date_of_birth' => $student_info->date_of_birth,
-                'desired_score' => $student_info->expected_score,
-                'placement_test_score' => $request->placement_test_score,
-                'contact_number' => $student_info->studentInfo->mobile,
-                'emergency_contact' => $contact_number = $student_info->emergency_number ?? $student_info->studentInfo->mobile,
-                'address' => trim("{$student_info->division} {$student_info->district} {$student_info->upazilla} {$student_info->thana}"),
-                'parent_name' => null,
-                'parent_phone' => $student_info->studentInfo->mobile,
-                'parent_type' => 'Gardian',
+                'full_name'                 => $student_info->studentInfo->full_name,
+                'email'                     => $student_info->studentInfo->email,
+                'date_of_birth'             => $student_info->date_of_birth,
+                'desired_score'             => $student_info->expected_score,
+                'placement_test_score'      => $request->placement_test_score,
+                'contact_number'            => $student_info->studentInfo->mobile,
+                'emergency_contact'         => $contact_number = $student_info->emergency_number ?? $student_info->studentInfo->mobile,
+                'address'                   => trim("{$student_info->division} {$student_info->district} {$student_info->upazilla} {$student_info->thana}"),
+                'parent_name'               => null,
+                'parent_phone'              => $student_info->studentInfo->mobile,
+                'parent_type'               => 'Gardian',
                 'current_registered_course' => $enrolled_course[0],
-                'total_enrolled_course' => $enrolled_course,
+                'total_enrolled_course'     => $enrolled_course,
             ];
-
+            //dd($validationData);
             $validator = Validator::make($validationData, [
-                'full_name' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
-                'date_of_birth' => 'required|date|before:today',
-                'desired_score' => 'nullable|numeric|min:0|max:9',
-                'placement_test_score' => 'nullable|numeric|min:0|max:100',
-                'contact_number' => 'required|string|min:8|max:20',
-                'emergency_contact' => 'nullable|string|min:8|max:20',
-                'address' => 'required|string|max:500',
-                'parent_name' => 'nullable|string|max:255',
-                'parent_phone' => 'required|string|min:8|max:20',
-                'parent_type' => 'required|in:Gardian,Father,Mother,Relative,Other',
+                'full_name'                 => 'required|string|max:255',
+                'email'                     => 'required|email|max:255',
+                'date_of_birth'             => 'required|date|before:today',
+                'desired_score'             => 'nullable|numeric|min:0|max:9',
+                'placement_test_score'      => 'nullable|numeric|min:0|max:100',
+                'contact_number'            => 'required|string|min:8|max:20',
+                'emergency_contact'         => 'nullable|string|min:8|max:20',
+                'address'                   => 'required|string|max:500',
+                'parent_name'               => 'nullable|string|max:255',
+                'parent_phone'              => 'required|string|min:8|max:20',
+                'parent_type'               => 'required|in:Gardian,Father,Mother,Relative,Other',
                 'current_registered_course' => 'required|in:a1,a2,b1,b2,c1',
-                'total_enrolled_course' => 'required|array|min:1',
-                'total_enrolled_course.*' => 'in:a1,a2,b1,b2,c1',
+                'total_enrolled_course'     => 'required|array|min:1',
+                'total_enrolled_course.*'   => 'in:a1,a2,b1,b2,c1',
             ]);
 
             if ($validator->fails()) {
@@ -213,7 +213,7 @@ class VisitorFollowUpController extends Controller
             // Step 5: Send data to remote API
             $response = $this->client->post("{$this->api_cros_url}/store/student/placement-test", [
                 'json' => array_merge($validationData, [
-                    'total_enrolled_course' => json_encode($enrolled_course),
+                    'total_enrolled_course'     => json_encode($enrolled_course),
                 ]),
                 'headers' => [
                     'Accept' => 'application/json',

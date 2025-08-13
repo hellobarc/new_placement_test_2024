@@ -651,7 +651,7 @@ class ExamController extends Controller
         $fillBlankUnAnswer = $this->unAnsweredFillBlank($log_id->id);
         $multiSelectorUnAnswer = $this->unAnsweredMultiSelector($log_id->id);
         $unAnswer = $radioMultipleUnAnswer+$dropDownUnAnswer+$fillBlankUnAnswer+$multiSelectorUnAnswer;
-        $in_correct_answer = 60-($all_module_marks+$unAnswer);
+        $in_correct_answer = 75-($all_module_marks+$unAnswer);
         $get_writing_ans = $this->writing_ans_explanation($log_id->id, 5)==null?'nothing':$this->writing_ans_explanation($log_id->id, 5);
         //dd($get_writing_ans);
         return view('price.priceTable', compact('getData','studentId', 'sum_reading_module',

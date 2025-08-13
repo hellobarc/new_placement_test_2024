@@ -329,48 +329,57 @@
                                             <label for="date_of_birth">Date of Birth<span class="text-danger fw-bold">*</span></label>
                                             <input name="date_of_birth" placeholder="Full Name" id="date_of_birth" value="{{$getDetails->date_of_birth == NULL ? 'N/A': $getDetails->date_of_birth}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                        {{-- <div class="form-group mt-3">
-                                            <label for="email"> Current Location <span class="text-danger fw-bold">*</span></label><br>
-                                            <select id="location" name="location" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
-                                                <option value="" selected="selected" disabled="disabled">-- select one --</option>
-                                                <option value="Uttara" {{$getDetails->location == 'Uttara' ? 'selected': ' '}}> Uttara</option>
-                                                <option value="Mirpur" {{$getDetails->location == 'Mirpur' ? 'selected': ' '}}> Mirpur</option>
-                                                <option value="Gazipur" {{$getDetails->location == 'Gazipur' ? 'selected': ' '}}>  Gazipur </option>
-                                                <option value="Joydevpur" {{$getDetails->location == 'Joydevpur' ? 'selected': ' '}}>  Joydevpur </option>
-                                                <option value="Tongi" {{$getDetails->location == 'Tongi' ? 'selected': ' '}}>  Tongi </option>
-                                                <option value="Khilkhet" {{$getDetails->location == 'Khilkhet' ? 'selected': ' '}}>  Khilkhet </option>
-                                                <option value="Badda" {{$getDetails->location == 'Badda' ? 'selected': ' '}}>  Badda </option>
-                                                <option value="Gulshan" {{$getDetails->location == 'Gulshan' ? 'selected': ' '}}>  Gulshan </option>
-                                                <option value="Dhanmondi" {{$getDetails->location == 'Dhanmondi' ? 'selected': ' '}}>  Dhanmondi </option>
-                                                <option value="Narsingdi" {{$getDetails->location == 'Narsingdi' ? 'selected': ' '}}>  Narsingdi </option>
-                                                <option value="Demra" {{$getDetails->location == 'Demra' ? 'selected': ' '}}>  Demra </option>
-                                                <option value="Tangail" {{$getDetails->location == 'Tangail' ? 'selected': ' '}}>  Tangail </option>
-                                                <option value="Savar" {{$getDetails->location == 'Savar' ? 'selected': ' '}}>  Savar </option>
-                                                <option value="Other" {{$getDetails->location == 'Other' ? 'selected': ' '}}>  Other </option>
-                                            </select>
-                                        </div> --}}
-                                        <div class="form-group mt-3">
-                                            <label for="address">Division<span class="text-danger fw-bold">*</span></label>
-                                            {{-- <input name="address" type="text" placeholder="Full Name" id="address" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
-                                            <select id="division" type="division" class="@error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="division" onchange="divisionSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
-                                                <option value="">বিভাগ নির্বাচন করুন</option>
-                                                @foreach ($allDivisions as $item)
-                                                    <option value="{{$item->name}}" >{{ $item->bn_name}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mt-3">
-                                            <label for="address">District<span class="text-danger fw-bold">*</span></label>
-                                            <select id="district" type="district" class="@error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="district" onchange="districtSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
-                                                <option value="">জেলা নির্বাচন করুন</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mt-3">
-                                            <label for="address">Upazilla<span class="text-danger fw-bold">*</span></label>
-                                            <select id="upazilla" type="upazilla" class="@error('upazilla') is-invalid @enderror" name="upazilla" value="{{ old('upazilla') }}" placeholder="আপনার বর্তমান এডেন্স" required autocomplete="upazilla" onchange="upazillaSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
-                                                <option value="">উপজেলা নির্বাচন করুন</option>
-                                            </select>
-                                        </div>
+                                        @if($getDetails->division)
+                                            <div class="form-group mt-3">
+                                                <label for="division">Division<span class="text-danger fw-bold">*</span></label>
+                                                <input name="division" placeholder="Division" id="division" value="{{$getDetails->division}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            </div>
+                                        @else
+                                            <div class="form-group mt-3">
+                                                <label for="address">Division<span class="text-danger fw-bold">*</span></label>
+                                                <select id="division" type="division" class="@error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="আপনার বর্তমান এডেন্স" autocomplete="division" onchange="divisionSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                    <option value="">বিভাগ নির্বাচন করুন</option>
+                                                    @foreach ($allDivisions as $item)
+                                                        <option value="{{$item->name}}" >{{ $item->bn_name}} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        @if($getDetails->district)
+                                            <div class="form-group mt-3">
+                                                <label for="district">District<span class="text-danger fw-bold">*</span></label>
+                                                <input name="district" placeholder="district" id="district" value="{{$getDetails->district}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            </div>
+                                        @else
+                                            <div class="form-group mt-3">
+                                                <label for="address">District<span class="text-danger fw-bold">*</span></label>
+                                                <select id="district" type="district" class="@error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" placeholder="আপনার বর্তমান এডেন্স" autocomplete="district" onchange="districtSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                    <option value="">জেলা নির্বাচন করুন</option>
+                                                </select>
+                                            </div>
+                                        @endif
+                                        @if($getDetails->upazilla)
+                                            <div class="form-group mt-3">
+                                                <label for="upazilla">Upazilla<span class="text-danger fw-bold">*</span></label>
+                                                <input name="upazilla" placeholder="upazilla" id="upazilla" value="{{$getDetails->upazilla}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            </div>
+                                        @else
+                                            <div class="form-group mt-3">
+                                                <label for="address">Upazilla<span class="text-danger fw-bold">*</span></label>
+                                                <select id="upazilla" type="upazilla" class="@error('upazilla') is-invalid @enderror" name="upazilla" value="{{ old('upazilla') }}" placeholder="আপনার বর্তমান এডেন্স" autocomplete="upazilla" onchange="upazillaSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                    <option value="">উপজেলা নির্বাচন করুন</option>
+                                                </select>
+                                            </div>
+                                        @endif
+                                        @if($getDetails->thana)
+                                            @if($getDetails->thana == NULL)
+                                            @else
+                                            <div class="form-group mt-3">
+                                                    <label for="thana">thana<span class="text-danger fw-bold">*</span></label>
+                                                    <input name="thana" placeholder="thana" id="thana" value="{{$getDetails->thana}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                                </div>
+                                            @endif
+                                        @else
                                         <div id="upazilla_selected">
                                             <div class="form-group mt-3">
                                                 <label for="address">Thana<span class="text-danger fw-bold">*</span></label>
@@ -379,18 +388,18 @@
                                                 </select>
                                             </div>
                                         </div>
-
+                                        @endif
                                         <div class="form-group mt-3">
                                             <label for="blood_group"> Blood Group <span class="text-danger fw-bold">*</span></label><br>
                                             <input name="blood_group" type="text" placeholder="Blood group" id="blood_group" value="{{$getDetails->blood_group == NULL ? 'N/A': $getDetails->blood_group}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="emergency_number"> Emergency Contact <span class="text-danger fw-bold">*</span></label><br>
-                                            <input name="emergency_number" type="text" placeholder="Emergency contact" id="emergency_number" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <input name="emergency_number" type="text" placeholder="Emergency contact" id="emergency_number" value="{{$getDetails->emergency_number == NULL ? 'N/A': $getDetails->emergency_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="nid_passport_number"> NID/Passport Number <span class="text-danger fw-bold">*</span></label><br>
-                                            <input name="nid_passport_number" type="text" placeholder="Passport number" id="nid_passport_number" value="{{$getDetails->emergency_number == NULL ? 'N/A': $getDetails->emergency_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <input name="nid_passport_number" type="text" placeholder="Passport number" id="nid_passport_number" value="{{$getDetails->nid_passport_number == NULL ? 'N/A': $getDetails->nid_passport_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="comments_from_student"> Student Comment <span class="text-danger fw-bold">*</span></label><br>

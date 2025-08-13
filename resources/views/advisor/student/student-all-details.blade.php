@@ -332,6 +332,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @if($getDetails->thana == NULL)
+                                        @else
                                         <div class="form-group mt-3">
                                             <label for="address">Thana<span class="text-danger fw-bold">*</span></label>
                                                 <select id="thana" type="thana" class="@error('thana') is-invalid @enderror" name="thana" value="{{ old('thana') }}" placeholder="আপনার বর্তমান এডেন্স"  autocomplete="thana" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -341,17 +343,18 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @endif
                                         <div class="form-group mt-3">
                                             <label for="blood_group"> Blood Group <span class="text-danger fw-bold">*</span></label><br>
                                             <input name="blood_group" type="text" placeholder="Blood group" id="blood_group" value="{{$getDetails->blood_group == NULL ? 'N/A': $getDetails->blood_group}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="emergency_number"> Emergency Contact <span class="text-danger fw-bold">*</span></label><br>
-                                            <input name="emergency_number" type="text" placeholder="Emergency contact" id="emergency_number" value="{{$getDetails->address == NULL ? 'N/A': $getDetails->address}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <input name="emergency_number" type="text" placeholder="Emergency contact" id="emergency_number" value="{{$getDetails->emergency_number == NULL ? 'N/A': $getDetails->emergency_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="nid_passport_number"> NID/Passport Number <span class="text-danger fw-bold">*</span></label><br>
-                                            <input name="nid_passport_number" type="text" placeholder="Passport number" id="nid_passport_number" value="{{$getDetails->emergency_number == NULL ? 'N/A': $getDetails->emergency_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                            <input name="nid_passport_number" type="text" placeholder="Passport number" id="nid_passport_number" value="{{$getDetails->nid_passport_number == NULL ? 'N/A': $getDetails->nid_passport_number}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="comments_from_student"> Student Comment <span class="text-danger fw-bold">*</span></label><br>
