@@ -10,7 +10,7 @@
                             <form action="{{route('manager.visitor.search')}}" method="GET">
                                 @csrf
                                 <div class="">
-                                    <div class="d-flex justify-content-between" style="border: 1px solid #000;border-radius: 4px;"> 
+                                    <div class="d-flex justify-content-between" style="border: 1px solid #000;border-radius: 4px;">
                                         <input type="text" name="search" class="px-2 py-2" style="border: none;" placeholder="Search phone or email number" required>
                                         <button type="submit" class="btn btn-dark py-2 px-4 rounded-0"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
@@ -26,6 +26,7 @@
                                 <th>Location</th>
                                 <th>Status</th>
                                 <th>Advisor</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($allData as $key=>$rows)
@@ -35,9 +36,9 @@
                                         <td>{{$rows->mobile}}</td>
                                         <td>{{$rows->purpose_of_visit}}</td>
                                         <td>
-                                            {!! $rows->userInfo->location == null 
-                                                ? '<span class="badge badge-warning bg-warning text-dark">Location not given</span>' 
-                                                : e($rows->userInfo->location) 
+                                            {!! $rows->userInfo->location == null
+                                                ? '<span class="badge badge-warning bg-warning text-dark">Location not given</span>'
+                                                : e($rows->userInfo->location)
                                             !!}
                                         </td>
                                         <td>
@@ -56,6 +57,16 @@
                                             @endif
                                         </td>
                                         <td>{{$rows->totalUser->name}}</td>
+                                        <td>
+                                            @if ($rows->purpose_of_visit =='course'||$rows->purpose_of_visit == 'ielts_courses'|| $rows->purpose_of_visit =='basic_english'||$rows->purpose_of_visit =='spoken'||$rows->purpose_of_visit =='others'||$rows->purpose_of_visit =='online_courses')
+                                                @if (Helper::examCompleted($rows->id, $rows->assign_advisor)==NULL)
+                                                    {{-- <a href="{{route('student.exam.set', ['student_id'=>$rows->id])}}" ><button class="start-test-btn">Start Now</button></a> --}}
+                                                    <span class="bg-badge bg-warning">Test does not completed</span>
+                                                @else
+                                                    <a href="{{ route('manager-get.student.exam.result' , ['student_id'=>$rows->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
+                                                @endif
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
