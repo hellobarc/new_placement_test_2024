@@ -1552,10 +1552,11 @@
                                                                 @if (Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A')
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
                                                                 @else
-                                                                    {{number_format((Helper::courseBundlePrice('A2-B2')['discount_price'])-7798)}}/-
+                                                                    {{number_format((Helper::courseBundlePrice('A2-B2')['discount_price']))}}/-
+                                                                    <span class="ms-3">(50% Scholarship)</span>
                                                                 @endif
                                                             </div>
-                                                            <input type="hidden" name="" id="courseA2B2HSCTdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']-7798}}">
+                                                            <input type="hidden" name="" id="courseA2B2HSCTdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']}}">
                                                         </td>
                                                     </tr>
                                                     <tr id="total_course_price_row">
@@ -2948,36 +2949,40 @@
     document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
     document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
     function courseHSCTdPrice(){
-    clickCountPriviliged++
+        clickCountPriviliged++
 
-    if(clickCountPriviliged%2 == 0){
-        document.getElementById("a2b2HSCCoursePriceBtn").classList.remove("onlclik_price_active");
-        document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
-        document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
-        var totalHSCPackageRegularPrice = parseInt(0);
-        document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
-        document.getElementById('courseOverviewRegularPrice').innerHTML = 0 + '/-';
-        var totalHSCPackageDiscountPrice =parseInt(0);
-        document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
-        document.getElementById('courseOverviewDiscountedPrice').innerHTML = 0 + '/-';
-        document.getElementById('courseOverviewDiscountPrice').innerHTML = 0 + '/-';
-    }else{
-        document.getElementById("a2b2HSCCoursePriceBtn").classList.add("onlclik_price_active");
-        document.getElementById('courseA2B2HSCTdPrice1').style.display = "block";
-        document.getElementById('courseA2B2HSCTdPrice2').style.display = "block";
+        if(clickCountPriviliged%2 == 0){
+            document.getElementById("a2b2HSCCoursePriceBtn").classList.remove("onlclik_price_active");
+            document.getElementById('courseA2B2HSCTdPrice1').style.display = "none";
+            document.getElementById('courseA2B2HSCTdPrice2').style.display = "none";
+            var totalHSCPackageRegularPrice = parseInt(0);
+            document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+            document.getElementById('courseOverviewRegularPrice').innerHTML = 0 + '/-';
+            var totalHSCPackageDiscountPrice =parseInt(0);
+            document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+            document.getElementById('courseOverviewDiscountedPrice').innerHTML = 0 + '/-';
+            document.getElementById('courseOverviewDiscountPrice').innerHTML = 0 + '/-';
+        }else{
+            document.getElementById("a2b2HSCCoursePriceBtn").classList.add("onlclik_price_active");
+            document.getElementById('courseA2B2HSCTdPrice1').style.display = "block";
+            document.getElementById('courseA2B2HSCTdPrice2').style.display = "block";
 
-        var hscRegularCourseValue = document.getElementById('courseA2B2HSCTdPrice1Input').value;
-        var totalHSCPackageRegularPrice = parseInt (hscRegularCourseValue);
-        document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
-        document.getElementById('courseOverviewRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+            var hscRegularCourseValue = document.getElementById('courseA2B2HSCTdPrice1Input').value;
+            var totalHSCPackageRegularPrice = parseInt (hscRegularCourseValue);
+            document.getElementById('totalPackageHSCCourseRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
+            document.getElementById('courseOverviewRegularPrice').innerHTML = totalHSCPackageRegularPrice.toLocaleString() + '/-';
 
-        var hscDiscountCourseValue = document.getElementById('courseA2B2HSCTdDiscountPrice1Input').value;
-        var totalHSCPackageDiscountPrice = parseInt (hscDiscountCourseValue);
-        document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
-        document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
-        document.getElementById('courseOverviewDiscountPrice').innerHTML = (totalHSCPackageRegularPrice - totalHSCPackageDiscountPrice).toLocaleString() + '/-';
-        document.getElementById('courseOverviewTotalPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
-    }
+            var hscDiscountCourseValue = document.getElementById('courseA2B2HSCTdDiscountPrice1Input').value;
+            var totalHSCPackageDiscountPrice = parseInt (hscDiscountCourseValue);
+            document.getElementById('totalPackageHSCCourseDiscountPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+            document.getElementById('courseOverviewDiscountedPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+            document.getElementById('courseOverviewDiscountPrice').innerHTML = (totalHSCPackageRegularPrice - totalHSCPackageDiscountPrice).toLocaleString() + '/-';
+            document.getElementById('courseOverviewTotalPrice').innerHTML = totalHSCPackageDiscountPrice.toLocaleString() + '/-';
+
+
+        }
+        inputHTML = `<input type="hidden" name="total_enrolled_package_course" value="a2-b2">`;
+        document.getElementById('enrolled_package_course_stu').insertAdjacentHTML("beforeend", inputHTML);
     }
     if(desired_level == 'A1'){
     $("#activeClass1").removeClass('inner_box_top_1');

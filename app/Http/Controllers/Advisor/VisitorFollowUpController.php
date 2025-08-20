@@ -131,6 +131,7 @@ class VisitorFollowUpController extends Controller
     public function studentTotalEnrolledCourse(Request $request)
     {
         // Step 1: Validate incoming request fields
+        //dd($request->all());
         $request->validate([
             'student_id'                        => 'required|exists:visitor_infos,visitor_log_id',
             'placement_test_score'              => 'nullable|numeric|min:0|max:100',
