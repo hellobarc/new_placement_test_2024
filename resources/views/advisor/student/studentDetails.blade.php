@@ -560,12 +560,26 @@
         allMetroSadars.forEach(element => {
             if(element.upazilla.name == upazilla){
                 getThanas(upazilla);
-                console.log('list asche');
+                //console.log('list asche');
             }
             else{
+                 getUserAddressList(upazilla);
                 document.getElementById('upazilla_selected').style.display = 'none';
             }
         });
+    }
+    async function getUserAddressList(upazilla){
+        let thanaData = await axios.post('/admin/student-address-count',{
+                    params : {
+                        upazillaName : upazilla
+                    }
+                });
+
+        document.getElementById('addressStudent').innerHTML = ``;
+        document.getElementById('addressStudent').insertAdjacentHTML('beforeend', `${thanaData.data.number}`)
+        // thanaData.data.thanas.forEach(element => {
+        // });
+
     }
 
 </script>

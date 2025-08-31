@@ -1,42 +1,51 @@
 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background: #212529">
     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-center text-white text-decoration-none">
-            <span class="fs-5 d-none d-sm-inline text-center fs-4">Dashboard</span>
-            
+            <span class="fs-5 d-none d-sm-inline text-center fs-4"><i class="fa-solid fa-grip"></i> Dashboard</span>
+
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-                <a href="#" class="nav-link align-middle px-0 text-white fs-5">
+                <a href="{{route('admin.home')}}" class="nav-link align-middle px-0 text-white fs-5">
                     <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                 </a>
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-1 d-none d-sm-inline">All Test <i class="fa-solid fa-angle-down"></i></span> </a>
+                    <i class="fa-solid fa-vial-circle-check"></i> <span class="ms-1 d-none d-sm-inline">All Test <i class="fa-solid fa-angle-down"></i></span> </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{route('admin.manage.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Manage Test</span></a>
+                        <a href="{{route('admin.manage.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> Manage Test</span></a>
                     </li>
                     <li class="w-100">
-                        <a href="{{route('admin.manage.section.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Manage Test Section</span></a>
+                        <a href="{{route('admin.manage.section.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> Manage Test Section</span></a>
                     </li>
                     <li class="w-100">
-                        <a href="{{route('admin.manage-question.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Manage Test Question</span></a>
+                        <a href="{{route('admin.manage-question.test')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> Manage Test Question</span></a>
                     </li>
                     <li class="w-100">
-                        <a href="{{route('analytics.students')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> Student Analytics </span></a>
+                        <a href="{{route('analytics.students')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> Student Analytics </span></a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
-                    <i class="fa-solid fa-gauge"></i> <span class="ms-2 d-none d-sm-inline">Manage Managers<i class="fa-solid fa-angle-down"></i></span> </a>
+                    <i class="fa-solid fa-user-group"></i> <span class="ms-2 d-none d-sm-inline">Manage Managers <i class="fa-solid fa-angle-down"></i></span> </a>
                 <ul class="collapse nav flex-column ms-2" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{route('manager.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> manager List </span></a>
+                        <a href="{{route('manager.list')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> manager List </span></a>
                     </li>
                     <li class="w-100">
-                        <a href="{{route('manager.Add')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-solid fa-circle"></i></span> manager Add </span></a>
+                        <a href="{{route('manager.Add')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> manager Add </span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white fs-5">
+                    <i class="fa-solid fa-chart-simple"></i> <span class="ms-1 d-none d-sm-inline">Analytics <i class="fa-solid fa-angle-down"></i></span> </a>
+                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{{route('analytics.students')}}" class="nav-link px-0 fs-6"> <span class="d-none d-sm-inline text-white"><span style="font-size: 10px;"><i class="fa-regular fa-circle"></i></span> Student Analytics </span></a>
                     </li>
                 </ul>
             </li>

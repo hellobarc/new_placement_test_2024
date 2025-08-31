@@ -1552,11 +1552,11 @@
                                                                 @if (Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A')
                                                                     {{number_format(Helper::courseBundlePrice('A2-B2')['regular_price'])}}/-
                                                                 @else
-                                                                    {{number_format((Helper::courseBundlePrice('A2-B2')['discount_price']))}}/-
+                                                                    {{number_format((Helper::courseBundlePrice('A2-B2')['discount_price']-3000))}}/-
                                                                     <span class="ms-3">(50% Scholarship)</span>
                                                                 @endif
                                                             </div>
-                                                            <input type="hidden" name="" id="courseA2B2HSCTdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']}}">
+                                                            <input type="hidden" name="" id="courseA2B2HSCTdDiscountPrice1Input" value="{{Helper::courseBundlePrice('A2-B2')['discount_price'] == 'N/A'? Helper::courseBundlePrice('A2-B2')['regular_price'] : Helper::courseBundlePrice('A2-B2')['discount_price']-3000}}">
                                                         </td>
                                                     </tr>
                                                     <tr id="total_course_price_row">

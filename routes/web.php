@@ -135,6 +135,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
     Route::controller(AnalyticsController::class)->group(function(){
         Route::get('/student-analytics', 'home')->name('analytics.students');
+        Route::post('/student-address-count', 'studentAdressCount')->name('admin.address.students.count');
     });
 
     Route::controller(ManagerManagementController::class)->group(function(){
@@ -144,6 +145,11 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
         Route::get('/manager-edit/{id}', 'managerEdit')->name('manager.edit');
         Route::post('/manager-edit/store', 'managerEditStore')->name('manager.edit.store');
         Route::get('/manager-edit/delete/{id}', 'managerDelete')->name('manager.delete.store');
+    });
+    Route::controller(VisitorController::class)->group(function () {
+        Route::post('/get-district-data', 'GetDistricts');
+        Route::post('/get-upazilla-data', 'GetUpazillas');
+        Route::post('/get-thana-data', 'GetThana');
     });
 });
 
