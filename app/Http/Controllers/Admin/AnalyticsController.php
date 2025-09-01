@@ -208,12 +208,28 @@ Class AnalyticsController extends Controller{
         $education = $db->where('education', $value)->get();
         return $education;
     }
-    public function studentAdressCount(Request $request)
+    public function upzillaDataStudentAdress(Request $request)
     {
         $upzilla = $request->params['upazillaName'];
-        $total_log = VisitorInfo::where('upazilla', $upzilla)->count();
+        //dd($upzilla);
+        $total_log = VisitorInfo::where('upazilla', $upzilla)->with('studentInfo')->get();
+        //dd($total_log);
+        $total_count = count($total_log);
         return response()->json([
-            'number' => $total_log
+            'number' => $total_count,
+            'student_list' => $total_log,
+        ]);
+    }
+    public function thanaDataStudentAdress(Request $request)
+    {
+        $thana = $request->params['thanaName'];
+        //dd($thana);
+        $total_log = VisitorInfo::where('thana', $thana)->with('studentInfo')->get();
+        //dd($total_log);
+        $total_count = count($total_log);
+        return response()->json([
+            'number' => $total_count,
+            'student_list' => $total_log,
         ]);
     }
 }

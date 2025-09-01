@@ -224,21 +224,27 @@
                             <div id="upazilla_selected">
                                 <div class="form-group mt-3">
                                     <label for="address">Thana<span class="text-danger fw-bold">*</span></label>
-                                    <select id="thana" type="thana" class="@error('thana') is-invalid @enderror" name="thana" value="{{ old('thana') }}" placeholder="আপনার বর্তমান এডেন্স"  autocomplete="thana" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                    <select id="thana" type="thana" class="@error('thana') is-invalid @enderror" name="thana" value="{{ old('thana') }}" placeholder="আপনার বর্তমান এডেন্স"  autocomplete="thana" onchange="thanaSelected()" style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
                                         <option value="">থানা নির্বাচন করুন</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xxl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <h5>Total Student - <span id="addressStudent"></span></h5>
                             <table class="table table-bordered table-striped">
-                                <tr>
-                                    <td>Total Student</td>
-                                </tr>
-                                <tr>
-                                    <td id="addressStudent"></td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Full Name</th>
+                                        <th>Mobile</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listAddressStudent">
+                                    <!-- rows will be inserted here -->
+                                </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -599,33 +605,80 @@
             document.getElementById('upazilla').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`);
         });
     }
-    function upazillaSelected(){
+    async function upazillaSelected(){
         let upazilla = document.getElementById('upazilla').value;
+        let thanasArr = await getThanas(upazilla);   // wait for response
+        if(thanasArr.length == 0){
+            getDataFromUpzila(upazilla);
+            document.getElementById('upazilla_selected').style.display = 'none';
+        }else{
+            document.getElementById('upazilla_selected').style.display = 'block';
+            document.getElementById('thana').innerHTML = ``;
+            document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="">থানা নির্বাচন করুন</option>`);
+            thanasArr.forEach(element => {
+                document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`)
+            });
+            // allMetroSadars.forEach(element => {
+            //     if(element.upazilla.name == upazilla){
+            //         getThanas(upazilla);
+            //     }
+            //     else{
+            //         document.getElementById('upazilla_selected').style.display = 'none';
+            //     }
+            // });
+        }
+    }
 
-        allMetroSadars.forEach(element => {
-            if(element.upazilla.name == upazilla){
-                getThanas(upazilla);
-            }
-            else{
-                document.getElementById('upazilla_selected').style.display = 'none';
+    async function getThanas(upazilla){
+        let thanaData = await axios.post('/admin/get-thana-data', {
+            params: {
+                upazillaName: upazilla
             }
         });
+
+        return thanaData.data.thanas;
     }
-    async function getThanas(upazilla){
-        let thanaData = await axios.post('/admin/get-thana-data',{
+
+    async function getDataFromUpzila(upazilla){
+        let upazillaData = await axios.post('/admin/upzilla-data-student-address',{
+                params : {
+                    upazillaName : upazilla
+                }
+            });
+        document.getElementById('addressStudent').innerHTML = ``;
+        document.getElementById('addressStudent').insertAdjacentHTML('beforeend', `${upazillaData.data.number}`);
+        document.getElementById('listAddressStudent').innerHTML = ``;
+        //console.log(upazillaData.data.student_list);thanaSelected
+        upazillaData.data.student_list.forEach((element, index) => {
+        document.getElementById('listAddressStudent').insertAdjacentHTML('beforeend', `
+                <tr>
+                    <td>${index+1}</td>
+                    <td>${element.student_info.full_name}</td>
+                    <td>${element.student_info.mobile}</td>
+                </tr>
+            `);
+        });
+    }
+        async function thanaSelected(upazilla){
+            let thana = document.getElementById('thana').value;
+            let thanaData = await axios.post('/admin/thana-data-student-address',{
                     params : {
-                        upazillaName : upazilla
+                        thanaName : thana
                     }
                 });
-
-        document.getElementById('upazilla_selected').style.display = 'block';
-        document.getElementById('thana').innerHTML = ``;
-        document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="">থানা নির্বাচন করুন</option>`);
-        thanaData.data.thanas.forEach(element => {
-            document.getElementById('thana').insertAdjacentHTML('beforeend', `<option value="${element.name}">${element.bn_name}</option>`)
-        });
-
-    }
-
+            document.getElementById('addressStudent').innerHTML = ``;
+            document.getElementById('addressStudent').insertAdjacentHTML('beforeend', `${thanaData.data.number}`);
+            document.getElementById('listAddressStudent').innerHTML = ``;
+            //console.log(upazillaData.data.student_list);
+            thanaData.data.student_list.forEach((element, index) => {
+                document.getElementById('listAddressStudent').insertAdjacentHTML('beforeend', `
+                    <tr>
+                        <td>${index+1}</td>
+                        <td>${element.student_info.full_name}</td>
+                        <td>${element.student_info.mobile}</td>
+                    </tr>
+                `);
+            });
+        }
 </script>
 @endsection

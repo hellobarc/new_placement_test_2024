@@ -135,7 +135,8 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
     Route::controller(AnalyticsController::class)->group(function(){
         Route::get('/student-analytics', 'home')->name('analytics.students');
-        Route::post('/student-address-count', 'studentAdressCount')->name('admin.address.students.count');
+        Route::post('/upzilla-data-student-address', 'upzillaDataStudentAdress')->name('admin.upzilla.data');
+        Route::post('/thana-data-student-address', 'thanaDataStudentAdress')->name('admin.thana.data');
     });
 
     Route::controller(ManagerManagementController::class)->group(function(){
