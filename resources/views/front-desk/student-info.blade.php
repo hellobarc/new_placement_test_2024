@@ -66,6 +66,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">
+                                            <!-- know about us -->
+                                            <div class="form-group mt-3">
+                                                <label for="email"> How to know about us? <span class="text-danger fw-bold">*</span></label><br>
+                                                <select id="howtoknow" name="how_you_know" onchange="handleKnow(event)" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                    <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                                                    <option value="Facebook"> Facebook</option>
+                                                    <option value="Website"> Website </option>
+                                                    <option value="Billboard"> Billboard </option>
+                                                    <option value="Google-Map"> Google Map </option>
+                                                    <option value="student_reference"> Student Reference </option>
+                                                    <option value="Youtube"> Youtube </option>
+                                                    <option value="Others"> Others </option>
+                                                </select>
+                                            </div>
+                                            <!-- student reference-->
+                                            <div id="reference_id" style="display: none;">
+                                                <div class="form-group mt-3">
+                                                    <label for="refer_stu_name">Reference Student Name<span class="text-danger fw-bold">*</span></label>
+                                                    <input name="refer_stu_name" type="text" placeholder="Full Name" id="Refer Phone name" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                                </div>
+                                                <div class="form-group mt-3">
+                                                    <label for="refer_phone_number">Refer student phone number<span class="text-danger fw-bold">*</span></label>
+                                                    <input name="refer_phone_number" type="text" placeholder="Refer Phone Number" id="Refer Phone Number" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                                </div>
+                                                <div class="form-group mt-3">
+                                                    <label for="refer_batch_name">Refer student batch Name<span class="text-danger fw-bold">*</span></label>
+                                                    <input name="refer_batch_name" type="text" placeholder="Refer student batch name" id="Refer student batch name" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- advisor list -->
                                     <div class="row mt-3">
                                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto">

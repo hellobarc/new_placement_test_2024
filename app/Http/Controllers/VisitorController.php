@@ -55,6 +55,15 @@ class VisitorController extends Controller
         }elseif(($purpose_of_visit == 'course' || $purpose_of_visit == 'others') && $getUser->type != 'advisor'){
             return redirect()->back()->withErrors('Please select a advisor');
         }else{
+            if($request->how_you_know == 'student_reference'){
+                $refer_stu_name = $request->refer_stu_name;
+                $refer_phone_number = $request->refer_phone_number;
+                $refer_batch_name = $request->refer_batch_name;
+            }else{
+                $refer_stu_name = NULL;
+                $refer_phone_number = NULL;
+                $refer_batch_name = NULL;
+            }
             $visitorLog = VisitorLog::create([
                 'assign_advisor'            => $assign_advisor,
                 'full_name'                 => $fullName,
@@ -69,7 +78,11 @@ class VisitorController extends Controller
                 'time_log'                  => $form_input_time
             ]);
             VisitorInfo::create([
-                'visitor_log_id'            => $visitorLog->id,
+                'visitor_log_id'        => $visitorLog->id,
+                'how_you_know'         => $request->how_you_know,
+                'refer_stu_name'        => $refer_stu_name,
+                'refer_phone_number'    => $refer_phone_number,
+                'refer_batch_name'      => $refer_batch_name,
             ]);
             SurveyLog::create([
                 'student_id' => $visitorLog->id,
@@ -170,14 +183,6 @@ class VisitorController extends Controller
         $step = $request->step;
         $pagination_page = $request->pagination_page;
         if($step == 1){
-            $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
-                'full_name'                 => $request->full_name,
-                'email'                     => $request->email,
-                'mobile'                    => $request->contact_number,
-                'purpose_of_visit'          => $request->purpose_of_visit,
-            ]);
-        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>2, 'pagination_page'=>$pagination_page]);
-        }elseif($step == 2){
             if($request->how_you_know == 'student_reference'){
                 $refer_stu_name = $request->refer_stu_name;
                 $refer_phone_number = $request->refer_phone_number;
@@ -187,15 +192,26 @@ class VisitorController extends Controller
                 $refer_phone_number = NULL;
                 $refer_batch_name = NULL;
             }
+            $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
+                'full_name'             => $request->full_name,
+                'email'                 => $request->email,
+                'mobile'                => $request->contact_number,
+                'purpose_of_visit'      => $request->purpose_of_visit,
+                'how_you_know'          => $request->how_you_know,
+                'refer_stu_name'        => $refer_stu_name,
+                'refer_phone_number'    => $refer_phone_number,
+                'refer_batch_name'      => $refer_batch_name,
+            ]);
+        return redirect()->route('student.Details', ['student_id'=>$request->student_id, 'step'=>2, 'pagination_page'=>$pagination_page]);
+        }elseif($step == 2){
+
             VisitorInfo::updateOrCreate([
                 'id' => $id,
                 'visitor_log_id' =>$request->student_id,
             ],[
-                'how_you_know' => $request->how_you_know,
-                'refer_stu_name' => $refer_stu_name,
-                'refer_phone_number' => $refer_phone_number,
-                'refer_batch_name' => $refer_batch_name,
                 'specific_course' => $request->type_course,
+                'purpose_of_ielts' => $request->purpose_of_ielts,
+                'expected_score' => $request->expected_score,
             ]);
             SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
                 'completed_part' => 2,
@@ -206,9 +222,7 @@ class VisitorController extends Controller
                 'id' => $id,
                 'visitor_log_id' =>$request->student_id,
             ],[
-                'purpose_of_ielts' => $request->purpose_of_ielts,
                 'ielts_taken' => $request->ielts_taken,
-                'expected_score' => $request->expected_score,
                 'expected_country' => json_encode($request->expected_country),
                 'ielts_enough_time' => $request->ielts_enough_time,
                 'topics_improvement' => json_encode($request->topics_improvement),

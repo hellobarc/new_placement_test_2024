@@ -103,7 +103,7 @@
                                             <label for="email">Email <span class="text-danger fw-bold">*</span></label>
                                             <input name="email" id="email" value="{{$getDetails->studentInfo->email == NULL ? 'N/A': $getDetails->studentInfo->email}}" type="email" placeholder="Email" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                         </div>
-                                    @elseif ($step == 2)
+                                        <!-- know about us -->
                                         <div class="form-group mt-3">
                                             <label for="email"> How to know about us? <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="howtoknow" name="how_you_know" onchange="handleKnow(event)" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -132,7 +132,8 @@
                                                 <input name="refer_batch_name" type="text" placeholder="Refer student batch name" id="Refer student batch name" value="{{$getDetails->refer_batch_name == NULL ? 'N/A': $getDetails->refer_batch_name}}" style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;">
                                             </div>
                                         </div>
-                                        <!-- courses -->
+                                    @elseif ($step == 2)
+                                        <!-- courses need-->
                                         <div class="form-group mt-3">
                                             <label for="full-name">Which Course you need?<span class="text-danger fw-bold">*</span></label><br>
                                             <input type="hidden" id="specific_course" value="{{$getDetails->specific_course}}">
@@ -141,16 +142,20 @@
                                                 <p style="font-size: 1rem; margin:0 0 0 0.625rem;">IELTS</p>
                                             </div>
                                             <div class="d-flex justify-content-start mt-3">
-                                                <input type="radio" name="type_course" id="course_kids" value="course_kids">
-                                                <p style="font-size: 1rem; margin:0 0 0 0.625rem;">Kids</p>
+                                                <input type="radio" name="type_course" id="course_basic_english" value="course_basic_english">
+                                                <p style="font-size: 1rem; margin:0 0 0 0.625rem;">Basic English</p>
                                             </div>
                                             <div class="d-flex justify-content-start mt-3">
                                                 <input type="radio" name="type_course" id="course_english_graduate" value="course_english_graduate">
                                                 <p style="font-size: 1rem; margin:0 0 0 0.625rem;">English Graduate</p>
                                             </div>
+                                            <div class="d-flex justify-content-start mt-3">
+                                                <input type="radio" name="type_course" id="course_kids" value="course_kids">
+                                                <p style="font-size: 1rem; margin:0 0 0 0.625rem;">Kids</p>
+                                            </div>
                                             {{-- <input name="full_name" type="text" placeholder="Full Name" id="full_name" value="{{$getDetails->studentInfo->full_name == NULL ? 'N/A': $getDetails->studentInfo->full_name}}" required style="width: 100%;padding: 10px; border: 1px solid #828282;border-radius:4px;"> --}}
                                         </div>
-                                    @elseif ($step == 3)
+                                        <!-- purpose of ielts-->
                                         <div class="form-group mt-3">
                                             <label for="full-name">Purpose of IELTS<span class="text-danger fw-bold">*</span></label><br>
                                             <input type="hidden" id="front_purpose_of_ielts" value="{{$getDetails->purpose_of_ielts}}">
@@ -167,14 +172,7 @@
                                                 <p style="font-size: 1rem; margin:0 0 0 0.625rem;">want to go aboard for work</p>
                                             </div>
                                         </div>
-                                        <div class="form-group mt-3">
-                                            <label for="email"> IELTS Taken Before <span class="text-danger fw-bold">*</span></label><br>
-                                            <select id="ielts_taken" name="ielts_taken" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
-                                                <option value="" selected="selected" disabled="disabled">-- select one --</option>
-                                                <option value="yes" {{$getDetails->ielts_taken == 'yes' ? 'selected': ' '}}>Yes</option>
-                                                <option value="no" {{$getDetails->ielts_taken == 'no' ? 'selected': ' '}}>No</option>
-                                            </select>
-                                        </div>
+                                        <!-- expected score -->
                                         <div class="form-group mt-3">
                                             <label for="email"> Expected IELTS Score <span class="text-danger fw-bold">*</span></label><br>
                                             <select id="expected_score" name="expected_score" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
@@ -190,6 +188,15 @@
                                                 <option value="8" {{$getDetails->expected_score ==8 ? 'selected': ' '}}>8.00</option>
                                                 <option value="8.50" {{$getDetails->expected_score ==8.50 ? 'selected': ' '}}>8.50</option>
                                                 <option value="9" {{$getDetails->expected_score ==9 ? 'selected': ' '}}>9.00</option>
+                                            </select>
+                                        </div>
+                                    @elseif ($step == 3)
+                                        <div class="form-group mt-3">
+                                            <label for="email"> IELTS Taken Before <span class="text-danger fw-bold">*</span></label><br>
+                                            <select id="ielts_taken" name="ielts_taken" required style="width: 100%;padding: 10px; border: 1px solid #828282; border-radius:4px;">
+                                                <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                                                <option value="yes" {{$getDetails->ielts_taken == 'yes' ? 'selected': ' '}}>Yes</option>
+                                                <option value="no" {{$getDetails->ielts_taken == 'no' ? 'selected': ' '}}>No</option>
                                             </select>
                                         </div>
                                         <div class="form-group mt-3">
@@ -443,6 +450,8 @@
             document.getElementById("course_kids").checked = true;
         }else if(el == 'course_english_graduate'){
             document.getElementById("course_english_graduate").checked = true;
+        }else if(el == 'course_basic_english'){
+            document.getElementById("course_basic_english").checked = true;
         }
     });
     $(function() {
