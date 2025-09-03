@@ -108,6 +108,8 @@
                                                 @else
                                                     <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
                                                 @endif
+                                            @elseif($item->surveyLog->completed_part == 1)
+                                                <a href="{{ route('student.short.details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button></a>
                                             @else
                                                 <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button></a>
                                             @endif

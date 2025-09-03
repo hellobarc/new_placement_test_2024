@@ -229,6 +229,10 @@ Route::middleware(['auth', 'user-access:advisor'])->group(function () {
         Route::post('/student-follow-up-edit', 'followUpEdit')->name('followUP.Edit');
         Route::post('/studen-status-update',  'adivserUpdateStudentStatus')->name('status.update.adviser');
         Route::post('/student-decline/{id}', 'DeclineStudentAssign')->name('student.decline');
+
+        Route::get('/student-short-Info/{student_id}/{step}/{pagination_page}', 'studentShortDetails')->name('student.short.details');
+        Route::post('/student-short-info-update/{id}', 'studentShortDetailsUpdate')->name('advisor.student.short.details.update');
+
         Route::get('/student-Info/{student_id}/{step}/{pagination_page}', 'studentDetails')->name('student.Details');
         Route::post('/student-Info-update/{id}', 'studentDetailsUpdate')->name('advisor.student.Details.update');
         Route::get('/student/all-info/{student_id}', 'studentAllDetails')->name('student.all.Details');

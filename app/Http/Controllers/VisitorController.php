@@ -127,6 +127,10 @@ class VisitorController extends Controller
         'allUpazillas',
         'allMetropolitanThanas', 'pagination_page'));
     }
+    public function studentShortDetails($student_id, $step, $pagination_page){
+        $getDetails = VisitorInfo::where('visitor_log_id', $student_id)->with('studentInfo')->first();
+        return view('advisor.student.student-short-details', compact('getDetails', 'pagination_page', 'step'));
+    }
     public function GetDistricts(Request $request){
         $divisionName = $request->params['divisionName'];
         $divisionId = Division::where('name', $divisionName)->first();
@@ -176,6 +180,47 @@ class VisitorController extends Controller
         'allDistricts',
         'allUpazillas',
         'allMetropolitanThanas'))->with('message', 'Student all information uploaded successfully');
+    }
+    public function studentShortDetailsUpdate(Request $request,$id)
+    {
+        $step = $request->step;
+        $pagination_page = $request->pagination_page;
+        if($step == 1){
+            if($request->how_you_know == 'student_reference'){
+                $refer_stu_name = $request->refer_stu_name;
+                $refer_phone_number = $request->refer_phone_number;
+                $refer_batch_name = $request->refer_batch_name;
+            }else{
+                $refer_stu_name = NULL;
+                $refer_phone_number = NULL;
+                $refer_batch_name = NULL;
+            }
+            $visitorLog = VisitorLog::updateOrCreate(['id'=> $request->student_id],[
+                'full_name'             => $request->full_name,
+                'email'                 => $request->email,
+                'mobile'                => $request->contact_number,
+                'purpose_of_visit'      => $request->purpose_of_visit,
+                'how_you_know'          => $request->how_you_know,
+                'refer_stu_name'        => $refer_stu_name,
+                'refer_phone_number'    => $refer_phone_number,
+                'refer_batch_name'      => $refer_batch_name,
+            ]);
+        return redirect()->route('student.short.details', ['student_id'=>$request->student_id, 'step'=>2, 'pagination_page'=>$pagination_page]);
+        }elseif($step == 2){
+
+            VisitorInfo::updateOrCreate([
+                'id' => $id,
+                'visitor_log_id' =>$request->student_id,
+            ],[
+                'specific_course' => $request->type_course,
+                'purpose_of_ielts' => $request->purpose_of_ielts,
+                'expected_score' => $request->expected_score,
+            ]);
+            SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
+                'completed_part' => 2,
+            ]);
+            return redirect()->route('student.exam.set', ['student_id'=>$request->student_id]);
+        }
     }
     public function studentDetailsUpdate(Request $request,$id)
     {
@@ -259,7 +304,6 @@ class VisitorController extends Controller
             ]);
             return redirect()->route('student.all.Details', ['student_id'=>$request->student_id])->with('message', 'Student all information uploaded successfully');
         }
-
     }
     public function statusChanged(Request $request, $id){
         $changedStatus = $request->input('status');
