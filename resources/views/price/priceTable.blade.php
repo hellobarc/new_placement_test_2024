@@ -49,7 +49,7 @@
                                         {{-- <p class="assessment-title">Assessment Results</p> --}}
                                         <div class="candidate-info">
                                             <p class="name">Hello, {{$student_info->studentInfo->full_name}}</p>
-                                            <p style="margin: 5px 0 0 0; font-size: 1rem;">You have completed your 40-minute IELTS assessment test.</p>
+                                            <p style="margin: 5px 0 0 0; font-size: 1rem;">You have completed your 60-minute IELTS assessment test.</p>
                                             <div class="div-1">
                                                 <p class="p-1">Score: {{$all_module_marks}} out of 75</p>
                                             </div>

@@ -491,7 +491,7 @@ class ExamController extends Controller
                     if($response_score == null){
                         $response_score_final = 0;
                     }else{
-                        $response_score_final =$this->extractScore($response);
+                        $response_score_final = $this->extractScore($response) > 8? 7: $this->extractScore($response);
                     }
 
                 }else{
@@ -700,7 +700,7 @@ class ExamController extends Controller
         $sum_writing_module =( $sum_grammar_module+ $sum_vocabulary_module);
         $all_module_marks = $sum_reading_module + $sum_listening_module + $sum_grammar_module+$sum_vocabulary_module+$writing_essay_module;
 
-        return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'sum_writing_module', 'student_info'));
+        return view('advisor.student.result-card', compact('all_module_marks', 'sum_reading_module', 'sum_grammar_module','sum_vocabulary_module','sum_listening_module', 'writing_essay_module','sum_writing_module', 'student_info'));
     }
     private function count_test_question($test_id, $module_id)
     {

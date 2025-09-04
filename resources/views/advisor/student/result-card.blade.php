@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
   </head>
   <body style="position: relative;">
-    
+
 <section class="result-card-header">
     <div class="container">
         <div class="row">
@@ -37,7 +37,7 @@
                <h3 class="title">Placement Test Report</h3>
                <p class="name">{{$student_info->studentInfo->full_name}},</p>
                <p class="text">
-                আপনি ব্রিটিশ আমেরিকান রিসোর্স সেন্টারে এসে ইংরেজি ভাষা দক্ষতা পরিমাপের জন্য ৪০ মিনিটের একটি পরীক্ষা দিয়েছেন | 
+                আপনি ব্রিটিশ আমেরিকান রিসোর্স সেন্টারে এসে ইংরেজি ভাষা দক্ষতা পরিমাপের জন্য ৬০ মিনিটের একটি পরীক্ষা দিয়েছেন |
                 এবং আপনার অবস্থান <span class="level">{{Helper::overall_rubricks($all_module_marks)}} level</span> এ.
                </p>
             </div>
@@ -160,14 +160,14 @@
                                         <div class="reading">
                                             <h5><i class="fa-solid fa-pen-to-square"></i> Writing</h5>
                                             <div class="d-flex justify-content-start">
-                                                <progress class="progress-bar-grammar mt-2" id="file" value="{{number_format(($sum_writing_module*100)/30)}}" max="100"></progress>
-                                                <span style="margin: 0 0 0 6px;">{{number_format(($sum_writing_module*100)/30)}}%</span>
+                                                <progress class="progress-bar-grammar mt-2" id="file" value="{{number_format(($writing_essay_module*100)/15)}}" max="100"></progress>
+                                                <span style="margin: 0 0 0 6px;">{{number_format(($writing_essay_module*100)/15)}}%</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">   
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="result">
                                     <div class="header"> টার্গেট স্কোর এবং  বর্তমান অবস্থা</div>
                                     <div class="inner">
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <div class="band-wise-course">
-                            <h4>Band 
+                            <h4>Band
                                 @if (Helper::overall_rubricks($all_module_marks) == 'A1')
                                     4.0
                                 @elseif(Helper::overall_rubricks($all_module_marks) == 'A2')
@@ -190,7 +190,7 @@
                                     7.0
                                 @else
                                 @endif
-                                থেকে Band 
+                                থেকে Band
                                 {{$student_info->expected_score}}
                                 এ যেতে যে কোর্সগুলো করতে হবে
                             </h4>
@@ -465,7 +465,7 @@
                                         <li class="mb-1" style="font-size:0.875rem;">সঠিক ভাবে vocabulary এর ব্যবহারের দিক থেকে আপনি একজন Proficient  user </li>
                                     @endif
                                 </ul>
-                                
+
                             </div>
                         </div>
                     </div>
