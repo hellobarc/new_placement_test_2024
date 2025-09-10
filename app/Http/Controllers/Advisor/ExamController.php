@@ -491,7 +491,7 @@ class ExamController extends Controller
                     if($response_score == null){
                         $response_score_final = 0;
                     }else{
-                        $response_score_final = $this->extractScore($response) > 8? 7: $this->extractScore($response);
+                        $response_score_final = $this->extractScore($response) > 8 ? 7: $this->extractScore($response);
                     }
 
                 }else{
