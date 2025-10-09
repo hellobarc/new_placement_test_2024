@@ -2,7 +2,7 @@
 @section('content')
 <!-- main section start -->
 @php
-    $continute_sl = 1; 
+    $continute_sl = 1;
 @endphp
 <section>
     <div class="container-fluid">
@@ -93,7 +93,7 @@
                             @else
                             @endif
                             <!-- audio Show -->
-                            
+
                             <!-- question show -->
                             @if ($module_id == 2 || $module_id == 3 || $module_id == 4)
                                 <div class="col-md-12">
@@ -139,7 +139,7 @@
                                                                 @foreach( $options as $key=>$option)
                                                                     <option value="{{$key}}">{{$option}}</option>
                                                                 @endforeach
-                                                            </select>                                                            
+                                                            </select>
                                                             <br><br>
                                                         @endforeach
                                                     @endif
@@ -174,7 +174,7 @@
                                                                     @php
                                                                         $array_maker = explode("k##",$question->text);
                                                                         $arr_count = count($array_maker);
-                                                                    @endphp 
+                                                                    @endphp
                                                                     @foreach($array_maker as $iteration)
                                                                         @php
                                                                             $replace_content = "<input type='text' name='fillBlank_sub_ques_ans_{$items['question_id']}[]'>";
@@ -182,7 +182,7 @@
                                                                             <span class="main-text"> {!!str_replace('##blan', $replace_content , $iteration)!!}</span>
                                                                     @endforeach
                                                                 </div>
-                                                                
+
                                                             @endforeach
                                                         @endif
                                                     </div>
@@ -213,7 +213,7 @@
                                                             @endforeach
                                                         @endforeach
                                                     @endif
-                                                </div> 
+                                                </div>
                                                 <!-- radio section end -->
                                             @elseif($items['question_type'] == 'multiple-choice')
                                                 <!-- multiple choice section start -->
@@ -259,7 +259,7 @@
                                                                         <input class="form-check-input" type="checkbox" id="chechbox_{{$question->id}}_{{$key}}" name="user_multi_selector_{{$question->test_question_id}}[]" value="{{$key}}">
                                                                         <label class="form-check-label mt-1 ms-2" for="chechbox_{{$question->id}}_{{$key}}">{{$option}}</label>
                                                                     </div>
-                                                                @endforeach                                                            
+                                                                @endforeach
                                                             </div>
                                                         @endforeach
                                                     @endif
@@ -279,7 +279,7 @@
                                                             <input type="hidden" name="writing_mark" value="{{$question->marks}}">
                                                             {{-- <textarea name="writing_answer" id="word" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" style="resize: none;width: 100%;height: 600px;border: 2px solid #000;" placeholder="Start writing from here..."></textarea> --}}
                                                             {{-- <textarea name="wrting_question_{{$question->test_question_id}}[]" rows="10" class="w-100" id="writing_word_count" oninput="countWord()" ondrop="return false;" onpaste="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea> --}}
-                                                            <textarea name="wrting_answer" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
+                                                            <textarea name="writing_answer" id="textArea" rows="10" class="w-100" ondrop="return false;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" placeholder="Start writing from here..."></textarea>
                                                             <p class="word-count"><span id="wordCount">0</span>/
                                                                 @if ($question->marks == 7)
                                                                     70
@@ -296,7 +296,7 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="limitedWordLabel">⚠️ Your have already written more than 
+                                                                <h1 class="modal-title fs-5" id="limitedWordLabel">⚠️ Your have already written more than
                                                                     <span class="text-danger">
                                                                         80 Words
                                                                     </span>
@@ -391,7 +391,7 @@
     }else if(module_id == 5){
         var startingMinutes = 20*60;
     }
-        
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="{{asset('frontend/js/question_js.js')}}"></script>

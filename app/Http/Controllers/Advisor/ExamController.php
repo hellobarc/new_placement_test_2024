@@ -34,8 +34,10 @@ use App\Models\{
     CourseBundle,
     CoursePrice,
     Course,
+    SurveyLog,
 };
 use Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\StudentResultEmailNotification;
 use App\Services\OpenAIService;
 class ExamController extends Controller
@@ -83,6 +85,13 @@ class ExamController extends Controller
                 [
                     'test_end'     => time(),
                     'status'         =>'completed',
+                ]);
+                SurveyLog::updateOrCreate([
+
+                    'student_id'=>$student_id
+                ],[
+                    'completed_part' => 2,
+                    'status' => 'pending',
                 ]);
             $deleteSession = session()->forget('test_session');
             return redirect()->route('student.exam.finish', ['student_id'=>$student_id]);
@@ -446,7 +455,7 @@ class ExamController extends Controller
             // foreach($writing_ques_id as $question_id){
                 $writing_question = $data['writing_question'];
                 $sub_ques_id_name = $data['writing_sub_ques_id'];
-                $writing_answer = $data['wrting_answer'];
+                $writing_answer = $data['writing_answer'];
                 $writing_question_mark = $data['writing_mark'];
 
                 if($writing_answer != NULL){
@@ -520,19 +529,36 @@ class ExamController extends Controller
         if($segment_id < $count_exercise){
             if($data['minute'] ==0 && $data['second'] ==1){
                 if($module_id == 6){
-                    TestSubmissionLog::updateOrCreate(
-                        [
+                    try{
+                       DB::transaction(function () {
+                            TestSubmissionLog::updateOrCreate([
                             'student_id'       => $student_id,
                             'advisor_id'     => Auth::user()->id,
                             'test_id'     => $test_id,
-                        ],
-                        [
-                            'test_end'     => time(),
-                            'status'         =>'completed',
-                        ]);
-                    $deleteSession = session()->forget('test_session');
-                    //return view('advisor.student.exam.exam-completed');
-                    return redirect()->route('student.exam.finish', ['student_id'=>$student_id]);
+                            ],
+                            [
+                                'test_end'     => time(),
+                                'status'         =>'completed',
+                            ]);
+
+                            SurveyLog::updateOrCreate([
+
+                                'student_id'=>$student_id
+                            ],[
+                                'completed_part' => 2,
+                                'status' => 'pending',
+                            ]);
+                            $deleteSession = session()->forget('test_session');
+                            //return view('advisor.student.exam.exam-completed');
+                            return redirect()->route('student.exam.finish', ['student_id'=>$student_id]);
+
+                       });
+                    } catch (\Throwable $e) {
+                        // Handle the exception, e.g., log the error or return an error response
+                        dd($e); // Log the exception using Laravel's error reporting
+                        return back()->withErrors('Transaction failed: ' . $e->getMessage());
+                    }
+
                 }else{
                     $current_segment = 1;
                     $current_module_id  = $module_id + 1;

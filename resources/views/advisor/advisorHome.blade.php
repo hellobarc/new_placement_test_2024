@@ -92,7 +92,7 @@
                                 <td class="d-flex justify-content-start" style="font-size:14px;">
                                     @if($item->status == 'approved')
                                         @if ($item->surveyLog)
-                                            @if( $item->surveyLog->status == 'completed')
+                                            @if($item->surveyLog->completed_part == 4 && $item->surveyLog->status == 'completed')
                                                 @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                                     @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
                                                         <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
@@ -100,7 +100,9 @@
                                                         <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
                                                     @endif
                                                 @endif
-                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" >
+                                                    <button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button>
+                                                </a>
                                                 @if (Helper::followUpStatus($item->id) == 'admitted')
                                                     <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                                 @elseif (Helper::followUpStatus($item->id) == 'not_admitted')
@@ -108,20 +110,34 @@
                                                 @else
                                                     <a href="{{route('visitor.follow-up', ['studentId'=>$item->id, 'pagination_page'=>$getData->currentPage()])}}" style="color:#2a1fe9; font-size:1rem; margin: 8px 0 0 0;">FollowUp </a>
                                                 @endif
-                                            @elseif($item->surveyLog->completed_part == 1)
-                                                <a href="{{ route('student.short.details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button></a>
-                                            @else
-                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button></a>
+                                            @elseif($item->surveyLog->completed_part == 1 && $item->surveyLog->status == 'pending')
+                                                <a href="{{ route('student.short.details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" >
+                                                    <button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button>
+                                                </a>
+                                            @elseif($item->surveyLog->completed_part == 2 && $item->surveyLog->status == 'partially_completed')
+                                                <a href="{{ route('student.exam.set', ['student_id'=> $item->id] )}}" >
+                                                    <button class="btn btn-outline-primary py-1 px-2 mx-2">Start <i class="fa-solid fa-arrow-right"></i></button>
+                                                </a>
+                                            @elseif($item->surveyLog->completed_part == 2 && $item->surveyLog->status == 'pending')
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" >
+                                                    <button class="btn btn-outline-primary py-1 px-2 mx-2">Details <i class="fa-solid fa-arrow-right"></i></button>
+                                                </a>
                                             @endif
                                         @else
                                                 @if ($item->purpose_of_visit =='course'||$item->purpose_of_visit == 'ielts_courses'|| $item->purpose_of_visit =='basic_english'||$item->purpose_of_visit =='spoken'||$item->purpose_of_visit =='others'||$item->purpose_of_visit =='online_courses')
                                                     @if (Helper::examCompleted($item->id, $item->assign_advisor)==NULL)
-                                                        <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" ><button class="start-test-btn">Start Now</button></a>
+                                                        <a href="{{route('student.exam.set', ['student_id'=>$item->id])}}" >
+                                                            <button class="start-test-btn">Start Now</button>
+                                                        </a>
                                                     @else
-                                                        <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}"><button class="btn py-1 text-white" style="background-color: #035388">Result</button></a>
+                                                        <a href="{{ route('student.exam.result' , ['student_id'=>$item->id] ) }}">
+                                                            <button class="btn py-1 text-white" style="background-color: #035388">Result</button>
+                                                        </a>
                                                     @endif
                                                 @endif
-                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" ><button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button></a>
+                                                <a href="{{ route('student.Details', ['student_id'=> $item->id, 'step'=>1, 'pagination_page'=>$getData->currentPage()] )}}" >
+                                                    <button class="btn btn-outline-primary py-1 px-2 mx-2">Details</button>
+                                                </a>
                                                 @if (Helper::followUpStatus($item->id) == 'admitted')
                                                     <p class="mb-0 badge badge-success bg-success">Admitted</p>
                                                 @elseif (Helper::followUpStatus($item->id) == 'not_admitted')

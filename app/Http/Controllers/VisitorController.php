@@ -32,7 +32,8 @@ class VisitorController extends Controller
             'contact_number'        => 'required|string|max:50|unique:visitor_logs,mobile',
             'purpose_of_visit'      => 'required|string|max:50',
             'assign_advisor'        => 'required|int|max:50',
-            'visit_branch'          => 'required'
+            'visit_branch'          => 'required',
+            'how_you_know'          => 'required',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator);
@@ -181,8 +182,7 @@ class VisitorController extends Controller
         'allUpazillas',
         'allMetropolitanThanas'))->with('message', 'Student all information uploaded successfully');
     }
-    public function studentShortDetailsUpdate(Request $request,$id)
-    {
+    public function studentShortDetailsUpdate(Request $request,$id){
         $step = $request->step;
         $pagination_page = $request->pagination_page;
         if($step == 1){
@@ -218,6 +218,7 @@ class VisitorController extends Controller
             ]);
             SurveyLog::updateOrCreate(['student_id'=>$request->student_id],[
                 'completed_part' => 2,
+                'status' => 'partially_completed',
             ]);
             return redirect()->route('student.exam.set', ['student_id'=>$request->student_id]);
         }
